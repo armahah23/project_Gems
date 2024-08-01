@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-image: url(D:\react\autocare\photos\bgg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    min-height: 50vh;
+    margin-left: 150px;
+    
+    
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  .App-header {
+    background-color: transparent;
+    padding: 20px;
+    
+  }
+  
+  .logo {
+    width: 200px;
+    margin-bottom: 80px;
+    margin-left: 70%;
+    
+  }
+  
+  .sign-up-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 20%;
+    
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+  .sign-up-button {
+    background-color: rgb(211, 208, 208);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10%;
+    margin-left: 160%;
+    margin-top: 10px;
+    
+  }
+  
+  .image {
+    width: 130px;
+    height: 90px; 
+    margin-bottom: 10px;
+  }
+  
+
+
