@@ -5,7 +5,7 @@
   }
   
   .signup-container {
-      background: url('D:\react\autocare\photos\bgg.jpg'); /* Path to your background image */
+      background: url('../../assets/Photos/BG_Photo.jpg'); /* Path to your background image */
       background-size: cover;
       background-position: center;
       width: 100%;
