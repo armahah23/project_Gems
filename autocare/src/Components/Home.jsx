@@ -3,6 +3,7 @@ import bckground from '../assets/Imgaes/bckground-img.jpeg';
 import booknow from '../assets/Imgaes/booknow.png';
 import emergency from '../assets/Imgaes/emergency.png';
 import slide_1 from '../assets/Imgaes/slide_1.jpeg';
+import setphoto from '../assets/Imgaes/setphoto.webp';
 
 function Home() {
 
@@ -46,7 +47,15 @@ function Home() {
           </div>
         </div>
 
-        <div className="history">Test</div>
+        <div className="history">
+          <h2>The large years of experience in this industry</h2>
+          <div className="profile">
+            <img src={setphoto} alt="profile" />
+            <h1>AUTO CARE VEHICLE SERVICE CENTER</h1>
+            <h3>since: 2000</h3>
+            <p>Embark on a Journey into the Future of Vehicle Maintenance</p>
+          </div>
+        </div>
 
     </>
   )

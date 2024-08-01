@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Inter:wght@100..900&family=Irish+Grover&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Inter:wght@100..900&family=Irish+Grover&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
   background-color: rgb(0, 0, 0);
@@ -11,6 +11,9 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .background-image {
@@ -23,35 +26,33 @@ body {
 
 .home-container h1 {
   position: absolute;
-  top: 45%;
+  top: 30%;
   transform: none;
   color: white;
   font-size: 40px;
-  font-family: 'irish grover', sans-serif;
+  font-family: "irish grover", sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   z-index: 20;
   margin-left: 20px;
 }
 
-
-
 .home-container h1 span {
-  color: #DC143C;
+  color: #dc143c;
   font-family: "irish grover", sans-serif;
 }
 
 .backgrnd {
-  width: 100%;
-  height: 600px; /* Maintain aspect ratio */
+  width: 100vw;
+  height: 400px; /* Maintain aspect ratio */
   display: block;
   opacity: 0.3;
-  border-bottom-right-radius: 50% 30;
+  /* border-bottom-right-radius: 50% 30%; */
 }
 
 .quick-access {
   position: absolute;
-  top: 90%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 20;
@@ -84,7 +85,6 @@ body {
 }
 
 .emergency img {
-  
   width: 60px;
   height: 60px;
 }
@@ -100,7 +100,7 @@ body {
   align-items: center;
 }
 
-.home-content .slide-img, 
+.home-content .slide-img,
 .home-content .content {
   flex: 1; /* Each will take up half of the available width */
   padding: 20px; /* Optional: add padding for better spacing */
@@ -111,7 +111,6 @@ body {
   height: 100%;
   object-fit: cover;
   margin-left: 30px;
- 
 }
 
 .slide-img img {
@@ -130,15 +129,15 @@ body {
 
 .content h3 {
   font-size: 30px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 800;
   margin-bottom: 10px;
-  color: #F5A9A9;
+  color: #f5a9a9;
 }
 
 .content p {
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   margin-bottom: 10px;
 }
@@ -174,5 +173,56 @@ body {
 }
 
 .history {
+  width: 700px;
+  color: white;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  gap: 10px;
+  margin: 20px;
+  margin-top: 20px;
+  margin-left: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #f5a9a9;
+  border-radius: 20px;
+  background: #dc143c71;
+  padding: 10px 20px;
+}
+
+.history h2 {
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.profile img {
+  width: 300px;
+  height: 300px;
+}
+
+.profile h3 {
+  font-size: 30px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  color: #f5a9a9;
+  text-transform: uppercase;
+}
+
+.profile p {
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
   color: white;
 }
