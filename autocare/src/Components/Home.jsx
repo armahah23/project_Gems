@@ -5,6 +5,9 @@ import emergency from '../assets/Imgaes/emergency.png';
 import slide_1 from '../assets/Imgaes/slide_1.jpeg';
 import setphoto from '../assets/Imgaes/setphoto.webp';
 
+
+
+
 function Home() {
 
   const bookNow = () => {}

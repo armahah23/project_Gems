@@ -26,6 +26,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     margin: 8px 0;
     position: relative;
     left: 85%;

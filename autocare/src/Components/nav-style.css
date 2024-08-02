@@ -8,10 +8,6 @@
   font-family: "poppins", sans-serif;
 }
 
-body {
-  width: 100vw;
-}
-
 .navbar-container {
   width: 100vw;
   display: flex;
