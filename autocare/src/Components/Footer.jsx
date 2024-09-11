@@ -27,7 +27,7 @@ function Footer() {
             </div>
             </div>
             <div className="footer-content">
-                <p>© 2021 All rights reserved</p>
+                <p>© Project Gems All rights reserved</p>
             </div>
         </div>
     </>
