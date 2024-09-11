@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, hsla(0, 11%, 89%, 0.75), #eee60d);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .app h1 {
+    text-align: center;
+    color: #b22222;
+    margin-top: 10px;
+  }
+  
+  .container {
+    background: linear-gradient(to bottom, #bc912f, #989271);
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 850px;
+    font-weight: bold;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #b22222;
+  }
+  
+  form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+    flex-basis: calc(50% - 10px);
+    margin-right: 10px;
+  }
+  
+  .form-group:nth-child(odd) {
+    margin-right: 10px;
+  }
+  
+  .form-group:nth-child(even) {
+    margin-right: 0;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button.btn {
+    width: 500px;
+    padding: 10px;
+    background-color: #b22222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  
+  button.btn:hover {
+    background-color: #a21b1b;
+  }
+  
+  footer {
+    text-align: center;
+    margin-top: auto; /* Ensure the footer is pushed to the bottom */
+    background-color: #3e7746;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  
+  .footer-content div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-content img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .footer-content a {
+    color: #faf8f8;
+    text-decoration: none;
+    font-weight: bolder;
+    vertical-align: middle;
+  }
+  
+  .footer-content a:hover {
+    text-decoration: underline;
+  }
+  
+  @media only screen and (max-width: 375px) {
+    .container {
+      width: 90%;
+    }
+  }
+  
