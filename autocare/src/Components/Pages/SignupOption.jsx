@@ -1,12 +1,12 @@
 import React from 'react';
 import './SignupOption.css'; 
 
-import autoCareLogo from '../assets/photos/logo.png'; 
-import adminImage from '../assets/photos/logo.png'; 
-import employeeImage from '../assets/photos/logo.png'; 
-import customerImage from '../assets/photos/logo.png'; 
+import autoCareLogo from '../photos/logo.png'; 
+import adminImage from '../photos/owner.png'; 
+import employeeImage from '../photos/machenic.png'; 
+import customerImage from '../photos/customer.png'; 
 
-function SignUpButton({ text ,image }) {
+function SignUpButton({  image }) {
   return (
     <div className="button-container">
       <button className="sign-up-button">
@@ -16,13 +16,18 @@ function SignUpButton({ text ,image }) {
   );
 }
 
-function AppContent() {
+function AppContent () {
   return (
     <div className="App">
       <header className="App-header">
         <img src={autoCareLogo} alt="Auto Care Logo" className="logo" />
+        <div className="text">
+          <h2><span>Admin</span> Sign up</h2>
+          <h2><span>Employee</span> Sign up</h2>
+          <h2><span>Customer</span> Sign up</h2>
+        </div>
         <div className="sign-up-buttons">
-          <SignUpButton image={adminImage} text="Admin Sign up" />
+          <SignUpButton image={adminImage} />
           <SignUpButton image={employeeImage}  />
           <SignUpButton image={customerImage} />
         </div>
@@ -33,7 +38,4 @@ function AppContent() {
 }
 
 export default AppContent;
-
-
-
 

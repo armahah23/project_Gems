@@ -18,11 +18,11 @@
   
     .logo{
       position: absolute; 
-      top: 1%;
+      top: -1%;
       left: 18%;
       width: 30%; 
       height: 30%; 
-      background: url('D:\react\autocare\photos\logo.png') no-repeat center center; 
+      background: url('../../assets/Photos/logo.png') no-repeat center center; 
       background-size: contain; 
   }
   
@@ -32,7 +32,7 @@
     margin-left: -450px;
     padding: 20px;
     width: 60%;
-    height: 70%;
+    height: 73%;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -92,8 +92,8 @@
   
   .signup-form p {
     color: white;
-    margin-left: -70%;
-    margin-top:5%;
+    margin-left: -1%;
+    margin-top:2%;
   }
   
   .signup-form a {
