@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="[autocare/src/assets/Imgaes/AC_logo.pn](https://github.com/armahah23/project_Gems/blob/main/client/autocare/src/assets/Imgaes/AC_logo.png)" alt="Project Logo" width="200" height="200" />
+  <img src="https://github.com/armahah23/project_Gems/blob/main/client/autocare/src/assets/Imgaes/AC_logo.png" alt="Project Logo" width="200" height="200" />
 </div>
 
 
