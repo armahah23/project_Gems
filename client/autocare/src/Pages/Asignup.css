@@ -1,15 +1,15 @@
-* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
-  .signup-container {
-      background: url('../../assets/Photos/BG_Photo.jpg'); /* Path to your background image */
+  .Asignup-container {
+      background: url('D:\react\autocare\src\assets\photos\BG_Photo.jpg'); /* Path to your background image */
       background-size: cover;
       background-position: center;
       width: 100%;
-      height: 105vh; 
+      height: 100vh; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -18,17 +18,17 @@
   
     .logo{
       position: absolute; 
-      top: -5%;
-      left: 23%;
+      top: 1%;
+      left: 18%;
       width: 30%; 
       height: 30%; 
-      background: url('../../assets/Photos/logo.png') no-repeat center center; 
+      background: url('D:\react\autocare\src\assets\photos\logo.png') no-repeat center center; 
       background-size: contain; 
   }
   
-  .signup-form {
+  .Asignup-form {
     background: rgba(0, 0, 0, 0.781); /* Add a semi-transparent background for the form */
-    margin-top: 5%;
+    margin-top: 10%;
     margin-left: -450px;
     padding: 20px;
     width: 60%;
@@ -39,81 +39,64 @@
     align-items: center;
   }
   
-  .signup-form h1{
+  .Asignup-form h1{
     color: red;
     margin-top: -0%;
-    
-    margin-bottom: 3%;
+    margin-left: -10%;
   }
   
-  .signup-form span {
+  .Asignup-form span {
     color: white;
+    
   
   }
   
   .main {
     display: flex;
     gap: 20px;
-    margin-top: 10px;
+    margin-top: 30px;
   
   }
   
-  .signup-form label {
+  .Asignup-form label {
     color: white;
     text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
-    
   
   }
   
-  .signup-form input {
-    margin-bottom: 20px;
-    margin-top: 10px;
+  .Asignup-form input {
+    margin-bottom: 30px;
     padding: 10px;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
-
   }
   
-  .signup-form button {
+  .Asignup-form button {
     padding: 10px 20px;
     border: none;
     background-color: #ff0000;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    width: 370px;
-    margin-top: -6%;
-    margin-left: 50%;
-
+    width: 270px;
     
   }
   
-  .signup-form button:hover {
+  .Asignup-form button:hover {
     background-color: #0056b3;
   }
-  .signup-form button b {
+  .Asignup-form button b {
     font-size: 15px
   }
   
-  .signup-form p {
+  .Asignup-form p {
     color: white;
-    margin-left: 50%;
-    margin-top:1%;
+    margin-left: -70%;
+    margin-top:5%;
   }
   
-  .signup-form a {
+  .Asignup-form a {
     color: #0056b3;
-  }
-  .column-1 {
-    margin-top: -25px;
-    max-width: 50%;
-
-  }
-  .column-2 {
-    margin-top: -25px;
-    max-width: 50%;
-
   }
     
