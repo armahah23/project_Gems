@@ -1,10 +1,7 @@
-import React from 'react';
+
 import './SignupOption.css'; 
 
-import autoCareLogo from '../photos/logo.png'; 
-import adminImage from '../photos/owner.png'; 
-import employeeImage from '../photos/machenic.png'; 
-import customerImage from '../photos/customer.png'; 
+import autoCareLogo from '../../assets/Imgaes/AC_logo.png';
 
 function SignUpButton({  image }) {
   return (

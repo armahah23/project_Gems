@@ -3,8 +3,8 @@ import "./App.css";
 // import Home from "./Components/Home";
 // import Navbar from "./Components/Navbar";
 //import Asignup from '../src/Components/Pages/Asignup'
-import Esignup from '../src/Components/Pages/Esignup'
-//import SignupOption from './src/Components/Pages/SignupOption'
+// import Esignup from '../src/Components/Pages/Esignup'
+import SignupOption from '../src/Components/Pages/SignupOption'
 
 function App() {
   return (
@@ -13,7 +13,8 @@ function App() {
       <Home />
       <Footer /> 
       <Asignup />*/}
-      <Esignup/>
+      {/* <Esignup/> */}
+      <SignupOption />
       </>
 
 
