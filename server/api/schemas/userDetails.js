@@ -22,19 +22,19 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
 
-  firstName: {
+  firstname: {
     type: String,
-    required: true,
+    required: false,
   },
 
-  lastName: {
+  lastname: {
     type: String,
     required: true,
   },
 
   phone: {
     type: String,
-    required: false,
+    required: true,
   },
 
   address: {
