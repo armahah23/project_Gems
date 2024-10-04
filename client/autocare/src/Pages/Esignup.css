@@ -9,7 +9,7 @@
       background-size: cover;
       background-position: center;
       width: 100%;
-      height: 107vh; 
+      height: 100vh; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -23,21 +23,22 @@
       left: 58%;
       width: 50%;
       height: 50%;
-      background: url('D:\react\autocare\src\assets\photos\logo.png') no-repeat center center; /* Update with your actual image path */
+      background: url('E:\project_Gems\client\autocare\src\assets\photos\logo.png') no-repeat center center; /* Update with your actual image path */
       background-size: contain;
   }
   
   .Esignup-form {
     background: rgba(0, 0, 0, 0.781); /* Add a semi-transparent background for the form */
-    margin-top: -3%;
+    margin-top: 5px;
     margin-left: -450px;
     padding: 20px;
     width: 60%;
-    height: 70%;
+    height: 90%;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
   }
   
   .Esignup-form h1{
