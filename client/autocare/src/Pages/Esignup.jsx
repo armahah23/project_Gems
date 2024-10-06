@@ -35,7 +35,7 @@ export default function Esignup() {
 
     const data = await response.json();
     if (response.ok) {
-      alert("User created successfully!");
+      alert("Mechanic profile created successfully!");
     } else {
       alert("Error: " + data.error);
     }

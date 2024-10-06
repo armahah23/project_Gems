@@ -3,6 +3,9 @@ import Image1 from '../assets/photos/payment.png'
 
 
 export default function Payment() {
+
+  
+
   return (
     <div className="Payment-container">
         <div className="logo"></div>

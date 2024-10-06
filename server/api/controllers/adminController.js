@@ -1,4 +1,4 @@
-const User = require("../schemas/userDetails");
+const Admin = require("../schemas/adminSchema");
 
 // Controller functions for handling requests
 // exports.getUser = (req, res) => {
@@ -11,28 +11,25 @@ const User = require("../schemas/userDetails");
 //   }
 // };
 
-exports.createUser = async (req, res) => {
-    const { username, password, email, phone, firstname, lastname, idnumber, address } = req.body;
+exports.createAdmin = async (req, res) => {
+    const { username, password, email, phone, fullname} = req.body;
   
     try { 
         // Create a new instance of the User model
-        const newUser = new User({
+        const newAdmin = new Admin({
             username,
             password,
             email,
             phone,
-            firstname,
-            lastname,
-            idnumber,
-            address
+            fullname,
         });
         
         // Save the user to the database
-        await newUser.save();
+        await newAdmin.save();
         
-        res.status(201).send({ message: 'User created successfully' });
+        res.status(201).send({ message: 'Admin profile setted successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).send({ error: 'Failed to create user' });
+        res.status(500).send({ error: 'Failed to create admin' });
     }
 };

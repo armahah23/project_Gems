@@ -1,12 +1,72 @@
 import "./Login.css";
-import google_icon from "../assets/icons/google_icon.png"; // Update the path as per your project structure
-import facebook_icon from "../assets/icons/facebook_icon.png"; // Update the path as per your project structure
+import google_icon from "../assets/icons/google_icon.png";
+import facebook_icon from "../assets/icons/facebook_icon.png";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+  
+    // Prepare login data
+    const loginData = {
+      username,
+      password,
+    };
+  
+    try {
+      // Send login request
+      const response = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+  
+      const data = await response.json(); // Parse response data
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Login failed"); // Throw error if response is not OK
+      }
+  
+      // Successful login
+      alert("Login successful!");
+      navigate("/");
+      localStorage.setItem("token", data.token); // Store token
+  
+      // Fetch user data
+      const userResponse = await fetch(`http://localhost:3000/api/mechanic/${data.userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${data.token}`, // Use the token for authorization
+        },
+      });
+  
+      if (!userResponse.ok) {
+        const userData = await userResponse.json();
+        throw new Error(userData.error || "Error fetching user data");
+      }
+  
+      const userData = await userResponse.json(); // Parse user data
+      console.log("User data:", userData); // Handle user data as needed
+  
+    } catch (error) {
+      console.error("Error:", error);
+      alert(error.message); // Show error message
+    }
+  };
+  
+
   return (
     <div className="login-container">
       <div className="logo">{/* Logo can be inserted here */}</div>
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleLogin}>
         <h1>
           WELCOME <span>BACK</span>
         </h1>
@@ -19,6 +79,8 @@ export default function Login() {
                 type="text"
                 id="username"
                 placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
           </label>
@@ -32,6 +94,8 @@ export default function Login() {
                 type="password"
                 id="password"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <span className="eye-icon">👁️</span>
             </div>
