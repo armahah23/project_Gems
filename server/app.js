@@ -19,6 +19,10 @@ app.use("/api", require("./api/routes/mechanicRoutes"));
 // app.use('/api', require('./api/routes/vehicleRoutes'));
 app.use("/api", require("./api/routes/adminRoutes"));
 
+app.use("/api", require("./api/routes/userRoutes"));
+
+// app.use("/api", require("./api/routes/bookingRoutes"));
+
 // Start the server
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

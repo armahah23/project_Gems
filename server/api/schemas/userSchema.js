@@ -24,25 +24,28 @@ const userSchema = new mongoose.Schema({
 
   firstname: {
     type: String,
-    required: false,
+    required: true,
+    trim: true,  // Adding trim to remove extra spaces
   },
 
   lastname: {
     type: String,
     required: true,
+    trim: true,  // Adding trim to remove extra spaces
   },
 
   phone: {
     type: String,
     required: true,
+    trim: true,  // Adding trim to remove extra spaces
   },
 
   address: {
-    street: String,
-    city: String,
-    state: String,
-    zipCode: String,
-    country: String,
+    street: { type: String, trim: true },
+    city: { type: String, trim: true },
+    state: { type: String, trim: true },
+    zipCode: { type: String, trim: true },
+    country: { type: String, trim: true },
   },
 });
 

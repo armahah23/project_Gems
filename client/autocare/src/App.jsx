@@ -4,6 +4,7 @@ import "./App.css";
 import Esignup from "./Pages/Esignup.jsx";
 import Asignup from "./Pages/Asignup.jsx";
 import AddWorkPage from "./Pages/Addwork.jsx";
+import Home from "./Pages/Home.jsx";
 import Login from "./Pages/Login.jsx";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <>
       <Routes>
         {/* <Addwork /> */}
+        <Route path="/" element={<Home />} />
         <Route path="/esignup" element={<Esignup />} />
         <Route path="/asignup" element={<Asignup />} />
         <Route path="/addwork" element={<AddWorkPage />} />

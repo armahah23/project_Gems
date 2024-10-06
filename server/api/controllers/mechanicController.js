@@ -35,7 +35,7 @@ exports.createMechanic = async (req, res) => {
 
 
 // Login user
-exports.loginUser = async (req, res) => {
+exports.postUser = async (req, res) => {
     const { username, password } = req.body;
   
     // Check if input fields are empty

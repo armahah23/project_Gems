@@ -6,7 +6,7 @@ const mechanicController = require('../controllers/mechanicController');
 router.post('/esignup', mechanicController.createMechanic);
 
 // Route for user login
-router.post('/login', mechanicController.loginUser); 
+router.post('/login', mechanicController.postUser); 
 
 // Route to get user by ID (optional)
 router.get('/login', mechanicController.getUser);
