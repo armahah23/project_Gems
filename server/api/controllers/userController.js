@@ -6,7 +6,7 @@ const Booking = require("../schemas/bookingSchema");
 
 // Create a new user
 exports.createUser = async (req, res) => {
-  const { username, password, email, phone, firstname, lastname, address } = req.body;
+  const { username, password, email, phone, fullname, address } = req.body;
 
   try { 
     // Hash password before saving
@@ -18,8 +18,7 @@ exports.createUser = async (req, res) => {
       password: hashedPassword, // Save hashed password
       email,
       phone,
-      firstname,
-      lastname,
+      fullname,
       address
     });
     

@@ -22,13 +22,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
 
-  firstname: {
-    type: String,
-    required: true,
-    trim: true,  // Adding trim to remove extra spaces
-  },
-
-  lastname: {
+  fullname: {
     type: String,
     required: true,
     trim: true,  // Adding trim to remove extra spaces
