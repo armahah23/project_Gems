@@ -40,7 +40,7 @@ export default function Login() {
       localStorage.setItem("token", data.token); // Store token
   
       // Fetch user data
-      const userResponse = await fetch(`http://localhost:3000/api/mechanic/${data.userId}`, {
+      const userResponse = await fetch(`http://localhost:3000/api/user/${data.userId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

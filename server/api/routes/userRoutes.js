@@ -6,9 +6,9 @@ const userController = require('../controllers/userController.js');
 router.post('/usignup', userController.createUser);
 
 // Route for user login
-// router.post('/login', userController.postUser); 
+router.post('/login', userController.postUser); 
 
 // Route to get user by ID (optional)
-// router.get('/login', mechanicController.getUser);
+router.get('/user/?:id', userController.getUser);
 
 module.exports = router;
