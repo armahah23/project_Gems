@@ -1,6 +1,10 @@
-<div align="center">
-  <img src="https://github.com/armahah23/project_Gems/blob/main/client/autocare/src/assets/Imgaes/AC_logo.png" alt="Project Logo" width="200" height="200" />
-</div>
+<p align="center">
+  <img src="https://github.com/armahah23/project_Gems/blob/main/client/autocare/src/assets/photos/logo.png" alt="Project Logo" width="250" height="250">
+</p>
+
+
+
+
 
 
 # Auto Care Web Application
@@ -60,29 +64,5 @@ Vehicle service centers face difficulties in managing appointments, maintenance 
 
     Clone the repository: git clone <repository-link>
     Install dependencies: npm install
-    Run front-end: npm start (for React)
+    Run front-end: npm run dev (for React)
     Run back-end: npm run server (for Node.js)
-
-    
-
-## Tomorrow’s Tasks (9.9.24)
-
-### 3.1 Back-end Designing
-
-    Design the structure for the back-end API.
-    Define key endpoints (e.g., /book-service, /view-appointments).
-    Set up the basic folder structure (controllers, routes, models).
-    Plan how to handle data (e.g., customer details, service records).
-
-### 3.2 Front-end Recheck
-
-    Review the existing front-end design.
-    Fix any UI/UX issues or inconsistencies found.
-    Ensure that the components are functioning as expected.
-
-### 3.3 Prototype of Front-end UI Design
-
-    Create a low-fidelity prototype of the front-end UI.
-    Focus on layout, navigation, and user flow.
-    Gather feedback from the team for improvement.
-
