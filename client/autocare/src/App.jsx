@@ -13,7 +13,7 @@ function App() {
     <>
       <Routes>
         {/* <Addwork /> */}
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/esignup" element={<Esignup />} />
         <Route path="/asignup" element={<Asignup />} />
         <Route path="/addwork" element={<AddWorkPage />} />

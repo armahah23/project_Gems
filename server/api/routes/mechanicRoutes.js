@@ -9,6 +9,6 @@ router.post('/esignup', mechanicController.createMechanic);
 router.post('/login', mechanicController.postUser); 
 
 // Route to get user by ID (optional)
-router.get('/login', mechanicController.getUser);
+router.get('/user/?:id', mechanicController.getUser);
 
 module.exports = router;

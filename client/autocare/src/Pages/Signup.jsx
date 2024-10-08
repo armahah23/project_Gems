@@ -38,6 +38,14 @@ export default function Signup() {
     }
   };
 
+  const comparePassword = () => {
+    if (conformPassword !== password ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
     <div className="signup-container">
       <div className="logo"></div>
@@ -92,6 +100,7 @@ export default function Signup() {
               value={conformPassword}
               onChange={(e) => setConformPassword(e.target.value)}
             />
+            {comparePassword() ? <p id="password-not-match">Passwords do not match !</p> : null}
           </div>
           <button type="submit">
         <b>SIGN UP</b>
