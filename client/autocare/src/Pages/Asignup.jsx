@@ -9,6 +9,8 @@ export default function Asignup() {
   const [password, setPassword] = useState("");
   const [conformPassword, setConformPassword] = useState("");
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:3000/api/asignup", {
@@ -28,6 +30,7 @@ export default function Asignup() {
     const data = await response.json();
     if (response.ok) {
       alert("Admin profile setted successfully!");
+      
     } else {
       alert("Error: " + data.error);
     }
