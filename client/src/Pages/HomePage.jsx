@@ -27,7 +27,11 @@ const HomePage = () => {
   };
 
   const handleSignup = () => {
-    navigate("/");
+    navigate("/signupoption");
+  }
+
+  const handleLogin = () => {
+    navigate("/login");
   }
 
   return (
@@ -47,14 +51,14 @@ const HomePage = () => {
               <a href="#">SERVICES</a>
               <a href="#">OFFERS</a>
               <a href="#">STORE</a>
-              <button className="sign-up-btn">SIGN UP</button>
+              <button className="sign-up-btn" onClick={handleSignup}>SIGN UP</button>
             </div>
           </nav>
         </div>
       </header>
 
       {/* Main Content */}
-      <main>
+      
         {/* Service Buttons */}
         <section className="service-actions container">
           <button className="action-btn book-btn">
@@ -80,7 +84,7 @@ const HomePage = () => {
               <button className="sign-up-btn" onClick={handleSignup}>SIGN UP</button>
               <p className="login-text">
                 {" "}
-                or <a href="./Login.jsx">CLICK HERE</a> to Log in
+                or <a href="#" onClick={handleLogin}>CLICK HERE</a> to Log in
               </p>
             </div>
           </div>
@@ -268,7 +272,7 @@ const HomePage = () => {
         >
           <ArrowUp />
         </button>
-      </main>
+      
     </div>
   );
 };

@@ -38,73 +38,74 @@ exports.createUser = async (req, res) => {
 //user login form post
 exports.postUser = async (req, res) => {
   const { username, password } = req.body;
-  
-    // Check if input fields are empty
-    if (!username || !password) {
-      return res.json({
-        status: "FAILED",
-        message: "Empty input fields",
-      });
-    }
-  
-    try {
-      // Find the user by username
-      const data = await user.find({ username: username });
-  
-      if (data.length) {
-        const hashedPassword = data[0].password; // Corrected the variable name to 'hashedPassword'
-        
-        // Compare the provided password with the stored hashed password
-        const result = await bcrypt.compare(password, hashedPassword);
-  
-        if (result) {
-          return res.json({
-            status: "SUCCESS",
-            message: "Login successful",
-            data: data,
-          });
-        } else {
-          return res.json({
-            status: "FAILED",
-            message: "Invalid password",
-          });
-        }
+
+  // Check if input fields are empty
+  if (!username || !password) {
+    return res.status(400).json({
+      status: "FAILED",
+      message: "Empty input fields",  // Clear error for empty fields
+    });
+  }
+
+  try {
+    // Find the user by username
+    const data = await user.findOne({ username: username });
+
+    if (data) {
+      const hashedPassword = data.password; // Make sure 'data' has 'password' field
+      
+      // Compare the provided password with the stored hashed password
+      const result = await bcrypt.compare(password, hashedPassword);
+
+      if (result) {
+        return res.status(200).json({
+          status: "SUCCESS",
+          message: "Login successful",
+          data: data,
+        });
       } else {
-        return res.json({
+        return res.status(401).json({
           status: "FAILED",
-          message: "Invalid username",
+          message: "Invalid password",
         });
       }
-    } catch (error) {
-      return res.json({
+    } else {
+      return res.status(404).json({
         status: "FAILED",
-        message: "An error occurred during login",
+        message: "Invalid username",
       });
     }
+  } catch (error) {
+    return res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred during login",
+    });
+  }
 };
 
 //user login form get
 exports.getUser = async (req, res) => {
-  const { userId } = req.params.id;
+  const { id: userId } = req.params; // Extract 'id' from req.params
 
-    try {
-        if (userId) {
-            // Fetch the user by ID from the database
-            const user = await User.findById(userId);
-            if (!user) {
-                return res.status(404).send({ error: 'User not found' }); // Handle user not found
-            }
-            res.send(user); // Return the user details
-        } else {
-            // Fetch all users if no ID is provided
-            const users = await User.find(); // Fetch all users
-            res.send(users); // Return the list of users
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({ error: 'Server error' }); // Handle server errors
+  try {
+    if (userId) {
+      // Fetch the user by ID from the database
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).send({ error: 'User not found' }); // Handle user not found
+      }
+      res.status(200).send(user); // Return the user details with a 200 status code
+    } else {
+      // Fetch all users if no ID is provided
+      const users = await User.find(); // Fetch all users
+      res.status(200).send(users); // Return the list of users
     }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Server error' }); // Handle server errors
+  }
 };
+
 
 
 //create a new booking

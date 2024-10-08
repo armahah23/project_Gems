@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: rgba(19, 73, 107, 1);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    justify-content: center;
+
+  
+  
+}
+
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: transparent;
+  padding: 20px;
+  
+}
+
+.logo {
+  width: 200px;
+  margin-bottom: 70px;
+  
+  
+}
+
+.sign-up-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 300px;
+  padding: 0%;
+  margin-left: 0%;
+  
+}
+
+.button-container {
+  text-align: center;
+}
+
+.sign-up-button {
+  background-color: rgb(211, 208, 208);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50%;
+  padding: 20px;
+  
+ 
+  
+}
+
+.image {
+  width: 135px;
+  height: 135px;
+  height: 90px; 
+  margin-bottom: 10px;
+}
+
+.text {
+  display: flex;
+  justify-content: center; 
+  gap: 300px; 
+  margin-bottom: 50px;
+}
+
+.text h2 {
+  font-size: 38px;
+  font-weight: bold;
+  color: white;
+  line-height: 1;
+  display: inline-block; 
+  padding: 10px;
+  border-radius: 15%;
+  background-color: black;
+  
+  
+  
+}
+
+.text h2 span {
+  color: red;
+}
