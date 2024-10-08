@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Booking = require("../schemas/bookingSchema");
 const User = require("../schemas/userSchema");
+const Payment = require("../schemas/paymentSchema");
 
 
 // Create a new user
@@ -150,3 +151,37 @@ exports.createBooking = async (req, res) => {
   }
 };
 
+// Post payment Details
+exports.postPayment = async (req, res) => {
+  const {  cardnumber, cardholdername, expireddate, cvv, amount } = req.body;
+
+  try { 
+    // Hash cvv before saving
+    const hashedCvv = await bcrypt.hash(cvv, 10);
+
+    if (cardnumber!==12){
+      return res.json({
+        status: "FAILED",
+        message: "Invalid card number",
+      });
+    }
+    
+    // Create a new instance of the user model
+    const newPayment = new Payment({
+      cardnumber,
+      cardholdername,
+      expireddate,
+      cvv: hashedCvv, // Save hashed cvv
+      amount
+    });
+     
+    // Save the mechanic to the database
+    await newPayment.save();
+    
+    
+    res.status(201).send({ message: 'Payment Details saved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Failed to save payment details' });
+  }
+}
