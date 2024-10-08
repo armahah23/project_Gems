@@ -11,7 +11,7 @@ const workdashboardSchema = new mongoose.Schema({
     },
     addedparts: {
         type: String,
-        required: true,
+        required: false,
     },
     mechanic: {
         type: String,
