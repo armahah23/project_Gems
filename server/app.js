@@ -22,6 +22,10 @@ app.use("/api", require("./api/routes/adminRoutes"));
 app.use("/api", require("./api/routes/userRoutes"));
 
 // app.use("/api", require("./api/routes/bookingRoutes"));
+app.post('/payment', (req, res) => {
+  // Your payment logic here
+  res.send('Payment processed');
+});
 
 // Start the server
 app.listen(3000, () => {
