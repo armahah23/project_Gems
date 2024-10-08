@@ -17,6 +17,7 @@
   body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
+    background-color: white;
     
   } 
 
@@ -75,8 +76,6 @@
   }
 
   
-  
-  
   .service-actions {
   
     display: flex;
@@ -85,7 +84,7 @@
     margin-left: 35%;
   }
   
-  .action-btn {
+  .book-btn {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -95,6 +94,16 @@
     padding: 12px 24px;
     border-radius: 5px;
     cursor: pointer;
+   
+  }
+
+  .ImageA{
+    margin-top: -100px;
+    margin-left: 20px;
+  }
+
+  .hero-content{
+    margin-top: -100px;
   }
   
   
@@ -103,6 +112,7 @@
     align-items: center;
     gap: 50px;
     margin: 50px auto;
+    
   }
   
   .hero-content h1 {
@@ -111,6 +121,7 @@
     font-family: "Irish Grover", system-ui;
     font-weight: 400;
     font-style: normal;
+    color: #A7A7A7;
   }
   
   .hero-content h1 span {
@@ -129,15 +140,21 @@
     gap: 50px;
     margin: 80px auto;
   }
-  .service-details {
+  .service-details   {
     padding-left: 10%;
+    
   }
+  .service-details h2{
+    color: black;
+  }
+
 
  
   
   .service-list {
     list-style: none;
     margin: 30px 0;
+    color: #5C5C5C;
   }
   
   .WheelSet{
@@ -157,6 +174,7 @@
     text-align: center;
     margin: 80px auto;
     margin-top: -25%;
+    color: black;
   }
   
   .history-text {
@@ -203,7 +221,7 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: #13496B;
+  background: #13496B;   
   clip-path: polygon(-3px 544px, 99.95% 170px, 100.07% 100%, 0% 100%);
 }
 

@@ -47,13 +47,7 @@
        {/* Main Content */}
         <main>
          {/* Service Buttons */}
-         <section className="service-actions container">
-           
-           <button className="action-btn book-btn">
-             <FileText />
-             BOOK NOW
-           </button>
-         </section>
+         
          {/* Hero Section */}
          <section className="hero-section container">
            <div className="hero-content">
@@ -67,6 +61,13 @@
              <div className="hero-actions">
               <button className="sign-up-btn">SIGN UP</button>
                <p className="login-text"> or <a href="#">CLICK HERE</a> to Log in</p>
+               
+           
+           <button className="book-btn">
+             <FileText />
+             BOOK NOW
+           </button>
+         
              </div>
            </div>
            <img className='ImageA' src={ImageA} style={{ width: '500px', height: 'Auto' }} />
@@ -81,10 +82,11 @@
            </div>
             <div className="service-details">
               <h2>What we do?</h2>
+            
+              <ul className="service-list">
               <p>
                 Streamlining vehicle service operations with smart solutions for efficiency and ease.
               </p>
-              <ul className="service-list">
                 <li>🔧 Online Appointment Scheduling</li>
                 <li>🔧 Automated Service Reminders</li>
                 <li>🔧 Real-Time Service Tracking</li>

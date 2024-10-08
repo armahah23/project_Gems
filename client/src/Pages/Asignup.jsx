@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Asignup.css";
+import  logo from '../assets/photos/logo.png'
+
 
 export default function Asignup() {
   const [fullname, setFullname] = useState("");
@@ -100,6 +102,7 @@ export default function Asignup() {
           Already have an Account? <a href="#">Login</a>
         </p>
       </form>
+      <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
     </div>
   );
 }
