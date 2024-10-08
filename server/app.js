@@ -10,13 +10,18 @@ app.use(cors());
 
 // MongoDB connection (using Mongoose)
 mongoose.set("strictQuery", true);
-mongoose.connect("mongodb://0.0.0.0:27017/autocare")
-.then(() => console.log("Connected to MongoDB"))
-.catch((error) => console.error("Failed to connect to MongoDB", error));
+mongoose
+  .connect("mongodb://0.0.0.0:27017/autocare")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => console.error("Failed to connect to MongoDB", error));
 
-app.use('/api', require('./api/routes/userRoutes'));
+app.use("/api", require("./api/routes/mechanicRoutes"));
 // app.use('/api', require('./api/routes/vehicleRoutes'));
+app.use("/api", require("./api/routes/adminRoutes"));
 
+app.use("/api", require("./api/routes/userRoutes"));
+
+// app.use("/api", require("./api/routes/bookingRoutes"));
 
 // Start the server
 app.listen(3000, () => {
