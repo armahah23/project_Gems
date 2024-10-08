@@ -1,0 +1,80 @@
+/* App.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .background-design {
+    position:absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #13496B;
+    clip-path: polygon(-3px 544px, 99.87% 328px, 100.07% 100%, 0% 100%);
+    z-index: -1;
+  }
+  
+  
+ 
+
+  
+  .slot-booking-section {
+    padding: 40px;
+    text-align: center;
+    margin-left: -50%;
+    margin-top: 5%;
+  }
+  
+  .slot-booking-section h1 {
+    font-size: 40px;
+    
+   
+  }
+  
+  .book-service-button {
+    padding: 10px 20px;
+    margin: 10px;
+    border:none;
+    border-radius: 20px;
+    width: 200px;
+    background-color: #13496B;
+    color: white;
+    cursor: pointer;
+    font-size: 19px;
+    
+  }
+  .emergency-service-button {
+    padding: 10px 20px;
+    margin: 10px;
+    border:none;
+    border-radius: 20px;
+    width: 200px;
+    background-color: white;
+    color:black;
+    cursor: pointer;
+    font-size: 19px;
+    margin-left: 70%;
+    
+  }
+  
+  .ImageT {
+   margin-left: 65%;
+   margin-top: -20%;
+   position: relative;
+   z-index:-5;
+  }
+  
+  .emergency-section h1 {
+    color: white;
+    font-size: 40px;
+    margin-left: 60%;
+  }
+  .emergency-section p{
+    color: white;
+    margin-left: 55%;
+  }
+  .emergency-section{
+    margin-top: 2%;
+  }
+  
