@@ -7,6 +7,7 @@ import AddWorkPage from "./Pages/Addwork.jsx";
 import Login from "./Pages/Login.jsx";
 import Signup from "./Pages/Signup.jsx";
 import HomePage from "./Pages/HomePage.jsx";
+import SignupOption from "./Pages/SignupOption.jsx";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/addwork" element={<AddWorkPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/csignup" element={<Signup />} />
+        <Route path="/signupoption" element={<SignupOption />} />
       </Routes>
     </>
   );
