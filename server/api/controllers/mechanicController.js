@@ -36,51 +36,53 @@ exports.createMechanic = async (req, res) => {
 
 // Login user
 exports.postUser = async (req, res) => {
-    const { username, password } = req.body;
-  
-    // Check if input fields are empty
-    if (!username || !password) {
-      return res.json({
-        status: "FAILED",
-        message: "Empty input fields",
-      });
-    }
-  
-    try {
-      // Find the mechanic by username
-      const data = await mechanic.find({ username: username });
-  
-      if (data.length) {
-        const hashedPassword = data[0].password; // Corrected the variable name to 'hashedPassword'
-        
-        // Compare the provided password with the stored hashed password
-        const result = await bcrypt.compare(password, hashedPassword);
-  
-        if (result) {
-          return res.json({
-            status: "SUCCESS",
-            message: "Login successful",
-            data: data,
-          });
-        } else {
-          return res.json({
-            status: "FAILED",
-            message: "Invalid password",
-          });
-        }
+  const { username, password } = req.body;
+
+  // Check if input fields are empty
+  if (!username || !password) {
+    return res.status(400).json({
+      status: "FAILED",
+      message: "Empty input fields",
+    });
+  }
+
+  try {
+    // Find the mechanic by username
+    const data = await Mechanic.findOne({ username: username }); // Use findOne instead of find
+
+    if (data) {
+      const hashedPassword = data.password;
+
+      // Compare the provided password with the stored hashed password
+      const result = await bcrypt.compare(password, hashedPassword);
+
+      if (result) {
+        return res.status(200).json({
+          status: "SUCCESS",
+          message: "Login successful",
+          data: data,
+        });
       } else {
-        return res.json({
+        return res.status(401).json({
           status: "FAILED",
-          message: "Invalid username",
+          message: "Invalid password",
         });
       }
-    } catch (error) {
-      return res.json({
+    } else {
+      return res.status(404).json({
         status: "FAILED",
-        message: "An error occurred during login",
+        message: "Invalid username",
       });
     }
-  }; 
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred during login",
+    });
+  }
+};
+
 
 //   try {
 //     const user = await Mechanic.findOne({ username, password });
@@ -103,23 +105,30 @@ exports.postUser = async (req, res) => {
 
 // Controller functions for handling requests
 exports.getUser = async (req, res) => {
-    const { userId } = req.params.id;
+  const { id: userId } = req.params;  // Corrected destructuring
+  const token = req.headers.authorization?.split(" ")[1];
+  
 
-    try {
-        if (userId) {
-            // Fetch the user by ID from the database
-            const user = await Mechanic.findById(userId);
-            if (!user) {
-                return res.status(404).send({ error: 'User not found' }); // Handle user not found
-            }
-            res.send(user); // Return the user details
-        } else {
-            // Fetch all users if no ID is provided
-            const users = await Mechanic.find(); // Fetch all users
-            res.send(users); // Return the list of users
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({ error: 'Server error' }); // Handle server errors
-    }
-}
+  try {
+      if (userId) {
+          // Fetch the user by ID from the database
+          const user = await Mechanic.findById(userId);
+          if (!user) {
+              return res.status(404).send({ error: 'User not found' }); // Handle user not found
+          }
+          res.send(user); // Return the user details
+      } else {
+          // Fetch all users if no ID is provided
+          const users = await Mechanic.find(); // Fetch all users
+          res.send(users); // Return the list of users
+      }
+
+      if (!token) {
+        return res.status(401).send({ error: 'Unauthorized' });
+      }
+      
+  } catch (error) {
+      console.error(error);
+      res.status(500).send({ error: 'Server error' }); // Handle server errors
+  }
+};
