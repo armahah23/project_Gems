@@ -10,6 +10,7 @@
  import  ImageF from '../assets/photos/F.png'
  import  ImageG from '../assets/photos/G.png'
  import  ImageH from '../assets/photos/H.png'
+import {navigate} from 'react-router-dom';
 
 
 
@@ -33,12 +34,12 @@
            <img className='Logo' src={Logo} style={{ width: '150px', height: '150px' }} />
            <nav className="nav-menu">  
              <div className="nav-links">
-              <a href="#">HOME</a>
-              <a href="#">CONTACT</a>
+              <a href="#" to='/'>HOME</a>
+              <a href="#" >CONTACT</a>
               <a href="#">SERVICES</a>
                <a href="#">OFFERS</a>
                <a href="#">STORE</a>
-               <button className="sign-up-btn">SIGN UP</button>
+               <button className="sign-up-btn" to=''>SIGN UP</button>
              </div>
            </nav>
         </div>
