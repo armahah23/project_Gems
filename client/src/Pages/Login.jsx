@@ -145,23 +145,19 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-
-    // Client-side validation for empty fields
+    e.preventDefault();
+  
     if (!username || !password) {
       alert("Please fill in both username and password.");
-      return; // Stop form submission
+      return;
     }
-
-    // Prepare login data
-    const loginData = {
-      username,
-      password,
-    };
-
+  
+    const loginData = { username, password };
+  
     try {
       // Send login request
       const response = await fetch("http://localhost:3000/api/login", {
@@ -171,43 +167,46 @@ export default function Login() {
         },
         body: JSON.stringify(loginData),
       });
-
-      const data = await response.json(); // Parse response data
-
-      // Check if response is not OK (like 401 Unauthorized or 400 Bad Request)
+  
+      const data = await response.json();
+  
+      // Handle login errors
       if (!response.ok) {
-        throw new Error(data.message || "Login failed"); // Use server error message if available
+        throw new Error(data.message || `Login failed with status ${response.status}`);
       }
-
-      // Successful login
-      alert("Login successful!");
-      localStorage.setItem("token", data.token); // Store token
-
+  
       // Fetch user data after successful login
       const userResponse = await fetch(`http://localhost:3000/api/user/${data.userId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${data.token}`, // Use the token for authorization
+          Authorization: `Bearer ${data.token}`, // Send token in the Authorization header
         },
       });
-      
-
+  
+      // Handle user data fetch errors
       if (!userResponse.ok) {
-        const userData = await userResponse.json();
-        throw new Error(userData.error || "Error fetching user data");
+        const userData = await userResponse.json(); // Only parse once
+        throw new Error(userData.error || `Error fetching user data with status ${userResponse.status}`);
       }
-
-      const userData = await userResponse.json(); // Parse user data
-      console.log("User data:", userData); // Handle user data as needed
-
-      // Navigate to the home page after login
+  
+      const userData = await userResponse.json(); // Parse user data after successful request
+      console.log("User data:", userData);
+  
+      // Save the token and navigate to the home page
+      localStorage.setItem("token", data.token); // Store token
+      alert("Login successful!");
       navigate("/");
-
+  
     } catch (error) {
       console.error("Error:", error);
-      alert(error.message); // Show error message
+      alert(error.message);
     }
+  };
+  
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -238,16 +237,22 @@ export default function Login() {
             <div className="input-wrapper">
               <span className="icon">🔒</span>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <span className="eye-icon">👁️</span>
+              <span
+                className="eye-icon"
+                onClick={togglePasswordVisibility}
+                style={{ cursor: "pointer" }}
+              >
+                {showPassword ? "🙈" : "👁️"}
+              </span>
             </div>
           </label>
-          <a href="#" className="forgot-password">
+          <a href="/forgot-password" className="forgot-password">
             Forgot Password?
           </a>
         </div>
@@ -261,7 +266,7 @@ export default function Login() {
               alt="Google icon"
               style={{ width: "20px", marginRight: "8px" }}
             />
-            Login with <a href="#">Google</a>
+            Login with <a href="/login/google">Google</a>
           </div>
           <div className="facebook-login">
             <img
@@ -269,12 +274,12 @@ export default function Login() {
               alt="Facebook icon"
               style={{ width: "20px", marginRight: "8px" }}
             />
-            Login with <a href="#">Facebook</a>
+            Login with <a href="/login/facebook">Facebook</a>
           </div>
         </div>
         <p className="sign">
           Don’t have an Account?{" "}
-          <a href="#" className="sign-up-link">
+          <a href="/signup" className="sign-up-link">
             Sign Up
           </a>
         </p>

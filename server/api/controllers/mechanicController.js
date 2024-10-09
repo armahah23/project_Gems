@@ -106,6 +106,8 @@ exports.postUser = async (req, res) => {
 // Controller functions for handling requests
 exports.getUser = async (req, res) => {
   const { id: userId } = req.params;  // Corrected destructuring
+  const token = req.headers.authorization?.split(" ")[1];
+  
 
   try {
       if (userId) {
@@ -120,6 +122,11 @@ exports.getUser = async (req, res) => {
           const users = await Mechanic.find(); // Fetch all users
           res.send(users); // Return the list of users
       }
+
+      if (!token) {
+        return res.status(401).send({ error: 'Unauthorized' });
+      }
+      
   } catch (error) {
       console.error(error);
       res.status(500).send({ error: 'Server error' }); // Handle server errors
