@@ -1,7 +1,7 @@
-import React from 'react';
+
 import './Customersignup.css';
 //import Footer from './components/Footer';
-import logo from './assets/logo1.png';
+import logo from '../assets/photos/logo.png';
 
 function Customersignup() {
   return (

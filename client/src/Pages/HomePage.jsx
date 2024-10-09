@@ -211,8 +211,8 @@ const HomePage = () => {
                 style={{ width: "400px", height: "400px" }}
               />
               <p>
-                We're here to provide expert assistance every step of the way.
-                Whether you need
+                We&apos;re here to provide expert assistance every step of the way.
+                Whether you need``
                 <br />
                 guidance on services, help with scheduling, or any other
                 support, our dedicated team

@@ -1,10 +1,10 @@
 import './SignupOption.css'; 
 
 import autoCareLogo from '../assets/photos/logo.png'; 
-import employeeImage from '../assets/photos/employeeSignup.jpg'; 
+import employeeImage from '../assets/photos/employeeSignup.jpg '; 
 import customerImage from '../assets/photos/customerImage.jpg'; 
 import PropTypes from 'prop-types';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpButton({  image }) {
   return (
