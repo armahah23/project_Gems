@@ -17,21 +17,15 @@
 }
 
 .logo{
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  width: 200px;
-  height: 50%;
-  background: url('D:\react\autocare\src\assets\photos\logo.png') no-repeat center center; /* Update with your actual image path */
-  background-size: contain;
+  margin-top: 10%;
+  margin-left: 50%;
 }
 
 .login-form {
   background: rgba(0, 0, 0, 0.8);
   padding: 40px;
   border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
+  width: 35%;
   text-align: center;
   color: white;
   margin-top: 0%;
@@ -45,15 +39,15 @@
 .login-form h1 {
   color: red;
   margin-bottom: 20px;
+  font-family: Average;
 }
 
 .input-group {
   margin-bottom: 20px;
 }
 
-.input-group label {
-  margin-left: -260px;
-}
+.input-group
+
 
 .input-wrapper {
   display: flex;
