@@ -1,16 +1,26 @@
 const mechanic = require("../schemas/mechanicSchema.js");
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+const otpGenerator = require("otp-generator");
 
 // Create a new mechanic
 exports.createMechanic = async (req, res) => {
-  const { username, password, email, phone, firstname, lastname, idnumber, address } = req.body;
+  const {
+    username,
+    password,
+    email,
+    phone,
+    firstname,
+    lastname,
+    idnumber,
+    address,
+  } = req.body;
 
-  try { 
+  try {
     // Hash password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
-    
+
     // Create a new instance of the mechanic model
     const newMechanic = new mechanic({
       username,
@@ -20,26 +30,25 @@ exports.createMechanic = async (req, res) => {
       firstname,
       lastname,
       idnumber,
-      address
+      address,
     });
-    
+
     // Save the mechanic to the database
     await newMechanic.save();
-    
-    res.status(201).send({ message: 'Mechanic profile created successfully' });
+
+    res.status(201).send({ message: "Mechanic profile created successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).send({ error: 'Failed to create mechanic profile' });
+    res.status(500).send({ error: "Failed to create mechanic profile" });
   }
 };
 
-
-// Login user
-exports.postUser = async (req, res) => {
-  const { username, password } = req.body;
+// Login user (with username or email)
+exports.postMechanic = async (req, res) => {
+  const { identifier, password } = req.body;
 
   // Check if input fields are empty
-  if (!username || !password) {
+  if (!identifier || !password) {
     return res.status(400).json({
       status: "FAILED",
       message: "Empty input fields",
@@ -47,8 +56,10 @@ exports.postUser = async (req, res) => {
   }
 
   try {
-    // Find the mechanic by username
-    const data = await Mechanic.findOne({ username: username }); // Use findOne instead of find
+    // Find the mechanic by username or email
+    const data = await mechanic.findOne({
+      $or: [{ username: identifier }, { email: identifier }],
+    });
 
     if (data) {
       const hashedPassword = data.password;
@@ -71,7 +82,7 @@ exports.postUser = async (req, res) => {
     } else {
       return res.status(404).json({
         status: "FAILED",
-        message: "Invalid username",
+        message: "Invalid username or email",
       });
     }
   } catch (error) {
@@ -83,52 +94,131 @@ exports.postUser = async (req, res) => {
   }
 };
 
-
-//   try {
-//     const user = await Mechanic.findOne({ username, password });
-//     if (!user) {
-//       return res.status(400).send({ error: 'Invalid login credentials' });
-//     }
-    
-//     const isMatch = await bcrypt.compare(password, user.password);
-//     if (!isMatch) {
-//       return res.status(400).send({ error: 'Invalid login credentials' });
-//     }
-    
-//     const token = jwt.sign({ _id: user._id }, 'secret'); // Consider moving the secret to an env variable
-//     res.send({ message: 'Login successful', token });
-//   } catch (error) {
-//     res.status(500).send({ error: 'Server error' });
-//   }
-// };
-
-
-// Controller functions for handling requests
-exports.getUser = async (req, res) => {
-  const { id: userId } = req.params;  // Corrected destructuring
-  const token = req.headers.authorization?.split(" ")[1];
-  
+// Get mechanic by username or email
+exports.getMechanic = async (req, res) => {
+  const { identifier } = req.params;
 
   try {
-      if (userId) {
-          // Fetch the user by ID from the database
-          const user = await Mechanic.findById(userId);
-          if (!user) {
-              return res.status(404).send({ error: 'User not found' }); // Handle user not found
-          }
-          res.send(user); // Return the user details
-      } else {
-          // Fetch all users if no ID is provided
-          const users = await Mechanic.find(); // Fetch all users
-          res.send(users); // Return the list of users
-      }
+    // Find mechanic by either username or email
+    const mechanicData = await mechanic.findOne({
+      $or: [{ username: identifier }, { email: identifier }],
+    });
 
-      if (!token) {
-        return res.status(401).send({ error: 'Unauthorized' });
-      }
-      
+    if (mechanicData) {
+      res.status(200).json({
+        status: "SUCCESS",
+        message: "Mechanic data fetched successfully",
+        data: mechanicData,
+      });
+    } else {
+      res.status(404).json({
+        status: "FAILED",
+        message: "Mechanic not found",
+      });
+    }
   } catch (error) {
-      console.error(error);
-      res.status(500).send({ error: 'Server error' }); // Handle server errors
+    console.error(error);
+    res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while fetching mechanic data",
+    });
+  }
+};
+
+// Function to send OTP via email
+const sendOtpEmail = async (email, otp) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "your-email@gmail.com",
+      pass: "your-email-password",
+    },
+  });
+
+  const mailOptions = {
+    from: "your-email@gmail.com",
+    to: email,
+    subject: "Password Reset OTP",
+    text: `Your OTP for password reset is ${otp}`,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
+// Request OTP for password reset
+exports.requestOtp = async (req, res) => {
+  const { identifier } = req.body;
+
+  try {
+    const mechanicData = await mechanic.findOne({
+      $or: [{ username: identifier }, { email: identifier }],
+    });
+
+    if (!mechanicData) {
+      return res.status(404).json({
+        status: "FAILED",
+        message: "User not found",
+      });
+    }
+
+    const otp = otpGenerator.generate(6, {
+      upperCase: false,
+      specialChars: false,
+    });
+    mechanicData.otp = otp;
+    mechanicData.otpExpiry = Date.now() + 3600000; // OTP valid for 1 hour
+    await mechanicData.save();
+
+    await sendOtpEmail(mechanicData.email, otp);
+
+    res.status(200).json({
+      status: "SUCCESS",
+      message: "OTP sent to email",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while requesting OTP",
+    });
+  }
+};
+
+// Reset password using OTP
+exports.resetPassword = async (req, res) => {
+  const { identifier, otp, newPassword } = req.body;
+
+  try {
+    const mechanicData = await mechanic.findOne({
+      $or: [{ username: identifier }, { email: identifier }],
+    });
+
+    if (
+      !mechanicData ||
+      mechanicData.otp !== otp ||
+      mechanicData.otpExpiry < Date.now()
+    ) {
+      return res.status(400).json({
+        status: "FAILED",
+        message: "Invalid or expired OTP",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    mechanicData.password = hashedPassword;
+    mechanicData.otp = undefined;
+    mechanicData.otpExpiry = undefined;
+    await mechanicData.save();
+
+    res.status(200).json({
+      status: "SUCCESS",
+      message: "Password reset successful",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while resetting password",
+    });
   }
 };
