@@ -8,6 +8,7 @@ export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [userType, setUserType] = useState("user"); // State to toggle between user and mechanic
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -27,10 +28,11 @@ export default function Login() {
     }
   
     const loginData = { identifier, password: pwd }; // Changed to identifier instead of just username
+    const loginUrl = userType === "user" ? "http://localhost:3000/api/user/login" : "http://localhost:3000/api/mechanic/login";
   
     try {
       // Send login request
-      const response = await fetch("http://localhost:3000/api/login", {
+      const response = await fetch(loginUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +48,7 @@ export default function Login() {
       }
   
       // Fetch user data after successful login using the identifier
-      const userResponse = await fetch(`http://localhost:3000/api/user/${identifier}`, {
+      const userResponse = await fetch(`http://localhost:3000/api/${userType}/${identifier}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -77,6 +79,10 @@ export default function Login() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  const forgotPassword = () => {
+    navigate("/forgotpassword");
+  }
 
   return (
     <div className="login-container">
@@ -121,9 +127,18 @@ export default function Login() {
               </span>
             </div>
           </label>
-          <a href="/forgot-password" className="forgot-password">
+          <a href="#" onClick={forgotPassword} className="forgot-password">
             Forgot Password?
           </a>
+        </div>
+        <div className="input-group">
+          <label htmlFor="userType">
+            Login as:
+            <select id="userType" value={userType} onChange={(e) => setUserType(e.target.value)}>
+              <option value="user">User</option>
+              <option value="mechanic">Mechanic</option>
+            </select>
+          </label>
         </div>
         <button className="submit" type="submit">
           LOGIN
@@ -154,6 +169,58 @@ export default function Login() {
         </p>
       </form>
       <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
+    </div>
+  );
+}
+
+export function ForgotPassword() {
+  const [identifier, setIdentifier] = useState("");
+
+  const handleRequestOtp = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:3000/api/forgot-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ identifier }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || `Request failed with status ${response.status}`);
+      }
+
+      alert("OTP sent to your email");
+    } catch (error) {
+      console.error("Error:", error);
+      alert(error.message);
+    }
+  };
+
+  return (
+    <div className="forgot-password-container">
+      <form className="forgot-password-form" onSubmit={handleRequestOtp}>
+        <h1>Forgot Password</h1>
+        <div className="input-group">
+          <label htmlFor="identifier">
+            Username / Email
+            <input
+              type="text"
+              id="identifier"
+              placeholder="Enter your username or email"
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+            />
+          </label>
+        </div>
+        <button className="submit" type="submit">
+          Request OTP
+        </button>
+      </form>
     </div>
   );
 }
