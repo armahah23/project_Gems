@@ -6,6 +6,6 @@ const userController = require('../controllers/userController'); // Import the c
 // router.get('/user/:id?', userController.getUser);
 
 // Route for creating a new user
-router.post('/bookslot', userController.createBooking);
+router.post('/booking', userController.createBooking);
 
 module.exports = router;
