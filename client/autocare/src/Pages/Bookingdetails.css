@@ -1,0 +1,104 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app h1 {
+  text-align: center;
+  color: #144a6f;
+  margin-top: 40px;
+}
+
+.background-design {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #13496B;
+  clip-path: polygon(-3px 544px, 99.95% 170px, 100.07% 100%, 0% 100%);
+  z-index: -1;
+}
+
+.container {
+  background-color: rgba(51, 45, 45, 0.2);
+  padding: 25px 25px 25px 25px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 850px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #b22222;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  flex-basis: calc(50% - 10px);
+  margin-right: 10px;
+}
+
+.form-group:nth-child(odd) {
+  margin-right: 10px;
+}
+
+.form-group:nth-child(even) {
+  margin-right: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button.btn {
+  width: 500px;
+  padding: 10px;
+  background-color: rgba(19, 73, 107, 1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+button.btn:hover {
+  background-color: #4baef4;
+}
+
+@media only screen and (max-width: 375px) {
+  .container {
+    width: 90%;
+  }
+}

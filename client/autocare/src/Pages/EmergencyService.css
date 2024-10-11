@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+  }
+
+  .background-design {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #13496B;
+    clip-path: polygon(-3px 544px, 99.95% 170px, 100.07% 100%, 0% 100%);
+    
+  }
+
+  .emergency {
+    font-family: Arial, sans-serif; 
+    color: #010101;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 20px;
+    
+  }
+
+  h1 {
+    margin-left: 130px;
+    margin-top: 50px;
+    color: #144a6f;
+    font-size: 40px;
+    margin-bottom: 0px;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-left: 100px;
+    position: relative;
+    z-index: 1000;
+    
+}
+  
+  .form-container {
+    background-color: rgba(216, 211, 211, 0.2);
+    padding: 20px;
+    border-radius: 30px;
+    height: 450px;
+    width: 300px;
+    margin-top: 40px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    width: 250px;
+  }
+  
+  button {
+  width: 150px;
+  padding: 10px;
+  background-color: rgb(1, 40, 63);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight:bolder;
+  color: aliceblue;
+  margin: 0 auto;
+  font-family: 'Times New Roman', Times, serif;
+  }
+  
+  button:hover {
+    background-color: #e50f08;
+  }
+  
+  .map-container {
+    width: 60%;
+    margin-left: 70px; /* space between form and map */
+    margin-top: 50px;
+  }
+  
+  
+  .map-container img {
+    width: 800px;
+    border-radius: 5px;
+  }
+  
