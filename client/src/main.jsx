@@ -5,9 +5,10 @@ import { BrowserRouter } from "react-router-dom";
 // import HomePage from './Pages/HomePage.jsx'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.StrictMode
     <BrowserRouter>
       <App />
+  <BrowserRouter>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -5,7 +5,7 @@
   }
   
   .Asignup-container {
-      background: url('D:\react\autocare\src\assets\photos\BG_Photo.jpg'); /* Path to your background image */
+     background-color: #13496B;
       background-size: cover;
       background-position: center;
       width: 100%;
@@ -21,18 +21,17 @@
       top: 1%;
       left: 18%;
       width: 30%; 
-      height: 30%; 
-      background: url('D:\react\autocare\src\assets\photos\logo.png') no-repeat center center; 
+      height: 30%;
       background-size: contain; 
   }
   
   .Asignup-form {
     background: rgba(0, 0, 0, 0.781); /* Add a semi-transparent background for the form */
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: -450px;
     padding: 20px;
-    width: 60%;
-    height: 70%;
+    width: 55%;
+    height: 80%;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -43,6 +42,7 @@
     color: red;
     margin-top: -0%;
     margin-left: -10%;
+    font-family: Average;
   }
   
   .Asignup-form span {

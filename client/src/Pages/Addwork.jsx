@@ -27,7 +27,10 @@ const AddWorkPage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="design">
+
+    
+    <div className="container-add">
       <div className="form-section">
         <h1>ADD WORK HERE</h1>
         <form onSubmit={handleSubmit}>
@@ -78,6 +81,7 @@ const AddWorkPage = () => {
           style={{ width: "auto", height: "500px" }}
         />
       </div>
+    </div>
     </div>
   );
 };

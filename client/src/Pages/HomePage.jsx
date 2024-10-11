@@ -55,37 +55,59 @@ const HomePage = () => {
             </div>
           </nav>
         </div>
-      </header>
+       </header>
 
-      {/* Main Content */}
-      
-        {/* Service Buttons */}
-        <section className="service-actions container">
-          <button className="action-btn book-btn">
-            <FileText />
-            BOOK NOW
-          </button>
-        </section>
-        {/* Hero Section */}
-        <section className="hero-section container">
-          <div className="hero-content">
+       {/* Main Content */}
+        <main>
+         {/* Service Buttons */}
+         
+         {/* Hero Section */}
+         <section className="hero-section container">
+           <div className="hero-content">
             <h1>
-              <span>INNOVATIVE</span> VEHICLE
-              <br />
-              SERVICE <span>SOLUTIONS</span>
-            </h1>
-            <p>
-              {" "}
-              REVOLUTIONIZING VEHICLE CARE: STREAMLINING
-              <br />
-              SERVICE CENTERS WITH AUTOMATED SOLUTIONS
-            </p>
-            <div className="hero-actions">
-              <button className="sign-up-btn" onClick={handleSignup}>SIGN UP</button>
-              <p className="login-text">
-                {" "}
-                or <a href="#" onClick={handleLogin}>CLICK HERE</a> to Log in
+               <span>INNOVATIVE</span> VEHICLE
+               <br />SERVICE <span>SOLUTIONS</span>
+             </h1>
+             <p>               REVOLUTIONIZING VEHICLE CARE: STREAMLINING
+               <br />SERVICE CENTERS WITH AUTOMATED SOLUTIONS
+             </p>
+             <div className="hero-actions">
+              <button className="sign-up-btn">SIGN UP</button>
+               <p className="login-text"> or <a href="#">CLICK HERE</a> to Log in</p>
+               
+           
+           <button className="book-btn">
+             <FileText />
+             BOOK NOW
+           </button>
+         
+             </div>
+           </div>
+           <img className='ImageA' src={ImageA} style={{ width: '500px', height: 'Auto' }} />
+        
+
+         </section>
+
+          {/* What We Do Section */}
+          <section className="what-we-do container">
+          <div className="mechanic-image">
+           <img className='ImageB' src={ImageB} style={{ width: '400px', height: '400px' }} />
+           </div>
+            <div className="service-details">
+              <h2>What we do?</h2>
+            
+              <ul className="service-list">
+              <p>
+                Streamlining vehicle service operations with smart solutions for efficiency and ease.
               </p>
+                <li>🔧 Online Appointment Scheduling</li>
+                <li>🔧 Automated Service Reminders</li>
+                <li>🔧 Real-Time Service Tracking</li>
+                <li>🔧 Digital Invoices & Payment</li>
+                <li>🔧 Inventory & Parts Management</li>
+                <li>🔧 Technician Assignment System</li>
+              </ul>
+              <h2>Contact Us →</h2>
             </div>
           </div>
           <img

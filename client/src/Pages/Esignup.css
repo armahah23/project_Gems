@@ -33,8 +33,8 @@
     background: rgba(0, 0, 0, 0.781); /* Add a semi-transparent background for the form */
     margin-top: 5px;
     margin-left: -450px;
-    padding: 20px;
-    width: 60%;
+    padding: 10px;
+    width: 55%;
     height: 90%;
     border-radius: 20px;
     display: flex;
@@ -46,7 +46,7 @@
   .Esignup-form h1{
     color: red;
     margin-top: -0%;
-    
+    font-family: Average;
     margin-bottom: 3%;
   }
   
@@ -87,7 +87,7 @@
     border-radius: 5px;
     cursor: pointer;
     width: 370px;
-    margin-top: -6.75%;
+    margin-top: -7%;
     margin-left: 50%;
 
     
@@ -97,7 +97,7 @@
     background-color: #0056b3;
   }
   .Esignup-form button b {
-    font-size: 15px
+    font-size: 15px;
   }
   
   .Esignup-form p {
@@ -110,13 +110,16 @@
     color: #0056b3;
   }
   .column-1 {
-    margin-top: -25px;
-    max-width: 50%;
+    margin-top: -50px;
+    width: 350px;
+    
+   
 
   }
   .column-2 {
-    margin-top: -25px;
-    max-width: 50%;
+    margin-top: -50px;
+    width: 350px;
+    
 
   }
     

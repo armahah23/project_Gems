@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Esignup.css";
-// import logo from '../assets/photos/logo.png';
+import  logo from '../assets/photos/logo.png'
+
 
 export default function Esignup() {
   const [firstname, setFirstname] = useState("");
@@ -47,7 +48,7 @@ export default function Esignup() {
 
       <form className="Esignup-form" onSubmit={handleSubmit}>
         <h1>
-          Empolyee <span> Sign Up </span>{" "}
+          Mechanic <span> Sign Up </span>{" "}
         </h1>
         <div className="main">
           <div className="column-1">
@@ -125,6 +126,7 @@ export default function Esignup() {
           Already have an Account? <a href="#">Login</a>
         </p>
       </form>
+      <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
     </div>
   );
 }

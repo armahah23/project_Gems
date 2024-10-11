@@ -2,6 +2,7 @@ import facebook_icon from "../assets/icons/facebook_icon.png";
 import google_icon from "../assets/icons/google_icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import  logo from '../assets/photos/logo.png'
 
 export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
@@ -85,7 +86,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <div className="logo">{/* Logo can be inserted here */}</div>
+      
       <form className="login-form" onSubmit={handleLogin}>
         <h1>
           WELCOME <span>BACK</span>
@@ -167,6 +168,7 @@ export default function Login() {
           </a>
         </p>
       </form>
+      <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
     </div>
   );
 }
