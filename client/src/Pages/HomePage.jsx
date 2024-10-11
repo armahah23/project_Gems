@@ -28,11 +28,11 @@ const HomePage = () => {
 
   const handleSignup = () => {
     navigate("/signupoption");
-  }
+  };
 
   const handleLogin = () => {
     navigate("/login");
-  }
+  };
 
   return (
     <div className="home-page">
@@ -43,6 +43,7 @@ const HomePage = () => {
             className="Logo"
             src={Logo}
             style={{ width: "150px", height: "150px" }}
+            alt="Logo"
           />
           <nav className="nav-menu">
             <div className="nav-links">
@@ -51,69 +52,47 @@ const HomePage = () => {
               <a href="#">SERVICES</a>
               <a href="#">OFFERS</a>
               <a href="#">STORE</a>
-              <button className="sign-up-btn" onClick={handleSignup}>SIGN UP</button>
+              <button className="sign-up-btn" onClick={handleSignup}>
+                SIGN UP
+              </button>
             </div>
           </nav>
         </div>
-       </header>
+      </header>
 
-       {/* Main Content */}
-        <main>
-         {/* Service Buttons */}
-         
-         {/* Hero Section */}
-         <section className="hero-section container">
-           <div className="hero-content">
+      {/* Main Content */}
+      <main>
+        {/* Hero Section */}
+        <section className="hero-section container">
+          <div className="hero-content">
             <h1>
-               <span>INNOVATIVE</span> VEHICLE
-               <br />SERVICE <span>SOLUTIONS</span>
-             </h1>
-             <p>               REVOLUTIONIZING VEHICLE CARE: STREAMLINING
-               <br />SERVICE CENTERS WITH AUTOMATED SOLUTIONS
-             </p>
-             <div className="hero-actions">
-              <button className="sign-up-btn">SIGN UP</button>
-               <p className="login-text"> or <a href="#">CLICK HERE</a> to Log in</p>
-               
-           
-           <button className="book-btn">
-             <FileText />
-             BOOK NOW
-           </button>
-         
-             </div>
-           </div>
-           <img className='ImageA' src={ImageA} style={{ width: '500px', height: 'Auto' }} />
-        
-
-         </section>
-
-          {/* What We Do Section */}
-          <section className="what-we-do container">
-          <div className="mechanic-image">
-           <img className='ImageB' src={ImageB} style={{ width: '400px', height: '400px' }} />
-           </div>
-            <div className="service-details">
-              <h2>What we do?</h2>
-            
-              <ul className="service-list">
-              <p>
-                Streamlining vehicle service operations with smart solutions for efficiency and ease.
+              <span>INNOVATIVE</span> VEHICLE
+              <br />
+              SERVICE <span>SOLUTIONS</span>
+            </h1>
+            <p>
+              REVOLUTIONIZING VEHICLE CARE: STREAMLINING
+              <br />
+              SERVICE CENTERS WITH AUTOMATED SOLUTIONS
+            </p>
+            <div className="hero-actions">
+              <button className="sign-up-btn" onClick={handleSignup}>
+                SIGN UP
+              </button>
+              <p className="login-text">
+                or <a href="#" onClick={handleLogin}>CLICK HERE</a> to Log in
               </p>
-                <li>🔧 Online Appointment Scheduling</li>
-                <li>🔧 Automated Service Reminders</li>
-                <li>🔧 Real-Time Service Tracking</li>
-                <li>🔧 Digital Invoices & Payment</li>
-                <li>🔧 Inventory & Parts Management</li>
-                <li>🔧 Technician Assignment System</li>
-              </ul>
-              <h2>Contact Us →</h2>
+              <button className="book-btn">
+                <FileText />
+                BOOK NOW
+              </button>
             </div>
           </div>
           <img
             className="ImageA"
             src={ImageA}
-            style={{ width: "500px", height: "Auto" }}
+            style={{ width: "500px", height: "auto" }}
+            alt="Hero"
           />
         </section>
 
@@ -124,6 +103,7 @@ const HomePage = () => {
               className="ImageB"
               src={ImageB}
               style={{ width: "400px", height: "400px" }}
+              alt="Mechanic"
             />
           </div>
           <div className="service-details">
@@ -143,11 +123,13 @@ const HomePage = () => {
             <h2>Contact Us →</h2>
           </div>
         </section>
+
         <div className="WheelSet">
           <img
             className="ImageC"
             src={ImageC}
             style={{ width: "auto", height: "700px" }}
+            alt="Wheel Set"
           />
         </div>
 
@@ -172,40 +154,49 @@ const HomePage = () => {
                 <img
                   className="ImageD"
                   src={ImageD}
-                  style={{ width: "Auto", height: "Auto" }}
+                  style={{ width: "auto", height: "auto" }}
+                  alt="Admin"
                 />
               </div>
               <h3>ADMIN</h3>
               <p>
                 An administrator in our vehicle service
-                <br /> center manages team, schedules, and ensures
-                <br /> quality service to meet customer needs.
+                <br />
+                center manages team, schedules, and ensures
+                <br />
+                quality service to meet customer needs.
               </p>
             </div>
             <div className="role-card">
               <img
                 className="ImageE"
                 src={ImageE}
-                style={{ width: "Auto", height: "Auto" }}
+                style={{ width: "auto", height: "auto" }}
+                alt="Customer"
               />
               <h3>CUSTOMER</h3>
               <p>
-                A customer in our vehicle service center <br />
+                A customer in our vehicle service center
+                <br />
                 books services, gets repair status,
-                <br /> and receives updates for a smooth experience.
+                <br />
+                and receives updates for a smooth experience.
               </p>
             </div>
             <div className="role-card">
               <img
                 className="ImageF"
                 src={ImageF}
-                style={{ width: "Auto", height: "Auto" }}
+                style={{ width: "auto", height: "auto" }}
+                alt="Mechanic"
               />
               <h3>MECHANIC</h3>
               <p>
                 A mechanic in vehicle service center
-                <br /> handles repairs, ensures quality repairs,
-                <br /> and ensures timely completion of services.
+                <br />
+                handles repairs, ensures quality repairs,
+                <br />
+                and ensures timely completion of services.
               </p>
             </div>
           </div>
@@ -216,11 +207,11 @@ const HomePage = () => {
             className="ImageH"
             src={ImageH}
             style={{ width: "auto", height: "700px" }}
+            alt="Wheel Set 1"
           />
         </div>
 
         {/* Need Help Section */}
-
         <section className="help-page">
           <div className="background-design"></div>
           <div className="help-content">
@@ -231,14 +222,16 @@ const HomePage = () => {
                 className="ImageG"
                 src={ImageG}
                 style={{ width: "400px", height: "400px" }}
+                alt="Help"
               />
               <p>
-                We&apos;re here to provide expert assistance every step of the way.
-                Whether you need``
+                We're here to provide expert assistance every step of the way.
+                Whether you need
                 <br />
                 guidance on services, help with scheduling, or any other
                 support, our dedicated team
-                <br /> is ready to ensure your experience is seamless and
+                <br />
+                is ready to ensure your experience is seamless and
                 stress-free.
               </p>
             </div>
@@ -267,20 +260,20 @@ const HomePage = () => {
                   placeholder="Name"
                   required
                   value={formData.name}
-                  onChange={(e) => setFormData.name(e.target.value)}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
                 <input
                   type="text"
                   placeholder="Number"
                   required
                   value={formData.number}
-                  onChange={(e) => setFormData.number(e.target.value)}
+                  onChange={(e) => setFormData({ ...formData, number: e.target.value })}
                 />
                 <textarea
                   placeholder="How can I help you?"
                   required
                   value={formData.message}
-                  onChange={(e) => setFormData.message(e.target.value)}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 ></textarea>
                 <button type="submit">SUBMIT →</button>
               </form>
@@ -294,7 +287,7 @@ const HomePage = () => {
         >
           <ArrowUp />
         </button>
-      
+      </main>
     </div>
   );
 };

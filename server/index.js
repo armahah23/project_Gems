@@ -1,15 +1,12 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const api = express();
-api.use(cors());
+const bcrypt = require('bcrypt');
 
-api.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+const plainPassword = '#aC2024#'; // Replace with your actual password
+const saltRounds = 10;
 
-
-
-api.listen(3000, () => {
-    console.log('API up and running!');
+bcrypt.hash(plainPassword, saltRounds, (err, hash) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log('Hashed password:', hash);
 });
