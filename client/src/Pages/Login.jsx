@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../assets/photos/logo.png'
 
+
 export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [userType, setUserType] = useState("user"); // State to toggle between user, mechanic, and admin
   const navigate = useNavigate();
+
 
   const handleLogin = async (e) => {
     e.preventDefault();

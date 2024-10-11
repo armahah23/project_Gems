@@ -13,5 +13,6 @@ router.post('/usignup', userController.createUser);
 
 // Route to post payment Details
 router.post('/payment', userController.postPayment);
+
  
 module.exports = router;
