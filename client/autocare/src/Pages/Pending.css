@@ -1,0 +1,54 @@
+/* Pending.css */
+
+body, html, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5a7387;
+    font-family: Arial, sans-serif;
+  }
+  
+  .Pending {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .message-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    height: 250px;
+  }
+  
+  .loading-icon {
+    background-color: #c0392b; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px auto 30px;
+  }
+  
+  .loading-icon::before {
+    content: '...';
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  p {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
