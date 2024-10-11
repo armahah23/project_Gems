@@ -1,29 +1,26 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-// import Addwork from './Pages/Addwork.jsx';
-import Esignup from "./Pages/Esignup.jsx";
-import Asignup from "./Pages/Asignup.jsx";
-import AddWorkPage from "./Pages/Addwork.jsx";
-import Login from "./Pages/Login.jsx";
-import Signup from "./Pages/Signup.jsx";
-import HomePage from "./Pages/HomePage.jsx";
-import SignupOption from "./Pages/SignupOption.jsx";
+import {  Route, Routes } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
+import SignupOption from "./Pages/SignupOption";
+import Esignup from "./Pages/Esignup";
+import Asignup from "./Pages/Asignup";
 
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
+import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/Resetpassword";
 
 function App() {
   return (
-    <>
       <Routes>
-        {/* <Addwork /> */}
         <Route path="/" element={<HomePage />} />
         <Route path="/esignup" element={<Esignup />} />
         <Route path="/asignup" element={<Asignup />} />
-        <Route path="/addwork" element={<AddWorkPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/csignup" element={<Signup />} />
         <Route path="/signupoption" element={<SignupOption />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
       </Routes>
-    </>
   );
 }
 

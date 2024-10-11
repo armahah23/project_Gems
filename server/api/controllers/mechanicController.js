@@ -1,4 +1,4 @@
-const mechanic = require("../schemas/mechanicSchema.js");
+const Mechanic = require("../schemas/mechanicSchema.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
@@ -22,7 +22,7 @@ exports.createMechanic = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new instance of the mechanic model
-    const newMechanic = new mechanic({
+    const newMechanic = new Mechanic({
       username,
       password: hashedPassword, // Save hashed password
       email,
@@ -43,7 +43,7 @@ exports.createMechanic = async (req, res) => {
   }
 };
 
-// Login user (with username or email)
+// Mechanic login
 exports.postMechanic = async (req, res) => {
   const { identifier, password } = req.body;
 
@@ -57,7 +57,7 @@ exports.postMechanic = async (req, res) => {
 
   try {
     // Find the mechanic by username or email
-    const data = await mechanic.findOne({
+    const data = await Mechanic.findOne({
       $or: [{ username: identifier }, { email: identifier }],
     });
 
@@ -68,10 +68,13 @@ exports.postMechanic = async (req, res) => {
       const result = await bcrypt.compare(password, hashedPassword);
 
       if (result) {
+        // Generate JWT token
+        const token = jwt.sign({ id: data._id }, 'your_jwt_secret', { expiresIn: '1h' });
+
         return res.status(200).json({
           status: "SUCCESS",
           message: "Login successful",
-          data: data,
+          token: token,
         });
       } else {
         return res.status(401).json({
@@ -100,7 +103,7 @@ exports.getMechanic = async (req, res) => {
 
   try {
     // Find mechanic by either username or email
-    const mechanicData = await mechanic.findOne({
+    const mechanicData = await Mechanic.findOne({
       $or: [{ username: identifier }, { email: identifier }],
     });
 
@@ -150,7 +153,7 @@ exports.requestOtp = async (req, res) => {
   const { identifier } = req.body;
 
   try {
-    const mechanicData = await mechanic.findOne({
+    const mechanicData = await Mechanic.findOne({
       $or: [{ username: identifier }, { email: identifier }],
     });
 
@@ -189,7 +192,7 @@ exports.resetPassword = async (req, res) => {
   const { identifier, otp, newPassword } = req.body;
 
   try {
-    const mechanicData = await mechanic.findOne({
+    const mechanicData = await Mechanic.findOne({
       $or: [{ username: identifier }, { email: identifier }],
     });
 
@@ -221,4 +224,5 @@ exports.resetPassword = async (req, res) => {
       message: "An error occurred while resetting password",
     });
   }
+};
 };
