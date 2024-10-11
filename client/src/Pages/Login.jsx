@@ -2,13 +2,13 @@ import facebook_icon from "../assets/icons/facebook_icon.png";
 import google_icon from "../assets/icons/google_icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import  logo from '../assets/photos/logo.png'
+import logo from '../assets/photos/logo.png'
 
 export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-  const [userType, setUserType] = useState("user"); // State to toggle between user and mechanic
+  const [userType, setUserType] = useState("user"); // State to toggle between user, mechanic, and admin
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -28,7 +28,9 @@ export default function Login() {
     }
   
     const loginData = { identifier, password: pwd }; // Changed to identifier instead of just username
-    const loginUrl = userType === "user" ? "http://localhost:3000/api/user/login" : "http://localhost:3000/api/mechanic/login";
+    const loginUrl = userType === "user" ? "http://localhost:3000/api/user/login" :
+                     userType === "mechanic" ? "http://localhost:3000/api/mechanic/login" :
+                     "http://localhost:3000/api/admin/login";
   
     try {
       // Send login request
@@ -40,12 +42,13 @@ export default function Login() {
         body: JSON.stringify(loginData), // Send identifier (email/username) and password
       });
   
-      const data = await response.json();
-  
       // Handle login errors
       if (!response.ok) {
-        throw new Error(data.message || `Login failed with status ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(errorData.message || `Login failed with status ${response.status}`);
       }
+  
+      const data = await response.json();
   
       // Fetch user data after successful login using the identifier
       const userResponse = await fetch(`http://localhost:3000/api/${userType}/${identifier}`, {
@@ -86,7 +89,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      
+      <div className="logo">{/* Logo can be inserted here */}</div>
       <form className="login-form" onSubmit={handleLogin}>
         <h1>
           WELCOME <span>BACK</span>
@@ -137,6 +140,7 @@ export default function Login() {
             <select id="userType" value={userType} onChange={(e) => setUserType(e.target.value)}>
               <option value="user">User</option>
               <option value="mechanic">Mechanic</option>
+              <option value="admin">Admin</option>
             </select>
           </label>
         </div>
