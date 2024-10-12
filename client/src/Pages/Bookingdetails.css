@@ -1,4 +1,4 @@
-body {
+.booking body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@ body {
   min-height: 100vh;
 }
 
-.app {
+.booking .app {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -15,13 +15,13 @@ body {
   align-items: center;
 }
 
-.app h1 {
+.booking .app h1 {
   text-align: center;
   color: #144a6f;
   margin-top: 40px;
 }
 
-.background-design {
+.booking .background-design {
   position: absolute;
   bottom: 0;
   width: 100vw;
@@ -31,7 +31,7 @@ body {
   z-index: -1;
 }
 
-.container {
+.booking .container {
   background-color: rgba(51, 45, 45, 0.2);
   padding: 25px 25px 25px 25px;
   border-radius: 30px;
@@ -41,36 +41,36 @@ body {
   margin-top: 20px;
 }
 
-h1 {
+.booking h1 {
   text-align: center;
   color: #b22222;
 }
 
-form {
+.booking form {
   display: flex;
   flex-wrap: wrap;
 }
 
-.form-group {
+.booking .form-group {
   margin-bottom: 10px;
   flex-basis: calc(50% - 10px);
   margin-right: 10px;
 }
 
-.form-group:nth-child(odd) {
+.booking .form-group:nth-child(odd) {
   margin-right: 10px;
 }
 
-.form-group:nth-child(even) {
+.booking .form-group:nth-child(even) {
   margin-right: 0;
 }
 
-label {
+.booking label {
   display: block;
   margin-bottom: 5px;
 }
 
-input,
+.booking input,
 textarea {
   width: 100%;
   padding: 8px;
@@ -80,7 +80,7 @@ textarea {
   box-sizing: border-box;
 }
 
-button.btn {
+.booking button.btn {
   width: 500px;
   padding: 10px;
   background-color: rgba(19, 73, 107, 1);
@@ -93,7 +93,7 @@ button.btn {
   margin: 0 auto;
 }
 
-button.btn:hover {
+.booking button.btn:hover {
   background-color: #4baef4;
 }
 

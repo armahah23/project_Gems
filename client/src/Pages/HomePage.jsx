@@ -8,23 +8,45 @@ import ImageC from "../assets/photos/C.png";
 import ImageD from "../assets/photos/D.png";
 import ImageE from "../assets/photos/E.png";
 import ImageF from "../assets/photos/F.png";
-import ImageG from "../assets/photos/G.png";
 import ImageH from "../assets/photos/H.png";
+import ImageG from "../assets/photos/G.png";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     number: "",
     message: "",
   });
 
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
+    
+    const response = await fetch("http://localhost:3000/api/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          number: formData.number,
+          message: formData.message,
+        }),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        alert("Thank you for your feedback!");
+        navigate('/');
+      } else {
+        alert("Error: " + data.error);
+      }
+    };
 
   const handleSignup = () => {
     navigate("/signupoption");
@@ -32,6 +54,10 @@ const HomePage = () => {
 
   const handleLogin = () => {
     navigate("/login");
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -47,14 +73,20 @@ const HomePage = () => {
           />
           <nav className="nav-menu">
             <div className="nav-links">
-              <a href="./HomePage.jsx">HOME</a>
-              <a href="./ContactUs.jsx">CONTACT</a>
+              <a href="/">HOME</a>
+              <a href="/contact">CONTACT</a>
               <a href="#">SERVICES</a>
               <a href="#">OFFERS</a>
               <a href="#">STORE</a>
-              <button className="sign-up-btn" onClick={handleSignup}>
-                SIGN UP
-              </button>
+              {user ? (
+                <button className="logout-btn" onClick={handleLogout}>
+                  LOGOUT
+                </button>
+              ) : (
+                <button className="sign-up-btn" onClick={handleSignup}>
+                  SIGN UP
+                </button>
+              )}
             </div>
           </nav>
         </div>
@@ -76,16 +108,24 @@ const HomePage = () => {
               SERVICE CENTERS WITH AUTOMATED SOLUTIONS
             </p>
             <div className="hero-actions">
-              <button className="sign-up-btn" onClick={handleSignup}>
-                SIGN UP
-              </button>
-              <p className="login-text">
-                or <a href="#" onClick={handleLogin}>CLICK HERE</a> to Log in
-              </p>
-              <button className="book-btn">
-                <FileText />
-                BOOK NOW
-              </button>
+              {user ? (
+                <>
+                  <p className="welcome-text">Welcome, {user.name}!</p>
+                  <button className="book-btn">
+                    <FileText />
+                    BOOK NOW
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button className="sign-up-btn" onClick={handleSignup}>
+                    SIGN UP
+                  </button>
+                  <p className="login-text">
+                    or <a href="#" onClick={handleLogin}>CLICK HERE</a> to Log in
+                  </p>
+                </>
+              )}
             </div>
           </div>
           <img
@@ -225,7 +265,7 @@ const HomePage = () => {
                 alt="Help"
               />
               <p>
-                We're here to provide expert assistance every step of the way.
+                We are here to provide expert assistance every step of the way.
                 Whether you need
                 <br />
                 guidance on services, help with scheduling, or any other

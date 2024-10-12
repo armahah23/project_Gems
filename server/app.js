@@ -25,6 +25,9 @@ app.use("/api", adminRoutes);
 // Use login routes
 app.use("/api", loginRoutes);
 
+//booking routes
+app.use("/api", require("./api/routes/bookingRoutes"));
+
 app.use("/api", require("./api/routes/userRoutes"));
 
 // app.use("/api", require("./api/routes/bookingRoutes"));
