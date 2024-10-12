@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { FileText, ArrowUp } from "lucide-react";
 import "./HomePage.css";
@@ -173,74 +174,42 @@ const HomePage = () => {
           />
         </div>
 
-        {/* History Section */}
-        <section className="history-section-container">
-          <h2>History</h2>
-          <p className="history-text">
-            Established in 2010, our vehicle service center began as a small
-            family-owned garage with a passion for quality and customer care.
-            Over the years, we have grown into a trusted name in vehicle
-            maintenance and repair through dedicated customer relationships. Our
-            journey has always been driven by innovation, ensuring we offer the
-            latest technology and services to keep vehicles running smoothly.
-            Today, we continue to uphold our commitment to excellence, providing
-            fast, reliable, and professional service for every vehicle that
-            comes through our doors.
-          </p>
 
-          <div className="roles-grid">
-            <div className="role-card">
-              <div className="role-icon">
-                <img
-                  className="ImageD"
-                  src={ImageD}
-                  style={{ width: "auto", height: "auto" }}
-                  alt="Admin"
-                />
+
+
+         {/* History Section */}
+         <section className="history-section-container">
+           <h2>History</h2>
+           <p className="history-text">
+             Established in 2010, our vehicle service center began as a small family-owned garage
+            with a passion for quality and customer care. Over the years, we have grown into a
+            trusted name in vehicle maintenance and repair through dedicated customer
+            relationships. Our journey has always been driven by innovation, ensuring we offer the
+            latest technology and services to keep vehicles running smoothly. Today, we continue
+            to uphold our commitment to excellence, providing fast, reliable, and professional
+             service for every vehicle that comes through our doors.
+           </p>
+
+           <div className="roles-grid">
+             <div className="role-card">
+             <div className="role-icon">
+               <img className='ImageD' src={ImageD} style={{ width: 'Auto', height: 'Auto' }} />
               </div>
               <h3>ADMIN</h3>
-              <p>
-                An administrator in our vehicle service
-                <br />
-                center manages team, schedules, and ensures
-                <br />
-                quality service to meet customer needs.
-              </p>
-            </div>
-            <div className="role-card">
-              <img
-                className="ImageE"
-                src={ImageE}
-                style={{ width: "auto", height: "auto" }}
-                alt="Customer"
-              />
+               <p>An administrator in our vehicle service<br/> center manages team, schedules, and ensures<br/> quality service to meet customer needs.</p>
+             </div>
+             <div className="role-card"> 
+               <img className='ImageE' src={ImageE} style={{ width: 'Auto', height: 'Auto' }} />
               <h3>CUSTOMER</h3>
-              <p>
-                A customer in our vehicle service center
-                <br />
-                books services, gets repair status,
-                <br />
-                and receives updates for a smooth experience.
-              </p>
+              <p>A customer in our vehicle service center <br/>books services, gets repair status,<br/> and receives updates for a smooth experience.</p>
             </div>
             <div className="role-card">
-              <img
-                className="ImageF"
-                src={ImageF}
-                style={{ width: "auto", height: "auto" }}
-                alt="Mechanic"
-              />
+              <img className='ImageF' src={ImageF} style={{ width: 'Auto', height: 'Auto' }} />
               <h3>MECHANIC</h3>
-              <p>
-                A mechanic in vehicle service center
-                <br />
-                handles repairs, ensures quality repairs,
-                <br />
-                and ensures timely completion of services.
-              </p>
+              <p>A mechanic in vehicle service center<br/> handles repairs, ensures quality repairs,<br/> and ensures timely completion of services.</p>
             </div>
           </div>
-        </section>
+         </section>
 
         <div className="WheelSet-1">
           <img
@@ -318,18 +287,30 @@ const HomePage = () => {
                 <button type="submit">SUBMIT →</button>
               </form>
             </div>
-          </div>
-        </section>
 
-        <button
-          className="back-to-top"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          <ArrowUp />
-        </button>
-      </main>
+
+        
+
+        {/* Form Section */}
+        <div className="help-form">
+          <form>
+            <input type="text" placeholder="Name" required />
+            <input type="text" placeholder="Number" required />
+            <textarea placeholder="How can I help you?" required></textarea>
+            <button type="submit">SUBMIT →</button>
+          </form>
+        </div>
+        </div>
+     </section>
+
+        <button  className="back-to-top"
+            onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+            <ArrowUp />
+          </button>
+       </main>
+
     </div>
-  );
-};
+   );
+ };
 
-export default HomePage;
+ export default HomePage;

@@ -5,34 +5,28 @@
 }
 
 .signup-container {
-    background: url('D:\react\autocare\photos\bgg.jpg'); /* Path to your background image*/ 
+  background-color: #13496B;
     background-size: cover;
-    background-position: center;
     width: 100%;
     height: 100vh; 
     display: flex;
     align-items: center;
     justify-content: center;
-   
+    
   }
 
-  .logo{
-    position: absolute; 
-    top: 1%;
-    left: 18%;
-    width: 30%; 
-    height: 30%; 
-    background: url('D:\react\autocare\photos\logo.png') no-repeat center center; 
-    background-size: contain; 
+  .logo1{
+    margin-top: 10%;
+    margin-left: 50%;
 }
 
 .signup-form {
   background: rgba(0, 0, 0, 0.781); /* Add a semi-transparent background for the form */
-  margin-top: 10%;
+  margin-top: 5%;
   margin-left: -450px;
   padding: 20px;
-  width: 60%;
-  height: 70%;
+  width: 55%;
+  height: 75%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -41,8 +35,9 @@
 
 .signup-form h1{
   color: red;
-  margin-top: -0%;
-  margin-left: -10%;
+  margin-top: 1%;
+  margin-left: -5%;
+  font-family: Avera;
 }
 
 .signup-form span {
@@ -79,7 +74,9 @@
   color: white;
   border-radius: 5px;
   cursor: pointer;
-  width: 270px;
+  width: 50%;
+
+ 
   
 }
 
@@ -87,7 +84,8 @@
   background-color: #0056b3;
 }
 .signup-form button b {
-  font-size: 15px
+  font-size: 15px;
+ 
 }
 
 .signup-form p {

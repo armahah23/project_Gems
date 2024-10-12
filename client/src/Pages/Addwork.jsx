@@ -1,87 +1,113 @@
-import "./Addwork.css"; // Assuming you'll style in a CSS file
+import "./Addwork.css"; 
 import Image2 from "../assets/photos/Addwork.jpg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddWorkPage = () => {
+  const navigate = useNavigate();
   const [warranty, setWarranty] = useState("");
   const [qty, setQty] = useState("");
   const [amount, setAmount] = useState("");
+  const [Code, setCode] = useState("");
   const [description, setDescription] = useState("");
+  const [workItems, setWorkItems] = useState([]); // Store multiple entries
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/esignup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    });
+    
+    // Create an entry object
+    const newWorkItem = {
+      warranty,
+      qty,
+      amount,
+      Code,
+      description
+    };
 
-    const data = await response.json();
-    if (response.ok) {
-      alert("Work added successfully!");
-    } else {
-      alert("Error: " + data.error);
-    }
+    // Add the new entry to the array
+    setWorkItems([...workItems, newWorkItem]);
+
+    // Reset form fields
+    setWarranty("");
+    setQty("");
+    setAmount("");
+    setCode("");
+    setDescription("");
+  };
+
+  const handleNavigateToInvoice = () => {
+    // Navigate to the Invoice page and pass workItems array as state
+    navigate("/invoice", { state: { workItems } });
   };
 
   return (
     <div className="design">
+      <div className="container-add">
+        <div className="form-section">
+          <h1>ADD WORK HERE</h1>
+          <form onSubmit={handleSubmit}>
+          <div className="form-group">
+              <label>Parts Code No :</label>
+              <input
+                type="text"
+                name="Code"
+                value={Code}
+                onChange={(e) => setCode(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Warranty :</label>
+              <input
+                type="text"
+                name="warranty"
+                value={warranty}
+                onChange={(e) => setWarranty(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Qty :</label>
+              <input
+                type="number"
+                name="qty"
+                value={qty}
+                onChange={(e) => setQty(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Amount :</label>
+              <input
+                type="number"
+                name="amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label>Description of Work :</label>
+              <textarea
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="btn-submit">
+              ADD TO BILL
+            </button>
+          </form>
 
-    
-    <div className="container-add">
-      <div className="form-section">
-        <h1>ADD WORK HERE</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Warranty :</label>
-            <input
-              type="text"
-              name="warranty"
-              value={warranty}
-              onChange={(e) => setWarranty(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Qty :</label>
-            <input
-              type="number"
-              name="qty"
-              value={qty}
-              onChange={(e) => setQty(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Amount :</label>
-            <input
-              type="number"
-              name="amount"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label>Description of Work :</label>
-            <textarea
-              name="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <button type="submit" className="btn-submit">
-            ADD TO BILL
+          {/* Button to navigate to the Invoice page */}
+          <button onClick={handleNavigateToInvoice} className="btn-submit-V">
+            View Invoice
           </button>
-        </form>
+        </div>
+        <div className="image-section">
+          <img
+            className="image2"
+            src={Image2}
+            style={{ width: "auto", height: "500px" }}
+          />
+        </div>
       </div>
-      <div className="image-section">
-        <img
-          className="image2"
-          src={Image2}
-          style={{ width: "auto", height: "500px" }}
-        />
-      </div>
-    </div>
     </div>
   );
 };
