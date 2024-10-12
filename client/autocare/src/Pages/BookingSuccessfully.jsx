@@ -1,14 +1,14 @@
 import React from 'react';
-import './Assignsuccessfully.css'; 
+import './BookingSuccessfully.css'; 
 import loadingImage from './assets/Green-check-mark-icon.png'; 
+//import Footer from './components/Footer';
 
-function Assignsuccessfully() {
+function BookingSuccessfully() {
   return (
-    <div className="Assignsuccessfully">
+    <div className="BookingSuccessfully">
       <div className="message-box">
         <img src={loadingImage} alt="Loading" className="loading-image" /> 
-        <p>Assign  Successfully</p>
-        <p className="employee-message">Customer will come to Service center </p>
+        <p>Booking Successfully</p> 
         <button className="continue-button">Continue</button>
       </div>
       
@@ -16,4 +16,4 @@ function Assignsuccessfully() {
   );
 }
 
-export default Assignsuccessfully;
+export default BookingSuccessfully;
