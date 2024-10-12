@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Esignup from "./Pages/Esignup.jsx";
@@ -11,25 +12,26 @@ import EBService from "./Pages/EBService.jsx";
 import Invoice from "./Pages/Invoice.jsx";
 
 
+
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
+import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/Resetpassword";
+import Bookingdetails from "./Pages/Bookingdetails";
+
 function App() {
   return (
-    <>
-    
       <Routes>
-        {/* <Addwork /> */}
         <Route path="/" element={<HomePage />} />
         <Route path="/esignup" element={<Esignup />} />
         <Route path="/asignup" element={<Asignup />} />
-        <Route path="/addwork" element={<AddWorkPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/csignup" element={<Signup />} />
         <Route path="/signupoption" element={<SignupOption />} />
-        <Route path="/ebservice" element={<EBService />} />
-        <Route path="/invoice" element={<Invoice/>} />
-
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/bdetails" element={<Bookingdetails />} />
       </Routes>
-      
-    </>
   );
 }
 

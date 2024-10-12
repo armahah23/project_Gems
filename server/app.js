@@ -3,7 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-// const User = require("./api/schemas/userDetails"); // Correctly import the User model
+const loginRoutes = require("./api/routes/loginRoutes"); // Import login routes
+const adminRoutes = require("./api/routes/adminRoutes"); // Import admin routes
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -17,7 +18,15 @@ mongoose
 
 app.use("/api", require("./api/routes/mechanicRoutes"));
 // app.use('/api', require('./api/routes/vehicleRoutes'));
-app.use("/api", require("./api/routes/adminRoutes"));
+
+// Use admin routes
+app.use("/api", adminRoutes);
+
+// Use login routes
+app.use("/api", loginRoutes);
+
+//booking routes
+app.use("/api", require("./api/routes/bookingRoutes"));
 
 app.use("/api", require("./api/routes/userRoutes"));
 
@@ -28,6 +37,7 @@ app.post('/payment', (req, res) => {
 });
 
 // Start the server
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

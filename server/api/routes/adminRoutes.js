@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController'); // Import the controller
 
-// Route with optional 'id' parameter, calling the controller function
-// router.get('/user/:id?', userController.getUser);
+// Route for admin login
+router.post('/admin/login', adminController.postAdmin);
 
-// Route for creating a new user
-router.post('/asignup', adminController.createAdmin);
+// Route to get admin by username or email
+router.get('/admin/:identifier', adminController.getAdmin);
 
 module.exports = router;

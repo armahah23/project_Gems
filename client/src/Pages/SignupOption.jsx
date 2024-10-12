@@ -1,10 +1,9 @@
 import './SignupOption.css'; 
-
 import logo from '../assets/photos/logo.png'; 
 import employeeImage from '../assets/photos/Esignup.png'; 
 import customerImage from '../assets/photos/Csignup.png'; 
 import PropTypes from 'prop-types';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpButton({  image }) {
   return (

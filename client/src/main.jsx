@@ -1,21 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
-import AddWorkPage from './Pages/Addwork.jsx'
-//import AddWorkPage from './Pages/Addwork.jsx'
-//import Invoice from './Pages/Invoice.jsx'
-//import HomePage from './Pages/HomePage.jsx'
-// import EBService from './Pages/EBService.jsx'
-//import SignupOption from './Pages/SignupOption'
 
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext.jsx";
+// import HomePage from './Pages/HomePage.jsx'
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-  <BrowserRouter>
-    <App />
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
-    {/* <SignupOption /> */}
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

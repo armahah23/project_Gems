@@ -1,10 +1,8 @@
-const user = require("../schemas/userSchema");
+const User = require("../schemas/userSchema");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Booking = require("../schemas/bookingSchema");
-const User = require("../schemas/userSchema");
 const Payment = require("../schemas/paymentSchema");
-
+const Feedback = require("../schemas/feedbackSchema");
 
 // Create a new user
 exports.createUser = async (req, res) => {
@@ -15,7 +13,7 @@ exports.createUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     
     // Create a new instance of the user model
-    const newUser = new user({
+    const newUser = new User({
       username,
       password: hashedPassword, // Save hashed password
       email,
@@ -24,9 +22,8 @@ exports.createUser = async (req, res) => {
       address
     });
     
-    // Save the mechanic to the database
+    // Save the user to the database
     await newUser.save();
-    
     
     res.status(201).send({ message: 'Customer profile created successfully' });
   } catch (error) {
@@ -35,33 +32,38 @@ exports.createUser = async (req, res) => {
   }
 };
 
-//user login form post
+// User login
 exports.postUser = async (req, res) => {
-  const { username, password } = req.body;
+  const { identifier, password } = req.body;
 
   // Check if input fields are empty
-  if (!username || !password) {
+  if (!identifier || !password) {
     return res.status(400).json({
       status: "FAILED",
-      message: "Empty input fields",  // Clear error for empty fields
+      message: "Empty input fields",
     });
   }
 
   try {
-    // Find the user by username
-    const data = await user.findOne({ username: username });
+    // Find the user by username or email
+    const data = await User.findOne({
+      $or: [{ username: identifier }, { email: identifier }],
+    });
 
     if (data) {
-      const hashedPassword = data.password; // Make sure 'data' has 'password' field
-      
+      const hashedPassword = data.password;
+
       // Compare the provided password with the stored hashed password
       const result = await bcrypt.compare(password, hashedPassword);
 
       if (result) {
+        // Generate JWT token
+        const token = jwt.sign({ id: data._id }, 'your_jwt_secret', { expiresIn: '1h' });
+
         return res.status(200).json({
           status: "SUCCESS",
           message: "Login successful",
-          data: data,
+          token: token,
         });
       } else {
         return res.status(401).json({
@@ -72,10 +74,11 @@ exports.postUser = async (req, res) => {
     } else {
       return res.status(404).json({
         status: "FAILED",
-        message: "Invalid username",
+        message: "Invalid username or email",
       });
     }
   } catch (error) {
+    console.error(error);
     return res.status(500).json({
       status: "FAILED",
       message: "An error occurred during login",
@@ -83,74 +86,38 @@ exports.postUser = async (req, res) => {
   }
 };
 
-//user login form get
+// Get user by username or email
 exports.getUser = async (req, res) => {
-  const { id: userId } = req.params; // Extract 'id' from req.params
+  const { identifier } = req.params;
 
   try {
-    if (userId) {
-      // Fetch the user by ID from the database
-      const user = await User.findById(userId);
-      if (!user) {
-        return res.status(404).send({ error: 'User not found' }); // Handle user not found
-      }
-      res.status(200).send(user); // Return the user details with a 200 status code
-    } else {
-      // Fetch all users if no ID is provided
-      const users = await User.find(); // Fetch all users
-      res.status(200).send(users); // Return the list of users
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: 'Server error' }); // Handle server errors
-  }
-};
-
-
-
-//create a new booking
-exports.createBooking = async (req, res) => {
-  const { userId, vehiclemake, vehicletype, vehiclenumber, manufecturedyear, message, preferreddate, preferredtime  } = req.body; // Assuming userId and booking details are passed in the request body
-
-  try {
-    // Find the user by ID
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).send({ error: 'User not found' });
-    }
-
-    const existingBooking = await Booking.findOne({ preferreddate, preferredtime });
-
-    if (existingBooking) {
-      return res.status(400).send({ error: 'Booking already exists for this date and time' });
-    }
-
-    // Create a new instance of the Booking model with user-related data
-    const newBooking = new Booking({
-      userId: user._id,                // Store the user ID
-      vehicleownername: user.name,             
-      mobilenumber: user.phone,           
-      address: user.address,
-      email: user.email,
-      message,
-      vehiclemake,
-      vehiclenumber,
-      vehicletype,
-      preferreddate,
-      preferredtime,
-      manufecturedyear
+    // Find user by either username or email
+    const userData = await User.findOne({
+      $or: [{ username: identifier }, { email: identifier }],
     });
 
-    // Save the booking to the database
-    await newBooking.save();
-
-    res.status(201).send({ message: 'Booking details stored successfully' });
+    if (userData) {
+      res.status(200).json({
+        status: "SUCCESS",
+        message: "User data fetched successfully",
+        data: userData,
+      });
+    } else {
+      res.status(404).json({
+        status: "FAILED",
+        message: "User not found",
+      });
+    }
   } catch (error) {
     console.error(error);
-    res.status(500).send({ error: 'Failed to create booking' });
+    res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while fetching user data",
+    });
   }
 };
+
+
 
 // Post payment Details
 exports.postPayment = async (req, res) => {
@@ -184,5 +151,28 @@ exports.postPayment = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: 'Failed to save payment details' });
+  }
+}
+
+// Save feedback
+exports.postFeedback = async (req, res) => {
+  const {  name, number, message } = req.body;
+
+  try { 
+    // Create a new instance of the user model
+    const newFeedback = new Feedback({
+      name,
+      number,
+      message
+    });
+     
+    // Save the mechanic to the database
+    await newFeedback.save();
+    
+    
+    res.status(201).send({ message: 'Feedback saved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Failed to save feedback' });
   }
 }

@@ -12,6 +12,7 @@ export default function Signup() {
   const [conformPassword, setConformPassword] = useState("");
 
   const navigate = useNavigate();
+  // const {handleLogin} = useAuth();
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -45,6 +46,11 @@ export default function Signup() {
     } else {
       return false;
     }
+  }
+
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    navigate('/login');
   }
 
   return (
