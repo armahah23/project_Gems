@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
+// import { useAuth } from "../context/AuthContext";
 
 export default function Signup() {
   const [fullname, setFullname] = useState("");
@@ -11,6 +12,7 @@ export default function Signup() {
   const [conformPassword, setConformPassword] = useState("");
 
   const navigate = useNavigate();
+  // const {handleLogin} = useAuth();
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -44,6 +46,11 @@ export default function Signup() {
     } else {
       return false;
     }
+  }
+
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    navigate('/login');
   }
 
   return (
@@ -103,16 +110,13 @@ export default function Signup() {
             {comparePassword() ? <p id="password-not-match">Passwords do not match !</p> : null}
           </div>
           <button type="submit">
-        <b>SIGN UP</b>
-      </button>
-       <p>
-        Already have an Account? <a href="#">Login</a>
-      </p>
+            <b>SIGN UP</b>
+          </button>
+          <p>
+            Already have an Account? <a href="#" onClick={handleLoginClick}>Login</a>
+          </p>
         </div>
       </form>
-
-      
-     
     </div>
   );
 }

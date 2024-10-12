@@ -2,6 +2,7 @@ const User = require("../schemas/userSchema");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Payment = require("../schemas/paymentSchema");
+const Feedback = require("../schemas/feedbackSchema");
 
 // Create a new user
 exports.createUser = async (req, res) => {
@@ -150,5 +151,28 @@ exports.postPayment = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: 'Failed to save payment details' });
+  }
+}
+
+// Save feedback
+exports.postFeedback = async (req, res) => {
+  const {  name, number, message } = req.body;
+
+  try { 
+    // Create a new instance of the user model
+    const newFeedback = new Feedback({
+      name,
+      number,
+      message
+    });
+     
+    // Save the mechanic to the database
+    await newFeedback.save();
+    
+    
+    res.status(201).send({ message: 'Feedback saved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Failed to save feedback' });
   }
 }

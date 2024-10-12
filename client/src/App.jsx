@@ -8,6 +8,7 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/Resetpassword";
+import Bookingdetails from "./Pages/Bookingdetails";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signupoption" element={<SignupOption />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/bdetails" element={<Bookingdetails />} />
       </Routes>
   );
 }

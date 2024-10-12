@@ -14,5 +14,8 @@ router.post('/usignup', userController.createUser);
 // Route to post payment Details
 router.post('/payment', userController.postPayment);
 
+//Route to save feedback
+router.post('/feedback', userController.postFeedback);
+
  
 module.exports = router;

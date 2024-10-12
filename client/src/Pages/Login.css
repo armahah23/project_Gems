@@ -1,27 +1,22 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .login-container {
   background: #13496B;
   background-size: cover;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 10px;
 }
 
-.logo{
+.login-container .logo{
   margin-top: 10%;
   margin-left: 50%;
 }
 
-.login-form {
+.login-container .login-form {
   background: rgba(0, 0, 0, 0.8);
   padding: 40px;
   border-radius: 10px;
@@ -32,24 +27,24 @@
   margin-left: -400px;
   
 }
-.login-form span {
+.login-container .login-form span {
   color: white;
   }
 
-.login-form h1 {
+  .login-container .login-form h1 {
   color: red;
   margin-bottom: 20px;
   font-family: Average;
 }
 
-.input-group {
+.login-container .input-group {
   margin-bottom: 20px;
 }
 
-.input-group
+.login-container .input-group
 
 
-.input-wrapper {
+.login-container .input-wrapper {
   display: flex;
   align-items: center;
   background: #333;
@@ -57,13 +52,13 @@
   overflow: hidden;
 }
 
-.input-wrapper .icon,
+.login-container .input-wrapper .icon,
 .input-wrapper .eye-icon {
   padding: 10px;
   background: #555;
 }
 
-.input-wrapper input {
+.login-container .input-wrapper input {
   width: 100%;
   padding: 10px;
   border: none;
@@ -72,7 +67,7 @@
   color: white;
 }
 
-.forgot-password {
+.login-container .forgot-password {
   display: block;
   text-align: right;
   color: #ff6347;
@@ -81,7 +76,7 @@
   text-decoration: none;
 }
 
-.login-form button {
+.login-container .login-form button {
   width: 100%;
   padding: 10px;
   
@@ -93,13 +88,13 @@
   margin-bottom: 20px;
 }
 
-.social-login {
+.login-container .social-login {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.social-login button {
+.login-container .social-login button {
   width: 100%;
   padding: 10px;
   border: none;
@@ -108,25 +103,25 @@
   font-size: 14px;
 }
 
-.submit{
+.login-container .submit{
   background-color: #db4a39;
 }
 
-.google-login {
+.login-container .google-login {
   color: white;
 
 }
 
-.facebook-login {
+.login-container .facebook-login {
   color: white;
 }
 
-.sign-up-link {
+.login-container .sign-up-link {
   color: #1e90ff;
   text-decoration: none;
   font-weight: bold;
 }
 
-.sign {
+.login-container .sign {
   margin-top: 20px;
 }
