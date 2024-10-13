@@ -1,7 +1,7 @@
 import facebook_icon from "../assets/icons/facebook_icon.png";
 import google_icon from "../assets/icons/google_icon.png";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/photos/logo.png";
 import { useAuth } from "../context/AuthContext";
 

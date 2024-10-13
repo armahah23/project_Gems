@@ -1,7 +1,5 @@
-
 import { useEffect, useState } from "react";
-import { FileText, ArrowUp, Contact } from "lucide-react";
-
+import { FileText, ArrowUp } from "lucide-react";
 import "./HomePage.css";
 import Logo from "../assets/photos/logo.png";
 import ImageA from "../assets/photos/A.png";
@@ -16,7 +14,6 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { IoNotificationsSharp } from "react-icons/io5";
 import Modal from "../components/Modal";
-
 
 const HomePage = () => {
   const { user } = useAuth();
@@ -131,12 +128,11 @@ const HomePage = () => {
           <img
             className="Logo"
             src={Logo}
-            style={{ width: "150px", height: "150px" }}
+            style={{ width: "90px", height: "70px" }}
             alt="Logo"
           />
           <nav className="nav-menu">
             <div className="nav-links">
-
               <Link to="/">HOME</Link>
               <Link to="/contact">CONTACT</Link>
               <Link to="#">SERVICES</Link>
@@ -173,13 +169,15 @@ const HomePage = () => {
                       )}
                     </>
                   )}
-
-                  <button className="logout-btn" onClick={handleLogout}>
+                  <button
+                    className="btn text-white px-3 w-[100px] h-[40px] bg-primary"
+                    onClick={handleLogout}
+                  >
                     LOGOUT
                   </button>
                 </>
               ) : (
-                <button className="sign-up-btn" onClick={handleSignup}>
+                <button className="sign-up-btn px-4" onClick={handleSignup}>
                   SIGN UP
                 </button>
               )}
@@ -193,15 +191,15 @@ const HomePage = () => {
         {/* Hero Section */}
         <section className="hero-section container">
           <div className="hero-content">
-            <p className="welcome-text">
-              Welcome, {user ? user.fullname : "Guest"} !
+            <p className="text-[40px] font-serif font-bold text-gray-500 mt-5">
+              Welcome, {user ? user.fullname : "Guest"}!
             </p>
             <h1>
               <span>INNOVATIVE</span> VEHICLE
               <br />
               SERVICE <span>SOLUTIONS</span>
             </h1>
-            <p>
+            <p className="text-gray-700 text-[20px] ">
               REVOLUTIONIZING VEHICLE CARE: STREAMLINING
               <br />
               SERVICE CENTERS WITH AUTOMATED SOLUTIONS
@@ -215,27 +213,33 @@ const HomePage = () => {
                   </button>
                 </Link>
               ) : (
-                <>
+                <div className="flex items-center">
                   <button className="sign-up-btn" onClick={handleSignup}>
                     SIGN UP
                   </button>
-                  <p className="login-text">
+                  <p className="px-5 mt-[40px]">
                     or{" "}
-                    <a href="#" onClick={handleLogin}>
+                    <a
+                      href="#"
+                      className="text-blue-700 underline"
+                      onClick={handleLogin}
+                    >
                       CLICK HERE
                     </a>{" "}
                     to Log in
                   </p>
-                </>
+                </div>
               )}
             </div>
           </div>
-          <img
-            className="ImageA"
-            src={ImageA}
-            style={{ width: "500px", height: "auto" }}
-            alt="Hero"
-          />
+          <div className="p-[100px]">
+            <img
+              className="ImageA"
+              src={ImageA}
+              style={{ width: "350px", height: "auto" }}
+              alt="Hero"
+            />
+          </div>
         </section>
 
         {/* What We Do Section */}
@@ -275,7 +279,6 @@ const HomePage = () => {
           />
         </div>
 
-
         {/* History Section */}
         <section className="history-section-container">
           <h2>History</h2>
@@ -287,16 +290,18 @@ const HomePage = () => {
             journey has always been driven by innovation, ensuring we offer the
             latest technology and services to keep vehicles running smoothly.
             Today, we continue to uphold our commitment to excellence, providing
-            fast, reliable, and professional service for every vehicle that comes
-            through our doors.
+            fast, reliable, and professional service for every vehicle that
+            comes through our doors.
           </p>
         </section>
 
         {/* Our Services Section */}
-        <section className="our-services">
-          <h2>Our Services</h2>
-          <div className="services-container">
-            <div className="service-card">
+        <section className="p-5">
+          <h2 className="flex justify-center items-center font-semibold text-3xl p-2">
+            Our Services
+          </h2>
+          {/* <div className="flex px-3">
+            <div className="">
               <img
                 className="ImageD"
                 src={ImageD}
@@ -305,7 +310,7 @@ const HomePage = () => {
               />
               <p className="service-description">Regular Maintenance</p>
             </div>
-            <div className="service-card">
+            <div className="">
               <img
                 className="ImageE"
                 src={ImageE}
@@ -314,7 +319,7 @@ const HomePage = () => {
               />
               <p className="service-description">Brake Inspection</p>
             </div>
-            <div className="service-card">
+            <div className="">
               <img
                 className="ImageF"
                 src={ImageF}
@@ -324,7 +329,6 @@ const HomePage = () => {
               <p className="service-description">Tire Rotation</p>
             </div>
             <div className="service-card">
-
               <img
                 className="ImageG"
                 src={ImageG}
@@ -342,54 +346,137 @@ const HomePage = () => {
               />
               <p className="service-description">Transmission Repair</p>
             </div>
+          </div> */}
+          <div className="flex flex-wrap justify-center px-3 space-x-4">
+            {/* Service D */}
+            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[350px] p-4 bg-white rounded-lg shadow-md mb-6">
+              <img
+                className="ImageD"
+                src={ImageD}
+                style={{ width: "350px", height: "300px" }}
+                alt="Service D"
+              />
+              <p className="service-description text-center mt-auto">
+                Regular Maintenance
+              </p>
+            </div>
+
+            {/* Service E */}
+            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[350px] p-4 bg-white rounded-lg shadow-md mb-6">
+              <img
+                className="ImageE"
+                src={ImageE}
+                style={{ width: "350px", height: "300px" }}
+                alt="Service E"
+              />
+              <p className="service-description text-center mt-auto">
+                Brake Inspection
+              </p>
+            </div>
+
+            {/* Service F */}
+            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[350px] p-4 bg-white rounded-lg shadow-md mb-6">
+              <img
+                src={ImageF}
+                style={{ width: "350px", height: "300px" }}
+                alt="Service F"
+              />
+              <p className="service-description text-center mt-auto">
+                Tire Rotation
+              </p>
+            </div>
+          </div>
+        </section>
+        <div className="relative">
+          <div className="absolute h-[800px] w-[100px] top-[-350px]">
+            <img src={ImageH} alt="Service H" className="h-[500px]" />
+          </div>
         </div>
-     </section>
 
-        <button  className="back-to-top"
-            onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-            <ArrowUp />
-          </button>
-       </main>
-
+        <button
+          className="back-to-top"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <ArrowUp />
+        </button>
 
         {/* Feedback Section */}
-        <section className="feedback-section">
-          <h2>Feedback</h2>
-          <form onSubmit={handleSubmit} className="feedback-form">
-            <input
-              type="text"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              placeholder="Your Name"
-              required
-            />
-            <input
-              type="tel"
-              value={formData.number}
-              onChange={(e) => setFormData({ ...formData, number: e.target.value })}
-              placeholder="Your Phone Number"
-              required
-            />
-            <textarea
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              placeholder="Your Feedback"
-              required
-            />
-            <button type="submit">Submit Feedback</button>
-          </form>
-        </section>
+        <div className="relative">
+          <div className="w-[100vw] flex justify-center items-center bg-white bg-opacity-20 relative z-[1]">
+            <div className="bg-white bg-opacity-40 shadow-2xl rounded-3xl w-[60%] p-[50px]">
+              <p className="text-center underline text-[26px] font-bold">
+                Need Help!
+              </p>
+              <p className="text-center py-5 text-[15px]">
+                We’re here to provide expert assistance every step of the way.
+                Whether you need guidance on services, help with scheduling, or
+                any other support, our dedicated team is ready to ensure your
+                experience is seamless and stress-free.
+              </p>
+              <div className="w-[100%] flex justify-center">
+                <img
+                  className="border-1 w-[350px]"
+                  src={ImageG}
+                  alt="Service G"
+                />
+              </div>
+              <div className="w-[100%] flex gap-16">
+                <div className="bg-green-200 w-[50%]">hi</div>
+                <div className="w-[50%]">
+                  <h2 className="text-black-300 text-2xl mb-[0] px-8 font-bold">
+                    Feedback
+                  </h2>
+                  <form onSubmit={handleSubmit} className="feedback-form p-8">
+                    <input
+                      className="mb-[30px] w-[100%] h-[50px] p-4"
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      placeholder="Your Name"
+                      required
+                    />
+                    <input
+                      className="mb-[30px] w-[100%] h-[50px] p-4"
+                      type="tel"
+                      value={formData.number}
+                      onChange={(e) =>
+                        setFormData({ ...formData, number: e.target.value })
+                      }
+                      placeholder="Your Phone Number"
+                      required
+                    />
+                    <textarea
+                      className="mb-[30px] w-[100%] h-[50px] py-3 px-4 rounded-lg"
+                      value={formData.message}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
+                      placeholder="Your Feedback"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="bg-green-700 text-white w-[200px] rounded-lg p-[10px] hover:bg-green-900 "
+                    >
+                      Submit Feedback
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="polygon-box absolute bottom-0 z-[0]"></div>
+        </div>
       </main>
 
       {/* Footer */}
-      <footer className="footer">
-        <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
+      <footer className="footer flex justify-center items-center py-5">
+        <p className="">&copy; 2024 Your Company Name. All Rights Reserved.</p>
       </footer>
-
     </div>
-   );
- };
-
+  );
+};
 
 export default HomePage;
-

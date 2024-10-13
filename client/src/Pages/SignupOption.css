@@ -4,20 +4,15 @@
   box-sizing: border-box;
 }
 
-
-body {
+/* body {
   background-color: rgba(19, 73, 107, 1);
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-    justify-content: center;
-
-  
-  
-}
-
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+} */
 
 .SignupOption {
   text-align: center;
@@ -26,14 +21,11 @@ body {
 .SignupOption-header {
   background-color: transparent;
   padding: 20px;
-  
 }
 
 .logo {
   width: 200px;
   margin-bottom: 70px;
-  
-  
 }
 
 .sign-up-buttons {
@@ -42,7 +34,6 @@ body {
   gap: 300px;
   padding: 0%;
   margin-left: 0%;
-  
 }
 
 .button-container {
@@ -58,22 +49,19 @@ body {
   align-items: center;
   border-radius: 50%;
   padding: 20px;
-  
- 
-  
 }
 
 .image {
   width: 135px;
   height: 135px;
-  height: 90px; 
+  height: 90px;
   margin-bottom: 10px;
 }
 
 .text {
   display: flex;
-  justify-content: center; 
-  gap: 300px; 
+  justify-content: center;
+  gap: 300px;
   margin-bottom: 50px;
 }
 
@@ -82,13 +70,10 @@ body {
   font-weight: bold;
   color: white;
   line-height: 1;
-  display: inline-block; 
+  display: inline-block;
   padding: 10px;
   border-radius: 15%;
   background-color: black;
-  
-  
-  
 }
 
 .text h2 span {
