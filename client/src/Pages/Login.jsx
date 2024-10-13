@@ -3,8 +3,8 @@ import google_icon from "../assets/icons/google_icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/photos/logo.png";
-import "./Login.css"
-import { Link } from 'react-router-dom';
+import { useAuth } from "../context/AuthContext";
+
 // import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
@@ -13,6 +13,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [userType, setUserType] = useState("user"); // State to toggle between user, mechanic, and admin
   const navigate = useNavigate();
+  const {setUser} = useAuth();
 
   // const {login} = useAuth();
 
@@ -83,11 +84,15 @@ export default function Login() {
 
       const userData = await userResponse.json(); // Parse user data after successful request
       console.log("User data:", userData);
-
+      setUser(userData.data); // Set user data in the context
       // Save the token and navigate to the home page
       localStorage.setItem("token", data.token); // Store token in localStorage
       alert("Login successful!");
-      navigate("/"); // Navigate to home page after login
+      if (userType === "mechanic") {
+        navigate("/mdashboard");
+      } else {
+        navigate("/"); // Navigate to home page after login
+      }
     } catch (error) {
       console.error("Error:", error);
       alert(error.message);
@@ -104,6 +109,11 @@ export default function Login() {
 
   return (
     <div className="login-container">
+
+      <div className="logo">
+        {/* <img src={logo} alt="autocare_logo" /> */}
+      </div>
+
       <form className="login-form" onSubmit={handleLogin}>
         <h1>
           WELCOME

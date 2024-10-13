@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
     state: { type: String, trim: true },
     zipCode: { type: String, trim: true },
     country: { type: String, trim: true },
-  },
+  }
 });
 
 // Create the user model

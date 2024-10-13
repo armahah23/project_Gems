@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import './Bookingdetails.css';
+import { useAuth } from '../context/AuthContext'; 
+import { useNavigate } from 'react-router-dom';
 
 function Bookingdetails() {
+  const { user } = useAuth();
+  const [userName, setUserName] = useState(user?.fullname || '');
+  const [userEmail, setUserEmail] = useState(user?.email || '');
+  const [mobileNumber, setMobileNumber] = useState(user?.phone || '');
+  const navigate = useNavigate()
+
   const [form, setForm] = useState({
     vehicleMake: '',
     vehicleModel: '',
@@ -9,20 +17,23 @@ function Bookingdetails() {
     manufacturedYear: '',
     preferredDate: '',
     preferredTime: '',
-    ownerName: '',
-    mobileNumber: '',
     address: '',
-    email: '',
     message: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Simple form validation
+    if (!form.vehicleMake || !form.vehicleModel || !form.vehicleNumber || !form.manufacturedYear || !userName || !mobileNumber || !form.address || !userEmail) {
+      alert('Please fill in all required fields.');
+      return;
+    }
 
     const bookingData = {
       vehiclemake: form.vehicleMake,
@@ -31,12 +42,15 @@ function Bookingdetails() {
       manufecturedyear: form.manufacturedYear,
       preferreddate: form.preferredDate,
       preferredtime: form.preferredTime,
-      vehicleownername: form.ownerName,
-      mobilenumber: form.mobileNumber,
+      vehicleownername: userName,
+      mobilenumber: mobileNumber,
       address: form.address,
-      email: form.email,
-      message: form.message
+      email: userEmail,
+      message: form.message,
+      userId: user._id
     };
+
+    console.log('Booking data:', bookingData);
 
     try {
       const response = await fetch('http://localhost:3000/api/booking', {
@@ -46,41 +60,54 @@ function Bookingdetails() {
         },
         body: JSON.stringify(bookingData),
       });
+      console.log('Booking response:', response);
 
       if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Booking creation failed:', errorData);
         throw new Error('Failed to create booking');
       }
+      console.log('Booking created successfully',user._id);
 
-      const data = await response.json();
-      alert('Booking created successfully');
-      console.log('Booking created:', data);
-
-      // Fetch user details after booking is created
-      await fetchUserDetails(form.email);
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to create booking');
-    }
-  };
-
-  const fetchUserDetails = async (identifier) => {
-    try {
-      const response = await fetch(`http://localhost:3000/api/user/${identifier}`, {
-        method: 'GET',
+      const sendNotification = await fetch(`http://localhost:3000/api/notification/createNotification/${user._id}`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          topic: 'Booking',
+          message: 'Booking created successfully',
+        }),
       });
+      console.log('Notification response:', sendNotification);
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch user details');
+      if (!sendNotification.ok) {
+        const notificationError = await sendNotification.json();
+        console.error('Notification sending failed:', notificationError);
+        throw new Error('Failed to send notification');
       }
 
-      const data = await response.json();
-      console.log('User details:', data);
+      alert('Booking created  successfully');
+      
+   navigate("/")
+   setForm({
+    vehicleMake: '',
+    vehicleModel: '',
+    vehicleNumber: '',
+    manufacturedYear: '',
+    preferredDate: '',
+    preferredTime: '',
+    address: '',
+    message: ''
+  });
+  setUserName('')
+  setMobileNumber('')
+  setUserEmail('')
+
+
     } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to fetch user details');
+      console.error('Error during booking creation or notification sending:', error);
+      alert('Failed to create booking or send notification. Please try again.');
     }
   };
 
@@ -107,8 +134,8 @@ function Bookingdetails() {
                 type="text"
                 name="ownerName"
                 placeholder="Ex: Mr. Perera"
-                value={form.ownerName}
-                onChange={handleChange}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -127,8 +154,8 @@ function Bookingdetails() {
                 type="text"
                 name="mobileNumber"
                 placeholder="Ex: 078-7587700"
-                value={form.mobileNumber}
-                onChange={handleChange}
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -167,8 +194,8 @@ function Bookingdetails() {
                 type="email"
                 name="email"
                 placeholder="Ex: abcdefgh@gmail.com"
-                value={form.email}
-                onChange={handleChange}
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
               />
             </div>
             <div className="form-group">

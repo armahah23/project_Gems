@@ -1,0 +1,74 @@
+
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #18364b;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.logo img {
+    width: 80px;
+}
+
+.menu {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 20px 0;
+}
+
+.menu button {
+    width: 90%;
+    padding: 10px;
+    background-color: #7fb1c1;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.menu button:hover {
+    background-color: #5d91a5;
+}
+
+.dashboard {
+    width: 80%;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.work-item {
+    background-color: #e0e0e0;
+    padding: 40px;
+    text-align: center;
+    font-size: 1.2em;
+    border-radius: 10px;
+}

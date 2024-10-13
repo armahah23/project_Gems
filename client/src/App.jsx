@@ -1,12 +1,12 @@
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-import Esignup from "./Pages/Esignup.jsx";
-import Asignup from "./Pages/Asignup.jsx";
-import Login from "./Pages/Login.jsx";
-import Signup from "./Pages/Signup.jsx";
-import HomePage from "./Pages/HomePage.jsx";
-import SignupOption from "./Pages/SignupOption.jsx";
+import {  Route, Routes } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
+import SignupOption from "./Pages/SignupOption";
+import Esignup from "./Pages/Esignup";
+import Asignup from "./Pages/Asignup";
+import MDahshboard from "./Pages/mechanicDashboard/MDashboard";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/Resetpassword";
 import Bookingdetails from "./Pages/Bookingdetails";
@@ -27,9 +27,11 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/bdetails" element={<Bookingdetails />} />
+        <Route path="/mdashboard" element={<MDahshboard />} />
         <Route path="/contactus" element={<ContactUs />}/>
         <Route path="/emergencyservice" element={<EmergencyService />}/>
         <Route path="/ebservice" element={<EBService />} />
+
       </Routes>
   );
 }
