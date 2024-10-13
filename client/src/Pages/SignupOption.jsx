@@ -1,8 +1,7 @@
 import './SignupOption.css'; 
-
-import autoCareLogo from '../assets/photos/logo.png'; 
-import employeeImage from '../assets/photos/employeeSignup.jpg';
-import customerImage from '../assets/photos/customerImage.jpg'
+import logo from '../assets/photos/logo.png'; 
+import employeeImage from '../assets/photos/Esignup.png'; 
+import customerImage from '../assets/photos/Csignup.png'; 
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +15,7 @@ function SignUpButton({  image }) {
   );
 }
 
-function AppContent () {
+function SignupOption () {
 
   const navigate = useNavigate();
 
@@ -29,9 +28,9 @@ function AppContent () {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={autoCareLogo} alt="Auto Care Logo" className="logo" />
+    <div className="SignupOption">
+      <header className="SignupOption-header">
+      <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
         <div className="text">
       
           <h2><span>Employee</span><br />Sign up</h2>
@@ -40,8 +39,8 @@ function AppContent () {
         </div>
         <div className="sign-up-buttons">
        
-          <div onClick={handleClick}><SignUpButton image={employeeImage} /></div>
-          <div onClick={handleCustomerClick}><SignUpButton image={customerImage} /></div>
+          <div onClick={handleClick} ><SignUpButton image={employeeImage} /></div>
+          <div onClick={handleCustomerClick} ><SignUpButton image={customerImage} /></div>
         </div>
       </header>
      
@@ -52,4 +51,4 @@ SignUpButton.propTypes = {
   image: PropTypes.string.isRequired,
 };
 
-export default AppContent;
+export default SignupOption;

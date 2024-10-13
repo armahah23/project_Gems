@@ -4,16 +4,26 @@
   background-size: cover;
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: fixed;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 10px;
+  margin-left: -100px;
+  margin-top: -300px;
+  position: fixed;
+}
+.Radio-btn{
+  display:inline-block;
+  
+}
+.input-group label{
+  margin-right: 25px;
 }
 
 .login-container .logo{
-  margin-top: 10%;
-  margin-left: 50%;
+  margin-top:6%;
+  margin-left: 10%;
 }
 
 .login-container .login-form {
@@ -52,19 +62,33 @@
   overflow: hidden;
 }
 
-.login-container .input-wrapper .icon,
+.login-form .input-group .icon{
+  position: relative;
+  left: -205px;
+  top: 32px;
+  padding: 10px;
+  background: #555;
+  margin-left: 10%;
+ 
+
+  
+}
+
+
 .input-wrapper .eye-icon {
   padding: 10px;
   background: #555;
+  margin-left: -42px;
 }
 
 .login-container .input-wrapper input {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   border: none;
   outline: none;
-  background: transparent;
-  color: white;
+  background-color: #ccc;
+  color:black;
+  margin-left: 10%;
 }
 
 .login-container .forgot-password {
@@ -79,7 +103,7 @@
 .login-container .login-form button {
   width: 100%;
   padding: 10px;
-  
+  width: 300px;
   border: none;
   border-radius: 5px;
   color: white;

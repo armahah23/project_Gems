@@ -19,15 +19,20 @@
     line-height: 1.6;
     background-color: white;
     
+    
   } 
 
-  
+  .home-page{
+    background-color: #ffffff;
+    width: 100%;
+  }
   
   .container {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 0 20px;
   }
+  
   
   .header {
     background:white;

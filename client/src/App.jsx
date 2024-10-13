@@ -1,3 +1,4 @@
+
 import {  Route, Routes } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import SignupOption from "./Pages/SignupOption";
@@ -9,6 +10,10 @@ import Signup from "./Pages/Signup";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/Resetpassword";
 import Bookingdetails from "./Pages/Bookingdetails";
+import ContactUs from "./Pages/ContactUs.jsx";
+import EmergencyService from "./Pages/EmergencyService.jsx";
+import EBService from "./Pages/EBService.jsx";
+
 
 function App() {
   return (
@@ -23,6 +28,10 @@ function App() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/bdetails" element={<Bookingdetails />} />
         <Route path="/mdashboard" element={<MDahshboard />} />
+        <Route path="/contactus" element={<ContactUs />}/>
+        <Route path="/emergencyservice" element={<EmergencyService />}/>
+        <Route path="/ebservice" element={<EBService />} />
+
       </Routes>
   );
 }

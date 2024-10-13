@@ -1,13 +1,13 @@
 import React from 'react';
 import './BookingSuccessfully.css'; 
-import loadingImage from './assets/Green-check-mark-icon.png'; 
-//import Footer from './components/Footer';
+import  done from '../assets/photos/done.png'
+
 
 function BookingSuccessfully() {
   return (
     <div className="BookingSuccessfully">
       <div className="message-box">
-        <img src={loadingImage} alt="Loading" className="loading-image" /> 
+      <img className='done' src={done} style={{ width: 'Auto', height: '150px' }} />
         <p>Booking Successfully</p> 
         <button className="continue-button">Continue</button>
       </div>

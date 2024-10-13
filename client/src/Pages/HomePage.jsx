@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from "react";
-import { FileText } from "lucide-react";
+import { FileText, ArrowUp, Contact } from "lucide-react";
+
 import "./HomePage.css";
 import Logo from "../assets/photos/logo.png";
 import ImageA from "../assets/photos/A.png";
@@ -14,6 +16,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { IoNotificationsSharp } from "react-icons/io5";
 import Modal from "../components/Modal";
+
 
 const HomePage = () => {
   const { user } = useAuth();
@@ -133,6 +136,7 @@ const HomePage = () => {
           />
           <nav className="nav-menu">
             <div className="nav-links">
+
               <Link to="/">HOME</Link>
               <Link to="/contact">CONTACT</Link>
               <Link to="#">SERVICES</Link>
@@ -271,6 +275,7 @@ const HomePage = () => {
           />
         </div>
 
+
         {/* History Section */}
         <section className="history-section-container">
           <h2>History</h2>
@@ -319,6 +324,7 @@ const HomePage = () => {
               <p className="service-description">Tire Rotation</p>
             </div>
             <div className="service-card">
+
               <img
                 className="ImageG"
                 src={ImageG}
@@ -336,8 +342,15 @@ const HomePage = () => {
               />
               <p className="service-description">Transmission Repair</p>
             </div>
-          </div>
-        </section>
+        </div>
+     </section>
+
+        <button  className="back-to-top"
+            onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+            <ArrowUp />
+          </button>
+       </main>
+
 
         {/* Feedback Section */}
         <section className="feedback-section">
@@ -372,8 +385,11 @@ const HomePage = () => {
       <footer className="footer">
         <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
       </footer>
+
     </div>
-  );
-};
+   );
+ };
+
 
 export default HomePage;
+

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
-// import { useAuth } from "../context/AuthContext";
+import  logo from '../assets/photos/logo.png'
+import { Link } from 'react-router-dom';
 
 export default function Signup() {
   const [fullname, setFullname] = useState("");
@@ -55,13 +56,13 @@ export default function Signup() {
 
   return (
     <div className="signup-container">
-      <div className="logo"></div>
+
 
       <form className="signup-form" onSubmit={handleSignup}>
         <h1>
           Customer <span>Sign Up </span>{" "}
         </h1>
-        <div className="main">
+        <div className="main-s">
           <div className="column-1">
             <label htmlFor="fullname">Full Name</label>
             <input
@@ -109,14 +110,16 @@ export default function Signup() {
             />
             {comparePassword() ? <p id="password-not-match">Passwords do not match !</p> : null}
           </div>
+          </div>
           <button type="submit">
-            <b>SIGN UP</b>
-          </button>
-          <p>
-            Already have an Account? <a href="#" onClick={handleLoginClick}>Login</a>
-          </p>
-        </div>
+        <b>SIGN UP</b>
+      </button>
+       <p>
+        Already have an Account? <Link to="/login">Login</Link>
+      </p>
+        
       </form>
+      <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
     </div>
   );
 }
