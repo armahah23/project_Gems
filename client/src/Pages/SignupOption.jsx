@@ -15,7 +15,7 @@ function SignUpButton({  image }) {
   );
 }
 
-function AppContent () {
+function SignupOption () {
 
   const navigate = useNavigate();
 
@@ -28,8 +28,8 @@ function AppContent () {
   }
 
   return (
-    <div className="App-Signup">
-      <header className="App-header-signup">
+    <div className="SignupOption">
+      <header className="SignupOption-header">
       <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
         <div className="text">
       
@@ -51,4 +51,4 @@ SignUpButton.propTypes = {
   image: PropTypes.string.isRequired,
 };
 
-export default AppContent;
+export default SignupOption;

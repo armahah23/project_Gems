@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Esignup.css";
 import  logo from '../assets/photos/logo.png'
+import { Link } from 'react-router-dom';
 
 
 export default function Esignup() {
@@ -44,13 +45,13 @@ export default function Esignup() {
 
   return (
     <div className="Esignup-container">
-      <div className="logo">{/* <img src={logo} alt="AC_logo" /> */}</div>
+     
 
       <form className="Esignup-form" onSubmit={handleSubmit}>
         <h1>
           Mechanic <span> Sign Up </span>{" "}
         </h1>
-        <div className="main">
+        <div className="main-e">
           <div className="column-1">
             <label htmlFor="fname">First Name</label>
             <input
@@ -123,7 +124,7 @@ export default function Esignup() {
           <b>SIGN UP</b>
         </button>
         <p>
-          Already have an Account? <a href="#">Login</a>
+          Already have an Account? <Link to="/login">Login</Link>
         </p>
       </form>
       <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />

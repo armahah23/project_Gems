@@ -3,6 +3,8 @@ import google_icon from "../assets/icons/google_icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/photos/logo.png";
+import "./Login.css"
+import { Link } from 'react-router-dom';
 // import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
@@ -102,16 +104,54 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <div className="logo">
-        <img src={logo} alt="autocare_logo" />
-      </div>
       <form className="login-form" onSubmit={handleLogin}>
         <h1>
-          WELCOME <span>BACK</span>
+          WELCOME
         </h1>
+        <div className="input-group">
+            <label>Login As:</label>
+  
+            <div className="Radio-btn">
+              <label className="user">
+                <input
+                  type="radio"
+                  id="user"
+                  name="userType"
+                  value="user"
+                  checked={userType === "user"}
+                  onChange={(e) => setUserType(e.target.value)}
+                />
+                User
+              </label>
+              <label className="mechanic">
+                <input
+                  type="radio"
+                  id="mechanic"
+                  name="userType"
+                  value="mechanic"
+                  checked={userType === "mechanic"}
+                  onChange={(e) => setUserType(e.target.value)}
+                />
+                Mechanic
+              </label>
+              <label className="admin">
+                <input
+                  type="radio"
+                  id="admin"
+                  name="userType"
+                  value="admin"
+                  checked={userType === "admin"}
+                  onChange={(e) => setUserType(e.target.value)}
+                />
+                Admin
+              </label>
+           </div>
+        </div>
+
         <div className="input-group">
           <label htmlFor="usernameOrEmail">
             Username / Email
+            </label>
             <div className="input-wrapper">
               <span className="icon">👤</span>
               <input
@@ -122,11 +162,12 @@ export default function Login() {
                 onChange={(e) => setUsernameOrEmail(e.target.value)}
               />
             </div>
-          </label>
+          
         </div>
         <div className="input-group">
           <label htmlFor="password">
             Password
+            </label>
             <div className="input-wrapper">
               <span className="icon">🔒</span>
               <input
@@ -144,25 +185,12 @@ export default function Login() {
                 {showPassword ? "🙈" : "👁️"}
               </span>
             </div>
-          </label>
+          
           <a href="#" onClick={forgotPassword} className="forgot-password">
             Forgot Password?
           </a>
         </div>
-        <div className="input-group">
-          <label htmlFor="userType">
-            Login as:
-            <select
-              id="userType"
-              value={userType}
-              onChange={(e) => setUserType(e.target.value)}
-            >
-              <option value="user">User</option>
-              <option value="mechanic">Mechanic</option>
-              <option value="admin">Admin</option>
-            </select>
-          </label>
-        </div>
+       
         <button className="submit" type="submit">
           LOGIN
         </button>
@@ -186,9 +214,7 @@ export default function Login() {
         </div>
         <p className="sign">
           Don’t have an Account?{" "}
-          <a href="/signup" className="sign-up-link">
-            Sign Up
-          </a>
+          <Link to="/signupoption">Signup</Link>
         </p>
       </form>
       <img

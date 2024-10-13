@@ -1,8 +1,22 @@
 import React from 'react';
 import './EBService.css'; // Add necessary CSS styles here
 import  ImageT from '../assets/photos/T.png'
+import { useNavigate } from 'react-router-dom';
 
-function App() {
+
+function EBService() {
+
+  const navigate = useNavigate();
+
+  const handleBookservice = () => {
+    navigate('/bdetails')
+  };
+
+
+    const handleEmergencyService = () => {
+      navigate('/emergencyservice')
+  };
+
   return (
     <div className="EBService">
       
@@ -15,14 +29,14 @@ function App() {
             Choose your preferred<br/> time, and let us take care of your vehicle-quick, hassle-free, and at your convenience.
           </p>
           
-            <button className="book-service-button">Book Service</button>
+            <button className="book-service-button" onClick={handleBookservice}>Book Service</button>
         </section>
         <img className='ImageT' src={ImageT} style={{ width: '450px', height: '300px' }} />
 
         {/* Emergency Section */}
         
         <section className="emergency-section">
-        <button className="emergency-service-button">Emergency Service</button>
+        <button className="emergency-service-button"  onClick={handleEmergencyService}>Emergency Service</button>
         
           <h1>Help When You Need It Most !</h1>
           <p>
@@ -37,4 +51,5 @@ function App() {
   );
 }
 
-export default App;
+
+export default EBService;

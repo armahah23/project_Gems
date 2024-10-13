@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Carparts.css";
+import "./Store.css";
 import bearingImage from './assets/Bearing.png';  // Example image import
 import steeringCoverImage from './assets/Steering.png';
 import engineImage from './assets/engine.png';
