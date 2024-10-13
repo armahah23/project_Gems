@@ -7,5 +7,6 @@ router.post('/booking', bookingController.createBooking);
 
 // Route for getting user details
 router.get('/user/:userId', bookingController.getUserDetails);
+router.get('/booking/:userId', bookingController.getBooking);
 
 module.exports = router;

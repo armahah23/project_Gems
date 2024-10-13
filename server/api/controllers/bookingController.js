@@ -15,8 +15,8 @@ exports.createBooking = async (req, res) => {
     message,
     preferreddate,
     preferredtime,
+    userId
   } = req.body; // Assuming userId and booking details are passed in the request body
-
   try {
     // Find the user by ID
     // const user = await User.findById(userId);
@@ -54,10 +54,12 @@ exports.createBooking = async (req, res) => {
       preferreddate,
       preferredtime,
       manufecturedyear,
+      userId
     });
 
     // Save the booking to the database
     await newBooking.save();
+
 
     res.status(201).send({ message: "Booking details stored successfully" });
   } catch (error) {
@@ -91,3 +93,28 @@ exports.getUserDetails = async (req, res) => {
     res.status(500).send({ error: "Failed to fetch user details" });
   }
 };
+
+exports.getBooking = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const bookings = await Booking.findOne({userId});
+    if (bookings) {
+      return res.status(200).json({
+        status: "SUCCESS",
+        message: "Bookings fetched successfully",
+        data: bookings,
+      });
+    } else {
+      return res.status(404).json({
+        status: "FAILED",
+        message: "No bookings found",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while fetching bookings",
+    });
+  }
+}

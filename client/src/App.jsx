@@ -3,7 +3,7 @@ import HomePage from "./Pages/HomePage";
 import SignupOption from "./Pages/SignupOption";
 import Esignup from "./Pages/Esignup";
 import Asignup from "./Pages/Asignup";
-
+import MDahshboard from "./Pages/mechanicDashboard/MDashboard";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import ForgotPassword from "./components/ForgotPassword";
@@ -22,6 +22,7 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/bdetails" element={<Bookingdetails />} />
+        <Route path="/mdashboard" element={<MDahshboard />} />
       </Routes>
   );
 }

@@ -27,6 +27,7 @@
       height: 50%;
       background: url('E:\project_Gems\client\autocare\src\assets\photos\logo.png') no-repeat center center; /* Update with your actual image path */
       background-size: contain;
+      z-index: -1;
   }
   
   .Esignup-form {
@@ -34,7 +35,6 @@
     margin-top: 5px;
     margin-left: -450px;
     padding: 10px;
-    width: 55%;
     height: 90%;
     border-radius: 20px;
     display: flex;
