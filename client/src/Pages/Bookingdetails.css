@@ -1,11 +1,11 @@
-.booking body {
+/* .booking body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
+} */
 
 .booking .app {
   flex: 1;
@@ -26,7 +26,7 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-  background: #13496B;
+  background: #13496b;
   clip-path: polygon(-3px 544px, 99.95% 170px, 100.07% 100%, 0% 100%);
   z-index: -1;
 }
