@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { FileText, ArrowUp } from "lucide-react";
+import { FileText, ArrowUp, Contact } from "lucide-react";
 import "./HomePage.css";
 import Logo from "../assets/photos/logo.png";
 import ImageA from "../assets/photos/A.png";
@@ -13,6 +13,7 @@ import ImageH from "../assets/photos/H.png";
 import ImageG from "../assets/photos/G.png";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const { user, logout } = useAuth();
@@ -75,10 +76,10 @@ const HomePage = () => {
           <nav className="nav-menu">
             <div className="nav-links">
               <a href="/">HOME</a>
-              <a href="/contact">CONTACT</a>
               <a href="#">SERVICES</a>
               <a href="#">OFFERS</a>
               <a href="#">STORE</a>
+              <Link to="/contactus">CONTACT</Link>
               {user ? (
                 <button className="logout-btn" onClick={handleLogout}>
                   LOGOUT
@@ -190,7 +191,7 @@ const HomePage = () => {
              service for every vehicle that comes through our doors.
            </p>
 
-           <div className="roles-grid">
+           <div className="roles-grid">{}
              <div className="role-card">
              <div className="role-icon">
                <img className='ImageD' src={ImageD} style={{ width: 'Auto', height: 'Auto' }} />
@@ -287,19 +288,6 @@ const HomePage = () => {
                 <button type="submit">SUBMIT →</button>
               </form>
             </div>
-
-
-        
-
-        {/* Form Section */}
-        <div className="help-form">
-          <form>
-            <input type="text" placeholder="Name" required />
-            <input type="text" placeholder="Number" required />
-            <textarea placeholder="How can I help you?" required></textarea>
-            <button type="submit">SUBMIT →</button>
-          </form>
-        </div>
         </div>
      </section>
 

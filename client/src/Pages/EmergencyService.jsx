@@ -1,6 +1,7 @@
 import React from 'react';
 import './EmergencyService.css';
-import mapImage from './assets/map.png';
+// import mapImage from './assets/map.png';
+
 
 function EmergencyService() {
   return (
@@ -30,9 +31,9 @@ function EmergencyService() {
             <button type="submit">Continue</button>
           </form>
         </div>
-        <div className="map-container">
+        {/* <div className="map-container">
           <img src={mapImage} alt="Map" />
-        </div>
+        </div> */}
       </div>
       <div className="background-design"></div>
     </div>
