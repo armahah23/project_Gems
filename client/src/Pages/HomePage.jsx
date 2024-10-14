@@ -10,10 +10,14 @@ import ImageE from "../assets/photos/E.png";
 import ImageF from "../assets/photos/F.png";
 import ImageH from "../assets/photos/H.png";
 import ImageG from "../assets/photos/G.png";
+import facebook_icon from "../assets/icons/facebook_icon.png";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { IoNotificationsSharp } from "react-icons/io5";
 import Modal from "../components/Modal";
+import Address from "../assets/icons/Address.png";
+import RingerVolume from "../assets/icons/RingerVolume.png";
+import google_icon from "../assets/icons/google_icon.png";
 
 const HomePage = () => {
   const { user } = useAuth();
@@ -301,69 +305,26 @@ const HomePage = () => {
           <h2 className="flex justify-center items-center font-semibold text-3xl p-2">
             Our Services
           </h2>
-          {/* <div className="flex px-3">
-            <div className="">
-              <img
-                className="ImageD"
-                src={ImageD}
-                style={{ width: "350px", height: "200px" }}
-                alt="Service D"
-              />
-              <p className="service-description">Regular Maintenance</p>
-            </div>
-            <div className="">
-              <img
-                className="ImageE"
-                src={ImageE}
-                style={{ width: "350px", height: "200px" }}
-                alt="Service E"
-              />
-              <p className="service-description">Brake Inspection</p>
-            </div>
-            <div className="">
-              <img
-                className="ImageF"
-                src={ImageF}
-                style={{ width: "350px", height: "200px" }}
-                alt="Service F"
-              />
-              <p className="service-description">Tire Rotation</p>
-            </div>
-            <div className="service-card">
-              <img
-                className="ImageG"
-                src={ImageG}
-                style={{ width: "350px", height: "200px" }}
-                alt="Service G"
-              />
-              <p className="service-description">Oil Change</p>
-            </div>
-            <div className="service-card">
-              <img
-                className="ImageH"
-                src={ImageH}
-                style={{ width: "350px", height: "200px" }}
-                alt="Service H"
-              />
-              <p className="service-description">Transmission Repair</p>
-            </div>
-          </div> */}
+
           <div className="flex flex-wrap justify-center px-3 space-x-4">
             {/* Service D */}
-            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[350px] p-4 bg-white rounded-lg shadow-md mb-6">
+            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[450px] p-4 bg-white rounded-lg shadow-md mb-6">
               <img
                 className="ImageD"
                 src={ImageD}
                 style={{ width: "350px", height: "300px" }}
                 alt="Service D"
               />
-              <p className="service-description text-center mt-auto">
-                Regular Maintenance
+              <p className="service-description text-center mt-auto">ADMIN</p>
+              <p>
+                An administrator in our vehicle service center manages tasks,
+                tracks repairs, and ensures efficient service to meet customer
+                needs.
               </p>
             </div>
 
             {/* Service E */}
-            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[350px] p-4 bg-white rounded-lg shadow-md mb-6">
+            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[450px] p-4 bg-white rounded-lg shadow-xl mb-6">
               <img
                 className="ImageE"
                 src={ImageE}
@@ -371,19 +332,27 @@ const HomePage = () => {
                 alt="Service E"
               />
               <p className="service-description text-center mt-auto">
-                Brake Inspection
+                CUSTOMER
+              </p>
+              <p>
+                A customer in our vehicle service center books services, tracks
+                repair status, and receives updates for a smooth experience.
               </p>
             </div>
 
             {/* Service F */}
-            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[350px] p-4 bg-white rounded-lg shadow-md mb-6">
+            <div className="service-card flex flex-col items-center justify-between w-[350px] h-[450px] p-4 bg-white rounded-lg shadow-md mb-6">
               <img
                 src={ImageF}
                 style={{ width: "350px", height: "300px" }}
                 alt="Service F"
               />
               <p className="service-description text-center mt-auto">
-                Tire Rotation
+                MECHANIC
+              </p>
+              <p>
+                A mechanic in vehicle service center handles repairs, updates
+                progress, and ensures timely completion of services.
               </p>
             </div>
           </div>
@@ -408,21 +377,68 @@ const HomePage = () => {
               <p className="text-center underline text-[26px] font-bold">
                 Need Help!
               </p>
-              <p className="text-center py-5 text-[15px]">
-                We’re here to provide expert assistance every step of the way.
-                Whether you need guidance on services, help with scheduling, or
-                any other support, our dedicated team is ready to ensure your
-                experience is seamless and stress-free.
-              </p>
+              
               <div className="w-[100%] flex justify-center">
                 <img
                   className="border-1 w-[350px]"
                   src={ImageG}
                   alt="Service G"
                 />
+              
               </div>
+
+              <p className="text-center py-5 text-[15px]">
+                We’re here to provide expert assistance every step of the way.
+                Whether you need guidance on services, help with scheduling, or
+                any other support, our dedicated team is ready to ensure your
+                experience is seamless and stress-free.
+              </p>
+
               <div className="w-[100%] flex gap-16">
-                <div className="bg-green-200 w-[50%]">hi</div>
+                <div className="w-[50%] p-4 mt-28">
+                  
+                  
+                  <div className="text-center mb-4">
+                    <h3 className="font-bold">OPENING HOURS</h3>
+                    <p>Mon - Fri: 7 AM - 6 PM</p>
+                    <p>Sat - Sun: 7 AM - 6 PM</p>
+                  </div>
+
+                  
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={Address}
+                      alt="Address Icon"
+                      className="w-6 h-6 mr-2 address_1"
+                    />
+                    <p>Puttalam, Kalpitiya Road Kurinchipity, South</p>
+                  </div>
+
+                  
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={RingerVolume}
+                      alt="Phone Icon"
+                      className="w-6 h-6 mr-2"
+                    />
+                    <p>0778353336 / 0771234567 / 0771234567</p>
+                  </div>
+
+                  
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={google_icon}
+                      alt="Google Icon"
+                      className="w-6 h-6 mb-4"
+                    />
+                    <img
+                      src={facebook_icon}
+                      alt="Facebook Icon"
+                      className="w-6 h-6"
+                    />
+                  </div>
+                </div>
+
                 <div className="w-[50%]">
                   <h2 className="text-black-300 text-2xl mb-[0] px-8 font-bold">
                     Feedback
