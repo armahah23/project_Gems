@@ -15,7 +15,8 @@ exports.createBooking = async (req, res) => {
     message,
     preferreddate,
     preferredtime,
-    userId
+    userId,
+    mechanicId,
   } = req.body; // Assuming userId and booking details are passed in the request body
   try {
     // Find the user by ID
@@ -54,14 +55,19 @@ exports.createBooking = async (req, res) => {
       preferreddate,
       preferredtime,
       manufecturedyear,
-      userId
+      userId,
+      mechanicId,
     });
 
     // Save the booking to the database
     await newBooking.save();
 
-
-    res.status(201).send({ message: "Booking details stored successfully" });
+    res
+      .status(200)
+      .send({
+        message: "Booking details stored successfully",
+        data: newBooking,
+      });
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: "Failed to create booking" });
@@ -97,7 +103,7 @@ exports.getUserDetails = async (req, res) => {
 exports.getBooking = async (req, res) => {
   const { userId } = req.params;
   try {
-    const bookings = await Booking.findOne({userId});
+    const bookings = await Booking.findOne({ userId: userId });
     if (bookings) {
       return res.status(200).json({
         status: "SUCCESS",
@@ -117,4 +123,52 @@ exports.getBooking = async (req, res) => {
       message: "An error occurred while fetching bookings",
     });
   }
-}
+};
+exports.bookingById = async (req, res) => {
+  const { bookingId } = req.params;
+  try {
+    const booking = await Booking.findOne({ _id: bookingId });
+    if (booking) {
+      return res.status(200).json({
+        status: "SUCCESS",
+        message: "Booking fetched successfully",
+        data: booking,
+      });
+    } else {
+      return res.status(404).json({
+        status: "FAILED",
+        message: "No booking found",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while fetching booking",
+    });
+  }
+};
+exports.bookingForMechanic = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const bookings = await Booking.findOne({ mechanicId: userId });
+    if (bookings) {
+      return res.status(200).json({
+        status: "SUCCESS",
+        message: "Bookings fetched successfully",
+        data: bookings,
+      });
+    } else {
+      return res.status(404).json({
+        status: "FAILED",
+        message: "No bookings found",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while fetching bookings",
+    });
+  }
+};
