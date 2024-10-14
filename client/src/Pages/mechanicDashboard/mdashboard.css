@@ -25,20 +25,24 @@
 }
 
 .menu button {
-  width: 90%;
+  width: 100%;
   padding: 10px;
-  background-color: green;
+  background-color: rgb(255, 255, 255);
   border: none;
-  color: rgb(255, 255, 255);
+  color: #18364be5;
   cursor: pointer;
-  border-radius: 5px;
+  border: 2px solid #000000;
+  border-radius: 10px;
   padding-left: 20px;
   margin-left: 10px;
   text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
 }
 
 .menu button:hover {
   background-color: #5d91a5;
+  color: white;
 }
 
 .dashboard {
