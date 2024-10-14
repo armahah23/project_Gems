@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./Esignup.css";
-import  logo from '../assets/photos/logo.png'
-
+import  logo4 from '../assets/photos/logo.png'
 import { Link } from "react-router-dom";
 
 
@@ -49,7 +48,8 @@ export default function Esignup() {
     <div className="Esignup-container">
      
 
-      <div><form className="Esignup-form" onSubmit={handleSubmit}>
+      <div>
+        <form className="Esignup-form" onSubmit={handleSubmit}>
         <h1>
           Mechanic <span> Sign Up </span>{" "}
         </h1>
@@ -130,8 +130,11 @@ export default function Esignup() {
           Already have an Account? <Link to={'/login'} >Login</Link>
 
         </p>
-      </form></div>
-      <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
+      </form>
+      </div>
+      <div className="logo">
+      <img src={logo4} style={{ width: '350px', height: 'Auto' }} />
+      </div>
     </div>
   );
 }

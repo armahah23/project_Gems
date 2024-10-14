@@ -1,81 +1,51 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* body {
-  background-color: rgba(19, 73, 107, 1);
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  min-height: 100vh;
-  justify-content: center;
-} */
 
 .SignupOption {
   text-align: center;
+  background-color: #13496B;
+  margin-top: 250px;
+
 }
 
 .SignupOption-header {
-  background-color: transparent;
-  padding: 20px;
+  margin-left: -20px;
+  height: 65vh;
+  
 }
 
-.logo {
-  width: 200px;
-  margin-bottom: 70px;
+.logo3{
+  margin-top: -250px;
+  margin-left: 650px;
+  width: 250px;
 }
 
 .sign-up-buttons {
   display: flex;
   justify-content: center;
-  gap: 300px;
-  padding: 0%;
-  margin-left: 0%;
-}
-
-.button-container {
-  text-align: center;
-}
-
-.sign-up-button {
-  background-color: rgb(211, 208, 208);
-  border: none;
+  gap: 270px;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50%;
-  padding: 20px;
+  margin-left: -80px;
 }
 
-.image {
-  width: 135px;
-  height: 135px;
-  height: 90px;
-  margin-bottom: 10px;
-}
 
-.text {
+
+.text-main {
   display: flex;
   justify-content: center;
   gap: 300px;
   margin-bottom: 50px;
 }
 
-.text h2 {
+.text-main h2 {
   font-size: 38px;
   font-weight: bold;
   color: white;
   line-height: 1;
-  display: inline-block;
   padding: 10px;
-  border-radius: 15%;
+  border-radius: 30px;
   background-color: black;
+  width:250px;
 }
 
-.text h2 span {
+.text-main h2 span {
   color: red;
 }

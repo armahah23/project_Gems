@@ -1,19 +1,10 @@
 import './SignupOption.css'; 
-import logo from '../assets/photos/logo.png'; 
+import logo2 from '../assets/photos/logo.png'; 
 import employeeImage from '../assets/photos/Esignup.png'; 
 import customerImage from '../assets/photos/Csignup.png'; 
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-function SignUpButton({  image }) {
-  return (
-    <div className="button-container">
-      <button className="sign-up-button">
-        <img src={image} alt="" className="image" />
-      </button>
-    </div>
-  );
-}
+
 
 function SignupOption () {
 
@@ -29,26 +20,30 @@ function SignupOption () {
 
   return (
     <div className="SignupOption">
-      <header className="SignupOption-header">
-      <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
-        <div className="text">
+      <div className="logo3">
+      <img src={logo2} style={{ width: '350px', height: 'Auto' }} />
+      </div>
+      <section className="SignupOption-header">
       
-          <h2><span>Employee</span><br />Sign up</h2>
+        <div className="text-main">
+      
+          <h2><span>Mechanic</span><br />Sign up</h2>
           <h2><span>Customer</span><br />Sign up</h2>
           
         </div>
         <div className="sign-up-buttons">
-       
-          <div onClick={handleClick} ><SignUpButton image={employeeImage} /></div>
-          <div onClick={handleCustomerClick} ><SignUpButton image={customerImage} /></div>
+          <div className='image-button' onClick={handleClick}>
+          <img src={employeeImage} style={{ width: 'auto', height: 'Auto' }} />
+          </div>
+          <div className='image-button' onClick={handleCustomerClick}>
+          <img src={customerImage} style={{ width: 'auto', height: 'Auto' }} />
+          </div>
         </div>
-      </header>
-     
+      </section>
+      
     </div>
   );
 }
-SignUpButton.propTypes = {
-  image: PropTypes.string.isRequired,
-};
+
 
 export default SignupOption;

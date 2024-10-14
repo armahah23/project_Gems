@@ -112,95 +112,61 @@ function Bookingdetails() {
   };
 
   return (
-    <main className='booking'>
+    <main className='booking-details'>
       <div className="background-design"></div>
-      <div className="app">
+      <div className="app-booking">
         <h1>BOOKING DETAILS</h1>
-        <div className="container">
+        <div className="container-booking">
           <form onSubmit={handleSubmit}>
+            <div className="left">
             <div className="form-group">
               <label>Vehicle Make</label>
               <input
+              className='input-area'
                 type="text"
                 name="vehicleMake"
-                placeholder="Ex: Hybrid"
+                placeholder=" Ex: Hybrid"
                 value={form.vehicleMake}
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <label>Vehicle Owner Name</label>
-              <input
-                type="text"
-                name="ownerName"
-                placeholder="Ex: Mr. Perera"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
               <label>Vehicle Model</label>
               <input
+              className='input-area'
                 type="text"
                 name="vehicleModel"
-                placeholder="Ex: Vezel"
+                placeholder=" Ex: Vezel"
                 value={form.vehicleModel}
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <label>Mobile Number</label>
-              <input
-                type="text"
-                name="mobileNumber"
-                placeholder="Ex: 078-7587700"
-                value={mobileNumber}
-                onChange={(e) => setMobileNumber(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
               <label>Vehicle Number</label>
               <input
+              className='input-area'
                 type="text"
                 name="vehicleNumber"
-                placeholder="Ex: CAB - 1234"
+                placeholder=" Ex: CAB - 1234"
                 value={form.vehicleNumber}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label>Address</label>
-              <input
-                type="text"
-                name="address"
-                placeholder="Ex: 84/8, Colombo 10."
-                value={form.address}
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
               <label>Manufactured Year</label>
               <input
+              className='input-area'
                 type="text"
                 name="manufacturedYear"
-                placeholder="Ex: 2040"
+                placeholder=" Ex: 2040"
                 value={form.manufacturedYear}
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Ex: abcdefgh@gmail.com"
-                value={userEmail}
-                onChange={(e) => setUserEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
               <label>Preferred Date</label>
               <input
+              className='input-area'
                 type="date"
                 name="preferredDate"
                 value={form.preferredDate}
@@ -210,20 +176,88 @@ function Bookingdetails() {
             <div className="form-group">
               <label>Preferred Time</label>
               <input
+              className='input-area'
                 type="time"
                 name="preferredTime"
                 value={form.preferredTime}
                 onChange={handleChange}
               />
             </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div className="right">
+            <div className="form-group">
+              <label>Vehicle Owner Name</label>
+              <input
+              className='input-area'
+                type="text"
+                name="ownerName"
+                placeholder=" Ex: Mr. Perera"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label>Mobile Number</label>
+              <input
+              className='input-area'
+                type="text"
+                name="mobileNumber"
+                placeholder=" Ex: 078-7587700"
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label>Address</label>
+              <input
+              className='input-area'
+                type="text"
+                name="address"
+                placeholder=" Ex: 84/8, Colombo 10."
+                value={form.address}
+                onChange={handleChange}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label>Email</label>
+              <input
+              className='input-area'
+                type="email"
+                name="email"
+                placeholder=" Ex: abcdefgh@gmail.com"
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
+              />
+            </div>
+            
+           
             <div className="form-group">
               <label>Message</label>
               <textarea
+              className='textarea-last'
                 name="message"
-                placeholder="Enter your message here"
+                placeholder=" Enter your message here"
                 value={form.message}
                 onChange={handleChange}
               ></textarea>
+            </div>
             </div>
             <button type="submit" className="btn">Book Now</button>
           </form>
