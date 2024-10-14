@@ -1,12 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
 
-/* :root {
-  --primary-blue: #13496b;
-  --light-blue: #62b6cb;
-  --gray-text: #5c5c5c;
-  --white: #ffffff;
-  --max-width: 1200px;
-} */
 
 * {
   margin: 0;
@@ -14,11 +7,6 @@
   box-sizing: border-box;
 }
 
-/* body {
-  font-family: "Arial", sans-serif;
-  line-height: 1.6;
-  background-color: white;
-} */
 
 .bg-primary {
   background-color: #13496b;
@@ -171,7 +159,6 @@
 }
 
 .hero-content p {
-  /* color: var(--gray-text); */
   margin-bottom: 30px;
 }
 
@@ -354,3 +341,4 @@
   width: 100%; /* Full width */
   clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
 }
+
