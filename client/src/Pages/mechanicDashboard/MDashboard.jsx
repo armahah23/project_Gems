@@ -3,6 +3,7 @@ import logo from "../../assets/photos/logo.png";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import Modal from "../../components/Modal";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -10,6 +11,7 @@ const Dashboard = () => {
   const [bookingDetails, setBookingDetails] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getNotification = async () => {
@@ -78,22 +80,23 @@ const Dashboard = () => {
     }
   };
 
+  const handlelogout = () => {
+    navigate("/login");
+  }
+
   return (
     <div className="dashboard-container">
       <aside className="flex flex-col justify-center items-center sidebar">
         <div className="m-2">
           <img src={logo} alt="AutoCare Logo" className="w-[200px]" />
         </div>
-        <nav className="menu">
+        <nav className="menu flex justify-center items-center p-4">
           <ul>
             <li>
               <button>Work</button>
             </li>
             <li>
               <button>Add Work</button>
-            </li>
-            <li>
-              <button>Assign Work</button>
             </li>
             <li className="relative">
               <button onClick={toggleModal}>Notification</button>
@@ -135,6 +138,9 @@ const Dashboard = () => {
             </li>
             <li>
               <button>Profile</button>
+            </li>
+            <li>
+              <button onClick={handlelogout}>Log Out</button>
             </li>
           </ul>
         </nav>
