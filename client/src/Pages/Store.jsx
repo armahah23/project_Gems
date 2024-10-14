@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Store.css";
-import bearingImage from './assets/Bearing.png';  // Example image import
-import steeringCoverImage from './assets/Steering.png';
-import engineImage from './assets/engine.png';
-import batteryimage from './assets/Battery.png';
-import headlightimage from './assets/Headlight.png';
+// import bearingImage from './assets/Bearing.png';  // Example image import
+// import steeringCoverImage from './assets/Steering.png';
+// import engineImage from './assets/engine.png';
+// import batteryimage from './assets/Battery.png';
+// import headlightimage from './assets/Headlight.png';
 
-const Carparts = () => {
+const Store = () => {
   const [parts, setParts] = useState([
     {
       id: 1,
@@ -17,7 +17,7 @@ const Carparts = () => {
       model: null,
       warranty: "no warranty",
       changed: false,
-      imgSrc: bearingImage,  // Use the imported image without {}
+      //imgSrc: bearingImage,  // Use the imported image without {}
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ const Carparts = () => {
       model: "Hybrid",
       warranty: "no warranty",
       changed: false,
-      imgSrc: steeringCoverImage,  // Use the imported image without {}
+      // imgSrc: steeringCoverImage,  // Use the imported image without {}
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const Carparts = () => {
       model: null,
       warranty: "no warranty",
       changed: false,
-      imgSrc: engineImage,  // Use the imported image without {}
+      // imgSrc: engineImage,  // Use the imported image without {}
     },
     {
       id: 4,
@@ -50,7 +50,7 @@ const Carparts = () => {
       model: null,
       warranty: "no warranty",
       changed: false,
-      imgSrc: batteryimage,  // Use the imported image without {}
+      // imgSrc: batteryimage,  // Use the imported image without {}
     },
     {
       id: 5,
@@ -61,7 +61,7 @@ const Carparts = () => {
       model: null,
       warranty: "no warranty",
       changed: false,
-      imgSrc: headlightimage,  // Use the imported image without {}
+      // imgSrc: headlightimage,  // Use the imported image without {}
     },
   ]);
 
@@ -131,4 +131,4 @@ const Carparts = () => {
   );
 };
 
-export default Carparts;
+export default Store;

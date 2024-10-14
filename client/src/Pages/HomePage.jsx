@@ -85,6 +85,7 @@ const HomePage = () => {
     getBookingDetails();
   }, [user]); // Added user as a dependency
 
+  //handle feedback form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:3000/api/feedback", {
