@@ -1,4 +1,4 @@
-import "./Addwork.css"; 
+import "./Addwork.css";
 import Image2 from "../assets/photos/Addwork.jpg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,14 +14,14 @@ const AddWorkPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Create an entry object
     const newWorkItem = {
       warranty,
       qty,
       amount,
       Code,
-      description
+      description,
     };
 
     // Add the new entry to the array
@@ -46,9 +46,10 @@ const AddWorkPage = () => {
         <div className="form-section">
           <h1>ADD WORK HERE</h1>
           <form onSubmit={handleSubmit}>
-          <div className="form-group">
+            <div className="form-group">
               <label>Parts Code No :</label>
               <input
+                className="form_input"
                 type="text"
                 name="Code"
                 value={Code}
@@ -58,6 +59,7 @@ const AddWorkPage = () => {
             <div className="form-group">
               <label>Warranty :</label>
               <input
+                className="form_input"
                 type="text"
                 name="warranty"
                 value={warranty}
@@ -67,6 +69,7 @@ const AddWorkPage = () => {
             <div className="form-group">
               <label>Qty :</label>
               <input
+                className="form_input"
                 type="number"
                 name="qty"
                 value={qty}
@@ -76,6 +79,7 @@ const AddWorkPage = () => {
             <div className="form-group">
               <label>Amount :</label>
               <input
+                className="form_input"
                 type="number"
                 name="amount"
                 value={amount}
@@ -85,6 +89,7 @@ const AddWorkPage = () => {
             <div className="form-group">
               <label>Description of Work :</label>
               <textarea
+                className="description_textarea"
                 name="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

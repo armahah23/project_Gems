@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import SignupOption from "./Pages/SignupOption";
 import Esignup from "./Pages/Esignup";
-import Asignup from "./Pages/Asignup";
 import MDahshboard from "./Pages/mechanicDashboard/MDashboard";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -13,13 +12,13 @@ import ContactUs from "./Pages/ContactUs.jsx";
 import EmergencyService from "./Pages/EmergencyService.jsx";
 import EBService from "./Pages/EBService.jsx";
 import "./App.css";
+import Store from "./Pages/Store.jsx"
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/esignup" element={<Esignup />} />
-      <Route path="/asignup" element={<Asignup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/csignup" element={<Signup />} />
       <Route path="/signupoption" element={<SignupOption />} />
@@ -30,6 +29,7 @@ function App() {
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/emergencyservice" element={<EmergencyService />} />
       <Route path="/ebservice" element={<EBService />} />
+      <Route path="/store" element={<Store />} />
     </Routes>
   );
 }

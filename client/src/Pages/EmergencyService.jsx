@@ -14,19 +14,19 @@ function EmergencyService() {
           <form>
             <label>
               Customer Location
-              <div><input type="text" name="location" /></div>
+              <div><input className='emergency_input' type="text" name="location" /></div>
             </label>
             <label>
               Vehicle Number
-              <div><input type="text" name="vehicleNumber" /></div>
+              <div><input className='emergency_input' type="text" name="vehicleNumber" /></div>
             </label>
             <label>
               Vehicle Type
-              <div><input type="text" name="vehicleType" /></div>
+              <div><input className='emergency_input' type="text" name="vehicleType" /></div>
             </label>
             <label>
               What happened to vehicle?
-              <div><input type="text" name="distance" /></div>
+              <div><input className='emergency_input' type="text" name="distance" /></div>
             </label>
             <button type="submit">Continue</button>
           </form>

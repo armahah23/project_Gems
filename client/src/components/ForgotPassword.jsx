@@ -29,10 +29,10 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="forgot-password-container">
-      <form className="forgot-password-form" onSubmit={handleRequestOtp}>
+    <div className="flex justify-center items-center">
+      <form className="bg-green-600" onSubmit={handleRequestOtp}>
         <h1>Forgot Password</h1>
-        <div className="input-group">
+        <div className="">
           <label htmlFor="identifier">
             Username / Email
             <input
@@ -44,7 +44,7 @@ export default function ForgotPassword() {
             />
           </label>
         </div>
-        <button className="submit" type="submit">
+        <button className="" type="submit">
           Request OTP
         </button>
       </form>

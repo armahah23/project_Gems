@@ -1,151 +1,19 @@
-
-.login-container {
-  background: #13496B;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-  display: fixed;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  margin-left: -100px;
-  margin-top: -300px;
-  position: fixed;
-}
-.Radio-btn{
-  display:inline-block;
-  
-}
-.input-group label{
-  margin-right: 25px;
+.default-bg {
+  background-color: #13496b;
 }
 
-.login-container .logo{
-  margin-top:6%;
-  margin-left: 10%;
+.default-h1 {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.login-container .login-form {
-  background: rgba(0, 0, 0, 0.8);
-  padding: 40px;
-  border-radius: 10px;
-  width: 35%;
-  text-align: center;
-  color: white;
-  margin-top: 0%;
-  margin-left: -400px;
-  
-}
-.login-container .login-form span {
-  color: white;
-  }
-
-  .login-container .login-form h1 {
-  color: red;
-  margin-bottom: 20px;
-  font-family: Average;
+.default-bg-form {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.login-container .input-group {
-  margin-bottom: 20px;
+.btn_red_bg {
+  background-color: #d40e0e;
 }
 
-.login-container .input-group
-
-
-.login-container .input-wrapper {
-  display: flex;
-  align-items: center;
-  background: #333;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.login-form .input-group .icon{
-  position: relative;
-  left: -205px;
-  top: 32px;
-  padding: 10px;
-  background: #555;
-  margin-left: 10%;
- 
-
-  
-}
-
-
-.input-wrapper .eye-icon {
-  padding: 10px;
-  background: #555;
-  margin-left: -42px;
-}
-
-.login-container .input-wrapper input {
-  width: 80%;
-  padding: 10px;
-  border: none;
-  outline: none;
-  background-color: #ccc;
-  color:black;
-  margin-left: 10%;
-}
-
-.login-container .forgot-password {
-  display: block;
-  text-align: right;
-  color: #ff6347;
-  margin-top: 5px;
-  font-size: 12px;
-  text-decoration: none;
-}
-
-.login-container .login-form button {
-  width: 100%;
-  padding: 10px;
-  width: 300px;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.login-container .social-login {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.login-container .social-login button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.login-container .submit{
-  background-color: #db4a39;
-}
-
-.login-container .google-login {
-  color: white;
-
-}
-
-.login-container .facebook-login {
-  color: white;
-}
-
-.login-container .sign-up-link {
-  color: #1e90ff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.login-container .sign {
-  margin-top: 20px;
+.btn_red_bg:hover {
+  background-color: #7a0707;
 }

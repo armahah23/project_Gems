@@ -1,9 +1,8 @@
-import facebook_icon from "../assets/icons/facebook_icon.png";
-import google_icon from "../assets/icons/google_icon.png";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/photos/logo.png";
 import { useAuth } from "../context/AuthContext";
+import "./Login.css";
 
 // import { useAuth } from "../context/AuthContext";
 
@@ -13,7 +12,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [userType, setUserType] = useState("user"); // State to toggle between user, mechanic, and admin
   const navigate = useNavigate();
-  const {setUser} = useAuth();
+  const { setUser } = useAuth();
 
   // const {login} = useAuth();
 
@@ -108,22 +107,16 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
-
-      <div className="logo">
-        {/* <img src={logo} alt="autocare_logo" /> */}
-      </div>
-
-      <form className="login-form" onSubmit={handleLogin}>
-        <h1>
-          WELCOME
-        </h1>
-        <div className="input-group">
-            <label>Login As:</label>
-  
-            <div className="Radio-btn">
-              <label className="user">
+    <div className="flex justify-center items-center h-[100vh] w-[100vw] default-bg px-[100px] gap-24">
+      <div className="flex items-center justify-center default-bg-form w-[40%] h-[80%] rounded-lg">
+        <form className="text-gray-200" onSubmit={handleLogin}>
+          <h1 className="text-red-600 text-4xl default-h1 my-4">WELCOME</h1>
+          <div className="flex my-2">
+            <h3 className="text-lg mr-2">Login As:</h3>
+            <span className="mr-2">
+              <label className="text-lg">
                 <input
+                  className="mr-2"
                   type="radio"
                   id="user"
                   name="userType"
@@ -133,8 +126,11 @@ export default function Login() {
                 />
                 User
               </label>
-              <label className="mechanic">
+            </span>
+            <span className="mr-2">
+              <label>
                 <input
+                  className="mr-2"
                   type="radio"
                   id="mechanic"
                   name="userType"
@@ -144,8 +140,11 @@ export default function Login() {
                 />
                 Mechanic
               </label>
-              <label className="admin">
+            </span>
+            <span className="mr-2">
+              <label>
                 <input
+                  className="mr-2"
                   type="radio"
                   id="admin"
                   name="userType"
@@ -155,32 +154,29 @@ export default function Login() {
                 />
                 Admin
               </label>
-           </div>
-        </div>
+            </span>
+          </div>
 
-        <div className="input-group">
-          <label htmlFor="usernameOrEmail">
-            Username / Email
-            </label>
-            <div className="input-wrapper">
-              <span className="icon">👤</span>
+          <div className="py-2">
+            <label htmlFor="mb-2">Username</label>
+            <div className="relative">
+              <span className="absolute top-[13px] left-[5px]">👤</span>
               <input
+                className="my-2 py-[5px] px-[40px] rounded w-[100%] text-black"
                 type="text"
                 id="usernameOrEmail"
-                placeholder="Enter your username or Email"
+                placeholder="Enter Username or Email"
                 value={usernameOrEmail}
                 onChange={(e) => setUsernameOrEmail(e.target.value)}
               />
             </div>
-          
-        </div>
-        <div className="input-group">
-          <label htmlFor="password">
-            Password
-            </label>
-            <div className="input-wrapper">
-              <span className="icon">🔒</span>
+          </div>
+          <div className="py-2">
+            <label htmlFor="mb-2">Password</label>
+            <div className="relative">
+              <span className="absolute top-[13px] left-[5px]">🔒</span>
               <input
+                className="my-2 py-[5px] px-[40px] rounded w-[100%] text-black"
                 type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder="Enter your password"
@@ -188,50 +184,36 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <span
-                className="eye-icon"
+                className="cursor-pointer absolute top-[13px] right-[5px]"
                 onClick={togglePasswordVisibility}
-                style={{ cursor: "pointer" }}
               >
                 {showPassword ? "🙈" : "👁️"}
               </span>
             </div>
-          
-          <a href="#" onClick={forgotPassword} className="forgot-password">
-            Forgot Password?
-          </a>
-        </div>
-       
-        <button className="submit" type="submit">
-          LOGIN
-        </button>
-        <div className="social-login">
-          <div className="google-login">
-            <img
-              src={google_icon}
-              alt="Google icon"
-              style={{ width: "20px", marginRight: "8px" }}
-            />
-            Login with <a href="/login/google">Google</a>
+            <div className="flex justify-end">
+              <button className="underline hover:text-blue-600 cursor-pointer" onClick={forgotPassword}>
+                Forget Password?
+              </button>
+            </div>
           </div>
-          <div className="facebook-login">
-            <img
-              src={facebook_icon}
-              alt="Facebook icon"
-              style={{ width: "20px", marginRight: "8px" }}
-            />
-            Login with <a href="/login/facebook">Facebook</a>
-          </div>
-        </div>
-        <p className="sign">
-          Don’t have an Account?{" "}
-          <Link to="/signupoption">Signup</Link>
-        </p>
-      </form>
-      <img
-        className="logo"
-        src={logo}
-        style={{ width: "350px", height: "Auto" }}
-      />
+
+          <button
+            type="submit"
+            className="btn_red_bg my-4 h-[40px] rounded-lg font-semibold"
+          >
+            LOGIN
+          </button>
+          <p className="text-center">
+            Don’t have an Account?{" "}
+            <Link className="text-blue-500 underline" to="/signupoption">
+              Signup
+            </Link>
+          </p>
+        </form>
+      </div>
+      <div className="flex justify-center items-center w-[40%]">
+        <img src={logo} alt="autocare_logo" className="w-[600px]" />
+      </div>
     </div>
   );
 }
