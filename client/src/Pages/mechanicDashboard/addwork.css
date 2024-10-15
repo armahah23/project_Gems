@@ -1,33 +1,23 @@
-/* General reset and styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 .design {
   background-color: #13496b;
-  margin-top: -30%;
-  margin-left: -50%;
-  width: 1600px;
-  height: 1000px;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
 }
 
 .container-add {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-top: 8%;
   color: white;
-  margin-top: 200px;
 }
 
 .form-section {
-  flex: 1;
-  margin-right: 20px;
+  margin-left: 60px;
+  width: 400px;
 }
 
 h1 {
@@ -51,6 +41,7 @@ label {
   border: none;
   border-radius: 5px;
   font-size: 16px;
+  color: black ;
 }
 
 .description_textarea {

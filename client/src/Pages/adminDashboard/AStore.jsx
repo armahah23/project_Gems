@@ -17,6 +17,7 @@ const Store = () => {
       model: null,
       warranty: "no warranty",
       changed: false,
+      imgSrc: 'https://www.google.com/imgres?q=bearings&imgurl=https%3A%2F%2Foilfieldmaterial.com%2Fimages%2Fdetailed%2F8%2Fbearings.jpg&imgrefurl=https%3A%2F%2Foilfieldmaterial.com%2Fbearings%2Ftop-industrial-bearings%2F&docid=Iniq1gdsMX2_vM&tbnid=4vDK0egEd3G2VM&w=5625&h=3750&hcb=2',  // Example image URL
       //imgSrc: bearingImage,  // Use the imported image without {}
     },
     {

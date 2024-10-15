@@ -18,7 +18,8 @@
 
 .home-page {
   background-color: #ffffff;
-  width: 100%;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .container {

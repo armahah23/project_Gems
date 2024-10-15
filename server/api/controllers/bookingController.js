@@ -5,7 +5,7 @@ const User = require("../schemas/userSchema"); // Import the User model
 exports.createBooking = async (req, res) => {
   const {
     email,
-    address,
+    model,
     mobilenumber,
     vehicleownername,
     vehiclemake,
@@ -19,13 +19,6 @@ exports.createBooking = async (req, res) => {
     mechanicId,
   } = req.body; // Assuming userId and booking details are passed in the request body
   try {
-    // Find the user by ID
-    // const user = await User.findById(userId);
-
-    // if (!user) {
-    //   return res.status(404).send({ error: "User not found" });
-    // }
-
     const existingBooking = await Booking.findOne({
       preferreddate,
       preferredtime,
@@ -39,14 +32,9 @@ exports.createBooking = async (req, res) => {
 
     // Create a new instance of the Booking model with user-related data
     const newBooking = new Booking({
-      //   userId: user._id, // Store the user ID
-      //   vehicleownername: user.fullname, // Assuming 'fullname' is the field for the user's name
-      //   mobilenumber: user.phone,
-      //   address: user.address,
-      //   email: user.email,
       vehicleownername,
       mobilenumber,
-      address,
+      model,
       email,
       message,
       vehiclemake,
@@ -90,7 +78,6 @@ exports.getUserDetails = async (req, res) => {
     res.status(200).send({
       userId: user._id,
       name: user.fullname,
-      address: user.address,
       email: user.email,
       phone: user.phone,
     });
@@ -124,6 +111,7 @@ exports.getBooking = async (req, res) => {
     });
   }
 };
+
 exports.bookingById = async (req, res) => {
   const { bookingId } = req.params;
   try {
@@ -148,6 +136,7 @@ exports.bookingById = async (req, res) => {
     });
   }
 };
+
 exports.bookingForMechanic = async (req, res) => {
   const { userId } = req.params;
   try {

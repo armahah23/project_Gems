@@ -3,7 +3,8 @@ import logo from "../../assets/photos/logo.png";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import Modal from "../../components/Modal";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -81,8 +82,22 @@ const Dashboard = () => {
   };
 
   const handlelogout = () => {
-    navigate("/login");
-  }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, logout!",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+    });
+  };
 
   return (
     <div className="dashboard-container">
@@ -93,10 +108,9 @@ const Dashboard = () => {
         <nav className="menu flex justify-center items-center p-4">
           <ul>
             <li>
-              <button>Work</button>
-            </li>
-            <li>
-              <button>Add Work</button>
+              <Link to="/addwork">
+                <button>Add Work</button>
+              </Link>
             </li>
             <li className="relative">
               <button onClick={toggleModal}>Notification</button>

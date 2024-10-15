@@ -1,9 +1,6 @@
-
-
 .booking-details.app-booking {
-  
   display: flex;
-  
+
   justify-content: center;
   align-items: center;
 }
@@ -22,26 +19,25 @@
   background: #13496b;
   clip-path: polygon(-3px 544px, 99.95% 170px, 100.07% 100%, 0% 100%);
   z-index: -1;
- 
 }
 
 .booking-details .container-booking {
-  background-color:#ffffffb1;
+  background-color: #e9e3e3b1;
   padding: 25px 25px 25px 25px;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 800px;
-  font-weight: bold; 
+  font-weight: bold;
   display: flex;
   margin-left: 360px;
   margin-top: 50px;
 }
 
-.left{
+.left {
   margin-left: 30px;
 }
 
-.right{
+.right {
   margin-left: 400px;
   margin-top: -475px;
 }
@@ -50,12 +46,15 @@
   color: #b22222;
 }
 
-
-
 .booking-details .form-group {
   margin-bottom: 10px;
   flex-basis: calc(50% - 10px);
   margin-right: 10px;
+}
+
+.booking-details .form-group input {
+  border-radius: 10px;
+  padding: 0px 10px 0px 10px;
 }
 
 .booking .form-group:nth-child(odd) {
@@ -71,11 +70,10 @@
   margin-bottom: 5px;
 }
 
-.input-area{
+.input-area {
   width: 300px;
   height: 40px;
 }
-
 
 .textarea-last {
   width: 100%;
@@ -88,7 +86,7 @@
 }
 
 .booking-details button.btn {
-  width: 500px;
+  width: 400px;
   padding: 10px;
   background-color: rgba(19, 73, 107, 1);
   color: white;
@@ -103,5 +101,3 @@
 .booking-details button.btn:hover {
   background-color: #4baef4;
 }
-
-

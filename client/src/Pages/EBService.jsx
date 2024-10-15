@@ -1,4 +1,3 @@
-import React from 'react';
 import './EBService.css'; // Add necessary CSS styles here
 import  ImageT from '../assets/photos/T.png'
 import { useNavigate } from 'react-router-dom';

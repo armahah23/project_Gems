@@ -6,13 +6,14 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [addedItem, setAddedItem] = useState('');
   const navigate = useNavigate();
 
 
-  //const token
+  const item = addedItem;
+  
 
   const login = (userData) => {
-    
     setUser(userData);
     navigate('/'); // Navigate to home page after login
   };
@@ -23,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout,setUser }}>
+    <AuthContext.Provider value={{ user, login, logout,setUser, addedItem, setAddedItem, item }}>
       {children}
     </AuthContext.Provider>
   );
