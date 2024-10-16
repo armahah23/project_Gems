@@ -14,6 +14,8 @@ import EBService from "./Pages/EBService.jsx";
 import "./App.css";
 import Store from "./Pages/Store.jsx"
 
+
+
 function App() {
   return (
     <Routes>
@@ -30,6 +32,7 @@ function App() {
       <Route path="/emergencyservice" element={<EmergencyService />} />
       <Route path="/ebservice" element={<EBService />} />
       <Route path="/store" element={<Store />} />
+      
     </Routes>
   );
 }

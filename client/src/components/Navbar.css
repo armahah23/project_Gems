@@ -1,0 +1,38 @@
+.navbar-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  height: 80px;
+}
+
+.navbar-logo img {
+  width: 100px;
+  margin-left: 30px; 
+}
+.rigth-4{
+  margin-left: 500px;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+}
+
+.navbar-links li {
+  margin-left: 60px;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.navbar-profile img {
+  width: 40px; 
+  border-radius: 50%;
+  margin-right: 30px;
+}
