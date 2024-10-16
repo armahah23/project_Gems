@@ -3,8 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/photos/logo.png";
 import { useAuth } from "../context/AuthContext";
 import "./Login.css";
+import Swal from 'sweetalert2';
 
-// import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
@@ -21,10 +21,6 @@ export default function Login() {
 
     const identifier = usernameOrEmail; // Use state variable directly
     const pwd = password; // Use state variable directly
-
-    // Log state variables for debugging
-    console.log("Identifier:", identifier);
-    console.log("Password:", pwd);
 
     // Check if both fields are filled
     if (!identifier || !pwd) {
@@ -81,20 +77,35 @@ export default function Login() {
         );
       }
 
-      const userData = await userResponse.json(); // Parse user data after successful request
-      console.log("User data:", userData);
+      const userData = await userResponse.json(); 
+      // console.log("User data:", userData);
       setUser(userData.data); // Set user data in the context
       // Save the token and navigate to the home page
       localStorage.setItem("token", data.token); // Store token in localStorage
-      alert("Login successful!");
+      Swal.fire({
+        title: 'Success!',
+        text: 'Login successful.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    });
       if (userType === "mechanic") {
         navigate("/mdashboard");
+        Swal.fire({
+          title: 'Success!',
+          text: 'Login successful.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+      });
       } else {
         navigate("/"); // Navigate to home page after login
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert(error.message);
+      Swal.fire({
+        title: 'Error!',
+        text: error.message,  // Display the error message
+        icon: 'error',        // Set the icon to 'error'
+        confirmButtonText: 'OK'
+      });
     }
   };
 

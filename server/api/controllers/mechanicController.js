@@ -69,7 +69,9 @@ exports.postMechanic = async (req, res) => {
 
       if (result) {
         // Generate JWT token
-        const token = jwt.sign({ id: data._id }, 'your_jwt_secret', { expiresIn: '1h' });
+        const token = jwt.sign({ id: data._id }, "your_jwt_secret", {
+          expiresIn: "1h",
+        });
 
         return res.status(200).json({
           status: "SUCCESS",
@@ -223,5 +225,16 @@ exports.resetPassword = async (req, res) => {
       status: "FAILED",
       message: "An error occurred while resetting password",
     });
+  }
+};
+
+exports.getAllMechanics = async (req, res) => {
+  try {
+    const data = await Mechanic.find();
+
+    res.status(200).send({ message: "got all mechanics", data: data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to fetch user details" });
   }
 };

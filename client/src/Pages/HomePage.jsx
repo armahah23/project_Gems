@@ -18,9 +18,13 @@ import Modal from "../components/Modal";
 import Address from "../assets/icons/Address.png";
 import RingerVolume from "../assets/icons/RingerVolume.png";
 import google_icon from "../assets/icons/google_icon.png";
+import x from "../assets/icons/x.png";
+import insta from "../assets/icons/insta.png";
+import Swal from "sweetalert2";
+
 
 const HomePage = () => {
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [notification, setNotification] = useState([]);
@@ -101,7 +105,12 @@ const HomePage = () => {
     });
     const data = await response.json();
     if (response.ok) {
-      alert("Thank you for your feedback!");
+      Swal.fire({
+        title: "Noted 😊",
+        text: "Thank you for your feedback.",
+        icon: "success",
+        confirmButtonText: "Awesome",
+      });
       setFormData({ name: "", number: "", message: "" }); // Reset form after submission
     } else {
       alert("Error: " + data.error);
@@ -111,11 +120,23 @@ const HomePage = () => {
   const handleSignup = () => navigate("/signupoption");
   const handleLogin = () => navigate("/login");
   const handleLogout = () => {
-    const confirmLogout = window.confirm("Are you sure you want to logout?");
-    if (confirmLogout) {
-      localStorage.removeItem("token");
-      navigate("/");
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, logout!",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If the user clicked 'Yes, logout!'
+        localStorage.removeItem("token");
+        navigate("/");
+        setUser(null);
+      }
+    });
   };
 
   const toggleBookingModal = () => setShowBookingModal(!showBookingModal);
@@ -139,10 +160,20 @@ const HomePage = () => {
           <nav className="nav-menu">
             <div className="nav-links">
               <Link to="/">HOME</Link>
-              <Link to="/contact">CONTACT</Link>
+              {token ? (
+                <Link to="/contact">CONTACT</Link>
+              ) : (
+                <Link to="#">CONTACT</Link>
+              )}
+
               <Link to="#">SERVICES</Link>
               <Link to="#">OFFERS</Link>
-              <Link to="#">STORE</Link>
+              {token ? (
+                <Link to="/store">STORE</Link>
+              ) : (
+                <Link to="#">STORE</Link>
+              )}
+              {/* <Link to="/store">STORE</Link> */}
               {token ? (
                 <>
                   <button className="notification-btn" onClick={toggleModal}>
@@ -175,14 +206,14 @@ const HomePage = () => {
                     </>
                   )}
                   <button
-                    className="btn text-white px-3 w-[100px] h-[40px] bg-primary"
+                    className="btn text-white px-3 w-[100px] mr-2 rounded hover:bg-blue-700 h-[40px] bg-primary"
                     onClick={handleLogout}
                   >
                     LOGOUT
                   </button>
                 </>
               ) : (
-                <button className="sign-up-btn px-4" onClick={handleSignup}>
+                <button className="sign-up-btn px-4 mr-2 rounded hover:bg-blue-700" onClick={handleSignup}>
                   SIGN UP
                 </button>
               )}
@@ -211,7 +242,7 @@ const HomePage = () => {
             </p>
             <div className="hero-actions">
               {token ? (
-                <Link to={"/bdetails"}>
+                <Link to={"/ebservice"}>
                   <button className="book-btn">
                     <FileText />
                     BOOK NOW
@@ -371,20 +402,21 @@ const HomePage = () => {
         </button>
 
         {/* Feedback Section */}
-        <div className="relative">
-          <div className="w-[100vw] flex justify-center items-center bg-white bg-opacity-20 relative z-[1]">
+      </main>
+      <div className="relative">
+        <div className="py-[70px]">
+          <div className="w-[100vw] flex justify-center items-center bg-white bg-transparent relative z-[1]">
             <div className="bg-white bg-opacity-40 shadow-2xl rounded-3xl w-[60%] p-[50px]">
               <p className="text-center underline text-[26px] font-bold">
                 Need Help!
               </p>
-              
+
               <div className="w-[100%] flex justify-center">
                 <img
                   className="border-1 w-[350px]"
                   src={ImageG}
                   alt="Service G"
                 />
-              
               </div>
 
               <p className="text-center py-5 text-[15px]">
@@ -394,17 +426,14 @@ const HomePage = () => {
                 experience is seamless and stress-free.
               </p>
 
-              <div className="w-[100%] flex gap-16">
-                <div className="w-[50%] p-4 mt-28">
-                  
-                  
+              <div className="w-[100%] flex gap-16 items-center">
+                <div className="w-[50%] h-[400px] p-4 flex flex-col justify-center items-center rounded-[20px] bg-gray-500 text-white">
                   <div className="text-center mb-4">
-                    <h3 className="font-bold">OPENING HOURS</h3>
-                    <p>Mon - Fri: 7 AM - 6 PM</p>
-                    <p>Sat - Sun: 7 AM - 6 PM</p>
+                    <h3 className="font-bold bg-green-500 text-white rounded-2 mb-4">OPENING HOURS</h3>
+                    <p className="text-left">Mon - Fri: 7 AM - 6 PM</p>
+                    <p className="text-left">Sat - Sun: 7 AM - 6 PM</p>
                   </div>
 
-                  
                   <div className="flex items-center mb-4">
                     <img
                       src={Address}
@@ -414,7 +443,6 @@ const HomePage = () => {
                     <p>Puttalam, Kalpitiya Road Kurinchipity, South</p>
                   </div>
 
-                  
                   <div className="flex items-center mb-4">
                     <img
                       src={RingerVolume}
@@ -424,18 +452,37 @@ const HomePage = () => {
                     <p>0778353336 / 0771234567 / 0771234567</p>
                   </div>
 
-                  
-                  <div className="flex flex-col items-center">
+                  <div className="flex gap-3 ">
+                  <div className="border border-black rounded bg-white pionter-cursor h p-[5px]">
                     <img
                       src={google_icon}
                       alt="Google Icon"
-                      className="w-6 h-6 mb-4"
+                      className="h-[30px]"
                     />
+                  </div>
+                  <div className="border border-black rounded bg-white pionter-cursor h p-[5px]">
                     <img
                       src={facebook_icon}
                       alt="Facebook Icon"
-                      className="w-6 h-6"
+                      className="h-[30px]"
                     />
+                  </div>
+                  <div className="border border-black rounded bg-white pionter-cursor h p-[5px]">
+                    <img
+                      src={insta}
+                      alt="Insta Icon"
+                      className="h-[30px]"
+                    />
+                  </div>
+                  <div className="border border-black rounded bg-white pionter-cursor h p-[5px]">
+                    <img
+                      src={x}
+                      alt="X Icon"
+                      className="h-[30px]"
+                    />
+                  </div>
+                   
+                    
                   </div>
                 </div>
 
@@ -484,12 +531,11 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className="polygon-box absolute bottom-0 z-[0]"></div>
         </div>
-      </main>
+        <div className="polygon-box absolute bottom-0 z-[0]"></div>
+      </div>
 
-      {/* Footer */}
-      <footer className="footer flex justify-center items-center py-5">
+      <footer className="footer flex justify-center items-center py-5 bg-gray-200">
         <p className="">&copy; 2024 Your Company Name. All Rights Reserved.</p>
       </footer>
     </div>

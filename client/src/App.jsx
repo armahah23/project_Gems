@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import "./App.css";
 import HomePage from "./Pages/HomePage";
 import SignupOption from "./Pages/SignupOption";
 import Esignup from "./Pages/Esignup";
@@ -11,8 +12,10 @@ import Bookingdetails from "./Pages/Bookingdetails";
 import ContactUs from "./Pages/ContactUs.jsx";
 import EmergencyService from "./Pages/EmergencyService.jsx";
 import EBService from "./Pages/EBService.jsx";
-import "./App.css";
-import Store from "./Pages/Store.jsx"
+import Store from "./Pages/store/Store.jsx";
+import Invoice from "./Pages/Invoice.jsx";
+import Payment from "./Pages/Payment.jsx";
+import Addwork from "./Pages/mechanicDashboard/Addwork.jsx";
 
 
 
@@ -32,7 +35,9 @@ function App() {
       <Route path="/emergencyservice" element={<EmergencyService />} />
       <Route path="/ebservice" element={<EBService />} />
       <Route path="/store" element={<Store />} />
-      
+      <Route path="/addwork" element={<Addwork />} />
+      <Route path="/invoice" element={<Invoice />} />
+      <Route path="/payment" element={<Payment />} />
     </Routes>
   );
 }

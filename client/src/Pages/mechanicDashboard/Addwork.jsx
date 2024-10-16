@@ -1,9 +1,9 @@
-import "./Addwork.css";
-import Image2 from "../assets/photos/Addwork.jpg";
+import "./addwork.css";
+import Image2 from "../../assets/photos/Addwork.jpg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AddWorkPage = () => {
+const Addwork = () => {
   const navigate = useNavigate();
   const [warranty, setWarranty] = useState("");
   const [qty, setQty] = useState("");
@@ -95,15 +95,19 @@ const AddWorkPage = () => {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-            <button type="submit" className="btn-submit">
+            <div className="flex gap-2 justify-between">
+              <button type="submit" className="bg-red-500 py-2 mb-3 rounded w-[300px] hover:bg-red-700">
               ADD TO BILL
             </button>
+            <button onClick={handleNavigateToInvoice} className="bg-green-500 py-2 mb-3 rounded w-[300px] hover:bg-green-700 uppercase">
+            View Invoice
+          </button>
+            </div>
+            
           </form>
 
           {/* Button to navigate to the Invoice page */}
-          <button onClick={handleNavigateToInvoice} className="btn-submit-V">
-            View Invoice
-          </button>
+          
         </div>
         <div className="image-section">
           <img
@@ -117,4 +121,4 @@ const AddWorkPage = () => {
   );
 };
 
-export default AddWorkPage;
+export default Addwork;

@@ -33,16 +33,13 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    address: {
-        street: String,
-        city: String,
-        state: String,
-        zipCode: String,
-        country: String,
+    model: {
+        type: String,
+        required: false,
     },
     email: {
         type: String,
-        required: true,
+        required: true
     },
     message: {
         type: String,
@@ -51,6 +48,11 @@ const bookingSchema = new mongoose.Schema({
     userId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true,
+    },
+    mechanicId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Mechanic',
         required: true,
     }
 });
