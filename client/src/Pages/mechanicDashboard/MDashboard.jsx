@@ -10,7 +10,7 @@ import { LuRefreshCw } from "react-icons/lu";
 const Dashboard = () => {
   const { user } = useAuth();
   const [notification, setNotification] = useState([]);
-  const [bookingDetails, setBookingDetails] = useState(null);
+  const [bookingDetails, setBookingDetails] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [acceptedBookingCount, setAcceptedCountBookingCount] = useState(0);
@@ -62,10 +62,25 @@ const Dashboard = () => {
       const data = await response.json();
       if (response.ok) {
         setBookingDetails(data.data);
-        const temp = data.data.filter(
+
+        // Calculate counts based on booking status
+        const acceptedCount = data.data.filter(
           (booking) => booking.isAccepted === "accepted"
-        );
-        setAcceptedCountBookingCount(temp.length);
+        ).length;
+        const pendingCount = data.data.filter(
+          (booking) => booking.isAccepted === "pending"
+        ).length;
+        const rejectedCount = data.data.filter(
+          (booking) => booking.isAccepted === "rejected"
+        ).length;
+        const completedCount = data.data.filter(
+          (booking) => booking.isAccepted === "completed"
+        ).length;
+
+        setAcceptedCountBookingCount(acceptedCount);
+        setPendingBookingCount(pendingCount);
+        setRejectedBookingCount(rejectedCount);
+        setCompletedBookingCount(completedCount);
       } else {
         console.error("Error: " + data.error);
       }

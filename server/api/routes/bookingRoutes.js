@@ -12,5 +12,6 @@ router.get('/bookingById/:bookingId', bookingController.bookingById);
 router.get('/bookingForMechanic/:userId', bookingController.bookingForMechanic);
 router.post('/acceptBooking/:bookingId', bookingController.acceptBooking);
 router.post('/rejectBooking/:bookingId', bookingController.rejectBooking);
+router.post('/completeBooking/:bookingId', bookingController.completeBooking);
 
 module.exports = router;

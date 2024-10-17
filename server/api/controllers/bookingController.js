@@ -203,3 +203,25 @@ exports.rejectBooking = async (req, res) => {
     res.status(500).send({ error: "Failed to create booking" });
   }
 };
+
+//complete booking
+exports.completeBooking = async (req, res) => {
+  const bookingId = req.params.bookingId;
+  try {
+    const existingBooking = await Booking.findOne({ _id: bookingId });
+    if (!existingBooking) {
+      return res.status(404).send({ error: "Booking not found" });
+    }
+
+    existingBooking.isAccepted = "completed";
+    await existingBooking.save();
+
+    res.status(200).send({
+      message: "Booking completed successfully",
+      data: existingBooking,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to complete booking" });
+  }
+};
