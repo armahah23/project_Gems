@@ -20,11 +20,11 @@
     0,
     0.781
   ); /* Add a semi-transparent background for the form */
-  margin-top: 5%;
+  
   margin-left: -450px;
-  padding: 10px;
+  padding: 5px;
   width: 800px;
-  height: 75%;
+  height: 90%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -55,7 +55,7 @@
 }
 
 .signup-form input {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   padding: 10px;
   width: 100%;
   border: 1px solid #ccc;
@@ -79,11 +79,7 @@
   font-size: 15px;
 }
 
-.signup-form p {
-  color: white;
-  margin-left: -70%;
-  margin-top: 5%;
-}
+
 
 .signup-form a {
   color: #0056b3;

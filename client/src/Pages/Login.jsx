@@ -3,8 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../assets/photos/logo.png";
 import { useAuth } from "../context/AuthContext";
 import "./Login.css";
-import Swal from 'sweetalert2';
-
+import Swal from "sweetalert2";
 
 export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
@@ -77,34 +76,35 @@ export default function Login() {
         );
       }
 
-      const userData = await userResponse.json(); 
+      const userData = await userResponse.json();
       // console.log("User data:", userData);
       setUser(userData.data); // Set user data in the context
       // Save the token and navigate to the home page
       localStorage.setItem("token", data.token); // Store token in localStorage
       Swal.fire({
-        title: 'Success!',
-        text: 'Login successful.',
-        icon: 'success',
-        confirmButtonText: 'OK'
-    });
+        title: "Success!",
+        text: "Login successful.",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      
       if (userType === "mechanic") {
         navigate("/mdashboard");
         Swal.fire({
-          title: 'Success!',
-          text: 'Login successful.',
-          icon: 'success',
-          confirmButtonText: 'OK'
-      });
+          title: "Success!",
+          text: "Login successful.",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
       } else {
         navigate("/"); // Navigate to home page after login
       }
     } catch (error) {
       Swal.fire({
-        title: 'Error!',
-        text: error.message,  // Display the error message
-        icon: 'error',        // Set the icon to 'error'
-        confirmButtonText: 'OK'
+        title: "Error!",
+        text: error.message, // Display the error message
+        icon: "error", // Set the icon to 'error'
+        confirmButtonText: "OK",
       });
     }
   };
@@ -113,7 +113,45 @@ export default function Login() {
     setShowPassword(!showPassword);
   };
 
-  const forgotPassword = () => {
+  const forgotPassword = async (e) => {
+    e.preventDefault();
+
+    const identifier = usernameOrEmail; // Use state variable directly
+    if (!identifier) {
+      alert("Please fill in both email/username and password.");
+      return;
+    }
+
+    const loginData = { identifier }; // Changed to identifier instead of just username
+    const loginUrl =
+      userType === "user"
+        ? "http://localhost:3000/api/user/login"
+        : userType === "mechanic"
+        ? "http://localhost:3000/api/mechanic/login"
+        : "http://localhost:3000/api/admin/login";
+
+    try {
+      // Send login request
+      const response = await fetch(loginUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData), // Send identifier (email/username) and password
+      });
+
+      // Handle login errors
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || `Login failed with status ${response.status}`
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert(error.message);
+    }
+
     navigate("/forgotpassword");
   };
 
@@ -202,7 +240,10 @@ export default function Login() {
               </span>
             </div>
             <div className="flex justify-end">
-              <button className="underline hover:text-blue-600 cursor-pointer" onClick={forgotPassword}>
+              <button
+                className="underline hover:text-blue-600 cursor-pointer"
+                onClick={forgotPassword}
+              >
                 Forget Password?
               </button>
             </div>

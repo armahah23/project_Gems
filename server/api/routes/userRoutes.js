@@ -17,5 +17,8 @@ router.post('/payment', userController.postPayment);
 //Route to save feedback
 router.post('/feedback', userController.postFeedback);
 
+//route for get question to reset password
+router.get('/user/:identifier', userController.getQuestion);
+
  
 module.exports = router;

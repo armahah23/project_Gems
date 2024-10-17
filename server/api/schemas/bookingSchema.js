@@ -54,6 +54,16 @@ const bookingSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Mechanic',
         required: true,
+    },
+    isAccepted: {
+        type: String,
+        required: false,
+        default: 'pending',
+    },
+    works:{
+        type: Array,
+        required: false,
+        default: [],
     }
 });
 

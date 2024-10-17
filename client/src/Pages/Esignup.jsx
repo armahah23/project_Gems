@@ -15,6 +15,17 @@ export default function Esignup() {
   const [idnumber, setIdnumber] = useState("");
   const [address, setAddress] = useState("");
   const [conformPassword, setConformPassword] = useState("");
+  const [securityQuestion, setSecurityQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+
+  const questions = [
+    { value: "", label: "--Select a Question--" },
+    { value: "mom_name", label: "What is your mom's name?" },
+    { value: "favorite_place", label: "What is your favorite place?" },
+    { value: "first_pet", label: "What was the name of your first pet?" },
+    { value: "birth_city", label: "In what city were you born?" },
+    { value: "high_school", label: "What was the name of your high school?" },
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +44,8 @@ export default function Esignup() {
         idnumber,
         address,
         conformPassword,
+        securityQuestion,
+        answer,
       }),
     });
 
@@ -121,6 +134,34 @@ export default function Esignup() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+        </div>
+        <div className="flex justify-between w-[100%] px-6">
+        <div className="flex flex-col">
+          <label htmlFor="securityQuestion">Select a Security Question:</label>
+          <select
+            id="securityQuestion"
+            value={securityQuestion}
+            onChange={(e) => setSecurityQuestion(e.target.value)}
+            required
+            className="w-[300px] h-[40px] border-2 border-white rounded-md"
+          >
+            {questions.map((question) => (
+              <option key={question.value} value={question.value}>
+                {question.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex flex-col w-[50%]">
+          <label htmlFor="answer">Your Answer:</label>
+          <input
+            type="text"
+            id="answer"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            required
+          />
+        </div>
         </div>
         <button type="submit">
           <b>SIGN UP</b>

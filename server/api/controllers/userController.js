@@ -6,7 +6,7 @@ const Feedback = require("../schemas/feedbackSchema");
 
 // Create a new user
 exports.createUser = async (req, res) => {
-  const { username, password, email, phone, fullname, address } = req.body;
+  const { username, password, email, phone, fullname, address, securityQuestion, answer } = req.body;
 
   try { 
     // Hash password before saving
@@ -19,7 +19,9 @@ exports.createUser = async (req, res) => {
       email,
       phone,
       fullname,
-      address
+      address,
+      securityQuestion,
+      answer
     });
     
     // Save the user to the database
@@ -177,3 +179,22 @@ exports.postFeedback = async (req, res) => {
   }
 }
 
+//get question to reset password
+exports.getQuestion = async (req, res) => {
+  const { identifier } = req.params; // Get the user identifier from the request
+
+  try {
+      // Find the user by the identifier (assuming it's the user ID)
+      const user = await User.findById(identifier).select('security_question'); // Select only the security question field
+
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Send the question back to the frontend
+      res.status(200).json({ question: user.security_question });
+  } catch (error) {
+      console.error('Error fetching user security question:', error);
+      res.status(500).json({ message: 'Server error' });
+  }
+};
