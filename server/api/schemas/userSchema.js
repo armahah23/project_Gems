@@ -40,7 +40,20 @@ const userSchema = new mongoose.Schema({
     state: { type: String, trim: true },
     zipCode: { type: String, trim: true },
     country: { type: String, trim: true },
+  },
+
+  securityQuestion: {
+    type: String,
+    required: true,
+    trim: true,  // Adding trim to remove extra spaces
+  },
+
+  answer: {
+    type: String,
+    required: true,
+    trim: true,  // Adding trim to remove extra spaces
   }
+
 });
 
 // Create the user model

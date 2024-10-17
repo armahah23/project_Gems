@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
-import  logo from '../assets/photos/logo.png'
-import { Link } from 'react-router-dom';
+import logo from "../assets/photos/logo.png";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [fullname, setFullname] = useState("");
@@ -13,7 +13,17 @@ export default function Signup() {
   const [conformPassword, setConformPassword] = useState("");
 
   const navigate = useNavigate();
-  // const {handleLogin} = useAuth();
+  const [securityQuestion, setSecurityQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+
+  const questions = [
+    { value: "", label: "--Select a Question--" },
+    { value: "mom_name", label: "What is your mom's name?" },
+    { value: "favorite_place", label: "What is your favorite place?" },
+    { value: "first_pet", label: "What was the name of your first pet?" },
+    { value: "birth_city", label: "In what city were you born?" },
+    { value: "high_school", label: "What was the name of your high school?" },
+  ];
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -28,36 +38,31 @@ export default function Signup() {
         phone,
         username,
         password,
-        conformPassword
+        conformPassword,
+        securityQuestion,
+        answer,
       }),
     });
 
     const data = await response.json();
     if (response.ok) {
       alert("User created successfully!");
-      navigate('/');
+      navigate("/");
     } else {
       alert("Error: " + data.error);
     }
   };
 
   const comparePassword = () => {
-    if (conformPassword !== password ) {
+    if (conformPassword !== password) {
       return true;
     } else {
       return false;
     }
-  }
-
-  const handleLoginClick = (e) => {
-    e.preventDefault();
-    navigate('/login');
-  }
+  };
 
   return (
     <div className="signup-container">
-
-
       <form className="signup-form" onSubmit={handleSignup}>
         <h1>
           Customer <span>Sign Up </span>{" "}
@@ -108,18 +113,54 @@ export default function Signup() {
               value={conformPassword}
               onChange={(e) => setConformPassword(e.target.value)}
             />
-            {comparePassword() ? <p id="password-not-match">Passwords do not match !</p> : null}
+            {comparePassword() ? (
+              <p className="text-red-300" id="password-not-match">Passwords do not match !</p>
+            ) : null}
           </div>
-          </div>
-          <button type="submit">
-        <b>SIGN UP</b>
-      </button>
-       <p>
-        Already have an Account? <Link to="/login">Login</Link>
-      </p>
+        </div>
+        <div className="flex justify-between w-[100%] px-6">
+        <div className="flex flex-col">
+          <label htmlFor="securityQuestion">Select a Security Question:</label>
+          <select
+            id="securityQuestion"
+            value={securityQuestion}
+            onChange={(e) => setSecurityQuestion(e.target.value)}
+            required
+            className="w-[300px] h-[40px] border-2 border-white rounded-md"
+          >
+            {questions.map((question) => (
+              <option key={question.value} value={question.value}>
+                {question.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex flex-col w-[50%]">
+          <label htmlFor="answer">Your Answer:</label>
+          <input
+            type="text"
+            id="answer"
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            required
+          />
+        </div>
+        </div>
+        <button type="submit">
+          <b>SIGN UP</b>
+        </button>
+        <div className="flex justify-center p-2">
+          <p className="text-white">
+          Already have an Account? <Link to="/login">Login</Link>
+        </p>
+        </div>
         
       </form>
-      <img className='logo' src={logo} style={{ width: '350px', height: 'Auto' }} />
+      <img
+        className="logo"
+        src={logo}
+        style={{ width: "350px", height: "Auto" }}
+      />
     </div>
   );
 }

@@ -50,12 +50,10 @@ exports.createBooking = async (req, res) => {
     // Save the booking to the database
     await newBooking.save();
 
-    res
-      .status(200)
-      .send({
-        message: "Booking details stored successfully",
-        data: newBooking,
-      });
+    res.status(200).send({
+      message: "Booking details stored successfully",
+      data: newBooking,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: "Failed to create booking" });
@@ -140,7 +138,7 @@ exports.bookingById = async (req, res) => {
 exports.bookingForMechanic = async (req, res) => {
   const { userId } = req.params;
   try {
-    const bookings = await Booking.findOne({ mechanicId: userId });
+    const bookings = await Booking.find({ mechanicId: userId });
     if (bookings) {
       return res.status(200).json({
         status: "SUCCESS",
@@ -159,5 +157,49 @@ exports.bookingForMechanic = async (req, res) => {
       status: "FAILED",
       message: "An error occurred while fetching bookings",
     });
+  }
+};
+
+exports.acceptBooking = async (req, res) => {
+  const bookingId = req.params.bookingId;
+  try {
+    const existingBooking = await Booking.findOne({ _id: bookingId });
+
+    if (!existingBooking) {
+      return res.status(400).send({ error: "Booking not exist" });
+    }
+
+    existingBooking.isAccepted = 'accepted';
+    await existingBooking.save();
+
+    res.status(200).send({
+      message: "Booking details updated successfully",
+      data: existingBooking,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to create booking" });
+  }
+};
+
+exports.rejectBooking = async (req, res) => {
+  const bookingId = req.params.bookingId;
+  try {
+    const existingBooking = await Booking.findOne({ _id: bookingId });
+
+    if (!existingBooking) {
+      return res.status(400).send({ error: "Booking not exist" });
+    }
+
+    existingBooking.isAccepted = 'rejected';
+    await existingBooking.save();
+
+    res.status(200).send({
+      message: "Booking details updated successfully",
+      data: existingBooking,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to create booking" });
   }
 };

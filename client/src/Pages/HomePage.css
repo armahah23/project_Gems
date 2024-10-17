@@ -1,12 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 
 .bg-primary {
   background-color: #13496b;
@@ -112,10 +110,30 @@
   z-index: 1;
 }
 
+.notification-content {
+  background-color: #13496b;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+.notification-content h2 {
+  text-align: left;
+  color: white;
+}
+
+.notification-content p {
+  text-align: left;
+  color: white;
+}
+
 .notification-modal p {
   font-size: 14px;
   margin-bottom: 5px;
-  color: #333;
+  color: #dddada;
 }
 
 .notification-modal ul {
@@ -127,7 +145,7 @@
 .notification-modal ul li {
   font-size: 12px;
   padding: 5px 0;
-  color: #333;
+  color: #e05a5a;
 }
 
 .ImageA {
@@ -342,4 +360,3 @@
   width: 100%; /* Full width */
   clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
 }
-

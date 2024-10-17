@@ -1,10 +1,7 @@
-
-
 .design {
   background-color: #13496b;
   width: 100vw;
-  height: 100vh;
-  position: fixed;
+  height: auto;
 }
 
 .container-add {
@@ -41,7 +38,7 @@ label {
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  color: black ;
+  color: black;
 }
 
 .description_textarea {
