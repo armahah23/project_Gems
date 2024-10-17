@@ -33,19 +33,7 @@ const HomePage = () => {
     message: "",
   });
   const [showModal, setShowModal] = useState(false);
-  const [bookingDetails, setBookingDetails] = useState({
-    vehiclemake: "",
-    vehicletype: "",
-    vehiclenumber: "",
-    manufecturedyear: "",
-    preferreddate: "",
-    preferredtime: "",
-    vehicleownername: "",
-    mobilenumber: "",
-    email: "",
-    message: "",
-    userId: "",
-  });
+  const [bookingDetails, setBookingDetails] = useState();
   const [showBookingModal, setShowBookingModal] = useState(false);
 
   useEffect(() => {
@@ -53,7 +41,7 @@ const HomePage = () => {
       fetchUser();
     }
 
-    const getNotification = async () => {
+    const getNotifications = async () => {
       if (user) {
         const response = await fetch(
           `http://localhost:3000/api/notification/getNotification/${user._id}`,
@@ -72,29 +60,31 @@ const HomePage = () => {
       }
     };
 
-    const getBookingDetails = async () => {
-      if (user) {
-        const response = await fetch(
-          `http://localhost:3000/api/booking/${user._id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-        if (response.ok) {
-          setBookingDetails(data.data);
-        } else {
-          console.error("Error: " + data.error);
-        }
-      }
-    };
+    getNotifications();
+  }, [user, fetchUser]); // Added user as a dependency
 
-    getNotification();
-    getBookingDetails();
-  }, [user]); // Added user as a dependency
+  const getBookingById = async (bookingId) => {
+    setBookingDetails();
+    if (user) {
+      const response = await fetch(
+        `http://localhost:3000/api/booking/${bookingId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setShowBookingModal(true);
+        setShowModal(false);
+        setBookingDetails(data.data);
+      } else {
+        console.error("Error: " + data.error);
+      }
+    }
+  };
 
   //handle feedback form submission
   const handleSubmit = async (e) => {
@@ -148,9 +138,9 @@ const HomePage = () => {
 
   const toggleBookingModal = () => setShowBookingModal(!showBookingModal);
   const toggleModal = () => setShowModal(!showModal);
-  const handleNotificationClick = () => {
-    setShowBookingModal(true);
-    toggleModal(); // Close the notification modal
+
+  const handleNotificationClick = (bookingId) => {
+    getBookingById(bookingId);
   };
 
   return (
@@ -200,7 +190,9 @@ const HomePage = () => {
                         {notification.map((note, index) => (
                           <button
                             key={index}
-                            onClick={()=>handleNotificationClick(note._id, note.bookingId)}
+                            onClick={() =>
+                              handleNotificationClick(note.bookingId)
+                            }
                             className="notification-content"
                           >
                             <h2>{note.topic}</h2>

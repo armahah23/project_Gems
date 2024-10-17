@@ -37,7 +37,7 @@ function App() {
       <Route path="/store" element={<Store />} />
       <Route path="/addwork" element={<Addwork />} />
       <Route path="/invoice" element={<Invoice />} />
-      <Route path="/payment" element={<Payment />} />
+      <Route path="/payment/:bookingId" element={<Payment />} />
     </Routes>
   );
 }

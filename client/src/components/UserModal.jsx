@@ -1,10 +1,16 @@
 import "./Modal.css"; // Import your CSS file
+import { useNavigate } from "react-router-dom";
+
 const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
-  console.log({ bbb: bookingDetails }); // Early return if no booking details are provided
+  const navigate = useNavigate();
 
   const closeModal = () => {
     toggleModal();
     localStorage.removeItem("bookingId");
+  };
+
+  const handlePayNow = () => {
+    navigate(`/payment/${bookingDetails._id}`);
   };
 
   return (
@@ -38,10 +44,9 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
           </div>
         </div>
         <div className="w-[100%] flex justify-center items-center mt-6">
-          <div className="flex gap-5">
+          <div>
             {/* Conditional Rendering */}
-
-            {/* {bookingDetails.isAccepted === "pending" && (
+            {bookingDetails.isAccepted === "pending" && (
               <span className="text-yellow-600 font-bold">
                 Booking is Pending...
               </span>
@@ -50,17 +55,38 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
               <span className="text-yellow-600 font-bold">
                 Booking is accepted, He will come soon...
               </span>
-            )}*/}
-            {bookingDetails.isAccepted === "completed" && (
-              <span className="text-green-400 font-bold">
-                Booking is Completed
-              </span>
             )}
-            {/* {bookingDetails.isAccepted === "rejected" && (
+            {bookingDetails.isAccepted === "completed" &&
+              bookingDetails.isPaid === false && (
+                <div className="flex items-center gap-12">
+                  <span className="text-green-400 font-bold w-[80%]">
+                    Your service is complete. Please proceed with the payment.
+                  </span>
+                  <button
+                    onClick={handlePayNow}
+                    className="h-[40px] w-[150px] px-2 bg-gray-100 text-black hover:bg-gray-700 hover:text-white"
+                  >
+                    Pay Now
+                  </button>
+                </div>
+              )}
+            {bookingDetails.isAccepted === "completed" &&
+              bookingDetails.isPaid === true && (
+                <div className="flex items-center gap-12">
+                  <span className="text-green-300 font-bold">
+                    Thank you! Your payment has been successfully received.
+                  </span>
+                  <button className="h-[40px] px-6 bg-green-800 hover:bg-green-700 text-white text-black cursor-not-allowed">
+                    Print
+                  </button>
+                </div>
+              )}
+
+            {bookingDetails.isAccepted === "rejected" && (
               <span className="text-red-600 font-bold">
                 Booking is rejected
               </span>
-            )}  */}
+            )}
           </div>
         </div>
       </div>

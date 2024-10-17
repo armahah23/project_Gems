@@ -89,26 +89,26 @@ exports.getUserDetails = async (req, res) => {
 };
 
 exports.getBooking = async (req, res) => {
-  const { userId } = req.params;
+  const { bookingId } = req.params;
   try {
-    const bookings = await Booking.findOne({ userId: userId });
-    if (bookings) {
+    const booking = await Booking.findOne({ _id: bookingId });
+    if (booking) {
       return res.status(200).json({
         status: "SUCCESS",
-        message: "Bookings fetched successfully",
-        data: bookings,
+        message: "Booking fetched successfully",
+        data: booking,
       });
     } else {
       return res.status(404).json({
         status: "FAILED",
-        message: "No bookings found",
+        message: "No booking found",
       });
     }
   } catch (error) {
     console.error(error);
     return res.status(500).json({
       status: "FAILED",
-      message: "An error occurred while fetching bookings",
+      message: "An error occurred while fetching booking",
     });
   }
 };
