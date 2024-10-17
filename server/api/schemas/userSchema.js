@@ -52,6 +52,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,  // Adding trim to remove extra spaces
+  },
+  userRole: {
+    type: String,
+    required: false,
+    default: "user",
   }
 
 });

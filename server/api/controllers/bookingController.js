@@ -1,5 +1,7 @@
 const Booking = require("../schemas/bookingSchema");
 const User = require("../schemas/userSchema"); // Import the User model
+const Notification = require("../schemas/notificationSchema");
+
 
 // Create a new booking
 exports.createBooking = async (req, res) => {
@@ -62,11 +64,12 @@ exports.createBooking = async (req, res) => {
 
 // Get user details
 exports.getUserDetails = async (req, res) => {
-  const { userId } = req.params;
+  console.log("working");
+  const { userEmail } = req.params;
 
   try {
     // Find the user by ID
-    const user = await User.findById(userId);
+    const user = await User.find({ email: userEmail });
 
     if (!user) {
       return res.status(404).send({ error: "User not found" });
@@ -169,8 +172,17 @@ exports.acceptBooking = async (req, res) => {
       return res.status(400).send({ error: "Booking not exist" });
     }
 
-    existingBooking.isAccepted = 'accepted';
+    existingBooking.isAccepted = "accepted";
     await existingBooking.save();
+
+    const newNotification = new Notification({
+      topic: "Appointemnt Accepted",
+      message: "Appointemnt accepted",
+      recieverId: existingBooking.userId,
+      mechanicId: existingBooking.mechanicId,
+      bookingId: existingBooking._id,
+    });
+    await newNotification.save();
 
     res.status(200).send({
       message: "Booking details updated successfully",
@@ -191,8 +203,17 @@ exports.rejectBooking = async (req, res) => {
       return res.status(400).send({ error: "Booking not exist" });
     }
 
-    existingBooking.isAccepted = 'rejected';
+    existingBooking.isAccepted = "rejected";
     await existingBooking.save();
+
+    const newNotification = new Notification({
+      topic: "Appointemnt Rejected",
+      message: "Appointemnt rejected",
+      recieverId: existingBooking.userId,
+      mechanicId: existingBooking.mechanicId,
+      bookingId: existingBooking._id,
+    });
+    await newNotification.save();
 
     res.status(200).send({
       message: "Booking details updated successfully",
@@ -223,5 +244,42 @@ exports.completeBooking = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: "Failed to complete booking" });
+  }
+};
+
+exports.addBill = async (req, res) => {
+  const bookingId = req.params.bookingId;
+  try {
+    const data = req.body;
+    const existingBooking = await Booking.findOne({ _id: bookingId });
+
+    if (!existingBooking) {
+      return res.status(400).send({ error: "Booking not exist" });
+    }
+    // console.log(data.workItems);
+    // console.log(data.netTotal);
+    existingBooking.works = data.workItems;
+    existingBooking.netTotal = data.netTotal;
+    console.log(existingBooking);
+    existingBooking.isAccepted = "completed";
+    await existingBooking.save();
+
+    // Add notification
+    const newNotification = new Notification({
+      topic: "New Bill",
+      message: "Bill created successfuly",
+      recieverId: existingBooking.userId,
+      mechanicId: existingBooking.mechanicId,
+      bookingId: existingBooking._id,
+    });
+    await newNotification.save();
+
+    res.status(200).send({
+      message: "Booking details updated successfully",
+      data: existingBooking,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to create booking" });
   }
 };

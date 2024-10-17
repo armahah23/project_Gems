@@ -3,35 +3,79 @@ import "./Invoice.css";
 // import logo from "../assets/photos/logo.png";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineRest } from "react-icons/ai";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Invoice = () => {
+  const bookingId = localStorage.getItem("bookingId");
+
   const [workItems, setWorkItems] = useState(() => {
     // Load workItems from localStorage if available
     const savedItems = localStorage.getItem("workItems");
     return savedItems ? JSON.parse(savedItems) : [];
   });
   const navigate = useNavigate();
-  const [invoiceNo, setInvoiceNo] = useState(1);
+  const [netTotal, setNetTotal] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("workItems", JSON.stringify(workItems));
   }, [workItems]);
 
-  // Load the invoice number from localStorage on initial render
+  // Calculate net total whenever workItems changes
   useEffect(() => {
-    const savedInvoiceNo = localStorage.getItem("invoiceNo");
-    if (savedInvoiceNo) {
-      setInvoiceNo(parseInt(savedInvoiceNo, 10));
-    }
-  }, []);
+    const total = workItems.reduce(
+      (acc, item) => acc + Number(item.total || 0),
+      0
+    );
+    setNetTotal(total);
+  }, [workItems]);
 
-  const handleCreateBill = () => {
-    const newInvoiceNo = invoiceNo + 1;
-    setInvoiceNo(newInvoiceNo);
-    localStorage.setItem("invoiceNo", newInvoiceNo);
-    navigate("/mdashboard");
-    // Make empty array
-    setWorkItems([]);
+  const handleCreateBill = async () => {
+    if (!bookingId || bookingId== "") {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Something went wrong!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return
+    }
+    if (workItems.length == 0) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Atleast 1 items is required!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return
+    }
+    const data = {
+      workItems: workItems,
+      netTotal: netTotal,
+    };
+
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/addBill/${bookingId}`,
+        data,
+      );
+      if (response.status === 200) {
+        console.log({ress:response})
+        navigate("/mdashboard");
+        setWorkItems([]);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Bill created successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // Function to remove an item by index
@@ -48,15 +92,10 @@ const Invoice = () => {
   return (
     <div className="invoice-main">
       <div className="flex flex-col items-center mt-4 w-[80%]">
-        <table className="invoice-table mb-6">
+        <table className="invoice-table m-6">
           <thead>
             <tr colSpan="6">
-              <th>
-                <p className="text-black text-left mb-2">
-                  INVOICE NO: {invoiceNo}
-                </p>
-              </th>
-              <th>AUTOCARE VEHICLE SERVICE CENTER</th>
+              <th colSpan={7}>AUTOCARE VEHICLE SERVICE CENTER</th>
             </tr>
             <tr>
               <th>Description</th>
@@ -73,7 +112,7 @@ const Invoice = () => {
               <tr key={index}>
                 <td>{item.description || "N/A"}</td>
                 <td>{item.warranty || "N/A"}</td>
-                <td>{item.Code || "N/A"}</td>
+                <td>{item.partCode || "N/A"}</td>
                 <td>{item.qty ?? "N/A"}</td>
                 <td>{item.unitAmount ?? "N/A"}</td>
                 <td>{item.total ?? "N/A"}</td>
@@ -113,12 +152,7 @@ const Invoice = () => {
             </div>
             <div className="bg-gray-200 py-2 px-6 rounded-[10px] ">
               <span className="">MAIN TOTAL (LKR): </span>
-              <span className="total-amount">
-                {workItems.reduce(
-                  (acc, item) => acc + Number(item.unitAmount || 0),
-                  0
-                )}
-              </span>
+              <span className="total-amount">{netTotal}</span>
             </div>
           </div>
         </div>

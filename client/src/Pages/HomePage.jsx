@@ -14,16 +14,16 @@ import facebook_icon from "../assets/icons/facebook_icon.png";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { IoNotificationsSharp } from "react-icons/io5";
-import Modal from "../components/Modal";
 import Address from "../assets/icons/Address.png";
 import RingerVolume from "../assets/icons/RingerVolume.png";
 import google_icon from "../assets/icons/google_icon.png";
 import x from "../assets/icons/x.png";
 import insta from "../assets/icons/insta.png";
 import Swal from "sweetalert2";
+import UserModal from "../components/UserModal";
 
 const HomePage = () => {
-  const { user, setUser } = useAuth();
+  const { user, setUser, fetchUser } = useAuth();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [notification, setNotification] = useState([]);
@@ -49,6 +49,10 @@ const HomePage = () => {
   const [showBookingModal, setShowBookingModal] = useState(false);
 
   useEffect(() => {
+    if (user == null) {
+      fetchUser();
+    }
+
     const getNotification = async () => {
       if (user) {
         const response = await fetch(
@@ -132,6 +136,10 @@ const HomePage = () => {
       if (result.isConfirmed) {
         // If the user clicked 'Yes, logout!'
         localStorage.removeItem("token");
+        localStorage.removeItem("userRole");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userEmail");
+        localStorage.clear();
         navigate("/");
         setUser(null);
       }
@@ -148,7 +156,7 @@ const HomePage = () => {
   return (
     <>
       {showBookingModal && (
-        <Modal
+        <UserModal
           bookingDetails={bookingDetails}
           toggleModal={toggleBookingModal}
           showModal={showBookingModal}
@@ -156,8 +164,8 @@ const HomePage = () => {
       )}
       <div className="home-page">
         {/* Header */}
-        <header className="header">
-          <div className="container">
+        <header className="header px-[100px]">
+          <div className="flex w-[100%] justify-between items-center">
             <img
               className="Logo"
               src={Logo}
@@ -167,27 +175,22 @@ const HomePage = () => {
             <nav className="nav-menu">
               <div className="nav-links">
                 <Link to="/">HOME</Link>
-                {token ? (
-                  <Link to="/contact">CONTACT</Link>
-                ) : (
-                  <Link to="#">CONTACT</Link>
-                )}
+                {token && <Link to="/contact">CONTACT</Link>}
 
                 <Link to="#">SERVICES</Link>
                 <Link to="#">OFFERS</Link>
-                {token ? (
-                  <Link to="/store">STORE</Link>
-                ) : (
-                  <Link to="#">STORE</Link>
-                )}
+                {token && <Link to="/store">STORE</Link>}
                 {/* <Link to="/store">STORE</Link> */}
                 {token ? (
                   <>
-                    <button className="notification-btn" onClick={toggleModal}>
+                    <button
+                      className="hover:bg-transparent notification-btn"
+                      onClick={toggleModal}
+                    >
                       <IoNotificationsSharp size={20} />
                     </button>
                     {showModal && (
-                      <div className="notification-modal">
+                      <div className="notification-modal z-[10000] ">
                         <button
                           className="absolute bg-gray-200 h-[30px] w-[30px] top-[5px] right-[5px] text-black rounded-2xl text-[20px]"
                           onClick={toggleModal}
@@ -197,7 +200,7 @@ const HomePage = () => {
                         {notification.map((note, index) => (
                           <button
                             key={index}
-                            onClick={handleNotificationClick}
+                            onClick={()=>handleNotificationClick(note._id, note.bookingId)}
                             className="notification-content"
                           >
                             <h2>{note.topic}</h2>
@@ -207,7 +210,7 @@ const HomePage = () => {
                       </div>
                     )}
                     <button
-                      className="btn text-white px-3 w-[100px] mr-2 rounded hover:bg-blue-700 h-[40px] bg-primary"
+                      className="btn text-white px-3 w-[100px] rounded hover:bg-blue-700 h-[40px] bg-primary"
                       onClick={handleLogout}
                     >
                       LOGOUT
@@ -215,7 +218,7 @@ const HomePage = () => {
                   </>
                 ) : (
                   <button
-                    className="sign-up-btn px-4 mr-2 rounded hover:bg-blue-700"
+                    className="sign-up-btn px-4 rounded hover:bg-blue-700"
                     onClick={handleSignup}
                   >
                     SIGN UP

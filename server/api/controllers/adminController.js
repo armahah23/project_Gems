@@ -34,6 +34,7 @@ exports.postAdmin = async (req, res) => {
           status: "SUCCESS",
           message: "Login successful",
           token: token,
+          data: data,
         });
       } else {
         return res.status(401).json({

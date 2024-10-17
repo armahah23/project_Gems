@@ -42,7 +42,7 @@ export default function Login() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginData), // Send identifier (email/username) and password
+        body: JSON.stringify(loginData),
       });
 
       // Handle login errors
@@ -80,7 +80,11 @@ export default function Login() {
       // console.log("User data:", userData);
       setUser(userData.data); // Set user data in the context
       // Save the token and navigate to the home page
-      localStorage.setItem("token", data.token); // Store token in localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userRole", userType);
+      localStorage.setItem("userId", userData.data._id);
+      localStorage.setItem("userEmail", userData.data.email);
+      
       Swal.fire({
         title: "Success!",
         text: "Login successful.",

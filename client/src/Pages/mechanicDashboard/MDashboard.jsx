@@ -2,10 +2,10 @@ import "./mdashboard.css";
 import logo from "../../assets/photos/logo.png";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import Modal from "../../components/Modal";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { LuRefreshCw } from "react-icons/lu";
+import MechanicModal from "./mechanicModal";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [bookingDetails, setBookingDetails] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [allBookingCount, setAllBookingCount] = useState(0);
   const [acceptedBookingCount, setAcceptedCountBookingCount] = useState(0);
   const [pendingBookingCount, setPendingBookingCount] = useState(0);
   const [rejectedBookingCount, setRejectedBookingCount] = useState(0);
@@ -24,6 +25,8 @@ const Dashboard = () => {
   }, [user]);
 
   const fetchAllDetails = () => {
+    localStorage.removeItem("bookingId");
+    localStorage.removeItem("workItems");
     getAllNotification();
     getAllBookingDetails();
   };
@@ -64,6 +67,7 @@ const Dashboard = () => {
         setBookingDetails(data.data);
 
         // Calculate counts based on booking status
+        setAllBookingCount(data.data.length);
         const acceptedCount = data.data.filter(
           (booking) => booking.isAccepted === "accepted"
         ).length;
@@ -89,6 +93,11 @@ const Dashboard = () => {
 
   const toggleModal = () => setShowModal(!showModal);
   const toggleBookingModal = () => setShowBookingModal(!showBookingModal);
+
+  const openNotificationPopup = () => {
+    setShowModal(true);
+    setShowBookingModal(false);
+  };
 
   const handleNotificationClick = async (bookingId) => {
     const response = await fetch(
@@ -123,6 +132,9 @@ const Dashboard = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userRole");
+        localStorage.removeItem("userEmail");
         navigate("/login");
       }
     });
@@ -131,7 +143,7 @@ const Dashboard = () => {
   return (
     <>
       {showBookingModal && bookingDetails && (
-        <Modal
+        <MechanicModal
           bookingDetails={bookingDetails}
           toggleModal={toggleBookingModal}
           showModal={showBookingModal}
@@ -145,9 +157,9 @@ const Dashboard = () => {
           <nav className="menu flex justify-center items-center p-4">
             <ul>
               <li className="relative">
-                <button onClick={toggleModal}>Notification</button>
+                <button onClick={openNotificationPopup}>Notification</button>
                 {showModal && (
-                  <div className="notification-modal2 absolute top-[-100px] right-[-150px] bg-white rounded-lg shadow-lg w-[250px] px-2">
+                  <div className="notification-modal2 absolute top-[-100px] right-[-150px] bg-white rounded-lg shadow-lg w-[250px] px-2 z-[10]">
                     <span
                       className="close bg-black h-[40px] px-2"
                       onClick={toggleModal}
@@ -180,11 +192,15 @@ const Dashboard = () => {
                                 )}
                               {matchedBooking &&
                                 matchedBooking.isAccepted === "accepted" && (
-                                  <span className="w-[10px] h-[10px] bg-green-600 rounded-full"></span>
+                                  <span className="w-[10px] h-[10px] bg-blue-600 rounded-full"></span>
                                 )}
                               {matchedBooking &&
                                 matchedBooking.isAccepted === "rejected" && (
                                   <span className="w-[10px] h-[10px] bg-red-600 rounded-full"></span>
+                                )}
+                              {matchedBooking &&
+                                matchedBooking.isAccepted === "completed" && (
+                                  <span className="w-[10px] h-[10px] bg-green-600 rounded-full"></span>
                                 )}
 
                               {/* In case there's no matching booking, handle it if necessary */}
@@ -216,7 +232,15 @@ const Dashboard = () => {
         </aside>
         <main className="dashboard">
           <div className="flex w-[100%] justify-between items-center">
-            <h1 className="my-4 font-semibold text-[24px] uppercase">Dashboard</h1>
+            {user && (
+              <h1 className="my-4 font-semibold text-[24px] uppercase">
+                Dashboard -{" "}
+                {user.userRole === "user"
+                  ? user.fullname
+                  : `${user.firstname} ${user.lastname}`}
+              </h1>
+            )}
+
             <button
               onClick={fetchAllDetails}
               className="w-[40px] h-[30px] rounded-md shadow-md bg-gray-300 hover:bg-gray-500 hover:text-gray-100 flex justify-center items-center"
@@ -237,20 +261,24 @@ const Dashboard = () => {
                 </span>
                 <span className="text-gray-500 text-lg">Work Items</span>
               </div>
-              <div className="relative pt-1 mt-4">
-                <div className="overflow-hidden h-4 mb-4 text-xs flex rounded bg-yellow-200">
+              <div className="relative pt-1 mt-4 ">
+                <div className="overflow-hidden h-4 mb-4 text-xs flex rounded bg-yellow-200 ">
                   <div
                     style={{
-                      width: `${Math.min(pendingBookingCount * 10, 100)}%`,
-                    }} // Assuming count max is 10, modify as needed
+                      width: `${
+                        (pendingBookingCount / allBookingCount) * 100
+                      }%`,
+                    }}
                     className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-yellow-500"
-                  />
+                  >
+                    {" "}
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* ongoing work style */}
-            <div className="p-6 max-w-m bg-white rounded-lg border border-gray-200 shadow-md">
+            <div className="p-6 max-w-m bg-blue-50 rounded-lg border border-gray-200 shadow-md">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                 Ongoing Work
               </h5>
@@ -264,7 +292,9 @@ const Dashboard = () => {
                 <div className="overflow-hidden h-4 mb-4 text-xs flex rounded bg-blue-200">
                   <div
                     style={{
-                      width: `${Math.min(acceptedBookingCount * 10, 100)}%`,
+                      width: `${
+                        (acceptedBookingCount / allBookingCount) * 100
+                      }%`,
                     }} // Assuming count max is 10, modify as needed
                     className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
                   />
@@ -288,7 +318,9 @@ const Dashboard = () => {
                 <div className="overflow-hidden h-4 mb-4 text-xs flex rounded bg-red-200">
                   <div
                     style={{
-                      width: `${Math.min(rejectedBookingCount * 10, 100)}%`,
+                      width: `${
+                        (rejectedBookingCount / allBookingCount) * 100
+                      }%`,
                     }} // Assuming count max is 10, modify as needed
                     className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
                   />
@@ -312,7 +344,9 @@ const Dashboard = () => {
                 <div className="overflow-hidden h-4 mb-4 text-xs flex rounded bg-green-200">
                   <div
                     style={{
-                      width: `${Math.min(completedBookingCount * 10, 100)}%`,
+                      width: `${
+                        (completedBookingCount / allBookingCount) * 100
+                      }%`,
                     }} // Assuming count max is 10, modify as needed
                     className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
                   />

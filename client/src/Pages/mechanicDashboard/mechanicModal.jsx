@@ -1,11 +1,11 @@
 import Swal from "sweetalert2";
-import "./Modal.css"; // Import your CSS file
+import "../../components/Modal.css"; // Import your CSS file
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Modal = ({ showModal, toggleModal, bookingDetails }) => {
+const MechanicModal = ({ showModal, toggleModal, bookingDetails }) => {
   const navigate = useNavigate();
-  
+
   if (!bookingDetails) return null; // Early return if no booking details are provided
 
   const handleAccept = async () => {
@@ -15,7 +15,7 @@ const Modal = ({ showModal, toggleModal, bookingDetails }) => {
         {}
       );
       if (response.status === 200) {
-        toggleModal();
+        closeModal();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -36,7 +36,7 @@ const Modal = ({ showModal, toggleModal, bookingDetails }) => {
         {}
       );
       if (response.status === 200) {
-        toggleModal();
+        closeModal();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -52,6 +52,12 @@ const Modal = ({ showModal, toggleModal, bookingDetails }) => {
 
   const handleAddWork = async () => {
     navigate("/addwork", { state: { bookingDetails } });
+    localStorage.setItem("bookingId", bookingDetails._id);
+  };
+
+  const closeModal = () => {
+    toggleModal();
+    localStorage.removeItem("bookingId");
   };
 
   return (
@@ -59,7 +65,7 @@ const Modal = ({ showModal, toggleModal, bookingDetails }) => {
       <div className="modal-content relative text-gray-100">
         <button
           className="absolute bg-gray-200 h-[30px] w-[30px] top-[5px] right-[5px] text-black rounded-2xl text-[20px]"
-          onClick={toggleModal}
+          onClick={closeModal}
         >
           &times;
         </button>
@@ -113,6 +119,11 @@ const Modal = ({ showModal, toggleModal, bookingDetails }) => {
               </button>
             )}
 
+            {bookingDetails.isAccepted === "completed" && (
+              <span className="text-green-400 font-bold">
+                Booking is Completed
+              </span>
+            )}
             {bookingDetails.isAccepted === "rejected" && (
               <span className="text-red-600 font-bold">
                 Booking is rejected
@@ -125,4 +136,4 @@ const Modal = ({ showModal, toggleModal, bookingDetails }) => {
   );
 };
 
-export default Modal;
+export default MechanicModal;

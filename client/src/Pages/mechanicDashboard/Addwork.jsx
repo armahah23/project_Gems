@@ -3,25 +3,21 @@ import Image2 from "../../assets/photos/Addwork.jpg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
-import { useAuth } from "../../context/AuthContext";
 
 const Addwork = () => {
   const navigate = useNavigate();
   const [warranty, setWarranty] = useState("");
   const [qty, setQty] = useState(0);
   const [unitAmount, setUnitAmount] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [Code, setCode] = useState("");
+  const [partCode, setPartCode] = useState("");
   const [description, setDescription] = useState("");
   const [workItems, setWorkItems] = useState(() => {
     // Load workItems from localStorage if available
     const savedItems = localStorage.getItem("workItems");
     return savedItems ? JSON.parse(savedItems) : [];
   });
-  const { user } = useAuth();
 
   useEffect(() => {
-    console.log({ user: user });
     // Save workItems to localStorage whenever they change
     localStorage.setItem("workItems", JSON.stringify(workItems));
   }, [workItems]);
@@ -30,33 +26,37 @@ const Addwork = () => {
     e.preventDefault();
 
     const tempTotal = qty * unitAmount;
-    setTotal(tempTotal);
     // Create an entry object
     const newWorkItem = {
+      partCode: partCode,
+      description: description,
       warranty: warranty,
       qty: qty,
       unitAmount: unitAmount,
-      total: tempTotal,
-      Code: Code,
-      description: description,
+      total: tempTotal
     };
 
     // Add the new entry to the array
     setWorkItems([...workItems, newWorkItem]);
 
     // Reset form fields
+    setPartCode("");
+    setDescription("");
     setWarranty("");
     setQty(0);
-    setUnitAmount(0);
-    setTotal(0);
-    setCode("");
-    setDescription("");
+    setUnitAmount(0);    
   };
 
   const handleNavigateToInvoice = () => {
     // Navigate to the Invoice page and pass workItems array as state
-    navigate("/invoice", { workItems });
+    navigate("/invoice");
   };
+
+  const navigateToHome = () => {
+    localStorage.removeItem('bookingId');
+    localStorage.removeItem('workItems');
+    navigate("/mdashboard")
+  }
 
   return (
     <div className="design">
@@ -64,7 +64,7 @@ const Addwork = () => {
         <div className="form-section">
           <h1>ADD WORK HERE</h1>
           <button
-            onClick={() => navigate("/mdashboard")}
+            onClick={navigateToHome}
             className="mb-4 w-[45px] h-[35px] bg-gray-200 rounded-lg text-black flex justify-center items-center"
           >
             <FaHome />
@@ -76,8 +76,8 @@ const Addwork = () => {
                 className="form_input"
                 type="text"
                 name="Code"
-                value={Code}
-                onChange={(e) => setCode(e.target.value)}
+                value={partCode}
+                onChange={(e) => setPartCode(e.target.value)}
               />
             </div>
             <div className="form-group">

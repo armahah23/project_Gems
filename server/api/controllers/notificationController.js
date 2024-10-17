@@ -54,7 +54,7 @@ exports.getNotification = async (req, res) => {
 exports.getNotificationForMechanic = async (req, res) => {
   try {
     const { userId } = req.params;
-    const notifications = await Notification.find({ mechanicId: userId })
+    const notifications = await Notification.find({ mechanicId: userId, topic: "Booking" })
       .populate("recieverId")
       .exec();
 
