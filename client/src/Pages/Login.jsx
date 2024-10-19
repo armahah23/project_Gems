@@ -57,7 +57,7 @@ export default function Login() {
 
       // Fetch user data after successful login using the identifier
       const userResponse = await fetch(
-        `http://localhost:3000/api/${userType}/${identifier}`,
+        `http://localhost:3000/api/getUserDetail/${userType}/${identifier}`,
         {
           method: "GET",
           headers: {

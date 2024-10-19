@@ -10,10 +10,10 @@ router.post("/mechanic/login", mechanicController.postMechanic);
 router.post("/user/login", userController.postUser);
 
 // Route to get mechanic by username or email
-router.get("/mechanic/:identifier", mechanicController.getMechanic);
+router.get("/getUserDetail/mechanic/:identifier", mechanicController.getMechanic);
 
 // Route to get user by username or email
-router.get("/user/:identifier", userController.getUser);
+router.get("/getUserDetail/user/:identifier", userController.getUser);
 
 // router.post("/forgot-password", userController.forgotPassword);
 

@@ -16,7 +16,10 @@ import Store from "./Pages/store/Store.jsx";
 import Invoice from "./Pages/Invoice.jsx";
 import Payment from "./Pages/Payment.jsx";
 import Addwork from "./Pages/mechanicDashboard/Addwork.jsx";
-
+import ADashboard from "./Pages/adminDashboard/ADashboard.jsx";
+import ManageBooking from "./Pages/adminDashboard/ManageBooking.jsx";
+import ASideBar from "./Pages/adminDashboard/ASideBar.jsx";
+import './Pages/adminDashboard/ADashboard.css'; // Add your own styling
 
 
 function App() {
@@ -38,8 +41,28 @@ function App() {
       <Route path="/addwork" element={<Addwork />} />
       <Route path="/invoice" element={<Invoice />} />
       <Route path="/payment/:bookingId" element={<Payment />} />
+
+      {/* admin dashboard */}
+      <Route path="/admin/*" element={<AdminLayout />} />
+      
     </Routes>
   );
 }
+
+function AdminLayout() {
+  return (
+    <div className="Adashboard-container">
+      <ASideBar />
+      <div className="admin-content">
+        <Routes>
+          <Route path="dashboard" element={<ADashboard />} />
+          {/* <Route path="manageCustomer" element={<ManageCustomer />} /> */}
+          <Route path="manageBooking" element={<ManageBooking />} />
+        </Routes>
+      </div>
+    </div>
+  );
+}
+
 
 export default App;

@@ -1,6 +1,9 @@
 const Admin = require("../schemas/adminSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Booking = require("../schemas/bookingSchema");
+const Notification = require("../schemas/notificationSchema");
+const mongoose = require("mongoose");
 
 // Admin login
 exports.postAdmin = async (req, res) => {
@@ -28,7 +31,9 @@ exports.postAdmin = async (req, res) => {
 
       if (result) {
         // Generate JWT token
-        const token = jwt.sign({ id: data._id }, 'your_jwt_secret', { expiresIn: '1h' });
+        const token = jwt.sign({ id: data._id }, "your_jwt_secret", {
+          expiresIn: "1h",
+        });
 
         return res.status(200).json({
           status: "SUCCESS",
@@ -85,5 +90,63 @@ exports.getAdmin = async (req, res) => {
       status: "FAILED",
       message: "An error occurred while fetching admin data",
     });
+  }
+};
+exports.getAllBookings = async (req, res) => {
+  try {
+    const allBookings = await Booking.find()
+      .populate("userId")
+      .populate("mechanicId");
+
+    if (allBookings) {
+      res.status(200).json({
+        status: "SUCCESS",
+        message: "Admin data fetched successfully",
+        data: allBookings,
+      });
+    } else {
+      res.status(404).json({
+        status: "FAILED",
+        message: "Booking not found",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while fetching admin data",
+    });
+  }
+};
+exports.assignMechanic = async (req, res) => {
+  const bookingId = req.params.bookingId;
+  const { mechanicId } = req.body;
+
+  try {
+    const mechanicObjectId = new mongoose.Types.ObjectId(mechanicId);
+
+    const booking = await Booking.findByIdAndUpdate(
+      bookingId,
+      { mechanicId: mechanicObjectId, isAccepted: 'pending' },
+      { new: true }
+    );
+
+    if (!booking) {
+      return res.status(404).send('Booking not found');
+    }
+
+    const newNotification = new Notification({
+      topic: "Booking",
+      message: "Booking created successfully",
+      recieverId: booking.userId,
+      mechanicId: mechanicObjectId,
+      bookingId: booking._id,
+    });
+    await newNotification.save();
+
+    res.status(200).send('Booking updated successfully');
+  } catch (error) {
+    console.error('Error during updating booking', error);
+    res.status(500).send('Internal Server Error');
   }
 };
