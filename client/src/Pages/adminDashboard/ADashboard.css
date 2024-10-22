@@ -8,12 +8,14 @@
 /* Sidebar styling */
 .Admin-sidebar {
   width: 250px;
+  height: 100%;
   background-color: #204a64;
   color: white;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .logo {

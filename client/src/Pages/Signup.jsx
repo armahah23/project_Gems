@@ -3,6 +3,7 @@ import "./Signup.css";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/photos/logo.png";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Signup() {
   const [fullname, setFullname] = useState("");
@@ -46,7 +47,12 @@ export default function Signup() {
 
     const data = await response.json();
     if (response.ok) {
-      alert("User created successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'User created successfully!',
+        confirmButtonText: 'OK'
+      });
       navigate("/");
     } else {
       alert("Error: " + data.error);

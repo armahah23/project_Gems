@@ -92,6 +92,7 @@ exports.getAdmin = async (req, res) => {
     });
   }
 };
+
 exports.getAllBookings = async (req, res) => {
   try {
     const allBookings = await Booking.find()
@@ -118,6 +119,7 @@ exports.getAllBookings = async (req, res) => {
     });
   }
 };
+
 exports.assignMechanic = async (req, res) => {
   const bookingId = req.params.bookingId;
   const { mechanicId } = req.body;

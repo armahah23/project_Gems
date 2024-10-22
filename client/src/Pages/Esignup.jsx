@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./Esignup.css";
 import  logo4 from '../assets/photos/logo.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 
@@ -17,6 +18,7 @@ export default function Esignup() {
   const [conformPassword, setConformPassword] = useState("");
   const [securityQuestion, setSecurityQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const navigate = useNavigate();
 
   const questions = [
     { value: "", label: "--Select a Question--" },
@@ -51,7 +53,13 @@ export default function Esignup() {
 
     const data = await response.json();
     if (response.ok) {
-      alert("Mechanic profile created successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Mechanic profile created successfully!',
+        confirmButtonText: 'OK'
+      });
+      navigate('/');
     } else {
       alert("Error: " + data.error);
     }
@@ -135,7 +143,7 @@ export default function Esignup() {
             />
           </div>
         </div>
-        <div className="flex justify-between w-[100%] px-6">
+        <div className="flex justify-between flex-col w-[100%] px-6">
         <div className="flex flex-col">
           <label htmlFor="securityQuestion">Select a Security Question:</label>
           <select
@@ -143,7 +151,7 @@ export default function Esignup() {
             value={securityQuestion}
             onChange={(e) => setSecurityQuestion(e.target.value)}
             required
-            className="w-[300px] h-[40px] border-2 border-white rounded-md"
+            className="w-[50%] h-[40px] border-2 border-white rounded-md"
           >
             {questions.map((question) => (
               <option key={question.value} value={question.value}>
@@ -152,7 +160,7 @@ export default function Esignup() {
             ))}
           </select>
         </div>
-        <div className="flex flex-col w-[50%]">
+        <div className="flex flex-col w-[50%] mt-2">
           <label htmlFor="answer">Your Answer:</label>
           <input
             type="text"
