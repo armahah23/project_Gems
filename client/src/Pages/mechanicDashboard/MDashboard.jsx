@@ -181,7 +181,6 @@ const Dashboard = () => {
                       &times;
                     </span>
                     {notification.map((note, index) => {
-                      // Find the corresponding booking based on the bookingId in notifications
                       const matchedBooking = bookingDetails.find(
                         (booking) => booking._id === note.bookingId
                       );
