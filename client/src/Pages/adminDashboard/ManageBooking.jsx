@@ -87,7 +87,8 @@ const ManageBooking = () => {
           onSubmit={handleSave}
         />
       )}
-      <div>Manage booking</div>
+  
+      <div className="m-6 text-[56px] font-extrabold uppercase text-[#204a64]">Manage booking</div>
       <div className="container mx-auto p-4">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
