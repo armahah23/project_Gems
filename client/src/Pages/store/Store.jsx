@@ -321,7 +321,7 @@ const Store = () => {
     setParts(updatedParts);
   
     // Optionally set the added item
-    setAddedItem(part);
+    setAddedItem(part.code);
 
   console.log(setAddedItem);
 

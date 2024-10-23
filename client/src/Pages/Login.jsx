@@ -135,17 +135,17 @@ export default function Login() {
     e.preventDefault();
 
     const identifier = usernameOrEmail; // Use state variable directly
-    if (!identifier) {
-      Swal.fire({
-        icon: "warning",
-        title: "Incomplete Information!",
-        text: "Please fill in both email/username and password.",
-        timer: 1500,
-        timerProgressBar: true,
-        showConfirmButton: false,
-      });
-      return;
-    }
+    // if (!identifier) {
+    //   Swal.fire({
+    //     icon: "warning",
+    //     title: "Incomplete Information!",
+    //     text: "Please fill in both email/username and password.",
+    //     timer: 1500,
+    //     timerProgressBar: true,
+    //     showConfirmButton: false,
+    //   });
+    //   return;
+    // }
 
     const loginData = { identifier }; // Changed to identifier instead of just username
     const loginUrl =
@@ -174,7 +174,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert(error.message);
+      // alert(error.message);
     }
 
     navigate("/forgotpassword");

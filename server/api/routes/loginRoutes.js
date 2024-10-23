@@ -20,5 +20,13 @@ router.get("/getUserDetail/mechanic/:identifier", mechanicController.getMechanic
 router.get("/getUserDetail/user/:identifier", userController.getUser);
 
 // router.post("/forgot-password", userController.forgotPassword);
+router.post("/user/get-security-question", userController.getSecurityQuestion);
+
+//get answer for the security question and validate
+router.post("/user/validate-security-answer", userController.validateSecurityAnswer);
+
+// Route for resetting password
+router.post("/user/reset-password", userController.resetPassword);
+router.post("/mechanic/reset-password", mechanicController.resetPassword);
 
 module.exports = router;
