@@ -33,60 +33,70 @@ const Dashboard = () => {
 
   const getAllNotification = async () => {
     if (user) {
-      const response = await fetch(
-        `http://localhost:3000/api/notification/getNotificationForMechanic/${user._id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/notification/getNotificationForMechanic/${user._id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
-      const result = await response.json();
-      setNotification(result.data.reverse());
-      if (!response.ok) {
-        console.error("Error: " + result.error);
+        const result = await response.json();
+        if (response.ok) {
+          setNotification(result.data.reverse());
+        } else {
+          console.error("Error: " + result.error);
+        }
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
       }
     }
   };
 
   const getAllBookingDetails = async () => {
     if (user) {
-      const response = await fetch(
-        `http://localhost:3000/api/bookingForMechanic/${user._id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/bookingForMechanic/${user._id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        if (response.ok) {
+          console.log("Fetched booking details:", data.data); // Debugging log
+          setBookingDetails(data.data);
+
+          // Calculate counts based on booking status
+          setAllBookingCount(data.data.length);
+          const acceptedCount = data.data.filter(
+            (booking) => booking.isAccepted === "accepted"
+          ).length;
+          const pendingCount = data.data.filter(
+            (booking) => booking.isAccepted === "pending"
+          ).length;
+          const rejectedCount = data.data.filter(
+            (booking) => booking.isAccepted === "rejected"
+          ).length;
+          const completedCount = data.data.filter(
+            (booking) => booking.isAccepted === "completed"
+          ).length;
+
+          setAcceptedCountBookingCount(acceptedCount);
+          setPendingBookingCount(pendingCount);
+          setRejectedBookingCount(rejectedCount);
+          setCompletedBookingCount(completedCount);
+        } else {
+          console.error("Error: " + data.error);
         }
-      );
-      const data = await response.json();
-      if (response.ok) {
-        setBookingDetails(data.data);
-
-        // Calculate counts based on booking status
-        setAllBookingCount(data.data.length);
-        const acceptedCount = data.data.filter(
-          (booking) => booking.isAccepted === "accepted"
-        ).length;
-        const pendingCount = data.data.filter(
-          (booking) => booking.isAccepted === "pending"
-        ).length;
-        const rejectedCount = data.data.filter(
-          (booking) => booking.isAccepted === "rejected"
-        ).length;
-        const completedCount = data.data.filter(
-          (booking) => booking.isAccepted === "completed"
-        ).length;
-
-        setAcceptedCountBookingCount(acceptedCount);
-        setPendingBookingCount(pendingCount);
-        setRejectedBookingCount(rejectedCount);
-        setCompletedBookingCount(completedCount);
-      } else {
-        console.error("Error: " + data.error);
+      } catch (error) {
+        console.error("Error fetching booking details:", error);
       }
     }
   };
@@ -100,22 +110,26 @@ const Dashboard = () => {
   };
 
   const handleNotificationClick = async (bookingId) => {
-    const response = await fetch(
-      `http://localhost:3000/api/bookingById/${bookingId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/bookingById/${bookingId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setBookingDetails(data.data);
+        setShowModal(false);
+        setShowBookingModal(true);
+      } else {
+        console.error("Error: " + data.error);
       }
-    );
-    const data = await response.json();
-    if (response.ok) {
-      setBookingDetails(data.data);
-      setShowModal(false);
-      setShowBookingModal(true);
-    } else {
-      console.error("Error: " + data.error);
+    } catch (error) {
+      console.error("Error fetching booking by ID:", error);
     }
   };
 
@@ -167,7 +181,6 @@ const Dashboard = () => {
                       &times;
                     </span>
                     {notification.map((note, index) => {
-                      // Find the corresponding booking based on the bookingId in notifications
                       const matchedBooking = bookingDetails.find(
                         (booking) => booking._id === note.bookingId
                       );
@@ -243,7 +256,7 @@ const Dashboard = () => {
 
             <button
               onClick={fetchAllDetails}
-              className="w-[40px] h-[30px] rounded-md shadow-md bg-gray-300 hover:bg-gray-500 hover:text-gray-100 flex justify-center items-center"
+              className="w-[40px] h-[30px] mb-2 rounded-md shadow-md bg-gray-300 hover:bg-gray-500 hover:text-gray-100 flex justify-center items-center"
             >
               <LuRefreshCw />
             </button>

@@ -31,7 +31,7 @@ const Invoice = () => {
   }, [workItems]);
 
   const handleCreateBill = async () => {
-    if (!bookingId || bookingId== "") {
+    if (!bookingId || bookingId === "") {
       Swal.fire({
         position: "top-end",
         icon: "error",
@@ -39,17 +39,17 @@ const Invoice = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      return
+      return;
     }
-    if (workItems.length == 0) {
+    if (workItems.length === 0) {
       Swal.fire({
         position: "top-end",
         icon: "error",
-        title: "Atleast 1 items is required!",
+        title: "At least 1 item is required!",
         showConfirmButton: false,
         timer: 1500,
       });
-      return
+      return;
     }
     const data = {
       workItems: workItems,
@@ -59,10 +59,10 @@ const Invoice = () => {
     try {
       const response = await axios.post(
         `http://localhost:3000/api/addBill/${bookingId}`,
-        data,
+        data
       );
       if (response.status === 200) {
-        console.log({ress:response})
+        console.log({ ress: response });
         navigate("/mdashboard");
         setWorkItems([]);
         Swal.fire({
@@ -75,6 +75,13 @@ const Invoice = () => {
       }
     } catch (error) {
       console.error(error);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Failed to create bill!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 

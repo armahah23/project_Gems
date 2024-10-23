@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./ADashboard.css"; // Add your own styling
+import { useAuth } from "../../context/AuthContext";
+// import { Pie } from 'react-chartjs-2';
 
 const ADashboard = () => {
   const [workData, setWorkData] = useState({
@@ -10,26 +12,47 @@ const ADashboard = () => {
     paidWork: 90,
     otherWork: 20,
   });
+  const [bookingDetails, setBookingDetails] = useState([]);
+  const [bookingCount, setBookingCount] = useState(0);
+  const {user} = useAuth();
 
   // Simulate fetching data from API (replace with actual API call)
   useEffect(() => {
-    const fetchData = async () => {
-      // Fetch from your backend API and update workData
-      // Example: const response = await fetch('/api/workdata');
-      // const data = await response.json();
-      // setWorkData(data);
+    const getAllBookingDetails = async () => {
+      if (user) {
+        const response = await fetch(
+          `http://localhost:3000/api/bookingForMechanic/${user._id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        if (response.ok) {
+          setBookingDetails(data.data);
+          console.log(data.data);
+        }
+        setBookingCount(data.data.length);
+      }
     };
-    fetchData();
+
+    getAllBookingDetails();
   }, []);
 
   return (
     <div className="Adashboard">
-      <h2>Dashboard</h2>
-      <div className="card-container">
-        <div className="card">
-          <h3>Total Work</h3>
-          <div className="circle">{workData.totalWork}%</div>
-        </div>
+      <h2 className="m-6 text-[56px] font-extrabold uppercase text-[#204a64]">
+        Dashboard
+      </h2>
+      <div className="card-container ml-8">
+      <div className="max-w-xs p-6 bg-white shadow-lg rounded-lg text-center">
+      <h3 className="text-lg font-semibold mb-4">Total Work</h3>
+      <div className="w-24 h-24 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto text-3xl">
+        {bookingCount}
+      </div>
+    </div>
         <div className="card">
           <h3>Pending Work</h3>
           <div className="circle">{workData.pendingWork}%</div>

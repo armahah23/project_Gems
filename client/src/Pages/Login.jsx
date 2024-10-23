@@ -23,7 +23,14 @@ export default function Login() {
 
     // Check if both fields are filled
     if (!identifier || !pwd) {
-      alert("Please fill in both email/username and password.");
+      Swal.fire({
+        icon: "warning",
+        title: "Incomplete Information!",
+        text: "Please fill in both email/username and password.",
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      });
       return;
     }
 
@@ -34,7 +41,6 @@ export default function Login() {
         : userType === "mechanic"
         ? "http://localhost:3000/api/mechanic/login"
         : "http://localhost:3000/api/admin/login";
-
     try {
       // Send login request
       const response = await fetch(loginUrl, {
@@ -84,16 +90,24 @@ export default function Login() {
       localStorage.setItem("userRole", userType);
       localStorage.setItem("userId", userData.data._id);
       localStorage.setItem("userEmail", userData.data.email);
-      
+
       Swal.fire({
         title: "Success!",
         text: "Login successful.",
         icon: "success",
         confirmButtonText: "OK",
       });
-      
+
       if (userType === "mechanic") {
         navigate("/mdashboard");
+        Swal.fire({
+          title: "Success!",
+          text: "Login successful.",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      } else if (userType === "admin") {
+        navigate("/admin/dashboard");
         Swal.fire({
           title: "Success!",
           text: "Login successful.",
@@ -122,7 +136,14 @@ export default function Login() {
 
     const identifier = usernameOrEmail; // Use state variable directly
     if (!identifier) {
-      alert("Please fill in both email/username and password.");
+      Swal.fire({
+        icon: "warning",
+        title: "Incomplete Information!",
+        text: "Please fill in both email/username and password.",
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      });
       return;
     }
 

@@ -57,7 +57,7 @@ const MechanicModal = ({ showModal, toggleModal, bookingDetails }) => {
 
   const closeModal = () => {
     toggleModal();
-    localStorage.removeItem("bookingId");
+    // localStorage.removeItem("bookingId");
   };
 
   return (
