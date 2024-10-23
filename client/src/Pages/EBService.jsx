@@ -1,6 +1,8 @@
 import './EBService.css'; // Add necessary CSS styles here
 import  ImageT from '../assets/photos/T.png'
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../components/Navbar"
+
 
 
 function EBService() {
@@ -18,6 +20,7 @@ function EBService() {
 
   return (
     <div className="EBService">
+      <div><Navbar /></div>
       
       <main>
         {/* Slot Booking Section */} 
