@@ -51,6 +51,21 @@ const Invoice = () => {
       });
       return;
     }
+
+    // Ensure all required fields are provided
+    for (const item of workItems) {
+      if (!item.partCode || !item.description || !item.warranty) {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "All work item fields are required!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        return;
+      }
+    }
+
     const data = {
       workItems: workItems,
       netTotal: netTotal,
