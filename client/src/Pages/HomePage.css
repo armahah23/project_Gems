@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.text-color {
+  color: #13496b;
+}
+
 .bg-primary {
   background-color: #13496b;
 }
@@ -187,7 +191,7 @@
   margin: 80px auto;
 }
 .service-details {
-  padding-left: 10%;
+  padding-left: 15%;
 }
 .service-details h2 {
   color: black;

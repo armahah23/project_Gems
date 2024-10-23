@@ -21,6 +21,7 @@ import x from "../assets/icons/x.png";
 import insta from "../assets/icons/insta.png";
 import Swal from "sweetalert2";
 import UserModal from "../components/UserModal";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
 
 const HomePage = () => {
   const { user, setUser, fetchUser } = useAuth();
@@ -107,10 +108,10 @@ const HomePage = () => {
       setFormData({ name: "", number: "", message: "" }); // Reset form after submission
     } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
+        icon: "error",
+        title: "Error",
         text: `Error: ${data.error}`, // Display the dynamic error message
-        confirmButtonText: 'OK'
+        confirmButtonText: "OK",
       });
     }
   };
@@ -283,17 +284,22 @@ const HomePage = () => {
           </section>
 
           {/* What We Do Section */}
-          <section className="what-we-do container">
+          <section className="flex justify-center">
             <div className="mechanic-image">
               <img
                 className="ImageB"
                 src={ImageB}
-                style={{ width: "400px", height: "400px" }}
+                style={{ width: "350px", height: "300px" }}
                 alt="Mechanic"
               />
             </div>
-            <div className="service-details">
-              <h2>What we do?</h2>
+            <div className="service-details ">
+              <h2
+                className="text-4xl mb-1 text-extrabold"
+                style={{ color: "#13496b" }}
+              >
+                What we do?
+              </h2>
               <p>
                 Streamlining vehicle service operations with smart solutions for
                 efficiency and ease.
@@ -306,7 +312,12 @@ const HomePage = () => {
                 <li>🔧 Inventory & Parts Management</li>
                 <li>🔧 Technician Assignment System</li>
               </ul>
-              <h2>Contact Us →</h2>
+              <div className="flex gap-2 items-center w-[180px] cursor-pointer">
+                <h2 style={{ color: "#13496b" }} className="text-[24px]">
+                  Contact Us
+                </h2>
+                <FaArrowRightFromBracket />
+              </div>
             </div>
           </section>
 
@@ -321,7 +332,12 @@ const HomePage = () => {
 
           {/* History Section */}
           <section className="history-section-container">
-            <h2>History</h2>
+            <h2
+              style={{ color: "#13496b" }}
+              className="text-[48px] uppercase font-semibold text-3xl"
+            >
+              History
+            </h2>
             <p className="history-text">
               Established in 2010, our vehicle service center began as a small
               family-owned garage with a passion for quality and customer care.
@@ -337,58 +353,105 @@ const HomePage = () => {
 
           {/* Our Services Section */}
           <section className="p-5">
-            <h2 className="flex justify-center items-center font-semibold text-3xl p-2">
+            <h2
+              style={{ color: "#13496b" }}
+              className="flex justify-center text-[48px] items-center uppercase font-semibold text-3xl mb-4 p-2"
+            >
               Our Services
             </h2>
 
             <div className="flex flex-wrap justify-center px-3 space-x-4">
               {/* Service D */}
-              <div className="service-card flex flex-col items-center justify-between w-[350px] h-[450px] p-4 bg-white rounded-lg shadow-md mb-6">
+              <div
+                className="service-card flex flex-col items-center justify-between w-[350px] h-[750px] p-4 bg-white rounded-lg shadow-md  mb-6"
+                style={{ boxShadow: "0 0 10px 0 rgba(19, 73, 107, 0.6)" }}
+              >
                 <img
                   className="ImageD"
                   src={ImageD}
                   style={{ width: "350px", height: "300px" }}
                   alt="Service D"
                 />
-                <p className="service-description text-center mt-auto">ADMIN</p>
+                <p
+                  className="service-description text-center mt-auto text-[24px]"
+                  style={{ color: "#13496b" }}
+                >
+                  ADMIN
+                </p>
                 <p>
-                  An administrator in our vehicle service center manages tasks,
-                  tracks repairs, and ensures efficient service to meet customer
-                  needs.
+                  our administrator can deliver several benefits to enhance your
+                  experience: efficient task management ensures your service
+                  requests are handled promptly; real-time monitoring of repairs
+                  keeps you updated on your vehicle's status; direct
+                  communication allows you to ask questions and receive timely
+                  responses; insightful reports help improve our service
+                  quality; convenient appointment scheduling fits your busy
+                  life; and tracking your preferences allows us to personalize
+                  our services just for you. Your satisfaction is our top
+                  priority!
                 </p>
               </div>
 
               {/* Service E */}
-              <div className="service-card flex flex-col items-center justify-between w-[350px] h-[450px] p-4 bg-white rounded-lg shadow-xl mb-6">
+              <div
+                style={{ boxShadow: "0 0 10px 0 rgba(19, 73, 107, 0.6)" }}
+                className="service-card flex flex-col items-center justify-between w-[350px] h-[800px] p-4 bg-white rounded-lg shadow-xl mb-6"
+              >
                 <img
                   className="ImageE"
                   src={ImageE}
                   style={{ width: "350px", height: "300px" }}
                   alt="Service E"
                 />
-                <p className="service-description text-center mt-auto">
+                <p
+                  className="service-description text-center mt-auto text-[24px]"
+                  style={{ color: "#13496b" }}
+                >
                   CUSTOMER
                 </p>
                 <p>
-                  A customer in our vehicle service center books services,
-                  tracks repair status, and receives updates for a smooth
-                  experience.
+                  As a valued customer, you can easily manage your vehicle
+                  service needs through our web application. Effortlessly book
+                  appointments for various services at your convenience and
+                  track your vehicle’s repair status in real time. Stay informed
+                  with instant notifications about service updates, special
+                  promotions, and reminders. You can also request necessary
+                  vehicle spare parts and access a comprehensive list of
+                  services tailored to your vehicle. Additionally, communicate
+                  directly with our team for any questions or concerns
+                  throughout the service process. With these features, we aim to
+                  provide you with a seamless and satisfying service experience!
                 </p>
               </div>
 
               {/* Service F */}
-              <div className="service-card flex flex-col items-center justify-between w-[350px] h-[450px] p-4 bg-white rounded-lg shadow-md mb-6">
+              <div
+                style={{ boxShadow: "0 0 10px 0 rgba(19, 73, 107, 0.6)" }}
+                className="service-card flex flex-col items-center justify-between w-[350px] h-[780px] p-4 bg-white rounded-lg shadow-md mb-6"
+              >
                 <img
                   src={ImageF}
                   style={{ width: "350px", height: "300px" }}
                   alt="Service F"
                 />
-                <p className="service-description text-center mt-auto">
+                <p
+                  className="service-description text-center mt-auto text-[24px]"
+                  style={{ color: "#13496b" }}
+                >
                   MECHANIC
                 </p>
                 <p>
-                  A mechanic in vehicle service center handles repairs, updates
-                  progress, and ensures timely completion of services.
+                  Through the web application, our mechanics play a crucial role
+                  in enhancing your service experience. They handle repairs with
+                  precision and can update you on the progress of your vehicle
+                  in real time, ensuring you’re always informed about the status
+                  of your service. Mechanics can also send instant notifications
+                  regarding service completion, any additional repairs needed,
+                  and estimated timelines, allowing you to stay in the loop.
+                  Additionally, they can provide insights on vehicle
+                  maintenance, answer your questions, and ensure timely
+                  completion of all services, ultimately delivering a smooth and
+                  satisfactory experience for you.
                 </p>
               </div>
             </div>
@@ -411,8 +474,14 @@ const HomePage = () => {
         <div className="relative">
           <div className="py-[70px]">
             <div className="w-[100vw] flex justify-center items-center bg-white bg-transparent relative z-[1]">
-              <div className="bg-white bg-opacity-40 shadow-2xl rounded-3xl w-[60%] p-[50px]">
-                <p className="text-center underline text-[26px] font-bold">
+              <div
+                style={{ boxShadow: "0 0 20px 0 rgba(19, 73, 107, 0.2)" }}
+                className="bg-white bg-opacity-40 shadow-2xl rounded-3xl w-[60%] p-[50px]"
+              >
+                <p
+                  className="text-center underline text-[26px] font-bold"
+                  style={{ color: "#13496b" }}
+                >
                   Need Help!
                 </p>
 
@@ -434,7 +503,7 @@ const HomePage = () => {
                 <div className="w-[100%] flex gap-16 items-center">
                   <div className="w-[50%] h-[400px] p-4 flex flex-col justify-center items-center rounded-[20px] bg-gray-500 text-white">
                     <div className="text-center mb-4">
-                      <h3 className="font-bold bg-green-500 text-white rounded-2 mb-4">
+                      <h3 className="font-bold bg-green-700 text-white rounded-2 mb-4">
                         OPENING HOURS
                       </h3>
                       <p className="text-left">Mon - Fri: 7 AM - 6 PM</p>
@@ -459,36 +528,39 @@ const HomePage = () => {
                       <p>0778353336 / 0771234567 / 0771234567</p>
                     </div>
 
-                    <div className="flex gap-3 ">
-                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px]">
+                    <div className="flex gap-3  ">
+                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px] cursor-pointer">
                         <img
                           src={google_icon}
                           alt="Google Icon"
                           className="h-[30px]"
                         />
                       </div>
-                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px]">
+                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px] cursor-pointer">
                         <img
                           src={facebook_icon}
                           alt="Facebook Icon"
                           className="h-[30px]"
                         />
                       </div>
-                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px]">
+                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px] cursor-pointer">
                         <img
                           src={insta}
                           alt="Insta Icon"
                           className="h-[30px]"
                         />
                       </div>
-                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px]">
+                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px] cursor-pointer">
                         <img src={x} alt="X Icon" className="h-[30px]" />
                       </div>
                     </div>
                   </div>
 
                   <div className="w-[50%]">
-                    <h2 className="text-black-300 text-2xl mb-[0] px-8 font-bold">
+                    <h2
+                      className="text-black-300 text-2xl mb-[0] px-8 font-bold"
+                      style={{ color: "#13496b" }}
+                    >
                       Feedback
                     </h2>
                     <form onSubmit={handleSubmit} className="feedback-form p-8">
