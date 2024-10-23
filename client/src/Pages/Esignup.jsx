@@ -61,7 +61,12 @@ export default function Esignup() {
       });
       navigate('/');
     } else {
-      alert("Error: " + data.error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: `Error: ${data.error}`, // Display the dynamic error message
+        confirmButtonText: 'OK'
+      });
     }
   };
 

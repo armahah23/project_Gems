@@ -320,11 +320,14 @@ export function ForgotPassword() {
           data.message || `Request failed with status ${response.status}`
         );
       }
-
-      alert("OTP sent to your email");
     } catch (error) {
       console.error("Error:", error);
-      alert(error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: `Error: ${error}`, // Display the dynamic error message
+        confirmButtonText: 'OK'
+      });
     }
   };
 

@@ -162,7 +162,12 @@ function Bookingdetails() {
         "Error during booking creation or notification sending:",
         error
       );
-      alert("Failed to create booking or send notification. Please try again.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Booking Failed!',
+        text: 'Failed to create booking or send notification. Please try again.',
+        confirmButtonText: 'OK'
+      });
     }
   };
 
