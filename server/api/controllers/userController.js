@@ -199,3 +199,73 @@ exports.getQuestion = async (req, res) => {
       res.status(500).json({ message: 'Server error' });
   }
 };
+
+//get security question
+exports.getSecurityQuestion = async (req, res) => {
+  const { identifier } = req.body; // Get the user identifier from the request
+
+  try {
+      // Find the user by the identifier (assuming it's the user ID)
+      const user = await User.findOne({ $or: [{ username: identifier }, { email: identifier }] }).select('securityQuestion'); // Select only the security question field
+
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Send the question back to the frontend
+      res.status(200).json({ question: user.securityQuestion });
+  } catch (error) {
+      console.error('Error fetching user security question:', error);
+      res.status(500).json({ message: 'Server error' });
+  }
+};
+
+//validate answer for security question
+exports.validateSecurityAnswer = async (req, res) => {
+  const { identifier, answer } = req.body; // Get the user identifier and answer from the request
+
+  try {
+      // Find the user by the identifier (assuming it's the user ID)
+      const user = await User.findOne({ $or: [{ username: identifier }, { email: identifier }] });
+
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Compare the provided answer with the stored answer
+      if (answer === user.answer) {
+          return res.status(200).json({ isAnswerCorrect: true });
+      } else {
+          return res.status(200).json({ isAnswerCorrect: false });
+      }
+  } catch (error) {
+      console.error('Error validating security answer:', error);
+      res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// Reset password
+exports.resetPassword = async (req, res) => {
+  const { identifier, password } = req.body; // Get the user identifier and new password from the request
+
+  try {
+      // Hash the new password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Find the user by the identifier (assuming it's the user ID)
+      const user = await User.findOne({ $or: [{ username: identifier }, { email: identifier }] });
+
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Update the user's password
+      user.password = hashedPassword;
+      await user.save();
+
+      res.status(200).json({ message: 'Password reset successfully' });
+  } catch (error) {
+      console.error('Error resetting password:', error);
+      res.status(500).json({ message: 'Server error' });
+  }
+};

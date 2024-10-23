@@ -35,8 +35,10 @@ const mechanicSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  otp: { type: String },
-  otpExpiry: { type: Date },
+  securityQuestion: {
+    type: String,
+    required: true,
+  },
   userRole: {
     type: String,
     required: false,

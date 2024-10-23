@@ -15,6 +15,8 @@ function Bookingdetails() {
 
   useEffect(() => {
     fetchMechanics();
+    console.log(addedItem);
+    
   }, []);
 
   const [form, setForm] = useState({

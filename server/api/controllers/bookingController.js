@@ -247,6 +247,8 @@ exports.completeBooking = async (req, res) => {
   }
 };
 
+
+
 exports.addBill = async (req, res) => {
   const { bookingId } = req.params;
   const { workItems, netTotal } = req.body;
@@ -257,16 +259,14 @@ exports.addBill = async (req, res) => {
       return res.status(404).json({ error: "Booking not found" });
     }
 
-    booking.works = {
-      workItems: workItems,
-      netTotal: netTotal,
-    };
+    booking.works = workItems;
+    booking.netTotal = netTotal;
 
     await booking.save();
 
     res.status(200).json({ message: "Bill added successfully", booking });
   } catch (error) {
-    console.error(error);
+    console.error("Error adding bill:", error);
     res.status(500).json({ error: "Failed to add bill" });
   }
 };

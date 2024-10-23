@@ -74,7 +74,7 @@ const Invoice = () => {
         });
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error creating bill:", error.response ? error.response.data : error.message);
       Swal.fire({
         position: "top-end",
         icon: "error",

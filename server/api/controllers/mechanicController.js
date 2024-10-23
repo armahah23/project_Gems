@@ -15,6 +15,7 @@ exports.createMechanic = async (req, res) => {
     lastname,
     idnumber,
     address,
+    securityQuestion,
   } = req.body;
 
   try {
@@ -31,6 +32,7 @@ exports.createMechanic = async (req, res) => {
       lastname,
       idnumber,
       address,
+      securityQuestion,
     });
 
     // Save the mechanic to the database
@@ -151,9 +153,22 @@ const sendOtpEmail = async (email, otp) => {
   await transporter.sendMail(mailOptions);
 };
 
-// Request OTP for password reset
-exports.requestOtp = async (req, res) => {
-  const { identifier } = req.body;
+
+
+exports.getAllMechanics = async (req, res) => {
+  try {
+    const data = await Mechanic.find();
+
+    res.status(200).send({ message: "got all mechanics", data: data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to fetch user details" });
+  }
+};
+
+//reset password
+exports.resetPassword = async (req, res) => {
+  const { identifier, password } = req.body;
 
   try {
     const mechanicData = await Mechanic.findOne({
@@ -167,58 +182,13 @@ exports.requestOtp = async (req, res) => {
       });
     }
 
-    const otp = otpGenerator.generate(6, {
-      upperCase: false,
-      specialChars: false,
-    });
-    mechanicData.otp = otp;
-    mechanicData.otpExpiry = Date.now() + 3600000; // OTP valid for 1 hour
-    await mechanicData.save();
-
-    await sendOtpEmail(mechanicData.email, otp);
-
-    res.status(200).json({
-      status: "SUCCESS",
-      message: "OTP sent to email",
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      status: "FAILED",
-      message: "An error occurred while requesting OTP",
-    });
-  }
-};
-
-// Reset password using OTP
-exports.resetPassword = async (req, res) => {
-  const { identifier, otp, newPassword } = req.body;
-
-  try {
-    const mechanicData = await Mechanic.findOne({
-      $or: [{ username: identifier }, { email: identifier }],
-    });
-
-    if (
-      !mechanicData ||
-      mechanicData.otp !== otp ||
-      mechanicData.otpExpiry < Date.now()
-    ) {
-      return res.status(400).json({
-        status: "FAILED",
-        message: "Invalid or expired OTP",
-      });
-    }
-
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     mechanicData.password = hashedPassword;
-    mechanicData.otp = undefined;
-    mechanicData.otpExpiry = undefined;
     await mechanicData.save();
 
     res.status(200).json({
       status: "SUCCESS",
-      message: "Password reset successful",
+      message: "Password reset successfully",
     });
   } catch (error) {
     console.error(error);
@@ -226,16 +196,5 @@ exports.resetPassword = async (req, res) => {
       status: "FAILED",
       message: "An error occurred while resetting password",
     });
-  }
-};
-
-exports.getAllMechanics = async (req, res) => {
-  try {
-    const data = await Mechanic.find();
-
-    res.status(200).send({ message: "got all mechanics", data: data });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Failed to fetch user details" });
   }
 };

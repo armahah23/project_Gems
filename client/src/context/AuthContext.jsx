@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
+  
   useEffect(() => {
     fetchUser();
   }, [user]);
