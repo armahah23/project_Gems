@@ -4,6 +4,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import { FaRegEdit } from "react-icons/fa";
 import EditBookingModal from "./EditBooking";
+import Swal from "sweetalert2";
 
 const ManageBooking = () => {
   const [currentBooking, setCurrentBooking] = useState(null);
@@ -27,7 +28,12 @@ const ManageBooking = () => {
         console.log({ ss: data.data });
         setAllBookings(data.data);
       } else {
-        alert(data.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: `Error: ${data.error}`, // Display the dynamic error message
+          confirmButtonText: 'OK'
+        });
       }
     } catch (error) {
       console.error(error);
@@ -65,12 +71,22 @@ const ManageBooking = () => {
         }
       );
       if (response.status === 200) {
-        alert("Booking updated successfully");
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Booking updated successfully.',
+          confirmButtonText: 'OK'
+        });
         fetchBooking();
         setIsEditModalOpen(false);
         setCurrentBooking(null);
       } else {
-        alert("Failed to update booking");
+        Swal.fire({
+          icon: 'error',
+          title: 'Update Failed!',
+          text: 'Failed to update booking.',
+          confirmButtonText: 'OK'
+        });
       }
     } catch (error) {
       console.error("Error during updating booking", error);

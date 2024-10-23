@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function ForgotPassword() {
   const [identifier, setIdentifier] = useState("");
@@ -34,7 +35,14 @@ export default function ForgotPassword() {
         // Assuming `data.question` contains the security question from the backend
         setQuestion(data.question); // Show the security question to the user
       } else {
-        alert("User not found. Please check your identifier.");
+        Swal.fire({
+          icon: 'error',
+          title: 'User not found',
+          text: 'Please check your username or Email.',
+          timer: 1000, // Auto-closes after 10 seconds (10000 milliseconds)
+          timerProgressBar: true, // Shows a progress bar
+          showConfirmButton: false // No "OK" button, closes automatically
+        });
       }
     } catch (error) {
       console.error(error);
@@ -66,14 +74,37 @@ export default function ForgotPassword() {
 
         if (result.isAnswerCorrect) {
           // Navigate to reset password section with userType and identifier
-          alert("Correct answer. Redirecting to reset password page.");
-          navigate("/resetpassword", { state: { userType, identifier } });
+          Swal.fire({
+            icon: 'success',
+            title: 'Correct answer!',
+            text: 'Redirecting to reset password page.',
+            timer: 5000, 
+            timerProgressBar: true,
+            showConfirmButton: false
+          }).then(() => {
+            // Navigate after alert closes
+            navigate("/resetpassword", { state: { userType, identifier } });
+          });
         } else {
-          alert("Incorrect answer. Redirecting to login page.");
-          navigate("/login");
+          Swal.fire({
+            icon: 'error',
+            title: 'Incorrect answer!',
+            text: 'Redirecting to login page.',
+            timer: 5000, 
+            timerProgressBar: true,
+            showConfirmButton: false 
+          }).then(() => {
+            // Redirect after the alert closes
+            navigate("/login");
+          });
         }
       } else {
-        alert("Error validating answer.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'Error validating answer.',
+          confirmButtonText: 'OK'
+        });
       }
     } catch (error) {
       console.error(error);
