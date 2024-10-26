@@ -43,6 +43,8 @@ function App() {
       <Route path="/payment/:bookingId" element={<Payment />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
 
+
+
       {/* admin dashboard */}
       <Route path="/admin/*" element={<AdminLayout />} />
       {/* <Route path="/admin" element={<ADashboard />} /> */}
