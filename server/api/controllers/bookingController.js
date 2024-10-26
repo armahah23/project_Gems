@@ -2,7 +2,6 @@ const Booking = require("../schemas/bookingSchema");
 const User = require("../schemas/userSchema"); // Import the User model
 const Notification = require("../schemas/notificationSchema");
 
-
 // Create a new booking
 exports.createBooking = async (req, res) => {
   const {
@@ -247,8 +246,6 @@ exports.completeBooking = async (req, res) => {
   }
 };
 
-
-
 exports.addBill = async (req, res) => {
   const { bookingId } = req.params;
   const { workItems, netTotal } = req.body;
@@ -263,6 +260,16 @@ exports.addBill = async (req, res) => {
     booking.netTotal = netTotal;
 
     await booking.save();
+
+    // Create a notification for the user
+    const newNotification = new Notification({
+      topic: "Bill Added",
+      message: `A new bill has been added with a total of ${netTotal}`,
+      recieverId: booking.userId,
+      mechanicId: booking.mechanicId,
+      bookingId: booking._id,
+    });
+    await newNotification.save();
 
     res.status(200).json({ message: "Bill added successfully", booking });
   } catch (error) {
