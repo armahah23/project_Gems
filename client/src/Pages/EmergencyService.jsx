@@ -12,7 +12,6 @@ function EmergencyService() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (location.trim()) {
       const encodedLocation = encodeURIComponent(location);
       const newMapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${encodedLocation}`;
@@ -22,9 +21,10 @@ function EmergencyService() {
 
   return (
     <div className="emergency">
-      <h1>Emergency Service</h1>
-      <div className="container">
-        <div className="form-container">
+      <div className="background-design"></div>
+      <h1 className='heading'>Emergency Service</h1>
+      <div className="eme-container">
+        <div className="form-container-eme">
           <form onSubmit={handleSubmit}>
             <label>
               Customer Location
@@ -74,16 +74,14 @@ function EmergencyService() {
                 />
               </div>
             </label>
-            <button type="submit">Continue</button>
+            <button className='Continue' type="submit">Continue</button>
           </form>
         </div>
-
-        {/* Map container */}
-        <div className="w-full max-w-lg mx-auto">
+        <div className="map-container">
           <iframe
             src={mapUrl}
             width="100%"
-            height="400"
+            height="500"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
@@ -91,7 +89,6 @@ function EmergencyService() {
           ></iframe>
         </div>
       </div>
-      <div className="background-design"></div>
     </div>
   );
 }
