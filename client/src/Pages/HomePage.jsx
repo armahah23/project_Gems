@@ -22,6 +22,7 @@ import insta from "../assets/icons/insta.png";
 import Swal from "sweetalert2";
 import UserModal from "../components/UserModal";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
+import ServicesDropdown from "../components/ServiceDropdown";
 import ChatButton from "../components/ChatButton";
 import ChatModal from "../components/ChatModal";
 
@@ -185,7 +186,7 @@ const HomePage = () => {
                 <Link to="/">HOME</Link>
                 {token && <Link to="/contact">CONTACT</Link>}
 
-                <Link to="#">SERVICES</Link>
+                <li className="nav-item"><ServicesDropdown /></li>
                 <Link to="#">OFFERS</Link>
                 {token && <Link to="/store">STORE</Link>}
                 {/* <Link to="/store">STORE</Link> */}
