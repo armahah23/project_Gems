@@ -20,6 +20,8 @@ import ADashboard from "./Pages/adminDashboard/ADashboard.jsx";
 import ManageBooking from "./Pages/adminDashboard/ManageBooking.jsx";
 import ASideBar from "./Pages/adminDashboard/ASideBar.jsx";
 import './Pages/adminDashboard/ADashboard.css'; // Add your own styling
+import Mechanics from "./Pages/adminDashboard/mechanicPages/Mechanics.jsx";
+import SingleMechanic from "./Pages/adminDashboard/mechanicPages/SingleMechanic.jsx";
 
 
 function App() {
@@ -60,6 +62,10 @@ function AdminLayout() {
           <Route path="dashboard" element={<ADashboard />} />
           {/* <Route path="manageCustomer" element={<ManageCustomer />} /> */}
           <Route path="manageBooking" element={<ManageBooking />} />
+          <Route path="mechanics">
+            <Route index element={<Mechanics />} />
+            <Route path=":userId" element={<SingleMechanic />} />
+          </Route>
         </Routes>
       </div>
     </div>

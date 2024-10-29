@@ -1,12 +1,9 @@
-const bcrypt = require('bcrypt');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const plainPassword = '#aC2024#'; // Replace with your actual password
-const saltRounds = 10;
+const genAI = new GoogleGenerativeAI("AIzaSyDgpLs7-h1afwL2MGc8wqbjrEMlCjP1Btc");
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-bcrypt.hash(plainPassword, saltRounds, (err, hash) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  console.log('Hashed password:', hash);
-});
+const prompt = "Explain how AI works";
+
+const result = await model.generateContent(prompt);
+console.log(result.response.text());

@@ -22,6 +22,8 @@ import insta from "../assets/icons/insta.png";
 import Swal from "sweetalert2";
 import UserModal from "../components/UserModal";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
+import ChatButton from "../components/ChatButton";
+import ChatModal from "../components/ChatModal";
 
 const HomePage = () => {
   const { user, setUser, fetchUser } = useAuth();
@@ -36,6 +38,16 @@ const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [bookingDetails, setBookingDetails] = useState();
   const [showBookingModal, setShowBookingModal] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     if (user == null) {
@@ -424,10 +436,6 @@ const HomePage = () => {
                 </p>
               </div>
 
-
-
-              
-
               {/* Service F */}
               <div
                 style={{ boxShadow: "0 0 10px 0 rgba(19, 73, 107, 0.6)" }}
@@ -472,6 +480,12 @@ const HomePage = () => {
           >
             <ArrowUp />
           </button>
+
+          {/*Chat Button*/}
+          <div>
+            <ChatButton onClick={handleButtonClick} />
+            <ChatModal isOpen={isModalOpen} onClose={handleCloseModal} />
+          </div>
 
           {/* Feedback Section */}
         </main>
