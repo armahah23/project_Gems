@@ -186,7 +186,7 @@ const HomePage = () => {
                 <Link to="/">HOME</Link>
                 {token && <Link to="/contact">CONTACT</Link>}
 
-                <li className="nav-item"><ServicesDropdown /></li>
+                <Link className="nav-item"><ServicesDropdown /></Link>
                 <Link to="#">OFFERS</Link>
                 {token && <Link to="/store">STORE</Link>}
                 {/* <Link to="/store">STORE</Link> */}
