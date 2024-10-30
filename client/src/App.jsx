@@ -22,7 +22,7 @@ import ASideBar from "./Pages/adminDashboard/ASideBar.jsx";
 import "./Pages/adminDashboard/ADashboard.css"; // Add your own styling
 import SingleMechanic from "./Pages/adminDashboard/mechanicPages/SingleMechanic.jsx";
 import MechanicProfile from "./Pages/adminDashboard/mechanicPages/MechanicProfile.jsx";
-import Dashboard from "./Pages/mechanicDashboard/MDashboard";
+// import Dashboard from "./Pages/mechanicDashboard/MDashboard";
 import DashboardContent from "./Pages/adminDashboard/adminComponent/DashboardContent.jsx";
 
 function App() {
