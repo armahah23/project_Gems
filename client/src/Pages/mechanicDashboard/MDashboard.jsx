@@ -20,6 +20,18 @@ const Dashboard = () => {
   const [completedBookingCount, setCompletedBookingCount] = useState(0);
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    const role = localStorage.getItem("userRole");
+    if (!role) {
+      window.location.href = "/login";
+    } else if (role === "admin") {
+      window.location.href = "/admin/dashboard";
+    } else if (role === "user" )  {
+      window.location.href = "/home";
+    } 
+    }, []);
+
   useEffect(() => {
     fetchAllDetails();
   }, [user]);

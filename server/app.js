@@ -6,6 +6,7 @@ const cors = require("cors");
 const loginRoutes = require("./api/routes/loginRoutes"); // Import login routes
 const adminRoutes = require("./api/routes/adminRoutes"); // Import admin routes
 const notificationRoutes = require("./api/routes/notificationRoutes");
+const chatbotRoutes = require("./api/routes/chatbotRoutes")
 const jwt = require("jsonwebtoken");
 // const paymentRoutes = require("./api/routes/paymentGateway");
 const bcrypt = require('bcrypt');
@@ -44,6 +45,8 @@ app.use("/api", require("./api/routes/bookingRoutes"));
 app.use("/api", require("./api/routes/userRoutes"));
 
 app.use("/api", notificationRoutes);
+
+app.use("/api", chatbotRoutes);
 
 // app.use("/api", paymentRoutes);
 

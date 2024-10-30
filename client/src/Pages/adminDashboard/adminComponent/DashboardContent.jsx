@@ -24,7 +24,7 @@ function DashboardContent() {
         <img src={companyLogo} alt="Company Logo" className="w-75 h-64 mb-8" />
 
         {/* Welcome Message */}
-        <h1 className="text-4xl font-bold mb-4 uppercase">
+        <h1 className="text-4xl font-bold mb-4 text-red-500 uppercase">
           Welcome, <span className="text-white">Admin!</span>
         </h1>
 

@@ -258,6 +258,8 @@ exports.addBill = async (req, res) => {
 
     booking.works = workItems;
     booking.netTotal = netTotal;
+    booking.isAccepted = "completed";
+    booking.isPaid = false;
 
     await booking.save();
 
@@ -288,4 +290,4 @@ exports.getAllBookings = async (req, res) => {
     console.error(error);
     res.status(500).send({ error: "Failed to fetch user details" });
   }
-}
+};

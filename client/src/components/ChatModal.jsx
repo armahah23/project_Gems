@@ -1,7 +1,44 @@
+import { useState, useEffect, useRef } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
+import { IoMdContact } from "react-icons/io";
+import axios from 'axios';
 
 const ChatModal = ({ isOpen, onClose }) => {
+  // const [userInput, setUserInput] = useState("");
+  const [prompt, setPrompt] = useState('');
+  const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null);
+
+  // Scrolls to bottom when messages change
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+  
+  // Function to scroll to the latest message
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   if (!isOpen) return null;
+
+  
+
+  const handleInput = async (e) => {
+    e.preventDefault();
+    const newMessage = { type: 'user', text: prompt };
+    setMessages((prev) => [...prev, newMessage]);
+    setPrompt("");
+
+    try {
+      const res = await axios.post('http://localhost:3000/api/chat', { prompt });
+      const botMessage = { type: 'bot', text: res.data.response };
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Error fetching AI response:", error);
+      const errorMessage = { type: 'bot', text: "Error fetching AI response" };
+      setMessages((prev) => [...prev, errorMessage]);
+    }
+  };
 
   return (
     <div style={styles.overlay}>
@@ -13,14 +50,35 @@ const ChatModal = ({ isOpen, onClose }) => {
           </button>
         </div>
         <div style={styles.content}>
-          {/* Chat bot UI goes here */}
-          <p>Chat with our bot!</p>
+          <div style={styles.messagesContainer}>
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} items-center mb-2`}
+              >
+                <div
+                  className={`px-3 text-[12px] py-2 rounded-lg max-w-[70%] ${
+                    message.type === 'user' ? 'bg-blue-500 text-white rounded-l-md' : 'bg-blue-200 text-gray-700 rounded-r-md'
+                  }`}
+                >
+                  {message.text}
+                </div>
+                {message.type === 'user' ? <IoMdContact /> : null}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
         </div>
-        <div >
-            <input type="text" style={styles.input} />
-            <div style={styles.sendButton}>
-                <FaLocationArrow />
-            </div>
+        <div style={styles.inputContainer}>
+          <input
+            type="text"
+            style={styles.input}
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+          />
+          <div onClick={handleInput} style={styles.sendButton}>
+            <FaLocationArrow />
+          </div>
         </div>
       </div>
     </div>
@@ -43,23 +101,18 @@ const styles = {
   modal: {
     backgroundColor: "white",
     borderRadius: "8px",
-    // padding: '20px',
     width: "300px",
     height: "400px",
-    position: "relative",
+    position: "absolute",
+    right: "20px",
+    display: "flex",
+    flexDirection: "column",
   },
   closeButton: {
-    // position: 'absolute',
-    // top: '10px',
-    // right: '10px',
     background: "none",
     border: "none",
     fontSize: "16px",
     cursor: "pointer",
-    marginleft: "10px",
-  },
-  content: {
-    marginTop: "10px",
     marginLeft: "10px",
   },
   div: {
@@ -71,19 +124,30 @@ const styles = {
     width: "100%",
     color: "white",
   },
+  content: {
+    flex: 1,
+    padding: "10px",
+    overflowY: "auto", // Makes the chat scrollable
+  },
+  messagesContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  },
+  inputContainer: {
+    display: "flex",
+    alignItems: "center",
+    padding: "10px",
+    borderTop: "1px solid #bbb",
+  },
   input: {
-    position: "absolute",
-    bottom: "10px",
-    left: "10px",
-    width: "80%",
+    flex: 1,
     padding: "10px",
     borderRadius: "5px",
-    border: "1px solid #ccc",
+    border: "1px solid #bbb",
   },
-  sendButton : {
-    position: "absolute",
-    bottom: "20px",
-    right: "10px",
+  sendButton: {
+    marginLeft: "10px",
     width: "30px",
     height: "30px",
     backgroundColor: "#13496b",
@@ -93,7 +157,7 @@ const styles = {
     alignItems: "center",
     borderRadius: "50%",
     cursor: "pointer",
-  }
+  },
 };
 
 export default ChatModal;
