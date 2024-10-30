@@ -277,3 +277,15 @@ exports.addBill = async (req, res) => {
     res.status(500).json({ error: "Failed to add bill" });
   }
 };
+
+// Get all bookings
+exports.getAllBookings = async (req, res) => {
+  try {
+    const data = await Booking.find();
+
+    res.status(200).send({ message: "got all users", data: data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to fetch user details" });
+  }
+}

@@ -269,3 +269,15 @@ exports.resetPassword = async (req, res) => {
       res.status(500).json({ message: 'Server error' });
   }
 };
+
+//get all users
+exports.getAllUsers = async (req, res) => {
+  try {
+    const data = await User.find();
+
+    res.status(200).send({ message: "got all users", data: data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to fetch user details" });
+  }
+};

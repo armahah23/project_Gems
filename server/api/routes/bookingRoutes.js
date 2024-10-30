@@ -13,6 +13,7 @@ router.get('/bookingForMechanic/:userId', bookingController.bookingForMechanic);
 router.post('/acceptBooking/:bookingId', bookingController.acceptBooking);
 router.post('/rejectBooking/:bookingId', bookingController.rejectBooking);
 router.post('/completeBooking/:bookingId', bookingController.completeBooking);
+router.get('/bookingCount/getAllBookings', bookingController.getAllBookings);
 
 router.post('/addBill/:bookingId', bookingController.addBill);
 

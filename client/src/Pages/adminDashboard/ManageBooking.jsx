@@ -5,6 +5,8 @@ import { TiTick } from "react-icons/ti";
 import { FaRegEdit } from "react-icons/fa";
 import EditBookingModal from "./EditBooking";
 import Swal from "sweetalert2";
+import { MdDashboard } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const ManageBooking = () => {
   const [currentBooking, setCurrentBooking] = useState(null);
@@ -104,7 +106,12 @@ const ManageBooking = () => {
         />
       )}
   
-      <div className="m-6 text-[56px] font-extrabold uppercase text-[#204a64]">Manage booking</div>
+      <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
+      <div>Manage booking</div>
+      <Link to="/admin/dashboard" className="cursor:pointer">
+      <MdDashboard />
+      </Link>
+      </div>
       <div className="container mx-auto p-4">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">

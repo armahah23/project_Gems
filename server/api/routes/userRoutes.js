@@ -20,5 +20,8 @@ router.post('/feedback', userController.postFeedback);
 //route for get question to reset password
 router.get('/user/:identifier', userController.getQuestion);
 
+//route for get all users
+router.get('/userCount/getAllUsers', userController.getAllUsers);
+
  
 module.exports = router;

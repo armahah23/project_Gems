@@ -198,3 +198,15 @@ exports.resetPassword = async (req, res) => {
     });
   }
 };
+
+//mechanic count
+exports.getAllMechanicsCount = async (req, res) => {
+  try {
+    const data = await Mechanic.find();
+
+    res.status(200).send({ message: "got all mechanics count", data: data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: "Failed to fetch mechanic count" });
+  }
+}
