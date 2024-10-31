@@ -26,7 +26,6 @@ import MechanicProfile from "./Pages/adminDashboard/mechanicPages/MechanicProfil
 import DashboardContent from "./Pages/adminDashboard/adminComponent/DashboardContent.jsx";
 import PaymentCancel from "./components/PaymentCancel.jsx";
 import PaymentSuccess from "./components/PaymentSuccess.jsx";
-import CheckoutForm from "./components/CheckoutForm.jsx";
 
 function App() {
   return (
@@ -50,7 +49,7 @@ function App() {
       <Route path="/resetpassword" element={<ResetPassword />} />
       <Route path="/paymentcancel" element={<PaymentCancel />} />
       <Route path="/paymentSuccess" element={<PaymentSuccess />} />
-      <Route path="checkout" element={<CheckoutForm />} />
+
 
       {/* admin dashboard */}
       <Route path="/admin" element={<DashboardContent />} />
