@@ -51,6 +51,7 @@ exports.getNotification = async (req, res) => {
     });
   }
 };
+
 exports.getNotificationForMechanic = async (req, res) => {
   try {
     const { userId } = req.params;

@@ -1,15 +1,17 @@
+require('dotenv').config(); // Load environment variables from .env file
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 const loginRoutes = require("./api/routes/loginRoutes"); // Import login routes
 const adminRoutes = require("./api/routes/adminRoutes"); // Import admin routes
 const notificationRoutes = require("./api/routes/notificationRoutes");
-const chatbotRoutes = require("./api/routes/chatbotRoutes")
-const jwt = require("jsonwebtoken");
-// const paymentRoutes = require("./api/routes/paymentGateway");
-const bcrypt = require('bcrypt');
+const chatbotRoutes = require("./api/routes/chatbotRoutes");
+const paymentRoutes = require("./api/routes/paymentRoutes");
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -48,13 +50,8 @@ app.use("/api", notificationRoutes);
 
 app.use("/api", chatbotRoutes);
 
-// app.use("/api", paymentRoutes);
-
-// app.use("/api", require("./api/routes/bookingRoutes"));
-// app.post("/payment", (req, res) => {
-//   // Your payment logic here
-//   res.send("Payment processed");
-// });
+// payment routes
+app.use("/api", paymentRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

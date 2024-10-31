@@ -24,6 +24,9 @@ import SingleMechanic from "./Pages/adminDashboard/mechanicPages/SingleMechanic.
 import MechanicProfile from "./Pages/adminDashboard/mechanicPages/MechanicProfile.jsx";
 // import Dashboard from "./Pages/mechanicDashboard/MDashboard";
 import DashboardContent from "./Pages/adminDashboard/adminComponent/DashboardContent.jsx";
+import PaymentCancel from "./components/PaymentCancel.jsx";
+import PaymentSuccess from "./components/PaymentSuccess.jsx";
+import CheckoutForm from "./components/CheckoutForm.jsx";
 
 function App() {
   return (
@@ -45,6 +48,9 @@ function App() {
       <Route path="/invoice" element={<Invoice />} />
       <Route path="/payment/:bookingId" element={<Payment />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
+      <Route path="/paymentcancel" element={<PaymentCancel />} />
+      <Route path="/paymentSuccess" element={<PaymentSuccess />} />
+      <Route path="checkout" element={<CheckoutForm />} />
 
       {/* admin dashboard */}
       <Route path="/admin" element={<DashboardContent />} />
