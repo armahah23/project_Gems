@@ -18,29 +18,41 @@ function SignupOption () {
     navigate('/csignup');
   }
 
-  return (
-    <div className="SignupOption">
-      <div className="logo3">
-      <img src={logo2} style={{ width: '350px', height: 'Auto' }} />
+ return (
+    <div className="signupoption-container">
+      <div className="logo-wrapper">
+      <img src={logo2} />
       </div>
-      <section className="SignupOption-header">
       
-        <div className="text-main">
-      
-          <h2><span>Mechanic</span><br />Sign up</h2>
-          <h2><span>Customer</span><br />Sign up</h2>
-          
-        </div>
-        <div className="sign-up-buttons">
-          <div className='image-button' onClick={handleClick}>
-          <img src={employeeImage} style={{ width: 'auto', height: 'Auto' }} />
+      <div className="signup-content">
+        <div className="signup-options">
+          <div className="signup-option">
+            <h2 className="option-title">
+              <span className="highlight">Mechanic</span>
+              <br />Sign up
+            </h2>
+            <button 
+              className="image-button"
+              onClick={handleClick}
+            >
+              <img src={employeeImage} />
+            </button>
           </div>
-          <div className='image-button' onClick={handleCustomerClick}>
-          <img src={customerImage} style={{ width: 'auto', height: 'Auto' }} />
+
+          <div className="signup-option">
+            <h2 className="option-title">
+              <span className="highlight">Customer</span>
+              <br />Sign up
+            </h2>
+            <button 
+              className="image-button"
+              onClick={handleCustomerClick}
+            >
+             <img src={customerImage} />
+            </button>
           </div>
         </div>
-      </section>
-      
+      </div>
     </div>
   );
 }

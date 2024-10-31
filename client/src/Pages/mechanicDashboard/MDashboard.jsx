@@ -1,3 +1,5 @@
+// MDashboard.jsx file
+
 import "./mdashboard.css";
 import logo from "../../assets/photos/logo.png";
 import { useEffect, useState } from "react";

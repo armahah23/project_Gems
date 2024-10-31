@@ -122,13 +122,13 @@ const Addwork = () => {
             <div className="flex gap-2 justify-between">
               <button
                 type="submit"
-                className="bg-red-500 py-2 mb-3 rounded w-[300px] hover:bg-red-700"
+                className="bg-red-500 py-2 mb-3 mr- rounded w-[200px] hover:bg-red-700"
               >
                 ADD TO BILL
               </button>
               <button
                 onClick={handleNavigateToInvoice}
-                className="bg-green-500 py-2 mb-3 rounded w-[300px] hover:bg-green-700 uppercase"
+                className="bg-green-500 py-2 mb-3 rounded w-[200px] hover:bg-green-700 uppercase"
               >
                 View Invoice
               </button>
@@ -139,7 +139,7 @@ const Addwork = () => {
           <img
             className="image2"
             src={Image2}
-            style={{ width: "auto", height: "500px" }}
+            
           />
         </div>
       </div>
