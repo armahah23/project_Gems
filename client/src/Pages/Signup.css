@@ -2,29 +2,20 @@
   background-color: rgb(19, 73, 107);
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.logo1 {
-  margin-top: 10%;
-  margin-left: 70%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .signup-form {
-  background: rgba(
-    0,
-    0,
-    0,
-    0.781
-  ); /* Add a semi-transparent background for the form */
-  
-  margin-left: -450px;
+  background: rgba(0, 0, 0, 0.781);
   padding: 5px;
-  width: 800px;
-  height: 90%;
+  width: 750px;
+  margin-left: -400px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -33,10 +24,7 @@
 
 .signup-form h1 {
   color: red;
-  margin-top: 10px;
   font-size: 30px;
-
-  font-family: Average;
 }
 
 .signup-form span {
@@ -46,15 +34,22 @@
 .main-s {
   display: flex;
   gap: 20px;
-  margin-top: 60px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.column-3,
+.column-4 {
+  flex: 1;
+  padding: 10px;
 }
 
 .signup-form label {
   color: white;
-  text-align: left;
 }
 
-.signup-form input {
+.signup-form input,
+.signup-form select {
   margin-bottom: 15px;
   padding: 10px;
   width: 100%;
@@ -70,23 +65,68 @@
   border-radius: 5px;
   cursor: pointer;
   width: 50%;
+  max-width: 200px;
 }
 
 .signup-form button:hover {
   background-color: #0056b3;
 }
-.signup-form button b {
-  font-size: 15px;
-}
-
-
 
 .signup-form a {
   color: #0056b3;
 }
 
-.main #password-not-match {
+#password-not-match {
   color: red;
-  margin-left: -10%;
-  margin-top: 5%;
+}
+
+.logo {
+  width: 350px;
+  height: auto;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .main-s {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .signup-form {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .signup-form h1 {
+    font-size: 25px;
+  }
+
+  .signup-form button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-form h1 {
+    font-size: 22px;
+  }
+  .signup-form input,
+  .signup-form select {
+    width: 100%;
+  }
+
+  .signup-form button {
+    width: 100%;
+  }
+
+  .signup-container {
+    padding: 15px;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .signup-form {
+    width: 100%;
+    margin-left: 0;
+  }
 }
