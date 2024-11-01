@@ -26,7 +26,9 @@ import MechanicProfile from "./Pages/adminDashboard/mechanicPages/MechanicProfil
 import DashboardContent from "./Pages/adminDashboard/adminComponent/DashboardContent.jsx";
 import PaymentCancel from "./components/PaymentCancel.jsx";
 import PaymentSuccess from "./components/PaymentSuccess.jsx";
-
+import AddItem from "./Pages/store/AddItem.jsx";
+import InventorySection from "./Pages/store/InventorySection.jsx";
+import BookingDashboard from "./Pages/BookingDashboard.jsx";
 
 function App() {
   return (
@@ -49,8 +51,8 @@ function App() {
       <Route path="/payment/:bookingId" element={<Payment />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
       <Route path="/paymentcancel" element={<PaymentCancel />} />
-      <Route path="/paymentSuccess" element={<PaymentSuccess />} />
-
+      <Route path="/paymentSuccess/:id" element={<PaymentSuccess />} />
+      <Route path="/bookings" element={<BookingDashboard />} />
 
       {/* admin dashboard */}
       <Route path="/admin" element={<DashboardContent />} />
@@ -61,7 +63,6 @@ function App() {
 }
 
 function AdminLayout() {
-  
   return (
     <>
       <div className="Adashboard-container">
@@ -75,6 +76,8 @@ function AdminLayout() {
               <Route index element={<MechanicProfile />} />
               <Route path=":userId" element={<SingleMechanic />} />
             </Route>
+            <Route path="/additem" element={<AddItem />} />
+            <Route path="inventory" element={<InventorySection />} />
           </Routes>
         </div>
       </div>

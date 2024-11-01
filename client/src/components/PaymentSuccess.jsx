@@ -1,33 +1,29 @@
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FaCheckCircle } from 'react-icons/fa';
-// import { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
+import { useEffect, } from 'react';
 
 const PaymentSuccess = () => {
-  // const [bookingDetails, setBookingDetails] = useState(null);
-  const navigate = useNavigate();
+  const { id } = useParams();
   
-  // const fetchBookingDetails = async () => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:3000/api/getBooking/${bookingId}`);
-  //     if (response.status === 200) {
-  //       setBookingDetails(response.data);
-  //     }
 
-  //     const details = bookingDetails.works
-      
-      
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+  useEffect(() => {
+    const fetchBookingDetails = async () => {
+      try {
+        await axios.get(`http://localhost:3000/api/changePaymentStatus/${id}`);
+      } catch (error) {
+        console.error("Error fetching booking details:", error);
+      }
+    };
 
-  const handleReturnHome = () => {
-    navigate('/');
+      fetchBookingDetails();
+  }, []);
+
+  const handleReturnHome = async () => {
+      window.location.href = "http://localhost:5173/";
   };
 
   const handlePrint = () => {
-    // fetchBookingDetails();
     window.print();
   };
 

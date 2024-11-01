@@ -47,7 +47,7 @@ const ASideBar = () => {
               Manage Booking
             </Link>
             <Link
-              to="/admin/manageStore"
+              to="/admin/inventory"
               className="bg-white text-[#204a64] text-center w-[100%] p-[10px] rounded-lg m-2 border border-black hover:bg-green-500 hover:text-white"
             >
               Store

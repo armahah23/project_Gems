@@ -1,6 +1,6 @@
 // import { useState, useEffect } from "react";
 // import { User } from "lucide-react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import "./ADashboard.css"; // Add your own styling
 // import { useAuth } from "../../context/AuthContext";
 import Widget from "./adminComponent/widget";
@@ -9,16 +9,16 @@ import Widget from "./adminComponent/widget";
 
 const ADashboard = () => {
 
-  useEffect(() => {
-    const role = localStorage.getItem("userRole");
-    if (!role) {
-      window.location.href = "/login";
-    } else if (role === "user" )  {
-      window.location.href = "/home";
-    } else if (role === "mechanic") {
-      window.location.href = "/mdashboard";
-    } 
-    }, []);
+  // useEffect(() => {
+  //   // const role = localStorage.getItem("userRole");
+  //   // if (!role) {
+  //   //   window.location.href = "/login";
+  //   // } else if (role === "user" )  {
+  //   //   window.location.href = "/home";
+  //   // } else if (role === "mechanic") {
+  //   //   window.location.href = "/mdashboard";
+  //   // } 
+  //   // }, []);
 
 
 

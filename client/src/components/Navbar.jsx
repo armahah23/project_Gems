@@ -26,6 +26,7 @@ const Navbar = () => {
       <div className={`nav-content ${isMenuOpen ? 'active' : ''}`}>
         <ul className="navbar-links">
           <li><Link to="/" onClick={toggleMenu}>HOME</Link></li>
+          <li><Link to="/bookings" onClick={toggleMenu}>BOOKINGS</Link></li>
           <li><Link to="/contactus" onClick={toggleMenu}>CONTACT</Link></li>
           <li><Link to="#" onClick={toggleMenu}>SERVICES</Link></li>
           <li><Link to="#" onClick={toggleMenu}>OFFERS</Link></li>

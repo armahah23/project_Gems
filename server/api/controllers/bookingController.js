@@ -291,3 +291,54 @@ exports.getAllBookings = async (req, res) => {
     res.status(500).send({ error: "Failed to fetch user details" });
   }
 };
+
+exports.getAllBookingsByUserId = async (req, res) => {
+  try {
+    const allBookings = await Booking.find({ userId: req.params.userId })
+      .populate("userId")
+      .populate("mechanicId");
+
+    if (allBookings) {
+      res.status(200).json({
+        status: "SUCCESS",
+        message: "Admin data fetched successfully",
+        data: allBookings,
+      });
+    } else {
+      res.status(404).json({
+        status: "FAILED",
+        message: "Booking not found",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while fetching admin data",
+    });
+  }
+};
+
+exports.changePaymentStatus = async (req, res) => {
+  const { bookingId } = req.params;
+  try {
+    const booking = await Booking.findOne({ _id: bookingId });
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+    booking.isPaid = true;
+    await booking.save();
+
+      return res.status(200).json({
+        status: "SUCCESS",
+        message: "Booking fetched successfully",
+        data: booking,
+      });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: "FAILED",
+      message: "An error occurred while fetching booking",
+    });
+  }
+};

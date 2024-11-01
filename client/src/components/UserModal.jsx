@@ -11,24 +11,31 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
   };
 
   const handlePayNow = async () => {
-    const stripe = await loadStripe("pk_test_51QCdaCJBXxkFYDYBrGmETclo8gPYlnXMfXBvK3lscr2DCbsPKMpS1QTys6FdAcQCHzld74pDpYIY203TquPRYAvO00ePwgzlf4");
+    const stripe = await loadStripe(
+      "pk_test_51QCdaCJBXxkFYDYBrGmETclo8gPYlnXMfXBvK3lscr2DCbsPKMpS1QTys6FdAcQCHzld74pDpYIY203TquPRYAvO00ePwgzlf4"
+    );
     const body = {
       // workItems: bookingDetails.workItems,
+      bookingId: bookingDetails._id,
       netTotal: bookingDetails.netTotal,
     };
     const header = {
       "content-type": "application/json",
     };
-    const response = await fetch("http://localhost:3000/api/create-checkout-session", {
-      method: "POST",
-      headers: header,
-      body: JSON.stringify(body),
-    });
+    const response = await fetch(
+      "http://localhost:3000/api/create-checkout-session",
+      {
+        method: "POST",
+        headers: header,
+        body: JSON.stringify(body),
+      }
+    );
 
     const session = await response.json();
     const result = await stripe.redirectToCheckout({
       sessionId: session.id,
     });
+    console.log(result);
 
     if (result.error) {
       console.error(result.error.message);
@@ -77,12 +84,19 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
               <span>{bookingDetails.netTotal}</span>
             </div>
             <div className="flex justify-center items-center mt-6">
-              <button
-                onClick={handlePayNow}
-                className="h-[40px] w-[150px] px-2 bg-gray-100 text-black hover:bg-gray-700 hover:text-white"
-              >
-                Pay Now
-              </button>
+              {bookingDetails.isPaid == false && (
+                <button
+                  onClick={handlePayNow}
+                  className="h-[40px] w-[150px] px-2 bg-gray-100 text-black hover:bg-gray-700 hover:text-white"
+                >
+                  Pay Now
+                </button>
+              )}
+              {bookingDetails.isPaid == true && (
+                <span className="text-green-600 font-bold">
+                  Payment is completed
+                </span>
+              )}
             </div>
           </div>
         ) : (

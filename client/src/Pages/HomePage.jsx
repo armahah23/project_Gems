@@ -195,6 +195,7 @@ const HomePage = () => {
             <nav className="nav-menu">
               <div className="nav-links">
                 <Link to="/">HOME</Link>
+                {token && <Link to="/bookings">BOOKINGS</Link>}
                 {token && <Link to="/contact">CONTACT</Link>}
 
                 <Link className="nav-item"><ServicesDropdown /></Link>
