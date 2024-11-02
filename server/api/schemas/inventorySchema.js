@@ -28,6 +28,6 @@ const inventorySchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  });
+});
 
 module.exports = mongoose.model("Inventory", inventorySchema);

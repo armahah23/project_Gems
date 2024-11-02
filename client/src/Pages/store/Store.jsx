@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Store.css";
 import { useAuth } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import Navbar from "../../components/Navbar.jsx"
+import axios from "axios";
 // import bearingImage from './assets/Bearing.png';  // Example image import
 // import steeringCoverImage from './assets/Steering.png';
 // import engineImage from './assets/engine.png';
@@ -295,6 +296,18 @@ const Store = () => {
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-wqa9dYDledshgEbM9o-_CCcmfLOkaLHxQQ&s"
     }
   ]);
+
+  useEffect(() => {
+    const fetchParts = async () => {
+      try {
+        await axios.get(`http://localhost:3000/api/getInventoryParts/${partsid}`);
+      } catch (error) {
+        console.error("Error fetching booking details:", error);
+      }
+    };
+
+      fetchParts();
+  }, []);
 
 
 

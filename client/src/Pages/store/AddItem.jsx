@@ -23,12 +23,12 @@ function AddItem() {
 
     // Validation checks
     if (quantity < 1) {
-      setMessage('Quantity cannot be less than 1.');
+      setMessage("Quantity cannot be less than 1.");
       return;
     }
 
     if (price < 1) {
-      setMessage('Price cannot be less than 1.');
+      setMessage("Price cannot be less than 1.");
       return;
     }
 
@@ -84,7 +84,7 @@ function AddItem() {
     setPrice("");
     setDescription("");
     setImage(null);
-  }
+  };
 
   return (
     <div className="m-4 p-4 bg-white shadow-md rounded-lg">
@@ -92,7 +92,7 @@ function AddItem() {
         Add Inventory Item
       </h1>
       {message && <p className="mb-4 text-green-500">{message}</p>}
-      <form onSubmit={handleSubmit} className="flex flex-wrap flex-row">
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-wrap flex-row">
         <div className="w-full md:w-1/2 pr-4">
           <div className="mb-4">
             <label
@@ -164,7 +164,10 @@ function AddItem() {
             >
               Add Item
             </button>
-            <button onClick={clearForm} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <button
+              onClick={clearForm}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
               Cancel
             </button>
           </div>
