@@ -55,3 +55,39 @@ exports.getAllInventoryParts = async (req, res) => {
     res.status(500).json({ status: "FAILED", message: "An error occurred while fetching inventory parts" });
   }
 };
+
+// Delete an inventory item
+exports.deleteInventoryItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedItem = await Inventory.findByIdAndDelete(id);
+    if (!deletedItem) {
+      return res.status(404).json({ status: "FAILED", message: "Item not found" });
+    }
+    res.status(200).json({ status: "SUCCESS", message: "Item deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting inventory item:", error);
+    res.status(500).json({ status: "FAILED", message: "An error occurred while deleting the item" });
+  }
+};
+
+
+// Update an inventory item
+exports.updateInventoryItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { quantity, price } = req.body;
+    const updatedItem = await Inventory.findByIdAndUpdate(
+      id,
+      { quantity, price },
+      { new: true }
+    );
+    if (!updatedItem) {
+      return res.status(404).json({ status: "FAILED", message: "Item not found" });
+    }
+    res.status(200).json({ status: "SUCCESS", message: "Item updated successfully", data: updatedItem });
+  } catch (error) {
+    console.error("Error updating inventory item:", error);
+    res.status(500).json({ status: "FAILED", message: "An error occurred while updating the item" });
+  }
+};

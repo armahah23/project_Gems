@@ -282,10 +282,10 @@ const HomePage = () => {
                   </Link>
                 ) : (
                   <div className="flex flex-col sm:flex-row items-center">
-                    <button className="sign-up-btn px-6 py-2 text-white bg-green-600 rounded hover:bg-green-700">
+                    <Link to={'./signupoption'} className="sign-up-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
                       SIGN UP
-                    </button>
-                    <p className="px-5 mt-4 sm:mt-0">
+                    </Link>
+                    <p className="px-5 sm:mt-0">
                       or{" "}
                       <a
                         href="#"
