@@ -28,7 +28,7 @@ const ASideBar = () => {
   };
 
   return (
-      <div className="Admin-sidebar flex-2">
+      <div className="Admin-sidebar fixed flex-2">
         <div className="flex flex-col justify-center items-center h-[100%] w-[100%] relative">
           <div className="mt-3 absolute top-0">
             <img src={logo} alt="logo" className="w-[200px] h-[200px]" />

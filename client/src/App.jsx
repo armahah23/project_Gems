@@ -64,24 +64,22 @@ function App() {
 
 function AdminLayout() {
   return (
-    <>
-      <div className="Adashboard-container">
-        <ASideBar />
-        <div className="admin-content flex-1">
-          <Routes>
-            <Route path="dashboard" element={<ADashboard />} />
-            {/* <Route path="manageCustomer" element={<ManageCustomer />} /> */}
-            <Route path="manageBooking" element={<ManageBooking />} />
-            <Route path="mechanics">
-              <Route index element={<MechanicProfile />} />
-              <Route path=":userId" element={<SingleMechanic />} />
-            </Route>
-            <Route path="/additem" element={<AddItem />} />
-            <Route path="inventory" element={<InventorySection />} />
-          </Routes>
-        </div>
+    <div className="flex">
+      <ASideBar />
+      <div className="flex-1 ml-[250px] p-4">
+        <Routes>
+          <Route path="dashboard" element={<ADashboard />} />
+          {/* <Route path="manageCustomer" element={<ManageCustomer />} /> */}
+          <Route path="manageBooking" element={<ManageBooking />} />
+          <Route path="mechanics">
+            <Route index element={<MechanicProfile />} />
+            <Route path=":userId" element={<SingleMechanic />} />
+          </Route>
+          <Route path="additem" element={<AddItem />} />
+          <Route path="inventory" element={<InventorySection />} />
+        </Routes>
       </div>
-    </>
+    </div>
   );
 }
 
