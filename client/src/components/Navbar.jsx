@@ -33,11 +33,6 @@ const Navbar = () => {
           <li><Link to="/contactus" onClick={toggleMenu}>CONTACT</Link></li>
         </ul>
       </div>
-
-      {/* Profile Icon */}
-      <div className="navbar-profile">
-        <img src={Person} alt="Profile" />
-      </div>
     </nav>
   );
 }

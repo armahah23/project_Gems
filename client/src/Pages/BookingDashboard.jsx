@@ -58,7 +58,7 @@ const BookingDashboard = () => {
           showModal={showBookingModal}
         />
       )}
-    <Navbar />
+    <div className="mt-10"><Navbar /></div>
       <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
         <div>Manage booking</div>
         <Link to="/admin/dashboard" className="cursor:pointer">

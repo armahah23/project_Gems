@@ -181,11 +181,15 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center h-[100vh] w-[100vw] default-bg px-[100px] gap-24">
-      <div className="flex items-center justify-center default-bg-form w-[35%] h-[80%] rounded-lg ">
+    
+    <div className="flex justify-center items-center h-[100vh] w-[100vw] default-bg px-[100px]  whole-container">
+      <div className="flex justify-center items-center  custom-logo-container">
+        <img src={logo} alt="autocare_logo" className="w-[600px]" />
+      </div>
+      <div className="flex items-center justify-center default-bg-form   rounded-lg ">
         <form className="text-gray-200" onSubmit={handleLogin}>
           <h1 className="text-red-600 text-4xl default-h1 my-4">WELCOME</h1>
-          <div className="flex my-2">
+          <div className=" my-2">
             <h3 className="text-lg mr-2">Login As:</h3>
             <span className="mr-2">
               <label className="text-lg">
@@ -288,9 +292,7 @@ export default function Login() {
           </p>
         </form>
       </div>
-      <div className="flex justify-center items-center w-[40%]">
-        <img src={logo} alt="autocare_logo" className="w-[600px]" />
-      </div>
+      
     </div>
   );
 }

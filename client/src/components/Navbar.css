@@ -73,10 +73,9 @@
 .nav-content {
   display: flex;
   align-items: center;
-  margin-left: 160px;
-  margin-top: -25px; /* Aligns links to the right */
   width: 100px;
   height: auto;
+  margin-right: 650px;
 }
 .navbar-links {
   display: flex;
@@ -176,9 +175,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
+
 
   .nav-content {
     position: absolute;
