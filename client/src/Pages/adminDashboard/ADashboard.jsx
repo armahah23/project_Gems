@@ -9,16 +9,16 @@ import Widget from "./adminComponent/widget";
 
 const ADashboard = () => {
 
-  useEffect(() => {
-    const role = localStorage.getItem("userRole");
-    if (!role) {
-      window.location.href = "/login";
-    } else if (role === "user" )  {
-      window.location.href = "/home";
-    } else if (role === "mechanic") {
-      window.location.href = "/mdashboard";
-    } 
-    }, []);
+  // useEffect(() => {
+  //   const role = localStorage.getItem("userRole");
+  //   if (!role) {
+  //     window.location.href = "/login";
+  //   } else if (role === "user" )  {
+  //     window.location.href = "/home";
+  //   } else if (role === "mechanic") {
+  //     window.location.href = "/mdashboard";
+  //   } 
+  //   }, []);
 
 
 

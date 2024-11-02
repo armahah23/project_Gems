@@ -26,6 +26,7 @@ import ServicesDropdown from "../components/ServiceDropdown";
 import ChatButton from "../components/ChatButton";
 import ChatModal from "../components/ChatModal";
 
+
 const HomePage = () => {
   const { user, setUser, fetchUser } = useAuth();
   const navigate = useNavigate();
@@ -50,16 +51,16 @@ const HomePage = () => {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    const role = localStorage.getItem("userRole");
-    if (!role) {
-      window.location.href = "/login";
-    } else if (role === "admin") {
-      window.location.href = "/admin/dashboard";
-    } else if (role === "mechanic") {
-      window.location.href = "/mdashboard";
-    } 
-    }, []);
+  // useEffect(() => {
+  //   const role = localStorage.getItem("userRole");
+  //   if (!role) {
+  //     window.location.href = "/login";
+  //   } else if (role === "admin") {
+  //     window.location.href = "/admin/dashboard";
+  //   } else if (role === "mechanic") {
+  //     window.location.href = "/mdashboard";
+  //   }
+  //   }, []);
 
   useEffect(() => {
     if (user == null) {
@@ -184,8 +185,8 @@ const HomePage = () => {
       )}
       <div className="home-page">
         {/* Header */}
-        <header className="header px-[100px]">
-          <div className="flex w-[100%] justify-between items-center">
+        <header className="header px-4 sm:px-10 lg:px-20">
+          <div className="flex w-full justify-between items-center">
             <img
               className="Logo"
               src={Logo}
@@ -193,14 +194,22 @@ const HomePage = () => {
               alt="Logo"
             />
             <nav className="nav-menu">
-              <div className="nav-links">
-                <Link to="/">HOME</Link>
-                {token && <Link to="/contact">CONTACT</Link>}
+              <div className="nav-links flex flex-col sm:flex-row">
+                <Link className="nav-item" to="/">
+                  HOME
+                </Link>
+                <Link className="nav-item" to="/servicepage">
+                  SERVICES
+                </Link>
+                <Link className="nav-item" to="/offerpage">
+                  OFFERS
+                </Link>
+                {token && (
+                  <Link className="nav-item" to="/store">
+                    STORE
+                  </Link>
+                )}
 
-                <Link className="nav-item"><ServicesDropdown /></Link>
-                <Link to="#">OFFERS</Link>
-                {token && <Link to="/store">STORE</Link>}
-                {/* <Link to="/store">STORE</Link> */}
                 {token ? (
                   <>
                     <button
@@ -254,35 +263,36 @@ const HomePage = () => {
         {/* Main Content */}
         <main>
           {/* Hero Section */}
-          <section className="hero-section container">
-            <div className="hero-content">
-              <p className="text-[40px] font-serif font-bold text-gray-500 mt-5">
+          <section className="hero-section container mx-auto px-4  sm:px-10 lg:px-20">
+            <div className="hero-content text-center sm:text-left">
+              <p className="text-[25px] sm:text-[40px] font-serif font-bold text-gray-500 mt-5">
                 Welcome, {user ? user.fullname : "Guest"}!
               </p>
-              <h1>
-                <span>INNOVATIVE</span> VEHICLE
+
+              <h1 className="text-[2.5rem] sm:text-[3rem] font-bold">
+                <span className="text-primary">INNOVATIVE</span> VEHICLE
                 <br />
-                SERVICE <span>SOLUTIONS</span>
+                SERVICE <span className="text-primary">SOLUTIONS</span>
               </h1>
-              <p className="text-gray-700 text-[20px] ">
+              <p className="text-gray-700 text-[20px] mt-4">
                 REVOLUTIONIZING VEHICLE CARE: STREAMLINING
                 <br />
                 SERVICE CENTERS WITH AUTOMATED SOLUTIONS
               </p>
-              <div className="hero-actions">
+              <div className="hero-actions mt-8">
                 {token ? (
-                  <Link to={"/ebservice"}>
-                    <button className="book-btn">
-                      <FileText />
+                  <Link to="/ebservice">
+                    <button className="book-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 flex items-center">
+                      <FileText className="mr-2" />
                       BOOK NOW
                     </button>
                   </Link>
                 ) : (
-                  <div className="flex items-center">
-                    <button className="sign-up-btn" onClick={handleSignup}>
+                  <div className="flex flex-col sm:flex-row items-center">
+                    <button className="sign-up-btn px-6 py-2 text-white bg-green-600 rounded hover:bg-green-700">
                       SIGN UP
                     </button>
-                    <p className="px-5 mt-[40px]">
+                    <p className="px-5 mt-4 sm:mt-0">
                       or{" "}
                       <a
                         href="#"
@@ -297,9 +307,9 @@ const HomePage = () => {
                 )}
               </div>
             </div>
-            <div className="p-[100px]">
+            <div className="flex justify-center mt-8 sm:mt-0 ">
               <img
-                className="ImageA"
+                className="ImageA hidden sm:block"
                 src={ImageA}
                 style={{ width: "350px", height: "auto" }}
                 alt="Hero"
@@ -308,8 +318,8 @@ const HomePage = () => {
           </section>
 
           {/* What We Do Section */}
-          <section className="flex justify-center">
-            <div className="mechanic-image">
+          <section className="flex flex-col sm:flex-row justify-center items-center px-4 sm:px-10 lg:px-20">
+            <div className="mechanic-image mb-4 sm:mb-0">
               <img
                 className="ImageB"
                 src={ImageB}
@@ -317,18 +327,18 @@ const HomePage = () => {
                 alt="Mechanic"
               />
             </div>
-            <div className="service-details ">
+            <div className="service-details text-center sm:text-left sm:ml-8">
               <h2
-                className="text-4xl mb-1 text-extrabold"
+                className="text-4xl font-extrabold mb-1"
                 style={{ color: "#13496b" }}
               >
                 What we do?
               </h2>
-              <p>
+              <p className="text-gray-700 mb-4">
                 Streamlining vehicle service operations with smart solutions for
                 efficiency and ease.
               </p>
-              <ul className="service-list">
+              <ul className="service-list list-disc pl-5 text-gray-700">
                 <li>🔧 Online Appointment Scheduling</li>
                 <li>🔧 Automated Service Reminders</li>
                 <li>🔧 Real-Time Service Tracking</li>
@@ -336,7 +346,7 @@ const HomePage = () => {
                 <li>🔧 Inventory & Parts Management</li>
                 <li>🔧 Technician Assignment System</li>
               </ul>
-              <div className="flex gap-2 items-center w-[180px] cursor-pointer">
+              <div className="flex gap-2 items-center w-[180px] cursor-pointer mt-4">
                 <h2 style={{ color: "#13496b" }} className="text-[24px]">
                   Contact Us
                 </h2>
@@ -345,7 +355,7 @@ const HomePage = () => {
             </div>
           </section>
 
-          <div className="WheelSet">
+          <div className="WheelSet hidden sm:block">
             <img
               className="ImageC"
               src={ImageC}
@@ -358,7 +368,7 @@ const HomePage = () => {
           <section className="history-section-container">
             <h2
               style={{ color: "#13496b" }}
-              className="text-[48px] uppercase font-semibold text-3xl"
+              className="text-[48px] uppercase font-semibold text-3xl mt-20"
             >
               History
             </h2>
@@ -480,9 +490,9 @@ const HomePage = () => {
               </div>
             </div>
           </section>
-          <div className="relative">
-            <div className="absolute h-[800px] w-[100px] top-[-350px]">
-              <img src={ImageH} alt="Service H" className="h-[500px]" />
+          <div className="relative  hidden sm:block">
+            <div className="absolute h-[800px] w-[400px] top-[-450px] ">
+              <img src={ImageH} alt="Service H" className="h-[800px]" />
             </div>
           </div>
 
@@ -503,41 +513,45 @@ const HomePage = () => {
         </main>
         <div className="relative">
           <div className="py-[70px]">
-            <div className="w-[100vw] flex justify-center items-center bg-white bg-transparent relative z-[1]">
+            <div className="w-full flex flex-col sm:flex-row justify-center items-center bg-transparent relative z-[1]">
               <div
                 style={{ boxShadow: "0 0 20px 0 rgba(19, 73, 107, 0.2)" }}
-                className="bg-white bg-opacity-40 shadow-2xl rounded-3xl w-[60%] p-[50px]"
+                className="bg-white bg-opacity-40 shadow-2xl rounded-3xl w-full sm:w-[60%] p-4 sm:p-[50px]"
               >
                 <p
-                  className="text-center underline text-[26px] font-bold"
+                  className="text-center underline text-[22px] sm:text-[26px] font-bold"
                   style={{ color: "#13496b" }}
                 >
                   Need Help!
                 </p>
 
-                <div className="w-[100%] flex justify-center">
+                <div className="w-full flex justify-center">
                   <img
-                    className="border-1 w-[350px]"
+                    className="border-1 w-[250px] sm:w-[350px]"
                     src={ImageG}
                     alt="Service G"
                   />
                 </div>
 
-                <p className="text-center py-5 text-[15px]">
+                <p className="text-center py-5 text-[14px] sm:text-[15px]">
                   We’re here to provide expert assistance every step of the way.
                   Whether you need guidance on services, help with scheduling,
                   or any other support, our dedicated team is ready to ensure
                   your experience is seamless and stress-free.
                 </p>
 
-                <div className="w-[100%] flex gap-16 items-center">
-                  <div className="w-[50%] h-[400px] p-4 flex flex-col justify-center items-center rounded-[20px] bg-gray-500 text-white">
+                <div className="w-full flex flex-col sm:flex-row gap-8 items-center">
+                  <div className="w-full sm:w-[50%] h-[400px] p-4 flex flex-col justify-center items-center rounded-[20px] text-white">
                     <div className="text-center mb-4">
-                      <h3 className="font-bold bg-green-700 text-white rounded-2 mb-4">
+                      <h3 className="font-bold bg-red-700 text-white rounded-2 mb-4">
                         OPENING HOURS
                       </h3>
-                      <p className="text-left">Mon - Fri: 7 AM - 6 PM</p>
-                      <p className="text-left">Sat - Sun: 7 AM - 6 PM</p>
+                      <p className="text-left text-black">
+                        Mon - Fri : 7 AM - 6 PM
+                      </p>
+                      <p className="text-left text-black">
+                        Sat - Sun: 7 AM - 6 PM
+                      </p>
                     </div>
 
                     <div className="flex items-center mb-4">
@@ -546,7 +560,7 @@ const HomePage = () => {
                         alt="Address Icon"
                         className="w-6 h-6 mr-2 address_1"
                       />
-                      <p>Puttalam, Kalpitiya Road Kurinchipity, South</p>
+                      <p className="text-black">Kandy road, Colombo - 10</p>
                     </div>
 
                     <div className="flex items-center mb-4">
@@ -555,47 +569,50 @@ const HomePage = () => {
                         alt="Phone Icon"
                         className="w-6 h-6 mr-2"
                       />
-                      <p>0778353336 / 0771234567 / 0771234567</p>
+                      <p className="text-black">0778353336 / 0771234567</p>
                     </div>
 
-                    <div className="flex gap-3  ">
-                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px] cursor-pointer">
+                    <div className="flex gap-3">
+                      <div className="border border-black rounded bg-white cursor-pointer h p-[5px]">
                         <img
                           src={google_icon}
                           alt="Google Icon"
                           className="h-[30px]"
                         />
                       </div>
-                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px] cursor-pointer">
+                      <div className="border border-black rounded bg-white cursor-pointer h p-[5px]">
                         <img
                           src={facebook_icon}
                           alt="Facebook Icon"
                           className="h-[30px]"
                         />
                       </div>
-                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px] cursor-pointer">
+                      <div className="border border-black rounded bg-white cursor-pointer h p-[5px]">
                         <img
                           src={insta}
                           alt="Insta Icon"
                           className="h-[30px]"
                         />
                       </div>
-                      <div className="border border-black rounded bg-white pionter-cursor h p-[5px] cursor-pointer">
+                      <div className="border border-black rounded bg-white cursor-pointer h p-[5px]">
                         <img src={x} alt="X Icon" className="h-[30px]" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="w-[50%]">
+                  <div className="w-full sm:w-[50%]">
                     <h2
-                      className="text-black-300 text-2xl mb-[0] px-8 font-bold"
+                      className="text-black-300 text-xl sm:text-2xl mb-0 px-4 sm:px-8 font-bold"
                       style={{ color: "#13496b" }}
                     >
                       Feedback
                     </h2>
-                    <form onSubmit={handleSubmit} className="feedback-form p-8">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="feedback-form p-4 sm:p-8"
+                    >
                       <input
-                        className="mb-[30px] w-[100%] h-[50px] p-4"
+                        className="mb-[30px] w-full h-[50px] p-4 border-2 border-blue-600"
                         type="text"
                         value={formData.name}
                         onChange={(e) =>
@@ -605,7 +622,7 @@ const HomePage = () => {
                         required
                       />
                       <input
-                        className="mb-[30px] w-[100%] h-[50px] p-4"
+                        className="mb-[30px] w-full h-[50px] py-3 px-4 rounded-lg border-2 border-blue-600"
                         type="tel"
                         value={formData.number}
                         onChange={(e) =>
@@ -615,7 +632,7 @@ const HomePage = () => {
                         required
                       />
                       <textarea
-                        className="mb-[30px] w-[100%] h-[50px] py-3 px-4 rounded-lg"
+                        className="mb-[30px] w-full h-[50px] py-3 px-4 rounded-lg border-2 border-blue-600"
                         value={formData.message}
                         onChange={(e) =>
                           setFormData({ ...formData, message: e.target.value })
@@ -625,7 +642,7 @@ const HomePage = () => {
                       />
                       <button
                         type="submit"
-                        className="bg-green-700 text-white w-[200px] rounded-lg p-[10px] hover:bg-green-900 "
+                        className="bg-green-700 text-white w-full sm:w-[200px] rounded-lg p-[10px] hover:bg-green-900"
                       >
                         Submit Feedback
                       </button>
@@ -639,9 +656,7 @@ const HomePage = () => {
         </div>
 
         <footer className="footer flex justify-center items-center py-5 bg-gray-200">
-          <p className="">
-            &copy; 2024 Your Company Name. All Rights Reserved.
-          </p>
+          <p className="">&copy; 2024 AutoCare. All Rights Reserved.</p>
         </footer>
       </div>
     </>

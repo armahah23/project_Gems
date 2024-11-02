@@ -50,7 +50,7 @@ const OffersPage = () => {
       
       <div className="offers-header">
         <h1>Special Offers</h1>
-        <p>Exclusive deals on our premium car services</p>
+
       </div>
 
       <div className="offers-grid">

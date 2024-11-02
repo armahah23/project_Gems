@@ -17,3 +17,14 @@
 .btn_red_bg:hover {
   background-color: #7a0707;
 }
+/* Mobile responsiveness for smaller screens (iPhone XR size) */
+@media (max-width: 768px) {
+  
+  .default-bg {
+    padding: 20px;
+    flex-direction: column;
+  }
+  .underline {
+    font-size: 14px;
+  }
+}

@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .text-color {
   color: #13496b;
 }
@@ -260,15 +254,6 @@
 
 /* --Help--*/
 
-.background-design {
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #13496b;
-  clip-path: polygon(-3px 544px, 99.95% 170px, 100.07% 100%, 0% 100%);
-}
-
 .help-page {
   position: relative;
   display: flex;
@@ -359,7 +344,7 @@
 
 /* pollygon triangle */
 .polygon-box {
-  background-color: #0a4a6b; /* Replace with your desired blue */
+  background-color: #13496b; /* Replace with your desired blue */
   height: 80vh; /* Full height */
   width: 100%; /* Full width */
   clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);

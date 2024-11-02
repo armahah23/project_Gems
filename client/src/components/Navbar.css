@@ -1,27 +1,89 @@
-.navbar-navbar {
+/* Main navbar styling */
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   border-bottom: 1px solid #ccc;
-  height: 80px;
+  background-color: white;
+  position: relative;
+  height: 30px; /* Increased for better visibility */
 }
 
+/* Logo styling */
 .navbar-logo img {
-  width: 100px;
-  margin-left: 30px; 
+  width: 90px;
+  height: auto;
+  margin-top: -35px;
 }
-.rigth-4{
-  margin-left: 500px;
+
+/* Menu toggle button styling */
+.menu-toggle {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.hamburger {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #333;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  margin-right: 30px;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before {
+  transform: translateY(-8px);
+}
+
+.hamburger::after {
+  transform: translateY(8px);
+}
+
+/* Active hamburger states */
+.hamburger.active {
+  background: transparent;
+}
+
+.hamburger.active::before {
+  transform: rotate(45deg);
+}
+
+.hamburger.active::after {
+  transform: rotate(-45deg);
+}
+
+/* Navbar links */
+.nav-content {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-top: -25px; /* Aligns links to the right */
 }
 
 .navbar-links {
   display: flex;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-links li {
-  margin-left: 60px;
+  margin: 0 20px;
 }
 
 .navbar-links li a {
@@ -29,10 +91,73 @@
   color: black;
   font-weight: bold;
   font-size: 16px;
+  transition: color 0.3s ease;
 }
 
+.navbar-links li a:hover {
+  color: #2563eb;
+}
+
+/* Profile icon styling */
 .navbar-profile img {
-  width: 40px; 
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-right: 30px;
+  object-fit: cover;
+  margin-top: -30px;
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* Show toggle button on small screens */
+    margin-left: auto;
+    margin-top: -30px; /* Aligns the button to the right */
+  }
+
+  .nav-content {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 60px; /* Below the navbar */
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+
+  .nav-content.active {
+    display: block; /* Show when active */
+    animation: slideDown 0.3s ease-out forwards; /* Add animation */
+  }
+
+  .navbar-links {
+    flex-direction: column; /* Stack links vertically */
+    align-items: center;
+    gap: 15px;
+  }
+  .navbar-logo img {
+    width: 90px;
+    height: auto;
+    margin-top: -35px;
+    margin-left: -20px;
+  }
+  
+
+  .navbar-links li {
+    margin: 10px 0; /* Space out links */
+  }
+}
+
+/* Slide-down animation for mobile menu */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

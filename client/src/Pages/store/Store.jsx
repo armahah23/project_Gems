@@ -350,10 +350,10 @@ const Store = () => {
 
   return (
     <div className="car-parts">
-     <div className="mb-[20px]">
+     <div className="mt-5">
       <Navbar />
      </div>
-      <div className="search-section">
+      <div className="search-section mb-[20px]">
         <input type="text" placeholder="Brand" />
         <input type="text" placeholder="Model" />
         <input type="text" placeholder="Year" />

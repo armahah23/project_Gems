@@ -25,7 +25,7 @@ const styles = {
     borderRadius: '50%',
     width: '40px',
     height: '40px',
-    fontSize: '16px',
+    fontSize: '20px',
     cursor: 'pointer',
   }
 };
