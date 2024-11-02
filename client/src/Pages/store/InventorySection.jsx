@@ -4,47 +4,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import PartsModal from "./PartsModal";
 import UpdateModal from "./UpdateModal";
+import { MdDashboard } from "react-icons/md";
 
 function InventorySection() {
-  const [items, setItems] = useState([
-    {
-      itemCode: "AC123",
-      itemName: "Air Conditioner",
-      itemPrice: "1000",
-      company: "Toyota",
-      warranty: "1 year",
-      itemQuantity: "10",
-      itemImage: "/storeImages/airconditioner.jpg",
-    },
-    {
-      itemCode: "AC133",
-      itemName: "left Door",
-      itemPrice: "1000",
-      company: "Toyota",
-      warranty: "1 year",
-      itemQuantity: "10",
-      itemImage: "/storeImages/leftdoor.jpg",
-    },
-    {
-      itemCode: "AC124",
-      itemName: "signal light",
-      itemPrice: "1000",
-      company: "Toyota",
-      warranty: "1 year",
-      itemQuantity: "0",
-      itemImage: "/storeImages/signallight.jpg",
-    },
-    {
-      itemCode: "AC143",
-      itemName: "right Door",
-      itemPrice: "1000",
-      company: "Toyota",
-      warranty: "1 year",
-      itemQuantity: "10",
-      itemImage: "/storeImages/rightdoor.jpg",
-    },
-  ]);
-
+  const [items, setItems] = useState([]);
   const [selectedPart, setSelectedPart] = useState(null);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
@@ -58,9 +21,9 @@ function InventorySection() {
           itemName: part.partName,
           itemPrice: part.price,
           itemQuantity: part.quantity,
+          description: part.description,
           itemImage: `http://localhost:3000${part.partImage}`, // Ensure the URL is correct
         }));
-        console.log("Fetched parts:", fetchedParts);
 
         // Use a Map to ensure unique items based on itemCode
         const itemsMap = new Map();
@@ -170,13 +133,13 @@ function InventorySection() {
             Inventory Panel
           </h1>
           <Link to={"/admin/dashboard"} className="mx-4 cursor-pointer">
-            Dashboard
+            <MdDashboard className="h-[35px] w-[35px]" />
           </Link>
         </div>
-        <div className="mt-2">
+        <div className="mt-4">
           <Link
             to={"/admin/additem"}
-            className="bg-blue-500 hover:bg-blue-700 text-white uppercase p-2 rounded-md "
+            className="bg-blue-500 hover:bg-blue-700 text-white uppercase p-2  rounded-md "
           >
             Add Item
           </Link>

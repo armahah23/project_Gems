@@ -9,13 +9,12 @@ const PartsModal = ({ part, onClose, onUpdate, onDelete }) => {
         <h2 className="text-2xl font-bold mb-4  ">{part.itemName}</h2>
         <div className="mb-4 flex flex-col w-[100%] justify-center ">
         <div className="flex justify-center">
-          <img src={part.itemImage} alt={part.itemName} className="w-[200px] h-[80px] object-cover mb-4" />
+          <img src={part.itemImage} alt={part.itemName} className="w-[200px] h-[120px] object-cover mb-4" />
         </div>
         <div className="flex flex-col text-center ">
           <p><strong>Item Code:</strong> {part.itemCode}</p>
-          <p><strong>Price:</strong> ${part.itemPrice}</p>
-          <p><strong>Company:</strong> {part.company}</p>
-          <p><strong>Warranty:</strong> {part.warranty}</p>
+          <p><strong>Price:</strong> {part.itemPrice}/=</p>
+          <p><strong>Description:</strong> {part.description}</p>
           <p><strong>Quantity:</strong> {part.itemQuantity}</p>
         </div>
         </div>
