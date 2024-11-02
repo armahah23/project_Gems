@@ -3,27 +3,29 @@ import axios from "axios";
 import { MdOutlineCancel } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import { FaRegEdit } from "react-icons/fa";
-import EditBookingModal from "./EditBooking";
 import Swal from "sweetalert2";
 import { MdDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import UserModal from "../components/UserModal";
 
-const ManageBooking = () => {
+const BookingDashboard = () => {
+    const userId = localStorage.getItem("userId");
   const [currentBooking, setCurrentBooking] = useState(null);
   const [allBookings, setAllBookings] = useState([]);
-  const [allMechanics, setAllMechanics] = useState([]);
+  const [showBookingModal, setShowBookingModal] = useState(false);
 
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const toggleBookingModal = () => setShowBookingModal(!showBookingModal);
+
 
   useEffect(() => {
     fetchBooking();
-    fetchMechanics();
   }, []);
 
   const fetchBooking = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/admin/getAllBookings`
+        `http://localhost:3000/api/getAllBookings/${userId}`
       );
       const data = response.data;
       if (response.status === 200) {
@@ -31,86 +33,37 @@ const ManageBooking = () => {
         setAllBookings(data.data);
       } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Error',
+          icon: "error",
+          title: "Error",
           text: `Error: ${data.error}`, // Display the dynamic error message
-          confirmButtonText: 'OK'
+          confirmButtonText: "OK",
         });
       }
     } catch (error) {
       console.error(error);
     }
   };
-  const fetchMechanics = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:3000/api/getAllMechanics",
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.status == "200") {
-        setAllMechanics(response.data.data);
-      }
-    } catch (error) {
-      console.error("Error during getting mechanics", error);
-    }
-  };
 
   const handleEdit = (booking) => {
     setCurrentBooking(booking);
-    setIsEditModalOpen(true);
-  };
-  const handleSave = async (assignedMechanicId) => {
-    console.log("assignedMechanic", assignedMechanicId);
-    try {
-      const response = await axios.post(
-        `http://localhost:3000/api/admin/assignMechanic/${currentBooking._id}`,
-        {
-          mechanicId: assignedMechanicId,
-        }
-      );
-      if (response.status === 200) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'Mechanic assigned Successfully',
-          confirmButtonText: 'OK'
-        });
-        fetchBooking();
-        setIsEditModalOpen(false);
-        setCurrentBooking(null);
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Update Failed!',
-          text: 'can not assign mechanic.',
-          confirmButtonText: 'OK'
-        });
-      }
-    } catch (error) {
-      console.error("Error during updating booking", error);
-    }
+    setShowBookingModal(true);
   };
 
   return (
     <>
-      {isEditModalOpen && (
-        <EditBookingModal
-          currentBooking={currentBooking}
-          allMechanics={allMechanics}
-          onClose={() => setIsEditModalOpen(false)}
-          onSubmit={handleSave}
+    {showBookingModal && (
+        <UserModal
+          bookingDetails={currentBooking}
+          toggleModal={toggleBookingModal}
+          showModal={showBookingModal}
         />
       )}
-  
+    <Navbar />
       <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
-      <div>Manage booking</div>
-      <Link to="/admin/dashboard" className="cursor:pointer">
-      <MdDashboard />
-      </Link>
+        <div>Manage booking</div>
+        <Link to="/admin/dashboard" className="cursor:pointer">
+          <MdDashboard />
+        </Link>
       </div>
       <div className="container mx-auto p-4">
         <div className="overflow-x-auto">
@@ -133,7 +86,7 @@ const ManageBooking = () => {
                   Paid Status
                 </th>
                 <th className="px-6 py-3 text-left bg-gray-100 border-b">
-                  Actions
+                  See More
                 </th>
               </tr>
             </thead>
@@ -204,4 +157,4 @@ const ManageBooking = () => {
   );
 };
 
-export default ManageBooking;
+export default BookingDashboard;

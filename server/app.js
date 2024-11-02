@@ -12,6 +12,7 @@ const adminRoutes = require("./api/routes/adminRoutes"); // Import admin routes
 const notificationRoutes = require("./api/routes/notificationRoutes");
 const chatbotRoutes = require("./api/routes/chatbotRoutes");
 const paymentRoutes = require("./api/routes/paymentRoutes");
+const inventoryRoutes = require("./api/routes/inventoryRoutes");
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -52,6 +53,9 @@ app.use("/api", chatbotRoutes);
 
 // payment routes
 app.use("/api", paymentRoutes);
+
+//handle and manage store
+app.use("/api", inventoryRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

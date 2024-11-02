@@ -194,22 +194,15 @@ const HomePage = () => {
               alt="Logo"
             />
             <nav className="nav-menu">
-              <div className="nav-links flex flex-col sm:flex-row">
-                <Link className="nav-item" to="/">
-                  HOME
-                </Link>
-                <Link className="nav-item" to="/servicepage">
-                  SERVICES
-                </Link>
-                <Link className="nav-item" to="/offerpage">
-                  OFFERS
-                </Link>
-                {token && (
-                  <Link className="nav-item" to="/store">
-                    STORE
-                  </Link>
-                )}
+              <div className="nav-links">
+                <Link to="/">HOME</Link>
+                {token && <Link to="/bookings">BOOKINGS</Link>}
+                {token && <Link to="/contact">CONTACT</Link>}
 
+                <Link className="nav-item"><ServicesDropdown /></Link>
+                <Link to="#">OFFERS</Link>
+                {token && <Link to="/store">STORE</Link>}
+                {/* <Link to="/store">STORE</Link> */}
                 {token ? (
                   <>
                     <button
