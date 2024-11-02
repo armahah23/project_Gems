@@ -353,12 +353,7 @@ const Store = () => {
      <div className="mt-5">
       <Navbar />
      </div>
-      <div className="search-section mb-[20px]">
-        <input type="text" placeholder="Brand" />
-        <input type="text" placeholder="Model" />
-        <input type="text" placeholder="Year" />
-        <button>SEARCH</button>
-      </div>
+      
 
       {parts.map((part) => (
         <div key={part.code} className="part-item">

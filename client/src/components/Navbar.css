@@ -8,7 +8,6 @@
   background-color: white;
   position: relative;
   height: 30px; /* Increased for better visibility */
-  height: 80px;
   background-color: white;
   position: relative;
 }
@@ -74,17 +73,11 @@
 .nav-content {
   display: flex;
   align-items: center;
-  margin-left: auto;
+  margin-left: 160px;
   margin-top: -25px; /* Aligns links to the right */
   width: 100px;
   height: auto;
 }
-
-.nav-content {
-  display: flex;
-  align-items: center;
-}
-
 .navbar-links {
   display: flex;
   list-style: none;
@@ -120,10 +113,9 @@
 .navbar-profile img {
   width: 40px;
   height: 40px;
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  margin-top: -30px;
 }
 
 /* Hamburger Menu Styles */
@@ -190,7 +182,7 @@
 
   .nav-content {
     position: absolute;
-    top: 80px;
+    top: 70px;
     left: 0;
     right: 0;
     background-color: white;
@@ -198,6 +190,9 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     display: none;
     z-index: 100;
+    width: 410px;
+    margin-left: 2px;
+    margin-top: -30px;
   }
 
   .nav-content.active {
@@ -252,8 +247,7 @@
   .navbar-links li a:hover::after {
     width: 100%;
   }
-  object-fit: cover;
-  margin-top: -30px;
+  
 }
 
 /* Responsive styles for smaller screens */
