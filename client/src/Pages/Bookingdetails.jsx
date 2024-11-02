@@ -197,9 +197,10 @@ function Bookingdetails() {
 
   return (
     <main className="booking-details">
+    
       <div className="background-design"></div>
       <div className="app-booking">
-        {/* <h1>BOOKING DETAILS</h1> */}
+        <h1>SLOT BOOKING DETAILS</h1>
         <div className="container-booking bg-gray-500">
           <form onSubmit={handleSubmit}>
             <div className="left">
@@ -330,13 +331,13 @@ function Bookingdetails() {
                 ></textarea>
               </div>
             </div>
-            <div className="flex justify-between w-[100%] px-8 mb-4">
-              <h2 className="text-center text-lg font-bold">
+            <div className="flex flex-col md:flex-row justify-between w-full px-8 mb-4 items-center">
+              <h2 className="text-center text-lg font-bold mb-4 md:mb-0">
                 Please select a mechanic
               </h2>
-              <div className="flex flex-wrap justify-center">
+              <div className="flex flex-wrap justify-center w-full md:w-auto">
                 <select
-                  className="dropdown p-2 w-[250px]"
+                  className="dropdown p-2 w-[300px] "
                   value={form.mechanicId}
                   onChange={(e) =>
                     setForm({ ...form, mechanicId: e.target.value })
@@ -351,16 +352,17 @@ function Bookingdetails() {
                 </select>
               </div>
             </div>
-            <div className="flex justify-center ">
-              <button type="submit" className="btn">
-                Book Now
-              </button>
-              <button
+            <div className="flex justify-center  ">
+            <button
                 onClick={handleCancel}
-                className="bg-red-500 hover:bg-red-300 text-white p-1 w-[200px] text-uppercase rounded-[10px]"
+                className="bg-red-500 hover:bg-red-300 text-white p-3 w-full ml-8 text-uppercase rounded-[10px] md:w-[300px]"
               >
                 Cancel Booking
               </button>
+              <button type="submit" className="btn">
+                Book Now
+              </button>
+            
             </div>
           </form>
         </div>

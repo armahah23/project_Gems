@@ -1,14 +1,15 @@
 .booking-details.app-booking {
   display: flex;
-
   justify-content: center;
   align-items: center;
 }
 
-.booking-details .app h1 {
+.booking-details .app-booking h1 {
   text-align: center;
   color: #144a6f;
-  margin-top: 40px;
+ font-size: 20px;
+ margin-top: 35px;
+ font-weight: bold;
 }
 
 .booking-details .background-design {
@@ -30,11 +31,12 @@
   font-weight: bold;
   display: flex;
   margin-left: 360px;
-  margin-top: 50px;
+  
 }
 
 .left {
   margin-left: 30px;
+  margin-top: -10px;
 }
 
 .right {
@@ -77,7 +79,7 @@
 
 .textarea-last {
   width: 100%;
-  height: 130px;
+  height: 110px;
   padding: 8px;
   margin-top: 3px;
   border: 1px solid #000000;
@@ -86,7 +88,7 @@
 }
 
 .booking-details button.btn {
-  width: 400px;
+  width: 300px;
   padding: 10px;
   background-color: rgba(19, 73, 107, 1);
   color: white;
@@ -96,8 +98,84 @@
   font-size: 16px;
   font-weight: bold;
   margin: 0 auto;
+  margin-left: 70px;
 }
 
 .booking-details button.btn:hover {
   background-color: #4baef4;
 }
+/* General adjustments for mobile */
+@media (max-width: 480px) {
+  .booking-details .container-booking {
+    width: 90%;
+    margin-left: 20px;
+    padding: 15px;
+    background-color: #e9e3e3b1;
+  }
+
+  .booking-details .left, .booking-details .right {
+    margin: 0;
+    width: 100%;
+  }
+
+  .booking-details .background-design {
+    clip-path: polygon(-3px 544px, 99.95% 170px, 100.07% 100%, 0% 100%);
+    position: fixed;
+    
+  }
+
+  .booking-details .app-booking h1 {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  .booking-details .form-group label {
+    font-size: 14px;
+  }
+
+
+  .booking-details .form-group input,
+  .booking-details .form-group select,
+  .booking-details .textarea-last {
+    width: 85%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .booking-details .input-area {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .booking-details .textarea-last {
+    height: 80px;
+  }
+
+  .flex.justify-between {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flex.justify-between h2 {
+    font-size: 16px;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .booking-details button.btn,
+  .booking-details button.bg-red-500 {
+    width: 70%;
+    margin: 5px 0;
+    margin-left: -20px;
+  }
+
+  /* Adjust button spacing */
+  .booking-details .flex.justify-center {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+}
+

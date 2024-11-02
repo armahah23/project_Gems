@@ -1,7 +1,9 @@
+/* Base Design */
 .design {
   background-color: #13496b;
   width: 100vw;
-  height: auto;
+  height: 100vh;
+  padding: 20px;
 }
 
 .container-add {
@@ -13,7 +15,7 @@
 }
 
 .form-section {
-  margin-left: 60px;
+  margin-left: 150px;
   width: 400px;
 }
 
@@ -26,9 +28,11 @@ h1 {
   margin-bottom: 20px;
 }
 
-label {
+.form-group label  {
   display: block;
   margin-bottom: 5px;
+  color: white;
+
 }
 
 .form_input,
@@ -56,6 +60,7 @@ label {
   cursor: pointer;
   margin-left: 367px;
 }
+
 .btn-submit-V {
   background-color: red;
   color: white;
@@ -69,7 +74,8 @@ label {
 .btn-submit:hover {
   background-color: #0056b3;
 }
-.btn-submit-V {
+
+.btn-submit-V:hover {
   background-color: #0056b3;
 }
 
@@ -78,10 +84,58 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10%;
+  
 }
 
 .image-section img {
   max-width: 100%;
-  height: auto;
+  height:450px;
+  margin-top: 20px;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .container-add {
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 10px !important;
+  }
+  .design{
+    height: 121vh; 
+    position: fixed;
+  }
+
+  .form-section {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 50px;
+    margin-left: -5px;
+  }
+
+  h1 {
+    font-size: 20px !important;
+    
+  }
+
+  .image-section {
+    display: none;
+  }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+  }
+
+  .form_input,
+  .description_textarea {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .btn-submit,
+  .btn-submit-V {
+    font-size: 16px !important;
+    width: 100% !important;
+  }
 }

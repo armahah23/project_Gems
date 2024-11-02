@@ -33,7 +33,7 @@ function EBService() {
           
             <button className="book-service-button" onClick={handleBookservice}>Book Service</button>
         </section>
-        <img className='ImageT' src={ImageT} style={{ width: '450px', height: '300px' }} />
+        <img className='ImageT' src={ImageT} />
 
         {/* Emergency Section */}
         

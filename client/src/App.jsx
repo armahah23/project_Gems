@@ -30,6 +30,7 @@ import OfferPage from "./Pages/Offerpage.jsx";
 import ServicePage from "./Pages/ServicePage.jsx";
 // import CheckoutForm from "./components/CheckoutForm.jsx";
 
+
 function App() {
   return (
     <Routes>
@@ -55,6 +56,7 @@ function App() {
       <Route path="/offerpage" element={<OfferPage/>}/>
       <Route path="/servicepage" element={<ServicePage/>}/>
       {/* <Route path="checkout" element={<CheckoutForm />} /> */}
+
 
       {/* admin dashboard */}
       <Route path="/admin" element={<DashboardContent />} />
