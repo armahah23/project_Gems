@@ -192,7 +192,7 @@ export default function Login() {
           <div className=" my-2">
             <h3 className="text-lg mr-2">Login As:</h3>
             <span className="mr-2">
-              <label className="text-lg">
+              <label className="text-lg user-label">
                 <input
                   className="mr-2"
                   type="radio"
@@ -206,7 +206,7 @@ export default function Login() {
               </label>
             </span>
             <span className="mr-2">
-              <label>
+              <label className="text-lg user-label" >
                 <input
                   className="mr-2"
                   type="radio"
@@ -220,7 +220,7 @@ export default function Login() {
               </label>
             </span>
             <span className="mr-2">
-              <label>
+              <label className="text-lg user-label">
                 <input
                   className="mr-2"
                   type="radio"
@@ -236,7 +236,7 @@ export default function Login() {
           </div>
 
           <div className="py-2">
-            <label htmlFor="mb-2">Username</label>
+            <label className="mb-2 user-label">Username</label>
             <div className="relative">
               <span className="absolute top-[13px] left-[5px]">👤</span>
               <input
@@ -250,7 +250,7 @@ export default function Login() {
             </div>
           </div>
           <div className="py-2">
-            <label htmlFor="mb-2">Password</label>
+            <label className="mb-2 user-label">Password</label>
             <div className="relative">
               <span className="absolute top-[13px] left-[5px]">🔒</span>
               <input
