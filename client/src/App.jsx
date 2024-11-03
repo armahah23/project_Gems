@@ -29,6 +29,7 @@ import PaymentSuccess from "./components/PaymentSuccess.jsx";
 import AddItem from "./Pages/store/AddItem.jsx";
 import InventorySection from "./Pages/store/InventorySection.jsx";
 import BookingDashboard from "./Pages/BookingDashboard.jsx";
+import UsersDetails from "./Pages/adminDashboard/adminComponent/UsersDetails.jsx";
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function AdminLayout() {
           </Route>
           <Route path="additem" element={<AddItem />} />
           <Route path="inventory" element={<InventorySection />} />
+          <Route path="users" element={<UsersDetails />} />
         </Routes>
       </div>
     </div>

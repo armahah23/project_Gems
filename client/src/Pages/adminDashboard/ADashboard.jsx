@@ -26,7 +26,7 @@ const ADashboard = () => {
 
   return (
     <div className="Adashboard">
-      <h2 className="m-6 text-[56px] font-extrabold uppercase text-[#204a64]">
+      <h2 className="m-6 text-[56px] font-extrabold uppercase text-primary-color">
         Dashboard
       </h2>
 

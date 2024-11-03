@@ -15,6 +15,7 @@ function Widget({ type }) {
   const [mechanicCount, setMechanicCount] = useState(0); // New state variable for user count
   const [allBookings, setAllBookings] = useState([]);
   const [bookingCount, setBookingCount] = useState(0); // New state variable for user count
+  const [totalEarnings, setTotalEarnings] = useState(0); // New state variable for total earnings
 
   const navigate = useNavigate();
 
@@ -34,6 +35,7 @@ function Widget({ type }) {
 
   useEffect(() => {
     setBookingCount(allBookings.length); // Update user count when allUsers changes
+    calculateTotalEarnings();
   }, [allBookings]);
 
   //get users total count
@@ -93,6 +95,11 @@ function Widget({ type }) {
     }
   };
 
+  const calculateTotalEarnings = () => {
+    const total = allBookings.reduce((acc, booking) => acc + booking.netTotal, 0);
+    setTotalEarnings(total);
+  };
+
   //navigation to the respective page
   let navigateTo = (type) => {
     switch (type) {
@@ -123,6 +130,9 @@ function Widget({ type }) {
       break;
     case "booking":
       amount = bookingCount;
+      break;
+    case "earning":
+      amount = totalEarnings;
       break;
     default:
       amount = 1000;
