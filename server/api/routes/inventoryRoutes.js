@@ -5,7 +5,8 @@ const inventoryController = require('../controllers/inventoryController');
 // Define routes for inventory management
 router.post('/inventory/create', inventoryController.createInventoryItem);
 router.get('/inventory', inventoryController.getAllInventoryParts);
-router.put('/inventory/:id', inventoryController.updateInventoryItem); // Update route
+router.put('/inventory/partcode/:partCode', inventoryController.updateInventoryByPartCode); // Update route by part code
 router.delete('/inventory/:id', inventoryController.deleteInventoryItem); // Delete route
+router.get('/inventory/partcode/:partCode', inventoryController.getInventoryByPartCode); // Route to fetch by part code
 
 module.exports = router;

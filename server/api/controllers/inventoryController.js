@@ -91,3 +91,38 @@ exports.updateInventoryItem = async (req, res) => {
     res.status(500).json({ status: "FAILED", message: "An error occurred while updating the item" });
   }
 };
+
+// Fetch inventory item by part code
+exports.getInventoryByPartCode = async (req, res) => {
+  try {
+    const { partCode } = req.params;
+    const part = await Inventory.findOne({ partCode });
+    if (!part) {
+      return res.status(404).json({ status: "FAILED", message: "Item not found" });
+    }
+    res.status(200).json(part);
+  } catch (error) {
+    console.error("Error fetching inventory item by part code:", error);
+    res.status(500).json({ status: "FAILED", message: "An error occurred while fetching the item" });
+  }
+};
+
+// Update inventory item by part code
+exports.updateInventoryByPartCode = async (req, res) => {
+  try {
+    const { partCode } = req.params;
+    const { quantity } = req.body;
+    const part = await Inventory.findOneAndUpdate(
+      { partCode },
+      { $inc: { quantity } },
+      { new: true }
+    );
+    if (!part) {
+      return res.status(404).json({ status: "FAILED", message: "Item not found" });
+    }
+    res.status(200).json({ status: "SUCCESS", message: "Item updated successfully", data: part });
+  } catch (error) {
+    console.error("Error updating inventory item by part code:", error);
+    res.status(500).json({ status: "FAILED", message: "An error occurred while updating the item" });
+  }
+};

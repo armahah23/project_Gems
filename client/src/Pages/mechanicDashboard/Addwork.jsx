@@ -3,6 +3,7 @@ import Image2 from "../../assets/photos/Addwork.jpg";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
+import axios from "axios";
 
 const Addwork = () => {
   const navigate = useNavigate();
@@ -47,6 +48,23 @@ const Addwork = () => {
     setUnitAmount(0);    
   };
 
+  const handlePartCodeChange = async (e) => {
+    const partCode = e.target.value;
+    setPartCode(partCode);
+
+    if (partCode) {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/inventory/partcode/${partCode}`);
+        const part = response.data;
+        setUnitAmount(part.price);
+        setDescription(part.description);
+        setWarranty(part.partName);
+      } catch (error) {
+        console.error("Error fetching inventory item by part code:", error);
+      }
+    }
+  };
+
   const handleNavigateToInvoice = () => {
     // Navigate to the Invoice page and pass workItems array as state
     navigate("/invoice");
@@ -77,11 +95,11 @@ const Addwork = () => {
                 type="text"
                 name="Code"
                 value={partCode}
-                onChange={(e) => setPartCode(e.target.value)}
+                onChange={handlePartCodeChange}
               />
             </div>
             <div className="form-group">
-              <label>Warranty :</label>
+              <label>Parts Name :</label>
               <input
                 className="form_input"
                 type="text"
