@@ -59,7 +59,7 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
               <thead>
                 <tr>
                   <th>Description</th>
-                  <th>Warranty</th>
+                  <th>Item Name</th>
                   <th>Parts Code No</th>
                   <th>Qty</th>
                   <th>Amount</th>

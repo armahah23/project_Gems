@@ -4,8 +4,8 @@ import { MdOutlineCancel } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { MdDashboard } from "react-icons/md";
-import { Link } from "react-router-dom";
+// import { MdDashboard } from "react-icons/md";
+// import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import UserModal from "../components/UserModal";
 
@@ -60,10 +60,10 @@ const BookingDashboard = () => {
       )}
     <div className="mt-10"><Navbar /></div>
       <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
-        <div>Manage booking</div>
-        <Link to="/admin/dashboard" className="cursor:pointer">
+        <div>Bookings</div>
+        {/* <Link to="/admin/dashboard" className="cursor:pointer">
           <MdDashboard />
-        </Link>
+        </Link> */}
       </div>
       <div className="container mx-auto p-4">
         <div className="overflow-x-auto">

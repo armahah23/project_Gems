@@ -2,13 +2,11 @@ const express = require('express');
 const router = express.Router();
 const mechanicController = require('../controllers/mechanicController');
 
-
-// Route for creating a new mechnic
+// Route for creating a new mechanic
 router.post('/esignup', mechanicController.createMechanic);
-router.get('/getAllMechanics', mechanicController.getAllMechanics);
+router.get('/bookingSlot/getAllMechanics', mechanicController.getAllMechanics);
 
-//route for get mechanic count;
+// Route for getting mechanic count
 router.get('/mechanicCount/getAllMechanics', mechanicController.getAllMechanicsCount);
-
 
 module.exports = router;

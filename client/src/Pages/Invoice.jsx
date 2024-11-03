@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./Invoice.css";
-// import logo from "../assets/photos/logo.png";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineRest } from "react-icons/ai";
 import axios from "axios";
@@ -72,6 +71,14 @@ const Invoice = () => {
     };
 
     try {
+      // Update inventory quantities
+      for (const item of workItems) {
+        await axios.put(`http://localhost:3000/api/inventory/partcode/${item.partCode}`, {
+          quantity: item.qty, // Decrease the quantity
+        });
+      }
+
+      // Create the bill
       const response = await axios.post(
         `http://localhost:3000/api/addBill/${bookingId}`,
         data

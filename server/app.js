@@ -34,6 +34,7 @@ app.use("/api", notificationRoutes);
 app.use("/api", chatbotRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", inventoryRoutes);
+app.use("/api", require("./api/routes/mechanicRoutes"));
 
 // Start the server
 const PORT = process.env.PORT || 3000;

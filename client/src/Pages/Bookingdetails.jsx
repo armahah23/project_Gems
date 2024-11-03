@@ -11,12 +11,29 @@ function Bookingdetails() {
   const [userName, setUserName] = useState(user?.fullname || "");
   const [userEmail, setUserEmail] = useState(user?.email || "");
   const [mobileNumber, setMobileNumber] = useState(user?.phone || "");
+  const [selectedMechanic, setSelectedMechanic] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchMechanics = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/bookingSlot/getAllMechanics",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (response.status === 200) {
+          setAllMechanics(response.data.data);
+        }
+      } catch (error) {
+        console.error("Error during getting mechanics", error);
+      }
+    };
+
     fetchMechanics();
-    console.log(addedItem);
-    
   }, []);
 
   const [form, setForm] = useState({
@@ -34,22 +51,9 @@ function Bookingdetails() {
     setForm({ ...form, [name]: value });
   };
 
-  const fetchMechanics = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:3000/api/getAllMechanics",
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.status == "200") {
-        setAllMechanics(response.data.data);
-      }
-    } catch (error) {
-      console.error("Error during getting mechanics", error);
-    }
+  const handleMechanicChange = (e) => {
+    const mechanicId = e.target.value;
+    setSelectedMechanic(mechanicId);
   };
 
   const handleSubmit = async (e) => {
@@ -86,7 +90,7 @@ function Bookingdetails() {
       email: userEmail,
       message: form.message,
       userId: user._id,
-      mechanicId: form.mechanicId,
+      mechanicId: selectedMechanic,
     };
 
     try {
@@ -122,7 +126,7 @@ function Bookingdetails() {
           },
           body: JSON.stringify({
             bookingId: bookingId,
-            mechanicId: form.mechanicId,
+            mechanicId: selectedMechanic,
             topic: "Booking",
             message: "Booking created successfully",
           }),
@@ -163,10 +167,10 @@ function Bookingdetails() {
         error
       );
       Swal.fire({
-        icon: 'error',
-        title: 'Booking Failed!',
-        text: 'Failed to create booking or send notification. Please try again.',
-        confirmButtonText: 'OK'
+        icon: "error",
+        title: "Booking Failed!",
+        text: "Failed to create booking or send notification. Please try again.",
+        confirmButtonText: "OK",
       });
     }
   };
@@ -186,18 +190,13 @@ function Bookingdetails() {
     }).then((result) => {
       if (result.isConfirmed) {
         navigate("/"); // Redirect to home or another relevant page after cancellation
-        Swal.fire(
-          'Cancelled!',
-          'Your booking has been cancelled.',
-          'success'
-        );
+        Swal.fire("Cancelled!", "Your booking has been cancelled.", "success");
       }
     });
   };
 
   return (
     <main className="booking-details">
-    
       <div className="background-design"></div>
       <div className="app-booking">
         <h1>SLOT BOOKING DETAILS</h1>
@@ -338,10 +337,8 @@ function Bookingdetails() {
               <div className="flex flex-wrap justify-center w-full md:w-auto">
                 <select
                   className="dropdown p-2 w-[300px] "
-                  value={form.mechanicId}
-                  onChange={(e) =>
-                    setForm({ ...form, mechanicId: e.target.value })
-                  }
+                  value={selectedMechanic}
+                  onChange={handleMechanicChange}
                 >
                   <option value="">Select a mechanic</option>
                   {allMechanics.map((mechanic) => (
@@ -353,7 +350,7 @@ function Bookingdetails() {
               </div>
             </div>
             <div className="flex justify-center  ">
-            <button
+              <button
                 onClick={handleCancel}
                 className="bg-red-500 hover:bg-red-300 text-white p-3 w-full ml-8 text-uppercase rounded-[10px] md:w-[300px]"
               >
@@ -362,7 +359,6 @@ function Bookingdetails() {
               <button type="submit" className="btn">
                 Book Now
               </button>
-            
             </div>
           </form>
         </div>

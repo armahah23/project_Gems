@@ -157,12 +157,11 @@ const sendOtpEmail = async (email, otp) => {
 
 exports.getAllMechanics = async (req, res) => {
   try {
-    const data = await Mechanic.find();
-
-    res.status(200).send({ message: "got all mechanics", data: data });
+    const mechanics = await Mechanic.find();
+    res.status(200).json({ message: "got all mechanics", data: mechanics });
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Failed to fetch user details" });
+    console.error("Error fetching mechanics:", error);
+    res.status(500).json({ error: "Failed to fetch mechanics" });
   }
 };
 

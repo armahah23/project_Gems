@@ -8,5 +8,6 @@ router.get('/inventory', inventoryController.getAllInventoryParts);
 router.put('/inventory/partcode/:partCode', inventoryController.updateInventoryByPartCode); // Update route by part code
 router.delete('/inventory/:id', inventoryController.deleteInventoryItem); // Delete route
 router.get('/inventory/partcode/:partCode', inventoryController.getInventoryByPartCode); // Route to fetch by part code
+router.put('/inventory/:id', inventoryController.updateInventoryItem); // Update route
 
 module.exports = router;

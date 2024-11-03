@@ -4,6 +4,8 @@ const UpdateModal = ({ part, onClose, onSave }) => {
   const [quantity, setQuantity] = useState(part.itemQuantity);
   const [price, setPrice] = useState(part.itemPrice);
 
+
+  
   const handleSave = () => {
     onSave({ ...part, itemQuantity: quantity, itemPrice: price });
   };
