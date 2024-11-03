@@ -175,6 +175,21 @@ function Bookingdetails() {
     }
   };
 
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let hour = 8; hour <= 15; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        const time = `${hour.toString().padStart(2, "0")}:${minute
+          .toString()
+          .padStart(2, "0")}`;
+        times.push(time);
+      }
+    }
+    return times;
+  };
+
+  const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+
   const handleCancel = (e) => {
     e.preventDefault(); // Prevent default behavior if needed
 
@@ -196,9 +211,9 @@ function Bookingdetails() {
   };
 
   return (
-    <main className="booking-details">
+    <main className="booking-details flex justify-center text-white relative">
       <div className="background-design"></div>
-      <div className="app-booking">
+      <div className="app-booking pb-4">
         <h1>SLOT BOOKING DETAILS</h1>
         <div className="container-booking bg-gray-500">
           <form onSubmit={handleSubmit}>
@@ -247,25 +262,36 @@ function Bookingdetails() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label>Preferred Date</label>
+              <div className="mb-2">
+                <label className="block text-md font-bold mb-2">
+                  Preferred Date:
+                </label>
                 <input
-                  className="input-area"
                   type="date"
                   name="preferredDate"
                   value={form.preferredDate}
                   onChange={handleChange}
+                  min={today} // Set minimum date to today
+                  className="shadow appearance-none border rounded-lg w-[300px]  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </div>
-              <div className="form-group">
-                <label>Preferred Time</label>
-                <input
-                  className="input-area"
-                  type="time"
+              <div className="mb-4">
+                <label className="block text-md font-bold mb-2">
+                  Preferred Time:
+                </label>
+                <select
                   name="preferredTime"
                   value={form.preferredTime}
                   onChange={handleChange}
-                />
+                  className="shadow appearance-none border rounded-lg w-[300px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                >
+                  <option value="">Select a time</option>
+                  {generateTimeOptions().map((time) => (
+                    <option key={time} value={time}>
+                      {time}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
@@ -331,18 +357,18 @@ function Bookingdetails() {
               </div>
             </div>
             <div className="flex flex-col md:flex-row justify-between w-full px-8 mb-4 items-center">
-              <h2 className="text-center text-lg font-bold mb-4 md:mb-0">
+              {/* <h2 className="text-center text-lg font-bold mb-4 md:mb-0">
                 Please select a mechanic
-              </h2>
-              <div className="flex flex-wrap justify-center w-full md:w-auto">
+              </h2> */}
+              <div className="flex flex-wrap justify-center mt-2 w-full md:w-auto">
                 <select
-                  className="dropdown p-2 w-[300px] "
+                  className="dropdown rounded-lg text-gray-700 p-2 w-[300px] "
                   value={selectedMechanic}
                   onChange={handleMechanicChange}
                 >
-                  <option value="">Select a mechanic</option>
+                  <option className="text-gray-700" value="">Select a Mechanic</option>
                   {allMechanics.map((mechanic) => (
-                    <option key={mechanic._id} value={mechanic._id}>
+                    <option key={mechanic._id} className="text-gray-700" value={mechanic._id}>
                       {mechanic.firstname} ({mechanic.email})
                     </option>
                   ))}
