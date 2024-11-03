@@ -112,18 +112,19 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="flex justify-center items-center w-[100vw] h-[100vh]">
+    <div className="bg-[#13496b]">
+    <div className="flex justify-center items-center w-[100vw] h-[100vh] ">
       <form
-        className="bg-green-600 h-[450px] flex flex-col justify-center w-[400px] flex p-4"
+        className="bg-[rgba(0,0,0,0.5)] h-[450px] flex flex-col justify-center w-[375px] flex p-4"
         onSubmit={handleAnswerSecurityQuestion}
       >
         <h1 className="text-center text-3xl my-4 text-white">
           Forgot Password
         </h1>
         <div className="flex my-2">
-          <h3 className="text-lg mr-2">Login As:</h3>
+          <h3 className="text-lg text-white mr-2">Login As:</h3>
           <span className="mr-2">
-            <label className="text-lg">
+            <label className="text-lg text-white">
               <input
                 className="mr-2"
                 type="radio"
@@ -137,7 +138,7 @@ export default function ForgotPassword() {
             </label>
           </span>
           <span className="mr-2">
-            <label>
+            <label className="text-lg text-white">
               <input
                 className="mr-2"
                 type="radio"
@@ -151,7 +152,7 @@ export default function ForgotPassword() {
             </label>
           </span>
           <span className="mr-2">
-            <label>
+            <label className="text-lg text-white">
               <input
                 className="mr-2"
                 type="radio"
@@ -181,7 +182,7 @@ export default function ForgotPassword() {
           />
           <button
             onClick={handleResetPassword}
-            className="bg-blue-600 w-[50%] rounded py-2 uppercase text-white hover:bg-blue-700"
+            className="bg-red-600 w-[50%] rounded py-2 uppercase text-white hover:bg-blue-700"
           >
             Search
           </button>
@@ -208,6 +209,7 @@ export default function ForgotPassword() {
           )}
         </div>
       </form>
+    </div>
     </div>
   );
 }

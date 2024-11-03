@@ -17,7 +17,6 @@ const BookingDashboard = () => {
 
   const toggleBookingModal = () => setShowBookingModal(!showBookingModal);
 
-
   useEffect(() => {
     fetchBooking();
   }, []);
@@ -35,7 +34,7 @@ const BookingDashboard = () => {
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: `Error: ${data.error}`, // Display the dynamic error message
+          text: `Error: ${data.error}`,
           confirmButtonText: "OK",
         });
       }
@@ -51,56 +50,42 @@ const BookingDashboard = () => {
 
   return (
     <>
-    {showBookingModal && (
+      {showBookingModal && (
         <UserModal
           bookingDetails={currentBooking}
           toggleModal={toggleBookingModal}
           showModal={showBookingModal}
         />
       )}
-    <div className="mt-10"><Navbar /></div>
+      <div className="mt-10"><Navbar /></div>
       <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
         <div>Bookings</div>
         {/* <Link to="/admin/dashboard" className="cursor:pointer">
           <MdDashboard />
         </Link> */}
       </div>
-      <div className="container mx-auto p-4">
+      
+      {/* Desktop View */}
+      <div className="hidden md:block container mx-auto p-4">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
-                  User Name
-                </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
-                  Mechanic Name
-                </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
-                  Date & Time
-                </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
-                  Accept Status
-                </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
-                  Paid Status
-                </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
-                  See More
-                </th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b-2">User Name</th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b-5">Mechanic Name</th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b">Date & Time</th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b">Accept Status</th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b">Paid Status</th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b">See More</th>
               </tr>
             </thead>
             <tbody>
               {allBookings.map((booking, index) => (
                 <tr key={index} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 border-b">{booking.userId.fullname}</td>
+                  <td className="px-6 py-4 border-b">{booking.mechanicId.firstname}</td>
                   <td className="px-6 py-4 border-b">
-                    {booking.userId.fullname}
-                  </td>
-                  <td className="px-6 py-4 border-b">
-                    {booking.mechanicId.firstname}
-                  </td>
-                  <td className="px-6 py-4 border-b">
-                    {booking.preferreddate} - {booking.preferredtime}{" "}
+                    {booking.preferreddate} - {booking.preferredtime}
                   </td>
                   <td className="px-6 py-4 border-b">
                     {booking.isAccepted === "pending" && (
@@ -108,19 +93,16 @@ const BookingDashboard = () => {
                         Pending
                       </button>
                     )}
-
                     {booking.isAccepted === "accepted" && (
                       <button className="px-4 py-2 text-sm text-white bg-blue-500 rounded-lg">
                         Ongoing
                       </button>
                     )}
-
                     {booking.isAccepted === "rejected" && (
                       <button className="px-4 py-2 text-sm text-white bg-red-500 rounded-lg">
                         Rejected
                       </button>
                     )}
-
                     {booking.isAccepted === "completed" && (
                       <button className="px-4 py-2 text-sm text-white bg-green-500 rounded-lg">
                         Completed
@@ -128,12 +110,11 @@ const BookingDashboard = () => {
                     )}
                   </td>
                   <td className="px-6 py-4 border-b">
-                    {booking.isPaid && (
+                    {booking.isPaid ? (
                       <button className="px-4 py-2 text-sm text-white bg-green-500 rounded-lg">
                         <TiTick />
                       </button>
-                    )}
-                    {!booking.isPaid && (
+                    ) : (
                       <button className="px-4 py-2 text-sm text-white bg-red-500 rounded-lg">
                         <MdOutlineCancel />
                       </button>
@@ -152,6 +133,77 @@ const BookingDashboard = () => {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Mobile View - Receipt Style */}
+      <div className="md:hidden px-4">
+        {allBookings.map((booking, index) => (
+          <div key={index} className="bg-white mb-4 border-b border-gray-200">
+            {/* Header Section */}
+            <div className="p-4 border-b">
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-bold">{booking.userId.fullname}</h3>
+                <button
+                  onClick={() => handleEdit(booking)}
+                  className="px-3 py-1 text-white bg-indigo-600 rounded"
+                >
+                  <FaRegEdit />
+                </button>
+              </div>
+            </div>
+
+            {/* Details Section */}
+            <div className="p-4 space-y-3">
+              <div className="grid grid-cols-2 text-sm">
+                <span className="text-gray-600">Mechanic Name:</span>
+                <span className="text-right">{booking.mechanicId.firstname}</span>
+              </div>
+
+              <div className="grid grid-cols-2 text-sm">
+                <span className="text-gray-600">Date:</span>
+                <span className="text-right">{booking.preferreddate}</span>
+              </div>
+
+              <div className="grid grid-cols-2 text-sm">
+                <span className="text-gray-600">Time:</span>
+                <span className="text-right">{booking.preferredtime}</span>
+              </div>
+
+              <div className="grid grid-cols-2 text-sm items-center">
+                <span className="text-gray-600">Status:</span>
+                <div className="text-right">
+                  {booking.isAccepted === "pending" && (
+                    <span className="px-2 py-1 text-xs text-white bg-orange-500 rounded">Pending</span>
+                  )}
+                  {booking.isAccepted === "accepted" && (
+                    <span className="px-2 py-1 text-xs text-white bg-blue-500 rounded">Ongoing</span>
+                  )}
+                  {booking.isAccepted === "rejected" && (
+                    <span className="px-2 py-1 text-xs text-white bg-red-500 rounded">Rejected</span>
+                  )}
+                  {booking.isAccepted === "completed" && (
+                    <span className="px-2 py-1 text-xs text-white bg-green-500 rounded">Completed</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 text-sm items-center">
+                <span className="text-gray-600">Payment Status:</span>
+                <div className="text-right">
+                  {booking.isPaid ? (
+                    <span className="inline-flex items-center justify-center w-6 h-6 bg-green-500 rounded-full">
+                      <TiTick className="text-white" />
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center justify-center w-6 h-6 bg-red-500 rounded-full">
+                      <MdOutlineCancel className="text-white" />
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

@@ -20,7 +20,7 @@ function EBService() {
 
   return (
     <div className="EBService">
-      <div><Navbar /></div>
+      <div className='mt-10'><Navbar /></div>
       
       <main>
         {/* Slot Booking Section */} 
@@ -37,7 +37,7 @@ function EBService() {
 
         {/* Emergency Section */}
         
-        <section className="emergency-section">
+        {/* <section className="emergency-section">
         <button className="emergency-service-button"  onClick={handleEmergencyService}>Emergency Service</button>
         
           <h1>Help When You Need It Most !</h1>
@@ -46,7 +46,7 @@ function EBService() {
             our team is available 24/7 to help you on the spot. Quick, reliable, and always ready!
           </p>
          
-        </section>
+        </section> */}
       </main>
       <div className="background-design"></div>
     </div>
