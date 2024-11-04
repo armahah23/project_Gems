@@ -26,7 +26,6 @@ import ServicesDropdown from "../components/ServiceDropdown";
 import ChatButton from "../components/ChatButton";
 import ChatModal from "../components/ChatModal";
 
-
 const HomePage = () => {
   const { user, setUser, fetchUser } = useAuth();
   const navigate = useNavigate();
@@ -242,7 +241,7 @@ const HomePage = () => {
                   </>
                 ) : (
                   <button
-                    className="sign-up-btn px-4 rounded hover:bg-blue-700"
+                    className="sign-up-btn1 px-4 py-1 rounded hover:bg-blue-700 "
                     onClick={handleSignup}
                   >
                     SIGN UP
@@ -281,25 +280,26 @@ const HomePage = () => {
                     </button>
                   </Link>
                 ) : (
-                  <div className="flex flex-col sm:flex-row">
-                  <div>
-                    <Link to={'./signupoption'} className="sign-up-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
+                  <div className="flex flex-row items-center w-full mt-4 sm:mt-0">
+                    <Link
+                      to="./signupoption"
+                      className="sign-up-btn2 px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 mr-4"
+                    >
                       SIGN UP
                     </Link>
-                  </div>
-                  <div>
-                    <p className="px-5 sm:mt-0">
-                      or{" "}
-                      <a
-                        href="#"
-                        className="text-blue-700 underline"
-                        onClick={handleLogin}
-                      >
-                        CLICK HERE
-                      </a>{" "}
-                      to Log in
-                    </p>
-                  </div>
+                    <div className="flex items-center">
+                      <p className="text-gray-700">
+                        or{" "}
+                        <a
+                          href="#"
+                          className="text-blue-700 underline"
+                          onClick={handleLogin}
+                        >
+                          CLICK HERE
+                        </a>{" "}
+                        to Log in
+                      </p>
+                    </div>
                   </div>
                 )}
               </div>
@@ -513,7 +513,7 @@ const HomePage = () => {
             <div className="w-full flex flex-col sm:flex-row justify-center items-center bg-transparent relative z-[1]">
               <div
                 style={{ boxShadow: "0 0 20px 0 rgba(19, 73, 107, 0.2)" }}
-                className="bg-white bg-opacity-40 shadow-2xl rounded-3xl w-full sm:w-[60%] p-4 sm:p-[50px]"
+                className="bg-white bg-opacity-40 shadow-2xl rounded-3xl w-full sm:w-[60%] p-4 sm:p-[50px] "
               >
                 <p
                   className="text-center underline text-[22px] sm:text-[26px] font-bold"

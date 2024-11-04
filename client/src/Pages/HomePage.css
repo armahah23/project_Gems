@@ -48,7 +48,7 @@
   font-weight: 500;
 }
 
-.sign-up-btn {
+.sign-up-btn1 {
   background: #13496b;
   color: white;
   border: none;
@@ -348,4 +348,63 @@
   height: 80vh; /* Full height */
   width: 100%; /* Full width */
   clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+}
+.sign-up-btn2{
+  margin-top: -20px;
+
+}
+
+/* Mobile styles */
+@media (max-width: 640px) {
+  .sign-up-btn1 {
+    background-color: #13496b; /* Example color */
+    font-size: 14px; /* Adjust font size */
+    padding: 8px 12px; /* Adjust padding */
+    border-radius: 8px; /* Adjust border radius */
+    /* Add any other mobile-specific styles here */
+  }
+}
+@media (max-width: 640px) {
+  .sign-up-btn2 {
+    background-color: #13496b; /* Example color */
+    font-size: 14px; /* Adjust font size */
+    padding: 8px 12px; /* Adjust padding */
+    border-radius: 8px; /* Adjust border radius */
+    margin-left: 50px;
+    margin-top: -20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    margin-top: -20px; /* Adjust this value to move the section higher */
+  }
+}
+
+@media (max-width: 640px) {
+  .history-section-container{
+    margin-top: 10px;
+  }
+}
+/* Mobile styles */
+@media (max-width: 640px) {
+  .hero-content {
+    margin-top: -20px; /* Adjust as needed */
+  }
+}
+
+
+
+@media (max-width: 640px) {
+  .flex {
+    flex-direction: row; /* Arrange items in a row */
+    justify-content: space-between; /* Space them out across the container */
+    align-items: center;
+  }
+  .sign-up-btn {
+    flex-shrink: 0; /* Prevent the button from shrinking */
+  }
+  .ml-4 {
+    margin-left: 1rem; /* Add space between the button and the text */
+  }
 }
