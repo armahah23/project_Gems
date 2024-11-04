@@ -36,6 +36,7 @@ app.use("/api", chatbotRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", inventoryRoutes);
 app.use("/api", require("./api/routes/mechanicRoutes"));
+app.use("/api", require("./api/routes/ratingRoutes")); // Make sure path matches your project structure
 
 app.get('/set-cookie', (req, res) => {
   res.cookie('myCookie', 'cookieValue', {

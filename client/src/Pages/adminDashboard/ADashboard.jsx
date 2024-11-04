@@ -1,5 +1,6 @@
 import Widget from './adminComponent/widget';
 import BookingsEarningsGraph from './adminComponent/BookingsEarningsGraph';
+import RatingsWidget from './adminComponent/RatingsWidget';
 import "./ADashboard.css"; // Add your own styling
 
 import { useState } from 'react';
@@ -20,8 +21,14 @@ const ADashboard = () => {
         <Widget type="booking" />
       </div>
 
-      <div className="mt-8">
-        <BookingsEarningsGraph />
+      {/* Updated grid with 75/25 split */}
+      <div className="flex gap-6 mt-8 px-[20px]">
+        <div className="w-3/4">
+          <BookingsEarningsGraph />
+        </div>
+        <div className="w-1/4">
+          <RatingsWidget />
+        </div>
       </div>
     </div>
   );
