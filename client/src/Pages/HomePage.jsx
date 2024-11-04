@@ -198,9 +198,9 @@ const HomePage = () => {
                 <Link to="/">HOME</Link>
                 {token && <Link to="/bookings">BOOKINGS</Link>}
                 {token && <Link to="/contact">CONTACT</Link>}
-
-                <Link className="nav-item"><ServicesDropdown /></Link>
-                <Link to="#">OFFERS</Link>
+                <Link to="/servicepage">SERVICES</Link>
+                {/* <Link className="nav-item"><ServicesDropdown /></Link> */}
+                <Link to="/offerpage">OFFERS</Link>
                 {token && <Link to="/store">STORE</Link>}
                 {/* <Link to="/store">STORE</Link> */}
                 {token ? (
@@ -227,7 +227,7 @@ const HomePage = () => {
                             }
                             className="notification-content"
                           >
-                            <h2>{note.topic}</h2>
+                            <h5>{note.topic}</h5>
                             <p>{note.message}</p>
                           </button>
                         ))}
@@ -257,7 +257,7 @@ const HomePage = () => {
         <main>
           {/* Hero Section */}
           <section className="hero-section container mx-auto px-4  sm:px-10 lg:px-20">
-            <div className="hero-content text-center sm:text-left">
+            <div className="hero-content text-center mt-1 sm:text-left">
               <p className="text-[25px] sm:text-[40px] font-serif font-bold text-gray-500 mt-5">
                 Welcome, {user ? user.fullname : "Guest"}!
               </p>
@@ -281,10 +281,13 @@ const HomePage = () => {
                     </button>
                   </Link>
                 ) : (
-                  <div className="flex flex-col sm:flex-row items-center">
+                  <div className="flex flex-col sm:flex-row">
+                  <div>
                     <Link to={'./signupoption'} className="sign-up-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
                       SIGN UP
                     </Link>
+                  </div>
+                  <div>
                     <p className="px-5 sm:mt-0">
                       or{" "}
                       <a
@@ -296,6 +299,7 @@ const HomePage = () => {
                       </a>{" "}
                       to Log in
                     </p>
+                  </div>
                   </div>
                 )}
               </div>

@@ -1,40 +1,41 @@
-import React, { useState } from 'react';
-import './Navbar.css';
+import { useState } from 'react';
 import logo from "../assets/photos/logo.png";
-import Person from "../assets/icons/Person.png";
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const token = localStorage.getItem("token");
 
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <img src={logo} alt="Logo" />
-      </div>
+    <nav className="bg-white shadow-md  fixed w-full z-10">
+      <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+        <div className="navbar-logo">
+          <img src={logo} alt="Logo" className="h-10" />
+        </div>
 
-      {/* Hamburger Menu Button */}
-      <button className="menu-toggle" onClick={toggleMenu}>
-        <span className={`hamburger ${isMenuOpen ? 'active' : ''}`}></span>
-      </button>
+        <div className={`navbar-links flex space-x-4 ${isMenuOpen ? 'block' : 'hidden'} md:flex`}>
+          <Link to="/" className="text-gray-700 hover:text-blue-500">HOME</Link>
+          {token && <Link to="/bookings" className="text-gray-700 hover:text-blue-500">BOOKINGS</Link>}
+          {token && <Link to="/contact" className="text-gray-700 hover:text-blue-500">CONTACT</Link>}
+          <Link to="/servicepage" className="text-gray-700 hover:text-blue-500">SERVICES</Link>
+          <Link to="/offerpage" className="text-gray-700 hover:text-blue-500">OFFERS</Link>
+          {token && <Link to="/store" className="text-gray-700 hover:text-blue-500">STORE</Link>}
+        </div>
 
-      {/* Navigation Links */}
-      <div className={`nav-content ${isMenuOpen ? 'active' : ''}`}>
-        <ul className="navbar-links">
-          <li><Link to="/" onClick={toggleMenu}>HOME</Link></li>
-          <li><Link to="/servicepage" onClick={toggleMenu}>SERVICES</Link></li>
-          <li><Link to="/offerpage" onClick={toggleMenu}>OFFERS</Link></li>
-          <li><Link to="/store" onClick={toggleMenu}>STORE</Link></li>
-          <li><Link to="/bookings" onClick={toggleMenu}>BOOKINGS</Link></li>
-          <li><Link to="/contactus" onClick={toggleMenu}>CONTACT</Link></li>
-        </ul>
+        <div className="navbar-menu md:hidden" onClick={toggleMenu}>
+          <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`}>
+            <div className="bar1 bg-gray-700"></div>
+            <div className="bar2 bg-gray-700"></div>
+            <div className="bar3 bg-gray-700"></div>
+          </div>
+        </div>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

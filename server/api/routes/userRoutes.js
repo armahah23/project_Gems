@@ -23,5 +23,8 @@ router.get('/user/:identifier', userController.getQuestion);
 //route for get all users
 router.get('/userCount/getAllUsers', userController.getAllUsers);
 
+//route for get all users to admin panel
+router.get('/users/getAllUsersToAdmin', userController.getAllUsersToAdmin);
+
  
 module.exports = router;

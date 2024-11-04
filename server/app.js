@@ -12,6 +12,7 @@ const loginRoutes = require("./api/routes/loginRoutes");
 const notificationRoutes = require("./api/routes/notificationRoutes");
 const chatbotRoutes = require("./api/routes/chatbotRoutes");
 const paymentRoutes = require("./api/routes/paymentRoutes");
+const Cookies = require('js-cookie');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -35,6 +36,21 @@ app.use("/api", chatbotRoutes);
 app.use("/api", paymentRoutes);
 app.use("/api", inventoryRoutes);
 app.use("/api", require("./api/routes/mechanicRoutes"));
+
+app.get('/set-cookie', (req, res) => {
+  res.cookie('myCookie', 'cookieValue', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'Lax', // or 'Strict' or 'None'
+  });
+  res.send('Cookie has been set');
+});
+
+Cookies.set('myCookie', 'cookieValue', {
+  expires: 7, // 7 days
+  secure: true,
+  sameSite: 'Lax', // or 'Strict' or 'None'
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;

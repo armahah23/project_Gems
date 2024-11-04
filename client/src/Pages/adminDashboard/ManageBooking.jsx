@@ -106,33 +106,33 @@ const ManageBooking = () => {
         />
       )}
   
-      <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
+      <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-primary-color">
       <div>Manage booking</div>
       <Link to="/admin/dashboard" className="cursor:pointer">
-      <MdDashboard />
+      <MdDashboard className="text-[24px]" />
       </Link>
       </div>
       <div className="container mx-auto p-4">
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-            <thead>
+          <table className="min-w-full  rounded-lg">
+            <thead className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
               <tr>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   User Name
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   Mechanic Name
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   Date & Time
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   Accept Status
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   Paid Status
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   Actions
                 </th>
               </tr>
