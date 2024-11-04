@@ -9,13 +9,15 @@ function MechanicProfile() {
   useEffect(() => {
     const fetchMechanics = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/getAllMechanics", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        console.log('Response:', response); // Log the response
-        if (response.status === 200) {
+        const response = await axios.get(
+          "http://localhost:3000/api//bookingSlot/getAllMechanics",
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (response.status == "200") {
           setAllMechanics(response.data.data);
         }
       } catch (error) {

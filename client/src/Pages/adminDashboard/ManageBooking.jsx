@@ -41,10 +41,11 @@ const ManageBooking = () => {
       console.error(error);
     }
   };
+  
   const fetchMechanics = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/getAllMechanics",
+        "http://localhost:3000/api//bookingSlot/getAllMechanics",
         {
           headers: {
             "Content-Type": "application/json",

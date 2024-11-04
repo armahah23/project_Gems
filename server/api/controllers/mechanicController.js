@@ -154,7 +154,6 @@ const sendOtpEmail = async (email, otp) => {
 };
 
 
-
 exports.getAllMechanics = async (req, res) => {
   try {
     const mechanics = await Mechanic.find();
@@ -223,7 +222,7 @@ exports.getMechanicById = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch mechanic details" });
   }
 };
-
+3
 
 exports.getAllMechanicsToAdmin = async (req, res) => {
   try {
