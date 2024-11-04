@@ -276,7 +276,7 @@ function Bookingdetails() {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-md font-bold mb-2">
+                <label className="block text-mdfont-bold mb-2">
                   Preferred Time:
                 </label>
                 <select

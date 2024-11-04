@@ -42,7 +42,7 @@
 }
 
 .menu button {
-  width: calc(100% - 20px);
+  width: calc(100%);
   padding: 10px;
   background-color: rgb(255, 255, 255);
   border: 2px solid #000000;

@@ -1,4 +1,3 @@
-import React from 'react';
 import './Offerpage.css';
 import { Clock, Settings, Shield, Car } from 'lucide-react';
 import Navbar from '../components/Navbar';

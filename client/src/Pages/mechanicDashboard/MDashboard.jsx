@@ -168,6 +168,10 @@ const Dashboard = () => {
     });
   };
 
+  const navigateToProfile = () => {
+    navigate("/mprofile")
+  }
+ 
   return (
     <>
       {showBookingModal && bookingDetails && (
@@ -249,7 +253,7 @@ const Dashboard = () => {
                 <button onClick={ToggleEvent}>Settings</button>
               </li>
               <li>
-                <button>Profile</button>
+                <button onClick={navigateToProfile}>Profile</button>
               </li>
               <li>
                 <button onClick={handlelogout}>Log Out</button>

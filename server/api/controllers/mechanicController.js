@@ -2,7 +2,7 @@ const Mechanic = require("../schemas/mechanicSchema.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const otpGenerator = require("otp-generator");
+// const otpGenerator = require("otp-generator");
 
 // Create a new mechanic
 exports.createMechanic = async (req, res) => {
@@ -158,7 +158,7 @@ const sendOtpEmail = async (email, otp) => {
 exports.getAllMechanics = async (req, res) => {
   try {
     const mechanics = await Mechanic.find();
-    res.status(200).json({ message: "got all mechanics", data: mechanics });
+    res.status(200).json({ data: mechanics });
   } catch (error) {
     console.error("Error fetching mechanics:", error);
     res.status(500).json({ error: "Failed to fetch mechanics" });
@@ -209,3 +209,31 @@ exports.getAllMechanicsCount = async (req, res) => {
     res.status(500).send({ error: "Failed to fetch mechanic count" });
   }
 }
+
+//get mechanic by id
+exports.getMechanicById = async (req, res) => {
+  try {
+    const mechanic = await Mechanic.findById(req.params.mechanicId);
+    if (!mechanic) {
+      return res.status(404).json({ error: "Mechanic not found" });
+    }
+    res.status(200).json(mechanic);
+  } catch (error) {
+    console.error("Error fetching mechanic details:", error);
+    res.status(500).json({ error: "Failed to fetch mechanic details" });
+  }
+};
+
+
+exports.getAllMechanicsToAdmin = async (req, res) => {
+  try {
+    const mechanic = await Mechanic.findById(req.params.mechanicId);
+    if (!mechanic) {
+      return res.status(404).json({ error: "Mechanic not found" });
+    }
+    res.status(200).json(mechanic);
+  } catch (error) {
+    console.error("Error fetching mechanic details:", error);
+    res.status(500).json({ error: "Failed to fetch mechanic details" });
+  }
+};

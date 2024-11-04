@@ -30,6 +30,9 @@ import AddItem from "./Pages/store/AddItem.jsx";
 import InventorySection from "./Pages/store/InventorySection.jsx";
 import BookingDashboard from "./Pages/BookingDashboard.jsx";
 import UsersDetails from "./Pages/adminDashboard/adminComponent/UsersDetails.jsx";
+import OffersPage from "./Pages/Offerpage.jsx";
+import ServicePage from "./Pages/ServicePage.jsx"
+import MechanicUserProfile from "./Pages/mechanicDashboard/MechanicUserProfile.jsx";
 
 function App() {
   return (
@@ -54,6 +57,9 @@ function App() {
       <Route path="/paymentcancel" element={<PaymentCancel />} />
       <Route path="/paymentSuccess/:id" element={<PaymentSuccess />} />
       <Route path="/bookings" element={<BookingDashboard />} />
+      <Route path="offerpage" element={<OffersPage />} />
+      <Route path="servicepage" element={<ServicePage />} />
+      <Route path="mprofile" element={<MechanicUserProfile />} />
 
       {/* admin dashboard */}
       <Route path="/admin" element={<DashboardContent />} />

@@ -13,6 +13,12 @@ const ChatModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setMessages([{ text: "Hello, how can I help you?", sender: "bot" }]);
+    }
+  }, [isOpen]);
   
   // Function to scroll to the latest message
   const scrollToBottom = () => {
