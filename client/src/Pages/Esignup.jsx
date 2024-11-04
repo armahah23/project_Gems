@@ -151,7 +151,7 @@ export default function Esignup() {
                 value={securityQuestion}
                 onChange={(e) => setSecurityQuestion(e.target.value)}
                 required
-                className="w-[100%] h-[45px] mt-2 border-2 border-white rounded-md"
+                className="w-[100%] h-[35px] mt-2 border-2 border-white rounded-md"
               >
                 {questions.map((question) => (
                   <option key={question.value} value={question.value}>
@@ -164,6 +164,7 @@ export default function Esignup() {
               <input
                 type="text"
                 id="answer"
+                placeholder="Enter your Answer"
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 required
