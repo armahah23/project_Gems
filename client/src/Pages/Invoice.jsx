@@ -128,7 +128,7 @@ const Invoice = () => {
     <div className="invoice-main">
       <div className="flex flex-col items-center mt-4 w-[80%]">
         <table className="invoice-table m-6">
-          <thead>
+          <thead className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
             <tr colSpan="6">
               <th colSpan={7}>AUTOCARE VEHICLE SERVICE CENTER</th>
             </tr>

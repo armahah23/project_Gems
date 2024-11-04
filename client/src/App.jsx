@@ -60,6 +60,7 @@ function App() {
       <Route path="offerpage" element={<OffersPage />} />
       <Route path="servicepage" element={<ServicePage />} />
       <Route path="mprofile" element={<MechanicUserProfile />} />
+      {/* <Route path="contactus" element={<ContactUs />} /> */}
 
       {/* admin dashboard */}
       <Route path="/admin" element={<DashboardContent />} />

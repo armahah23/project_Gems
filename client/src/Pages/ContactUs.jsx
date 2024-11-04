@@ -53,8 +53,8 @@ const ContactForm = () => {
       <div className="flex flex-col lg:flex-row w-full min-h-screen bg-[#1a4d6d]">
         {/* Set Information Section */}
         <div className="lg:w-1/2 p-8">
-          <h2 className="text-white text-2xl font-bold mb-8">Set Information</h2>
-          <div className="bg-[#1a4d6d]/80 rounded-lg p-6 space-y-6">
+          <h2 className="text-white text-2xl font-bold mb-2">Set Information</h2>
+          <div className="bg-[#1a4d6d]/80 rounded-lg p-6 space-y-2">
             {/* Contact Information */}
             <div className="flex items-center space-x-4 text-white">
               <div className="w-6">
@@ -99,7 +99,7 @@ const ContactForm = () => {
           </div>
             {/* Form Section */}
         <div className="lg:w-1/2 p-8 bg-white">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-2">
             <div>
               <label className="block text-xl font-bold mb-2">Your Name</label>
               <input

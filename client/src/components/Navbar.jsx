@@ -42,7 +42,7 @@ const Navbar = () => {
             </Link>
           )}
           {token && (
-            <Link to="/contact" className="text-gray-700 hover:text-blue-500">
+            <Link to="/contactus" className="text-gray-700 hover:text-blue-500">
               CONTACT
             </Link>
           )}

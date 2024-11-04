@@ -1,5 +1,5 @@
 .invoice-main {
-  background-color: #13496b;
+  /* background-color: #13496b; */
   width: 100vw;
   min-height: 100vh;
   display: flex;
@@ -15,7 +15,7 @@
   padding: 20px;
   color: #fff;
   font-family: Arial, sans-serif;
-  border-radius: 10px;
+  border-radius: 20px;
   position: relative;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .invoice-content {
-  background-color: white;
+  /* background-color: white; */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -51,7 +51,7 @@
 .invoice-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #e0e7ed;
+  background-color: #e0e7ed28;
 }
 
 .invoice-table th,
@@ -59,13 +59,13 @@
   padding: 15px;
   border: 1px solid #ddd;
   text-align: left;
-  color: black;
-  border-color: #000;
+  /* color: black; */
+  /* border-color: #000; */
   text-align: center;
 }
 
 .invoice-table th {
-  background-color: #f2f2f2; /* Light background for headers */
+  /* background-color: #f2f2f2; Light background for headers */
   font-weight: bold;
 }
 

@@ -57,10 +57,10 @@ const BookingDashboard = () => {
           showModal={showBookingModal}
         />
       )}
-      <div className="mt-10">
+      <div className="">
         <Navbar />
       </div>
-      <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
+      <div className="m-6 mt-14 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
         <div>Bookings</div>
         {/* <Link to="/admin/dashboard" className="cursor:pointer">
           <MdDashboard />
@@ -71,24 +71,24 @@ const BookingDashboard = () => {
       <div className="hidden md:block container mx-auto p-4">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-            <thead>
+            <thead className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
               <tr>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b-2">
+                <th className="px-6 py-3 text-left  border-b-2">
                   User Name
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b-5">
+                <th className="px-6 py-3 text-left  border-b-5">
                   Mechanic Name
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   Date & Time
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   Accept Status
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   Paid Status
                 </th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                <th className="px-6 py-3 text-left  border-b">
                   See More
                 </th>
               </tr>
