@@ -198,10 +198,8 @@ const HomePage = () => {
                 {token && <Link to="/bookings">BOOKINGS</Link>}
                 {token && <Link to="/contact">CONTACT</Link>}
                 <Link to="/servicepage">SERVICES</Link>
-                {/* <Link className="nav-item"><ServicesDropdown /></Link> */}
                 <Link to="/offerpage">OFFERS</Link>
                 {token && <Link to="/store">STORE</Link>}
-                {/* <Link to="/store">STORE</Link> */}
                 {token ? (
                   <>
                     <button
@@ -211,7 +209,7 @@ const HomePage = () => {
                       <IoNotificationsSharp size={20} />
                     </button>
                     {showModal && (
-                      <div className="notification-modal z-[10000] ">
+                      <div className="notification-modal z-[10000]">
                         <button
                           className="absolute bg-gray-200 h-[30px] w-[30px] top-[5px] right-[5px] text-black rounded-2xl text-[20px]"
                           onClick={toggleModal}
@@ -241,7 +239,7 @@ const HomePage = () => {
                   </>
                 ) : (
                   <button
-                    className="sign-up-btn1 px-4 py-1 rounded hover:bg-blue-700 "
+                    className="sign-up-btn1 px-4 py-1 rounded hover:bg-blue-700"
                     onClick={handleSignup}
                   >
                     SIGN UP
@@ -251,16 +249,16 @@ const HomePage = () => {
             </nav>
           </div>
         </header>
-
+  
         {/* Main Content */}
         <main>
           {/* Hero Section */}
-          <section className="hero-section container mx-auto px-4  sm:px-10 lg:px-20">
+          <section className="hero-section container mx-auto px-4 sm:px-10 lg:px-20">
             <div className="hero-content text-center mt-1 sm:text-left">
               <p className="text-[25px] sm:text-[40px] font-serif font-bold text-gray-500 mt-5">
                 Welcome, {user ? user.fullname : "Guest"}!
               </p>
-
+  
               <h1 className="text-[2.5rem] sm:text-[3rem] font-bold">
                 <span className="text-primary">INNOVATIVE</span> VEHICLE
                 <br />
@@ -280,53 +278,29 @@ const HomePage = () => {
                     </button>
                   </Link>
                 ) : (
-                  <div className="flex flex-col sm:flex-row">
-                    <div>
-                      <Link
-                        to={"./signupoption"}
-                        className="sign-up-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
-                      >
-                        SIGN UP
-                      </Link>
-                    </div>
-                    <div>
-                      <p className="px-5 sm:mt-0">
-                        or{" "}
-                        <a
-                          href="#"
-                          className="text-blue-700 underline"
-                          onClick={handleLogin}
-                        >
-                          CLICK HERE
-                        </a>{" "}
-                        to Log in
-                      </p>
-                    </div>
-                  <div className="flex flex-row items-center w-full mt-4 sm:mt-0">
+                  <div className="flex flex-col  sm:flex-row">
                     <Link
-                      to="./signupoption"
-                      className="sign-up-btn2 px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 mr-4"
+                      to="/signupoption"
+                      className="sign-up-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 mr-4"
                     >
                       SIGN UP
                     </Link>
-                    <div className="flex items-center">
-                      <p className="text-gray-700">
-                        or{" "}
-                        <a
-                          href="#"
-                          className="text-blue-700 underline"
-                          onClick={handleLogin}
-                        >
-                          CLICK HERE
-                        </a>{" "}
-                        to Log in
-                      </p>
-                    </div>
+                    <p className="px-5 sm:mt-0">
+                      or{" "}
+                      <a
+                        href="#"
+                        className="text-blue-700 underline"
+                        onClick={handleLogin}
+                      >
+                        CLICK HERE
+                      </a>{" "}
+                      to Log in
+                    </p>
                   </div>
                 )}
               </div>
             </div>
-            <div className="flex justify-center mt-8 sm:mt-0 ">
+            <div className="flex justify-center mt-8 sm:mt-0">
               <img
                 className="ImageA hidden sm:block"
                 src={ImageA}
@@ -335,7 +309,7 @@ const HomePage = () => {
               />
             </div>
           </section>
-
+  
           {/* What We Do Section */}
           <section className="flex flex-col sm:flex-row justify-center items-center px-4 sm:px-10 lg:px-20">
             <div className="mechanic-image mb-4 sm:mb-0">

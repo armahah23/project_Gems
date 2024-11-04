@@ -38,7 +38,7 @@ function InventorySection() {
     };
 
     fetchParts();
-  }, []); // Ensure useEffect runs only once
+  }, []); 
 
   const handlePartClick = (part) => {
     setSelectedPart(part);
