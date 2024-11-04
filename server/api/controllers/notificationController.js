@@ -29,7 +29,9 @@ exports.createNotification = async (req, res) => {
 exports.getNotification = async (req, res) => {
   try {
     const { userId } = req.params;
-    const notifications = await Notification.find({ recieverId: userId });
+    const notifications = await Notification.find({ recieverId: userId })
+      .sort({ createdAt: -1 })
+      .limit(5); 
 
     if (notifications) {
       return res.status(200).json({
@@ -55,7 +57,10 @@ exports.getNotification = async (req, res) => {
 exports.getNotificationForMechanic = async (req, res) => {
   try {
     const { userId } = req.params;
-    const notifications = await Notification.find({ mechanicId: userId, topic: "Booking" })
+    const notifications = await Notification.find({
+      mechanicId: userId,
+      topic: "Booking",
+    })
       .populate("recieverId")
       .exec();
 

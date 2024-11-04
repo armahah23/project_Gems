@@ -10,7 +10,7 @@ import Navbar from "../components/Navbar";
 import UserModal from "../components/UserModal";
 
 const BookingDashboard = () => {
-    const userId = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
   const [currentBooking, setCurrentBooking] = useState(null);
   const [allBookings, setAllBookings] = useState([]);
   const [showBookingModal, setShowBookingModal] = useState(false);
@@ -57,33 +57,51 @@ const BookingDashboard = () => {
           showModal={showBookingModal}
         />
       )}
-      <div className="mt-10"><Navbar /></div>
+      <div className="mt-10">
+        <Navbar />
+      </div>
       <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-[#204a64]">
         <div>Bookings</div>
         {/* <Link to="/admin/dashboard" className="cursor:pointer">
           <MdDashboard />
         </Link> */}
       </div>
-      
+
       {/* Desktop View */}
       <div className="hidden md:block container mx-auto p-4">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b-2">User Name</th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b-5">Mechanic Name</th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">Date & Time</th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">Accept Status</th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">Paid Status</th>
-                <th className="px-6 py-3 text-left bg-gray-100 border-b">See More</th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b-2">
+                  User Name
+                </th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b-5">
+                  Mechanic Name
+                </th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                  Date & Time
+                </th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                  Accept Status
+                </th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                  Paid Status
+                </th>
+                <th className="px-6 py-3 text-left bg-gray-100 border-b">
+                  See More
+                </th>
               </tr>
             </thead>
             <tbody>
               {allBookings.map((booking, index) => (
                 <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 border-b">{booking.userId.fullname}</td>
-                  <td className="px-6 py-4 border-b">{booking.mechanicId.firstname}</td>
+                  <td className="px-6 py-4 border-b">
+                    {booking.userId.fullname}
+                  </td>
+                  <td className="px-6 py-4 border-b">
+                    {booking.mechanicId.firstname}
+                  </td>
                   <td className="px-6 py-4 border-b">
                     {booking.preferreddate} - {booking.preferredtime}
                   </td>
@@ -156,7 +174,9 @@ const BookingDashboard = () => {
             <div className="p-4 space-y-3">
               <div className="grid grid-cols-2 text-sm">
                 <span className="text-gray-600">Mechanic Name:</span>
-                <span className="text-right">{booking.mechanicId.firstname}</span>
+                <span className="text-right">
+                  {booking.mechanicId.firstname}
+                </span>
               </div>
 
               <div className="grid grid-cols-2 text-sm">
@@ -173,16 +193,24 @@ const BookingDashboard = () => {
                 <span className="text-gray-600">Status:</span>
                 <div className="text-right">
                   {booking.isAccepted === "pending" && (
-                    <span className="px-2 py-1 text-xs text-white bg-orange-500 rounded">Pending</span>
+                    <span className="px-2 py-1 text-xs text-white bg-orange-500 rounded">
+                      Pending
+                    </span>
                   )}
                   {booking.isAccepted === "accepted" && (
-                    <span className="px-2 py-1 text-xs text-white bg-blue-500 rounded">Ongoing</span>
+                    <span className="px-2 py-1 text-xs text-white bg-blue-500 rounded">
+                      Ongoing
+                    </span>
                   )}
                   {booking.isAccepted === "rejected" && (
-                    <span className="px-2 py-1 text-xs text-white bg-red-500 rounded">Rejected</span>
+                    <span className="px-2 py-1 text-xs text-white bg-red-500 rounded">
+                      Rejected
+                    </span>
                   )}
                   {booking.isAccepted === "completed" && (
-                    <span className="px-2 py-1 text-xs text-white bg-green-500 rounded">Completed</span>
+                    <span className="px-2 py-1 text-xs text-white bg-green-500 rounded">
+                      Completed
+                    </span>
                   )}
                 </div>
               </div>
