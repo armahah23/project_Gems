@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md  fixed w-full z-10">
+    <nav className="bg-white shadow-md fixed top-0 w-full z-10">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <div className="navbar-logo">
           <img src={logo} alt="Logo" className="h-10" />
@@ -30,11 +30,6 @@ const Navbar = () => {
               BOOKINGS
             </Link>
           )}
-          {token && (
-            <Link to="/contact" className="text-gray-700 hover:text-blue-500">
-              CONTACT
-            </Link>
-          )}
           <Link to="/servicepage" className="text-gray-700 hover:text-blue-500">
             SERVICES
           </Link>
@@ -44,6 +39,11 @@ const Navbar = () => {
           {token && (
             <Link to="/store" className="text-gray-700 hover:text-blue-500">
               STORE
+            </Link>
+          )}
+          {token && (
+            <Link to="/contact" className="text-gray-700 hover:text-blue-500">
+              CONTACT
             </Link>
           )}
         </div>
