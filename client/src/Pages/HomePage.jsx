@@ -31,6 +31,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [notification, setNotification] = useState([]);
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
   const [formData, setFormData] = useState({
     name: "",
     number: "",
@@ -69,7 +70,7 @@ const HomePage = () => {
     const getNotifications = async () => {
       if (user) {
         const response = await fetch(
-          `http://localhost:3000/api/notification/getNotification/${user._id}`,
+          `${serverHost}/api/notification/getNotification/${user._id}`,
           {
             method: "GET",
             headers: {
@@ -92,7 +93,7 @@ const HomePage = () => {
     setBookingDetails();
     if (user) {
       const response = await fetch(
-        `http://localhost:3000/api/booking/${bookingId}`,
+        `${serverHost}/api/booking/${bookingId}`,
         {
           method: "GET",
           headers: {
@@ -114,7 +115,7 @@ const HomePage = () => {
   //handle feedback form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/feedback", {
+    const response = await fetch(`${serverHost}/api/feedback`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

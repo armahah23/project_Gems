@@ -17,6 +17,7 @@ const Addwork = () => {
     const savedItems = localStorage.getItem("workItems");
     return savedItems ? JSON.parse(savedItems) : [];
   });
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   useEffect(() => {
     // Save workItems to localStorage whenever they change
@@ -55,7 +56,7 @@ const Addwork = () => {
     if (partCode) {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/inventory/partcode/${partCode}`
+          `${serverHost}/api/inventory/partcode/${partCode}`
         );
         const part = response.data;
         setUnitAmount(part.price);

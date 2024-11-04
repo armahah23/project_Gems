@@ -5,12 +5,13 @@ import { useEffect, } from 'react';
 
 const PaymentSuccess = () => {
   const { id } = useParams();
-  
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
+  const clientHost = import.meta.env.VITE_CLIENT_HOST;
 
   useEffect(() => {
     const fetchBookingDetails = async () => {
       try {
-        await axios.get(`http://localhost:3000/api/changePaymentStatus/${id}`);
+        await axios.get(`${serverHost}/api/changePaymentStatus/${id}`);
       } catch (error) {
         console.error("Error fetching booking details:", error);
       }
@@ -20,7 +21,7 @@ const PaymentSuccess = () => {
   }, []);
 
   const handleReturnHome = async () => {
-      window.location.href = "http://localhost:5173/";
+      window.location.href = `${clientHost}/`;
   };
 
   const handlePrint = () => {

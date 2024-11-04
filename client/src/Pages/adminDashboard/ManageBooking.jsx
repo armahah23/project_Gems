@@ -12,7 +12,7 @@ const ManageBooking = () => {
   const [currentBooking, setCurrentBooking] = useState(null);
   const [allBookings, setAllBookings] = useState([]);
   const [allMechanics, setAllMechanics] = useState([]);
-
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
@@ -22,9 +22,8 @@ const ManageBooking = () => {
 
   const fetchBooking = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/api/admin/getAllBookings`
-      );
+      const response = await axios.get(`${serverHost}/api/admin/getAllBookings`);
+
       const data = response.data;
       if (response.status === 200) {
         console.log({ ss: data.data });
@@ -44,14 +43,12 @@ const ManageBooking = () => {
   
   const fetchMechanics = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api//bookingSlot/getAllMechanics",
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.get(`${serverHost}/api/bookingSlot/getAllMechanics`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
       if (response.status == "200") {
         setAllMechanics(response.data.data);
       }
@@ -68,7 +65,7 @@ const ManageBooking = () => {
     console.log("assignedMechanic", assignedMechanicId);
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/admin/assignMechanic/${currentBooking._id}`,
+        `${serverHost}/api/admin/assignMechanic/${currentBooking._id}`,
         {
           mechanicId: assignedMechanicId,
         }

@@ -5,12 +5,13 @@ import axios from 'axios';
 
 function MechanicProfile() {
   const [mechanics, setAllMechanics] = useState([]);
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   useEffect(() => {
     const fetchMechanics = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api//bookingSlot/getAllMechanics",
+          `${serverHost}/api//bookingSlot/getAllMechanics`,
           {
             headers: {
               "Content-Type": "application/json",

@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 
 const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
   // const navigate = useNavigate();
-
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
   const closeModal = () => {
     toggleModal();
     localStorage.removeItem("bookingId");
@@ -23,7 +23,7 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
       "content-type": "application/json",
     };
     const response = await fetch(
-      "http://localhost:3000/api/create-checkout-session",
+      `${serverHost}/api/create-checkout-session`,
       {
         method: "POST",
         headers: header,

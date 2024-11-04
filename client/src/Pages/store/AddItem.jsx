@@ -48,7 +48,7 @@ function AddItem() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/inventory/create",
+        `${serverHost}/api/inventory/create`,
         formData,
         {
           headers: {

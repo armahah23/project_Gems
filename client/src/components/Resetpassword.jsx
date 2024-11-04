@@ -14,6 +14,7 @@ export default function ResetPassword() {
     symbol: false,
   });
   const navigate = useNavigate();
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   const validatePassword = (password) => {
     const length = password.length >= 8;
@@ -28,7 +29,6 @@ export default function ResetPassword() {
     setPassword(newPassword);
     validatePassword(newPassword);
   };
-
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -45,7 +45,11 @@ export default function ResetPassword() {
       return;
     }
 
-    if (!passwordValidations.length || !passwordValidations.capital || !passwordValidations.symbol) {
+    if (
+      !passwordValidations.length ||
+      !passwordValidations.capital ||
+      !passwordValidations.symbol
+    ) {
       Swal.fire({
         position: "top-end",
         icon: "error",
@@ -59,10 +63,10 @@ export default function ResetPassword() {
     const resetData = { identifier, password };
     const resetUrl =
       userType === "user"
-        ? "http://localhost:3000/api/user/reset-password"
+        ? `${serverHost}/api/user/reset-password`
         : userType === "mechanic"
-        ? "http://localhost:3000/api/mechanic/reset-password"
-        : "http://localhost:3000/api/admin/reset-password";
+        ? `${serverHost}/api/mechanic/reset-password`
+        : `${serverHost}/api/admin/reset-password`;
 
     try {
       const response = await fetch(resetUrl, {
@@ -106,7 +110,9 @@ export default function ResetPassword() {
   return (
     <div className="flex justify-center flex-col items-center w-[100vw] h-[100vh]">
       <div className="w-[400px] pointer">
-        <Link to="/login"><AiFillHome /></Link>
+        <Link to="/login">
+          <AiFillHome />
+        </Link>
       </div>
       <form
         className="bg-green-600 h-[450px] flex flex-col justify-center w-[400px] flex p-4"
@@ -133,10 +139,12 @@ export default function ResetPassword() {
               {passwordValidations.length ? "✔️" : "❌"} At least 8 characters
             </p>
             <p>
-              {passwordValidations.capital ? "✔️" : "❌"} At least one capital letter
+              {passwordValidations.capital ? "✔️" : "❌"} At least one capital
+              letter
             </p>
             <p>
-              {passwordValidations.symbol ? "✔️" : "❌"} At least one symbol (e.g., !@#$%^&*)
+              {passwordValidations.symbol ? "✔️" : "❌"} At least one symbol
+              (e.g., !@#$%^&*)
             </p>
           </div>
           <label

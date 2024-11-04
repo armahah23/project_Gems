@@ -12,6 +12,7 @@ export default function Login() {
   const [userType, setUserType] = useState("user"); // State to toggle between user, mechanic, and admin
   const navigate = useNavigate();
   const { setUser } = useAuth();
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   // const {login} = useAuth();
 
@@ -37,10 +38,10 @@ export default function Login() {
     const loginData = { identifier, password: pwd }; // Changed to identifier instead of just username
     const loginUrl =
       userType === "user"
-        ? "http://localhost:3000/api/user/login"
+        ? `${serverHost}/api/user/login`
         : userType === "mechanic"
-        ? "http://localhost:3000/api/mechanic/login"
-        : "http://localhost:3000/api/admin/login";
+        ? `${serverHost}/api/mechanic/login`
+        : `${serverHost}/api/admin/login`;
     try {
       // Send login request
       const response = await fetch(loginUrl, {
@@ -63,7 +64,7 @@ export default function Login() {
 
       // Fetch user data after successful login using the identifier
       const userResponse = await fetch(
-        `http://localhost:3000/api/getUserDetail/${userType}/${identifier}`,
+        `${serverHost}/api/getUserDetail/${userType}/${identifier}`,
         {
           method: "GET",
           headers: {
@@ -150,10 +151,10 @@ export default function Login() {
     const loginData = { identifier }; // Changed to identifier instead of just username
     const loginUrl =
       userType === "user"
-        ? "http://localhost:3000/api/user/login"
+        ? `${serverHost}/api/user/login`
         : userType === "mechanic"
-        ? "http://localhost:3000/api/mechanic/login"
-        : "http://localhost:3000/api/admin/login";
+        ? `${serverHost}/api/mechanic/login`
+        : `${serverHost}/api/admin/login`;
 
     try {
       // Send login request
@@ -303,7 +304,7 @@ export function ForgotPassword() {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/forgot-password",
+        `${serverHost}/api/forgot-password`,
         {
           method: "POST",
           headers: {

@@ -10,11 +10,12 @@ function InventorySection() {
   const [items, setItems] = useState([]);
   const [selectedPart, setSelectedPart] = useState(null);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   useEffect(() => {
     const fetchParts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/inventory");
+        const response = await axios.get(`${serverHost}/api/inventory`);
         const fetchedParts = response.data.map((part) => ({
           _id: part._id, // Ensure _id is included
           itemCode: part.partCode,
@@ -22,7 +23,7 @@ function InventorySection() {
           itemPrice: part.price,
           itemQuantity: part.quantity,
           description: part.description,
-          itemImage: `http://localhost:3000${part.partImage}`, // Ensure the URL is correct
+          itemImage: `${serverHost}${part.partImage}`, // Ensure the URL is correct
         }));
 
         // Use a Map to ensure unique items based on itemCode
@@ -55,7 +56,7 @@ function InventorySection() {
   const handleSaveUpdate = async (updatedPart) => {
     try {
       await axios.put(
-        `http://localhost:3000/api/inventory/${updatedPart._id}`,
+        `${serverHost}/api/inventory/${updatedPart._id}`,
         {
           quantity: updatedPart.itemQuantity,
           price: updatedPart.itemPrice,
@@ -98,7 +99,7 @@ function InventorySection() {
       if (result.isConfirmed) {
         try {
           await axios.delete(
-            `http://localhost:3000/api/inventory/${selectedPart._id}`
+            `${serverHost}/api/inventory/${selectedPart._id}`
           );
           setItems(
             items.filter((item) => item.itemCode !== selectedPart.itemCode)

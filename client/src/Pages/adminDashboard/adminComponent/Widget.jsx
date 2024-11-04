@@ -16,7 +16,7 @@ function Widget({ type }) {
   const [allBookings, setAllBookings] = useState([]);
   const [bookingCount, setBookingCount] = useState(0); // New state variable for user count
   const [totalEarnings, setTotalEarnings] = useState(0); // New state variable for total earnings
-
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function Widget({ type }) {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/userCount/getAllUsers",
+        `${serverHost}/api/userCount/getAllUsers`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,7 @@ function Widget({ type }) {
   const fetchMechanic = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/mechanicCount/getAllMechanics",
+        `${serverHost}/api/mechanicCount/getAllMechanics`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +80,7 @@ function Widget({ type }) {
   const fetchBooking = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/bookingCount/getAllBookings",
+        `${serverHost}/api/bookingCount/getAllBookings`,
         {
           headers: {
             "Content-Type": "application/json",

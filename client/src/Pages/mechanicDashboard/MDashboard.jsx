@@ -20,6 +20,7 @@ const Dashboard = () => {
   const [pendingBookingCount, setPendingBookingCount] = useState(0);
   const [rejectedBookingCount, setRejectedBookingCount] = useState(0);
   const [completedBookingCount, setCompletedBookingCount] = useState(0);
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -48,7 +49,7 @@ const Dashboard = () => {
     if (user) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/notification/getNotificationForMechanic/${user._id}`,
+          `${serverHost}/api/notification/getNotificationForMechanic/${user._id}`,
           {
             method: "GET",
             headers: {
@@ -73,7 +74,7 @@ const Dashboard = () => {
     if (user) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/bookingForMechanic/${user._id}`,
+          `${serverHost}/api/bookingForMechanic/${user._id}`,
           {
             method: "GET",
             headers: {
@@ -123,7 +124,7 @@ const Dashboard = () => {
   const handleNotificationClick = async (bookingId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/bookingById/${bookingId}`,
+        `${serverHost}/api/bookingById/${bookingId}`,
         {
           method: "GET",
           headers: {

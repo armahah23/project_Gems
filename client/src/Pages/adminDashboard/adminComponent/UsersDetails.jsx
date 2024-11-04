@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 
 const UsersDetails = () => {
   const [users, setUsers] = useState([]);
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/users/getAllUsersToAdmin");
+        const response = await axios.get(`${serverHost}/api/users/getAllUsersToAdmin`);
         if (Array.isArray(response.data)) {
           setUsers(response.data);
         } else {

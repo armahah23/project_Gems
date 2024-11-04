@@ -15,6 +15,7 @@
     "autocare": "file:",
     "axios": "^1.7.7",
     "chart.js": "^4.4.6",
+    "dotenv": "^16.4.5",
     "emailjs-com": "^3.2.0",
     "lucide-react": "^0.451.0",
     "prop-types": "^15.8.1",

@@ -11,7 +11,7 @@ const MechanicModal = ({ showModal, toggleModal, bookingDetails }) => {
   const handleAccept = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/acceptBooking/${bookingDetails._id}`,
+        `${serverHost}/api/acceptBooking/${bookingDetails._id}`,
         {}
       );
       if (response.status === 200) {
@@ -32,7 +32,7 @@ const MechanicModal = ({ showModal, toggleModal, bookingDetails }) => {
   const handleReject = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/rejectBooking/${bookingDetails._id}`,
+        `${serverHost}/api/rejectBooking/${bookingDetails._id}`,
         {}
       );
       if (response.status === 200) {

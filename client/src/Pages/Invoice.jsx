@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 const Invoice = () => {
   const bookingId = localStorage.getItem("bookingId");
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   const [workItems, setWorkItems] = useState(() => {
     // Load workItems from localStorage if available
@@ -74,7 +75,7 @@ const Invoice = () => {
       // Update inventory quantities
       for (const item of workItems) {
         await axios.put(
-          `http://localhost:3000/api/inventory/partcode/${item.partCode}`,
+          `${serverHost}/api/inventory/partcode/${item.partCode}`,
           {
             quantity: item.qty, // Decrease the quantity
           }
@@ -83,7 +84,7 @@ const Invoice = () => {
 
       // Create the bill
       const response = await axios.post(
-        `http://localhost:3000/api/addBill/${bookingId}`,
+        `${serverHost}/api/addBill/${bookingId}`,
         data
       );
       if (response.status === 200) {

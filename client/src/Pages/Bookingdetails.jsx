@@ -12,13 +12,14 @@ function Bookingdetails() {
   const [userEmail, setUserEmail] = useState(user?.email || "");
   const [mobileNumber, setMobileNumber] = useState(user?.phone || "");
   const [selectedMechanic, setSelectedMechanic] = useState("");
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMechanics = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/bookingSlot/getAllMechanics",
+          `${serverHost}/api/bookingSlot/getAllMechanics`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -95,13 +96,14 @@ function Bookingdetails() {
 
     try {
       let bookingId;
-      const response = await fetch("http://localhost:3000/api/booking", {
+      const response = await fetch(`${serverHost}/api/booking`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(bookingData),
       });
+      
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -118,7 +120,7 @@ function Bookingdetails() {
       // console.log("Booking created successfully", user._id);
 
       const sendNotification = await fetch(
-        `http://localhost:3000/api/notification/createNotification/${user._id}`,
+        `${serverHost}/api/notification/createNotification/${user._id}`,
         {
           method: "POST",
           headers: {

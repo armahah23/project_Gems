@@ -8,11 +8,12 @@ ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, T
 const BookingsEarningsGraph = () => {
   const [bookingsData, setBookingsData] = useState([]);
   const [earningsData, setEarningsData] = useState([]);
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/bookingCount/getAllBookings');
+        const response = await axios.get(`${serverHost}/api/bookingCount/getAllBookings`);
         const bookingsList = response.data.data;
 
         // Calculate daily earnings and bookings

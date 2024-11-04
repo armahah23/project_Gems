@@ -300,7 +300,7 @@ const Store = () => {
   useEffect(() => {
     const fetchParts = async () => {
       try {
-        await axios.get(`http://localhost:3000/api/getInventoryParts/${partsid}`);
+        await axios.get(`${serverHost}/api/getInventoryParts/${partsid}`);
       } catch (error) {
         console.error("Error fetching booking details:", error);
       }

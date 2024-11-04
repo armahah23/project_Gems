@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [addedItem, setAddedItem] = useState("");
   const navigate = useNavigate();
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   const login = (userData) => {
     setUser(userData);
@@ -34,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     if (token && userId && userRole && userEmail && !user) {
       try {
         const userResponse = await fetch(
-          `http://localhost:3000/api/getUserDetail/${userRole}/${userEmail}`,
+          `${serverHost}/api/getUserDetail/${userRole}/${userEmail}`,
           {
             method: "GET",
             headers: {
@@ -43,6 +44,7 @@ export const AuthProvider = ({ children }) => {
             },
           }
         );
+      
 
         if (!userResponse.ok) {
           const userData = await userResponse.json();

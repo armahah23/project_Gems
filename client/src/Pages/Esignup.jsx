@@ -16,6 +16,7 @@ export default function Esignup() {
   const [conformPassword, setConformPassword] = useState("");
   const [securityQuestion, setSecurityQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
   const navigate = useNavigate();
 
   const questions = [
@@ -29,7 +30,7 @@ export default function Esignup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/esignup", {
+    const response = await fetch(`${serverHost}/api/esignup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

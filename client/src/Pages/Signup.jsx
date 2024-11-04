@@ -16,6 +16,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const [securityQuestion, setSecurityQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   const questions = [
     { value: "", label: "--Select a Question--" },
@@ -28,7 +29,7 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent default form submission
-    const response = await fetch("http://localhost:3000/api/usignup", {
+    const response = await fetch(`${serverHost}/api/usignup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

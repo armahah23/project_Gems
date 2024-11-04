@@ -14,7 +14,7 @@ const BookingDashboard = () => {
   const [currentBooking, setCurrentBooking] = useState(null);
   const [allBookings, setAllBookings] = useState([]);
   const [showBookingModal, setShowBookingModal] = useState(false);
-
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
   const toggleBookingModal = () => setShowBookingModal(!showBookingModal);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const BookingDashboard = () => {
   const fetchBooking = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/getAllBookings/${userId}`
+        `${serverHost}/api/getAllBookings/${userId}`
       );
       const data = response.data;
       if (response.status === 200) {

@@ -8,6 +8,7 @@ const ChatModal = ({ isOpen, onClose }) => {
   const [prompt, setPrompt] = useState('');
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
+  const serverHost = import.meta.env.VITE_SERVER_HOST;
 
   // Scrolls to bottom when messages change
   useEffect(() => {
@@ -36,7 +37,7 @@ const ChatModal = ({ isOpen, onClose }) => {
     setPrompt("");
 
     try {
-      const res = await axios.post('http://localhost:3000/api/chat', { prompt });
+      const res = await axios.post(`${serverHost}/api/chat`, { prompt });
       const botMessage = { type: 'bot', text: res.data.response };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
