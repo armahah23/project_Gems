@@ -100,6 +100,22 @@ function Widget({ type }) {
     setTotalEarnings(total);
   };
 
+  // Add this function for gradient styles
+  const getWidgetGradient = (type) => {
+    switch (type) {
+      case "user":
+        return "bg-gradient-to-r from-sky-100 to-blue-200";
+      case "mechanic":
+        return "bg-gradient-to-r from-violet-100 to-purple-200";
+      case "booking":
+        return "bg-gradient-to-r from-emerald-100 to-green-200";
+      case "earning":
+        return "bg-gradient-to-r from-amber-100 to-yellow-200";
+      default:
+        return "bg-gray-100";
+    }
+  };
+
   //navigation to the respective page
   let navigateTo = (type) => {
     switch (type) {
@@ -200,11 +216,11 @@ function Widget({ type }) {
   }
 
   return (
-    <div
-      className="flex flex-1 padding-[10px] justify-between border rounded-md 
-            p-2 h-[160px] shadow-xl shadow-slate-500 "
+    <div 
+      className={`widget ${getWidgetGradient(type)} flex justify-between rounded-xl p-4 w-[100%] cursor-pointer`}
+      onClick={() => navigateTo(type)}
     >
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col gap-4 justify-between">
         <span className="bold text-[16px] text-gray-500">{data.title}</span>
         <span className="text-[24px] font-bold text-gray-700 ">
           {data.isMoney && "$"} {amount}
