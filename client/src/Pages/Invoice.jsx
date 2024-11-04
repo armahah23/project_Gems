@@ -73,9 +73,12 @@ const Invoice = () => {
     try {
       // Update inventory quantities
       for (const item of workItems) {
-        await axios.put(`http://localhost:3000/api/inventory/partcode/${item.partCode}`, {
-          quantity: item.qty, // Decrease the quantity
-        });
+        await axios.put(
+          `http://localhost:3000/api/inventory/partcode/${item.partCode}`,
+          {
+            quantity: item.qty, // Decrease the quantity
+          }
+        );
       }
 
       // Create the bill
@@ -96,7 +99,10 @@ const Invoice = () => {
         });
       }
     } catch (error) {
-      console.error("Error creating bill:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error creating bill:",
+        error.response ? error.response.data : error.message
+      );
       Swal.fire({
         position: "top-end",
         icon: "error",

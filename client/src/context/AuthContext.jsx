@@ -15,12 +15,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userRole");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userEmail");
-    localStorage.clear();
-    setUser(null);
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("userRole");
+    // localStorage.removeItem("userId");
+    // localStorage.removeItem("userEmail");
+    // localStorage.clear();
+    // setUser(null);
     navigate("/"); // Navigate to home page after logout
   };
   const fetchUser = async () => {
@@ -29,10 +29,12 @@ export const AuthProvider = ({ children }) => {
     const userRole = localStorage.getItem("userRole");
     const userEmail = localStorage.getItem("userEmail");
 
+    // setUser({token: token, userId: userId, userRole: userRole, userEmail: userEmail});
+
     if (token && userId && userRole && userEmail && !user) {
       try {
         const userResponse = await fetch(
-          `http://localhost:3000/api/${userRole}/${userEmail}`,
+          `http://localhost:3000/api/getUserDetail/${userRole}/${userEmail}`,
           {
             method: "GET",
             headers: {
@@ -57,7 +59,7 @@ export const AuthProvider = ({ children }) => {
       }
     }
   };
-  
+
   useEffect(() => {
     fetchUser();
   }, [user]);
@@ -78,8 +80,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-
 
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,

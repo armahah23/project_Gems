@@ -22,7 +22,6 @@ const Dashboard = () => {
   const [completedBookingCount, setCompletedBookingCount] = useState(0);
   const navigate = useNavigate();
 
-
   // useEffect(() => {
   //   const role = localStorage.getItem("userRole");
   //   if (!role) {
@@ -31,7 +30,7 @@ const Dashboard = () => {
   //     window.location.href = "/admin/dashboard";
   //   } else if (role === "user" )  {
   //     window.location.href = "/home";
-  //   } 
+  //   }
   //   }, []);
 
   useEffect(() => {
@@ -84,7 +83,6 @@ const Dashboard = () => {
         );
         const data = await response.json();
         if (response.ok) {
-          console.log("Fetched booking details:", data.data); // Debugging log
           setBookingDetails(data.data);
 
           // Calculate counts based on booking status
@@ -116,7 +114,6 @@ const Dashboard = () => {
   };
 
   const toggleModal = () => setShowModal(!showModal);
-  const toggleBookingModal = () => setShowBookingModal(!showBookingModal);
 
   const openNotificationPopup = () => {
     setShowModal(true);
@@ -169,15 +166,20 @@ const Dashboard = () => {
   };
 
   const navigateToProfile = () => {
-    navigate("/mprofile")
-  }
- 
+    navigate("/mprofile");
+  };
+
+  const closeBookingModal = () => {
+    setShowBookingModal(false);
+    fetchAllDetails();
+  };
+
   return (
     <>
       {showBookingModal && bookingDetails && (
         <MechanicModal
           bookingDetails={bookingDetails}
-          toggleModal={toggleBookingModal}
+          toggleModal={closeBookingModal}
           showModal={showBookingModal}
         />
       )}

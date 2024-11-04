@@ -22,7 +22,7 @@ import insta from "../assets/icons/insta.png";
 import Swal from "sweetalert2";
 import UserModal from "../components/UserModal";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
-import ServicesDropdown from "../components/ServiceDropdown";
+// import ServicesDropdown from "../components/ServiceDropdown";
 import ChatButton from "../components/ChatButton";
 import ChatModal from "../components/ChatModal";
 
@@ -280,6 +280,28 @@ const HomePage = () => {
                     </button>
                   </Link>
                 ) : (
+                  <div className="flex flex-col sm:flex-row">
+                    <div>
+                      <Link
+                        to={"./signupoption"}
+                        className="sign-up-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                      >
+                        SIGN UP
+                      </Link>
+                    </div>
+                    <div>
+                      <p className="px-5 sm:mt-0">
+                        or{" "}
+                        <a
+                          href="#"
+                          className="text-blue-700 underline"
+                          onClick={handleLogin}
+                        >
+                          CLICK HERE
+                        </a>{" "}
+                        to Log in
+                      </p>
+                    </div>
                   <div className="flex flex-row items-center w-full mt-4 sm:mt-0">
                     <Link
                       to="./signupoption"

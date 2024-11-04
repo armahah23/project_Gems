@@ -181,7 +181,6 @@ export default function Login() {
   };
 
   return (
-    
     <div className="flex justify-center items-center h-[100vh] w-[100vw] default-bg px-[100px]  whole-container">
       <div className="flex justify-center items-center  custom-logo-container">
         <img src={logo} alt="autocare_logo" className="w-[600px]" />
@@ -206,7 +205,7 @@ export default function Login() {
               </label>
             </span>
             <span className="mr-2">
-              <label className="text-lg user-label" >
+              <label className="text-lg user-label">
                 <input
                   className="mr-2"
                   type="radio"
@@ -292,7 +291,6 @@ export default function Login() {
           </p>
         </form>
       </div>
-      
     </div>
   );
 }
@@ -325,10 +323,10 @@ export function ForgotPassword() {
     } catch (error) {
       console.error("Error:", error);
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
+        icon: "error",
+        title: "Error",
         text: `Error: ${error}`, // Display the dynamic error message
-        confirmButtonText: 'OK'
+        confirmButtonText: "OK",
       });
     }
   };

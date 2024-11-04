@@ -52,12 +52,12 @@ const MechanicModal = ({ showModal, toggleModal, bookingDetails }) => {
 
   const handleAddWork = async () => {
     navigate("/addwork", { state: { bookingDetails } });
-    localStorage.setItem("bookingId", bookingDetails._id);
+    sessionStorage.setItem("bookingId", bookingDetails._id);
   };
 
   const closeModal = () => {
     toggleModal();
-    // localStorage.removeItem("bookingId");
+    // sessionStorage.removeItem("bookingId");
   };
 
   return (

@@ -34,7 +34,7 @@ const Addwork = () => {
       warranty: warranty,
       qty: qty,
       unitAmount: unitAmount,
-      total: tempTotal
+      total: tempTotal,
     };
 
     // Add the new entry to the array
@@ -45,7 +45,7 @@ const Addwork = () => {
     setDescription("");
     setWarranty("");
     setQty(0);
-    setUnitAmount(0);    
+    setUnitAmount(0);
   };
 
   const handlePartCodeChange = async (e) => {
@@ -54,7 +54,9 @@ const Addwork = () => {
 
     if (partCode) {
       try {
-        const response = await axios.get(`http://localhost:3000/api/inventory/partcode/${partCode}`);
+        const response = await axios.get(
+          `http://localhost:3000/api/inventory/partcode/${partCode}`
+        );
         const part = response.data;
         setUnitAmount(part.price);
         setDescription(part.description);
@@ -71,10 +73,10 @@ const Addwork = () => {
   };
 
   const navigateToHome = () => {
-    localStorage.removeItem('bookingId');
-    localStorage.removeItem('workItems');
-    navigate("/mdashboard")
-  }
+    localStorage.removeItem("bookingId");
+    localStorage.removeItem("workItems");
+    navigate("/mdashboard");
+  };
 
   return (
     <div className="design">
@@ -154,11 +156,7 @@ const Addwork = () => {
           </form>
         </div>
         <div className="image-section">
-          <img
-            className="image2"
-            src={Image2}
-            
-          />
+          <img className="image2" src={Image2} />
         </div>
       </div>
     </div>
