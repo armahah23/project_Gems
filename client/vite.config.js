@@ -5,6 +5,6 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   preview: {
-    port: parseInt(import.meta.env.VITE_PORT) || 4173,
+    port: 4173,
   },
 });
