@@ -2,6 +2,8 @@ require('dotenv').config(); // Load environment variables from .env file
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Notification = require("../schemas/notificationSchema");
 const Booking = require("../schemas/bookingSchema");
+import { API_BASE_URL } from "../../config/config";
+
 
 exports.createCheckoutSession = async (req, res) => {
   const { netTotal, bookingId } = req.body;
@@ -26,8 +28,8 @@ exports.createCheckoutSession = async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: "http://localhost:5173/paymentSuccess/" + bookingId,
-      cancel_url: "http://localhost:5173/paymentcancel",
+      success_url: `${API_BASE_URL}/paymentSuccess/` + bookingId,
+      cancel_url: `${API_BASE_URL}/paymentcancel`,
     });
 
 
