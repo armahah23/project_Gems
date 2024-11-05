@@ -277,12 +277,15 @@ const HomePage = () => {
               </p>
               <div className="hero-actions mt-8">
                 {token ? (
-                  <Link to="/ebservice">
-                    <button className="book-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 flex items-center">
+                 <div className="flex items-center justify-center sm:justify-start w-full">
+                   <Link to="/ebservice" className="w-fit">
+                    <button className="flex items-center justify-center px-6 py-3 sm:py-4 text-white bg-blue-600 rounded hover:bg-blue-700">
                       <FileText className="mr-2" />
                       BOOK NOW
                     </button>
                   </Link>
+                 </div>
+
                 ) : (
                   <div className="flex flex-col  items-center sm:flex-row  gap-3">
                     <Link
@@ -325,7 +328,7 @@ const HomePage = () => {
                 alt="Mechanic"
               />
             </div>
-            <div className="service-details text-center sm:text-left sm:ml-8">
+            <div className="service-details sm:pl-[15%] pl-0 text-center sm:text-left sm:ml-8  ">
               <h2
                 className="text-4xl font-extrabold mb-1"
                 style={{ color: "#13496b" }}
@@ -345,7 +348,7 @@ const HomePage = () => {
                 <li>🔧 Technician Assignment System</li>
               </ul>
               <div className="flex gap-2 items-center w-[180px] cursor-pointer mt-4">
-                <h2 style={{ color: "#13496b" }} className="text-[24px]">
+                <h2  className="text-[24px] text-[#13496b]  pl-5">
                   Contact Us
                 </h2>
                 <FaArrowRightFromBracket />

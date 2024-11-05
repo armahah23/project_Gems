@@ -5,6 +5,7 @@ const ChatButton = ({ onClick }) => {
     <button 
       onClick={onClick} 
       style={styles.button}
+      className="z-50"
     >
       <SiGooglemessages className="w-[100%], cursor-pointer"/>
     </button>
@@ -27,6 +28,7 @@ const styles = {
     height: '40px',
     fontSize: '20px',
     cursor: 'pointer',
+    
   }
 };
 
