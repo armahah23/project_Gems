@@ -12,6 +12,8 @@ function Bookingdetails() {
   const [userEmail, setUserEmail] = useState(user?.email || "");
   const [mobileNumber, setMobileNumber] = useState(user?.phone || "");
   const [selectedMechanic, setSelectedMechanic] = useState("");
+  const [yearError, setYearError] = useState("");
+  const currentYear = new Date().getFullYear();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,7 +50,20 @@ function Bookingdetails() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    
+    if (name === 'manufacturedYear') {
+      const year = parseInt(value);
+      if (year > currentYear) {
+        setYearError(`Year cannot be greater than ${currentYear}`);
+      } else {
+        setYearError("");
+      }
+    }
+    
+    setForm(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const handleMechanicChange = (e) => {
@@ -253,14 +268,19 @@ function Bookingdetails() {
               </div>
               <div className="form-group">
                 <label>Manufactured Year</label>
-                <input
-                  className="input-area"
-                  type="text"
-                  name="manufacturedYear"
-                  placeholder=" Ex: 2040"
-                  value={form.manufacturedYear}
-                  onChange={handleChange}
-                />
+                <div className="relative">
+                  <input
+                    type="number"
+                    name="manufacturedYear"
+                    className="input-area"
+                    placeholder="Manufactured Year"
+                    value={form.manufacturedYear}
+                    onChange={handleChange}
+                  />
+                  {yearError && (
+                    <p className="text-red-500 text-sm mt-1">{yearError}</p>
+                  )}
+                </div>
               </div>
               <div className="mb-2">
                 <label className="block text-md font-bold mb-2">
@@ -348,7 +368,7 @@ function Bookingdetails() {
               <div className="form-group">
                 <label>Message</label>
                 <textarea
-                  className="textarea-last"
+                  className="textarea-last text-black"
                   name="message"
                   placeholder=" Enter your message here"
                   value={form.message}

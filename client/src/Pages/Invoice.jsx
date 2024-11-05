@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 const Invoice = () => {
   const bookingId = localStorage.getItem("bookingId");
+  
 
   const [workItems, setWorkItems] = useState(() => {
     // Load workItems from localStorage if available
@@ -19,7 +20,6 @@ const Invoice = () => {
   useEffect(() => {
     localStorage.setItem("workItems", JSON.stringify(workItems));
   }, [workItems]);
-  
 
   // Calculate net total whenever workItems changes
   useEffect(() => {
@@ -41,29 +41,32 @@ const Invoice = () => {
       });
       return;
     }
-  
+
     try {
       // Create a clean bill object with only needed properties
-      const sanitizedWorkItems = workItems.map(item => ({
+      const sanitizedWorkItems = workItems.map((item) => ({
         warrenty: item.name,
         qty: item.qty,
         price: item.price,
         unitAmount: item.unitAmount,
         total: item.total,
         description: item.description,
-        partCode: item.partCode
+        partCode: item.partCode,
       }));
-  
+
       const billData = {
         bookingId: bookingId,
         workItems: sanitizedWorkItems,
         netTotal: netTotal,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
       };
-  
+
       // Make API call with sanitized data
-      const response = await axios.post(`http://localhost:3000/api/addBill/${bookingId}`, billData);
-  
+      const response = await axios.post(
+        `http://localhost:3000/api/addBill/${bookingId}`,
+        billData
+      );
+
       if (response.status === 200) {
         Swal.fire({
           position: "top-end",
@@ -76,7 +79,7 @@ const Invoice = () => {
         // Optional: Reset form or redirect
       }
     } catch (error) {
-      console.error('Bill creation error:', error);
+      console.error("Bill creation error:", error);
       Swal.fire({
         position: "top-end",
         icon: "error",
