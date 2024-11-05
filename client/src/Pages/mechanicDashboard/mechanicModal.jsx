@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import "../../components/Modal.css"; // Import your CSS file
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../config/config.js";
 
 const MechanicModal = ({ showModal, toggleModal, bookingDetails }) => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const MechanicModal = ({ showModal, toggleModal, bookingDetails }) => {
   const handleAccept = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/acceptBooking/${bookingDetails._id}`,
+        `${API_BASE_URL}/api/acceptBooking/${bookingDetails._id}`,
         {}
       );
       if (response.status === 200) {
@@ -32,7 +33,7 @@ const MechanicModal = ({ showModal, toggleModal, bookingDetails }) => {
   const handleReject = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/rejectBooking/${bookingDetails._id}`,
+        `${API_BASE_URL}/api/rejectBooking/${bookingDetails._id}`,
         {}
       );
       if (response.status === 200) {

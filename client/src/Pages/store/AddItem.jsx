@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { RiArrowGoBackLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../config/config";
 
 function AddItem() {
   const [partName, setPartName] = useState("");
@@ -48,7 +49,7 @@ function AddItem() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/inventory/create",
+        `${API_BASE_URL}/api/inventory/create`,
         formData,
         {
           headers: {
@@ -88,19 +89,22 @@ function AddItem() {
     setImage(null);
   };
 
-
   return (
     <div className="m-4 p-4 bg-white shadow-md rounded-lg">
-    <div className="flex items-center justify-between">
-      <h1 className="text-2xl font-bold text-primary-color uppercase mb-4">
-        Add Inventory Item
-      </h1>
-      <Link to={"/admin/inventory"} className="mr-4 cursor-pointer">
-        <RiArrowGoBackLine className="w-5 h-5" />
-      </Link>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-primary-color uppercase mb-4">
+          Add Inventory Item
+        </h1>
+        <Link to={"/admin/inventory"} className="mr-4 cursor-pointer">
+          <RiArrowGoBackLine className="w-5 h-5" />
+        </Link>
       </div>
       {message && <p className="mb-4 text-green-500">{message}</p>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-wrap flex-row">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="flex flex-wrap flex-row"
+      >
         <div className="w-full md:w-1/2 pr-4">
           <div className="mb-4">
             <label

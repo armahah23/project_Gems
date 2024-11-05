@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { LuRefreshCw } from "react-icons/lu";
 import MechanicModal from "./mechanicModal";
+import { API_BASE_URL } from "../../config/config";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -48,7 +49,7 @@ const Dashboard = () => {
     if (user) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/notification/getNotificationForMechanic/${user._id}`,
+          `${API_BASE_URL}/api/notification/getNotificationForMechanic/${user._id}`,
           {
             method: "GET",
             headers: {
@@ -73,7 +74,7 @@ const Dashboard = () => {
     if (user) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/bookingForMechanic/${user._id}`,
+          `${API_BASE_URL}/api/bookingForMechanic/${user._id}`,
           {
             method: "GET",
             headers: {
@@ -123,7 +124,7 @@ const Dashboard = () => {
   const handleNotificationClick = async (bookingId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/bookingById/${bookingId}`,
+        `${API_BASE_URL}/api/bookingById/${bookingId}`,
         {
           method: "GET",
           headers: {

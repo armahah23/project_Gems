@@ -7,6 +7,7 @@ import "../ADashboard.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/config";
 
 function Widget({ type }) {
   const [allUsers, setAllUsers] = useState([]);
@@ -42,7 +43,7 @@ function Widget({ type }) {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/userCount/getAllUsers",
+        `${API_BASE_URL}/api/userCount/getAllUsers`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +62,7 @@ function Widget({ type }) {
   const fetchMechanic = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/mechanicCount/getAllMechanics",
+        `${API_BASE_URL}/api/mechanicCount/getAllMechanics`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -80,7 +81,7 @@ function Widget({ type }) {
   const fetchBooking = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/bookingCount/getAllBookings",
+        `${API_BASE_URL}/api/bookingCount/getAllBookings`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -96,7 +97,10 @@ function Widget({ type }) {
   };
 
   const calculateTotalEarnings = () => {
-    const total = allBookings.reduce((acc, booking) => acc + booking.netTotal, 0);
+    const total = allBookings.reduce(
+      (acc, booking) => acc + booking.netTotal,
+      0
+    );
     setTotalEarnings(total);
   };
 
@@ -133,7 +137,7 @@ function Widget({ type }) {
       default:
         break;
     }
-  }
+  };
 
   //manage count
   let amount;
@@ -216,8 +220,10 @@ function Widget({ type }) {
   }
 
   return (
-    <div 
-      className={`widget ${getWidgetGradient(type)} flex justify-between rounded-xl p-4 w-[100%] cursor-pointer`}
+    <div
+      className={`widget ${getWidgetGradient(
+        type
+      )} flex justify-between rounded-xl p-4 w-[100%] cursor-pointer`}
       onClick={() => navigateTo(type)}
     >
       <div className="flex flex-col gap-4 justify-between">
@@ -225,7 +231,10 @@ function Widget({ type }) {
         <span className="text-[24px] font-bold text-gray-700 ">
           {data.isMoney && "$"} {amount}
         </span>
-        <span onClick={() => navigateTo(type)} className="text-[14px] border-b-2 text-gray-400 w-max cursor-pointer hover:text-gray-500 ">
+        <span
+          onClick={() => navigateTo(type)}
+          className="text-[14px] border-b-2 text-gray-400 w-max cursor-pointer hover:text-gray-500 "
+        >
           {data.link}
         </span>
       </div>

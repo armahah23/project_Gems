@@ -7,6 +7,7 @@ import EditBookingModal from "./EditBooking";
 import Swal from "sweetalert2";
 import { MdDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../config/config";
 
 const ManageBooking = () => {
   const [currentBooking, setCurrentBooking] = useState(null);
@@ -23,7 +24,7 @@ const ManageBooking = () => {
   const fetchBooking = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/admin/getAllBookings`
+        `${API_BASE_URL}/api/admin/getAllBookings`
       );
       const data = response.data;
       if (response.status === 200) {
@@ -31,21 +32,21 @@ const ManageBooking = () => {
         setAllBookings(data.data);
       } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Error',
+          icon: "error",
+          title: "Error",
           text: `Error: ${data.error}`, // Display the dynamic error message
-          confirmButtonText: 'OK'
+          confirmButtonText: "OK",
         });
       }
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   const fetchMechanics = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/api//bookingSlot/getAllMechanics",
+        `${API_BASE_URL}/api//bookingSlot/getAllMechanics`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -68,27 +69,27 @@ const ManageBooking = () => {
     console.log("assignedMechanic", assignedMechanicId);
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/admin/assignMechanic/${currentBooking._id}`,
+        `${API_BASE_URL}/api/admin/assignMechanic/${currentBooking._id}`,
         {
           mechanicId: assignedMechanicId,
         }
       );
       if (response.status === 200) {
         Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'Mechanic assigned Successfully',
-          confirmButtonText: 'OK'
+          icon: "success",
+          title: "Success!",
+          text: "Mechanic assigned Successfully",
+          confirmButtonText: "OK",
         });
         fetchBooking();
         setIsEditModalOpen(false);
         setCurrentBooking(null);
       } else {
         Swal.fire({
-          icon: 'error',
-          title: 'Update Failed!',
-          text: 'can not assign mechanic.',
-          confirmButtonText: 'OK'
+          icon: "error",
+          title: "Update Failed!",
+          text: "can not assign mechanic.",
+          confirmButtonText: "OK",
         });
       }
     } catch (error) {
@@ -106,36 +107,24 @@ const ManageBooking = () => {
           onSubmit={handleSave}
         />
       )}
-  
+
       <div className="m-6 text-[48px] font-extrabold flex items-center justify-between uppercase text-primary-color">
-      <div>Manage booking</div>
-      <Link to="/admin/dashboard" className="cursor:pointer">
-      <MdDashboard className="text-[24px]" />
-      </Link>
+        <div>Manage booking</div>
+        <Link to="/admin/dashboard" className="cursor:pointer">
+          <MdDashboard className="text-[24px]" />
+        </Link>
       </div>
       <div className="container mx-auto p-4">
         <div className="overflow-x-auto">
           <table className="min-w-full  rounded-lg">
             <thead className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
               <tr>
-                <th className="px-6 py-3 text-left  border-b">
-                  User Name
-                </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  Mechanic Name
-                </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  Date & Time
-                </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  Accept Status
-                </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  Paid Status
-                </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  Actions
-                </th>
+                <th className="px-6 py-3 text-left  border-b">User Name</th>
+                <th className="px-6 py-3 text-left  border-b">Mechanic Name</th>
+                <th className="px-6 py-3 text-left  border-b">Date & Time</th>
+                <th className="px-6 py-3 text-left  border-b">Accept Status</th>
+                <th className="px-6 py-3 text-left  border-b">Paid Status</th>
+                <th className="px-6 py-3 text-left  border-b">Actions</th>
               </tr>
             </thead>
             <tbody>

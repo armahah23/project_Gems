@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 // import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import UserModal from "../components/UserModal";
+import { API_BASE_URL } from "../config/config.js";
 
 const BookingDashboard = () => {
   const userId = localStorage.getItem("userId");
@@ -24,7 +25,7 @@ const BookingDashboard = () => {
   const fetchBooking = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/getAllBookings/${userId}`
+        `${API_BASE_URL}/api/getAllBookings/${userId}`
       );
       const data = response.data;
       if (response.status === 200) {
@@ -73,24 +74,14 @@ const BookingDashboard = () => {
           <table className="min-w-full bg-white border border-gray-200 rounded-lg">
             <thead className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
               <tr>
-                <th className="px-6 py-3 text-left  border-b-2">
-                  User Name
-                </th>
+                <th className="px-6 py-3 text-left  border-b-2">User Name</th>
                 <th className="px-6 py-3 text-left  border-b-5">
                   Mechanic Name
                 </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  Date & Time
-                </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  Accept Status
-                </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  Paid Status
-                </th>
-                <th className="px-6 py-3 text-left  border-b">
-                  See More
-                </th>
+                <th className="px-6 py-3 text-left  border-b">Date & Time</th>
+                <th className="px-6 py-3 text-left  border-b">Accept Status</th>
+                <th className="px-6 py-3 text-left  border-b">Paid Status</th>
+                <th className="px-6 py-3 text-left  border-b">See More</th>
               </tr>
             </thead>
             <tbody>

@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineRest } from "react-icons/ai";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { API_BASE_URL } from "../config/config.js";
 
 const Invoice = () => {
   const bookingId = localStorage.getItem("bookingId");
-  
 
   const [workItems, setWorkItems] = useState(() => {
     // Load workItems from localStorage if available
@@ -63,7 +63,7 @@ const Invoice = () => {
 
       // Make API call with sanitized data
       const response = await axios.post(
-        `http://localhost:3000/api/addBill/${bookingId}`,
+        `${API_BASE_URL}/api/addBill/${bookingId}`,
         billData
       );
 

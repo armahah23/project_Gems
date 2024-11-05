@@ -1,9 +1,27 @@
-import { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend, PointElement } from 'chart.js';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  PointElement,
+} from "chart.js";
+import axios from "axios";
+import { API_BASE_URL } from "../../../config/config.js";
 
-ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const BookingsEarningsGraph = () => {
   const [bookingsData, setBookingsData] = useState([]);
@@ -12,7 +30,9 @@ const BookingsEarningsGraph = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/bookingCount/getAllBookings');
+        const response = await axios.get(
+          `${API_BASE_URL}/api/bookingCount/getAllBookings`
+        );
         const bookingsList = response.data.data;
 
         // Calculate daily earnings and bookings
@@ -27,13 +47,13 @@ const BookingsEarningsGraph = () => {
         }, {});
 
         const dates = Object.keys(dailyData).sort();
-        const earnings = dates.map(date => dailyData[date].earnings);
-        const bookings = dates.map(date => dailyData[date].bookings);
+        const earnings = dates.map((date) => dailyData[date].earnings);
+        const bookings = dates.map((date) => dailyData[date].bookings);
 
         setBookingsData({ dates, bookings });
         setEarningsData({ dates, earnings });
       } catch (error) {
-        console.error('Error fetching bookings:', error);
+        console.error("Error fetching bookings:", error);
       }
     };
 
@@ -44,17 +64,17 @@ const BookingsEarningsGraph = () => {
     labels: bookingsData.dates,
     datasets: [
       {
-        label: 'Daily Bookings',
+        label: "Daily Bookings",
         data: bookingsData.bookings,
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
         fill: true,
       },
       {
-        label: 'Daily Earnings',
+        label: "Daily Earnings",
         data: earningsData.earnings,
-        borderColor: 'rgba(153, 102, 255, 1)',
-        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+        borderColor: "rgba(153, 102, 255, 1)",
+        backgroundColor: "rgba(153, 102, 255, 0.2)",
         fill: true,
       },
     ],
@@ -64,14 +84,14 @@ const BookingsEarningsGraph = () => {
     plugins: {
       title: {
         display: true,
-        text: 'Daily Bookings and Earnings',
+        text: "Daily Bookings and Earnings",
       },
       tooltip: {
-        mode: 'index',
+        mode: "index",
         intersect: false,
       },
       legend: {
-        position: 'top',
+        position: "top",
       },
     },
     responsive: true,
@@ -79,13 +99,13 @@ const BookingsEarningsGraph = () => {
       x: {
         title: {
           display: true,
-          text: 'Date',
+          text: "Date",
         },
       },
       y: {
         title: {
           display: true,
-          text: 'Count / Earnings',
+          text: "Count / Earnings",
         },
       },
     },

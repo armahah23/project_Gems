@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
 import { IoMdContact } from "react-icons/io";
-import axios from 'axios';
+import axios from "axios";
+import { API_BASE_URL } from "../config/config.js";
 
 const ChatModal = ({ isOpen, onClose }) => {
   // const [userInput, setUserInput] = useState("");
-  const [prompt, setPrompt] = useState('');
+  const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);
 
@@ -19,7 +20,7 @@ const ChatModal = ({ isOpen, onClose }) => {
       setMessages([{ text: "Hello, how can I help you?", sender: "bot" }]);
     }
   }, [isOpen]);
-  
+
   // Function to scroll to the latest message
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -27,21 +28,19 @@ const ChatModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  
-
   const handleInput = async (e) => {
     e.preventDefault();
-    const newMessage = { type: 'user', text: prompt };
+    const newMessage = { type: "user", text: prompt };
     setMessages((prev) => [...prev, newMessage]);
     setPrompt("");
 
     try {
-      const res = await axios.post('http://localhost:3000/api/chat', { prompt });
-      const botMessage = { type: 'bot', text: res.data.response };
+      const res = await axios.post(`${API_BASE_URL}/api/chat`, { prompt });
+      const botMessage = { type: "bot", text: res.data.response };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error fetching AI response:", error);
-      const errorMessage = { type: 'bot', text: "Error fetching AI response" };
+      const errorMessage = { type: "bot", text: "Error fetching AI response" };
       setMessages((prev) => [...prev, errorMessage]);
     }
   };
@@ -60,16 +59,20 @@ const ChatModal = ({ isOpen, onClose }) => {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} items-center mb-2`}
+                className={`flex ${
+                  message.type === "user" ? "justify-end" : "justify-start"
+                } items-center mb-2`}
               >
                 <div
                   className={`px-3 text-[12px] py-2 rounded-lg max-w-[70%] ${
-                    message.type === 'user' ? 'bg-blue-500 text-white rounded-l-md' : 'bg-blue-200 text-gray-700 rounded-r-md'
+                    message.type === "user"
+                      ? "bg-blue-500 text-white rounded-l-md"
+                      : "bg-blue-200 text-gray-700 rounded-r-md"
                   }`}
                 >
                   {message.text}
                 </div>
-                {message.type === 'user' ? <IoMdContact /> : null}
+                {message.type === "user" ? <IoMdContact /> : null}
               </div>
             ))}
             <div ref={messagesEndRef} />

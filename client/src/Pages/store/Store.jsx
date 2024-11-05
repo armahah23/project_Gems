@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./Store.css";
 import { useAuth } from "../../context/AuthContext";
 import Swal from "sweetalert2";
-import Navbar from "../../components/Navbar.jsx"
+import Navbar from "../../components/Navbar.jsx";
 import axios from "axios";
-
+import { API_BASE_URL } from "../../config/config.js";
 
 const Store = () => {
   const [items, setItems] = useState([]);
@@ -13,7 +13,7 @@ const Store = () => {
   useEffect(() => {
     const fetchParts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/inventory");
+        const response = await axios.get(`${API_BASE_URL}/api/inventory`);
         const fetchedParts = response.data.map((part) => ({
           _id: part._id, // Ensure _id is included
           itemCode: part.partCode,
@@ -21,7 +21,7 @@ const Store = () => {
           itemPrice: part.price,
           itemQuantity: part.quantity,
           description: part.description,
-          itemImage: `http://localhost:3000${part.partImage}`, // Ensure the URL is correct
+          itemImage: `${API_BASE_URL}${part.partImage}`, // Ensure the URL is correct
         }));
 
         // Use a Map to ensure unique items based on itemCode
@@ -37,8 +37,7 @@ const Store = () => {
     };
 
     fetchParts();
-  }, []); 
-
+  }, []);
 
   const handleAdd = (part) => {
     // Find the index of the part in the array
@@ -49,16 +48,15 @@ const Store = () => {
       }
       return p;
     });
-  
+
     // Update the item array state
     setItems(updatedItem);
-  
+
     // Optionally set the added item
     setAddedItem(part.code);
 
-  console.log(setAddedItem);
+    console.log(setAddedItem);
 
-  
     // Show success alert
     Swal.fire({
       position: "top-end",
@@ -79,29 +77,30 @@ const Store = () => {
   //   setitem(updateditem);
   // };
 
-  
-
   return (
     <div className="car-item">
-     <div className="mt-[80px]">
-      <Navbar />
-     </div>
-      
+      <div className="mt-[80px]">
+        <Navbar />
+      </div>
 
       {items.map((part) => (
         <div key={part.code} className="part-item">
           <div className="image-container">
-            <img src={part.itemImage} alt={part.itemName} className="part-image" />
+            <img
+              src={part.itemImage}
+              alt={part.itemName}
+              className="part-image"
+            />
             <p className="part-name">{part.itemNameName}</p>
           </div>
           <div className="part-details">
-            <p>Code: {part.itemCode}</p> 
+            <p>Code: {part.itemCode}</p>
             {part.itemQuantity === 0 ? (
               <p className="bg-red-600 text-white text-center w-[120px] rounded">
                 Out of Stock
               </p>
             ) : (
-              <p>Qty    : {part.itemQuantity} pcs</p>
+              <p>Qty : {part.itemQuantity} pcs</p>
             )}
             <p>Price: Rs {part.itemPrice}</p>
           </div>
@@ -114,6 +113,5 @@ const Store = () => {
     </div>
   );
 };
-
 
 export default Store;

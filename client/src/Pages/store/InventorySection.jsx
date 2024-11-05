@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import PartsModal from "./PartsModal";
 import UpdateModal from "./UpdateModal";
 import { MdDashboard } from "react-icons/md";
+import { API_BASE_URL } from "../../config/config";
 
 function InventorySection() {
   const [items, setItems] = useState([]);
@@ -14,7 +15,7 @@ function InventorySection() {
   useEffect(() => {
     const fetchParts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/inventory");
+        const response = await axios.get(`${API_BASE_URL}/api/inventory`);
         const fetchedParts = response.data.map((part) => ({
           _id: part._id, // Ensure _id is included
           itemCode: part.partCode,
@@ -22,7 +23,7 @@ function InventorySection() {
           itemPrice: part.price,
           itemQuantity: part.quantity,
           description: part.description,
-          itemImage: `http://localhost:3000${part.partImage}`, // Ensure the URL is correct
+          itemImage: `${API_BASE_URL}${part.partImage}`, // Ensure the URL is correct
         }));
 
         // Use a Map to ensure unique items based on itemCode
@@ -38,7 +39,7 @@ function InventorySection() {
     };
 
     fetchParts();
-  }, []); 
+  }, []);
 
   const handlePartClick = (part) => {
     setSelectedPart(part);
@@ -54,13 +55,10 @@ function InventorySection() {
 
   const handleSaveUpdate = async (updatedPart) => {
     try {
-      await axios.put(
-        `http://localhost:3000/api/inventory/${updatedPart._id}`,
-        {
-          quantity: updatedPart.itemQuantity,
-          price: updatedPart.itemPrice,
-        }
-      );
+      await axios.put(`${API_BASE_URL}/api/inventory/${updatedPart._id}`, {
+        quantity: updatedPart.itemQuantity,
+        price: updatedPart.itemPrice,
+      });
       setItems(
         items.map((item) => (item._id === updatedPart._id ? updatedPart : item))
       );
@@ -98,7 +96,7 @@ function InventorySection() {
       if (result.isConfirmed) {
         try {
           await axios.delete(
-            `http://localhost:3000/api/inventory/${selectedPart._id}`
+            `${API_BASE_URL}/api/inventory/${selectedPart._id}`
           );
           setItems(
             items.filter((item) => item.itemCode !== selectedPart.itemCode)

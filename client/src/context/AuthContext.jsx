@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config/config.js";
 
 const AuthContext = createContext(null);
 
@@ -34,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     if (token && userId && userRole && userEmail && !user) {
       try {
         const userResponse = await fetch(
-          `http://localhost:3000/api/getUserDetail/${userRole}/${userEmail}`,
+          `${API_BASE_URL}/api/getUserDetail/${userRole}/${userEmail}`,
           {
             method: "GET",
             headers: {

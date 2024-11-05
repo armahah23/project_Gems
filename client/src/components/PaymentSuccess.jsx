@@ -1,18 +1,19 @@
-import { useParams } from 'react-router-dom';
-import { FaCheckCircle, FaStar } from 'react-icons/fa';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import { FaCheckCircle, FaStar } from "react-icons/fa";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config/config";
 
 const PaymentSuccess = () => {
   const { id } = useParams();
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
     const fetchBookingDetails = async () => {
       try {
-        await axios.get(`http://localhost:3000/api/changePaymentStatus/${id}`);
+        await axios.get(`${API_BASE_URL}/api/changePaymentStatus/${id}`);
       } catch (error) {
         console.error("Error fetching booking details:", error);
       }
@@ -31,14 +32,14 @@ const PaymentSuccess = () => {
 
   const handleRatingSubmit = async () => {
     try {
-      await axios.post('http://localhost:3000/api/ratings', {
+      await axios.post(`${API_BASE_URL}/api/ratings`, {
         bookingId: id,
         rating,
-        feedback
+        feedback,
       });
-      alert('Thank you for your feedback!');
+      alert("Thank you for your feedback!");
     } catch (error) {
-      console.error('Error submitting rating:', error);
+      console.error("Error submitting rating:", error);
     }
   };
 
@@ -46,8 +47,12 @@ const PaymentSuccess = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg text-center">
         <FaCheckCircle className="text-green-500 text-6xl mb-4 mx-auto" />
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Payment Successful</h1>
-        <p className="text-gray-600 mb-6">Thank you for your payment. Your transaction was successful.</p>
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">
+          Payment Successful
+        </h1>
+        <p className="text-gray-600 mb-6">
+          Thank you for your payment. Your transaction was successful.
+        </p>
         <div className="flex justify-center space-x-4">
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -71,7 +76,9 @@ const PaymentSuccess = () => {
                 <FaStar
                   key={index}
                   className="cursor-pointer"
-                  color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                  color={
+                    ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                  }
                   size={24}
                   onClick={() => setRating(ratingValue)}
                   onMouseEnter={() => setHover(ratingValue)}

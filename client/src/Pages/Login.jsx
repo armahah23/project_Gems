@@ -4,6 +4,7 @@ import logo from "../assets/photos/logo.png";
 import { useAuth } from "../context/AuthContext";
 import "./Login.css";
 import Swal from "sweetalert2";
+import { API_BASE_URL } from "../config/config.js";
 
 export default function Login() {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
@@ -37,10 +38,10 @@ export default function Login() {
     const loginData = { identifier, password: pwd }; // Changed to identifier instead of just username
     const loginUrl =
       userType === "user"
-        ? "http://localhost:3000/api/user/login"
+        ? `${API_BASE_URL}/api/user/login`
         : userType === "mechanic"
-        ? "http://localhost:3000/api/mechanic/login"
-        : "http://localhost:3000/api/admin/login";
+        ? `${API_BASE_URL}/api/mechanic/login`
+        : `${API_BASE_URL}/api/admin/login`;
     try {
       // Send login request
       const response = await fetch(loginUrl, {
@@ -63,7 +64,7 @@ export default function Login() {
 
       // Fetch user data after successful login using the identifier
       const userResponse = await fetch(
-        `http://localhost:3000/api/getUserDetail/${userType}/${identifier}`,
+        `${API_BASE_URL}/api/getUserDetail/${userType}/${identifier}`,
         {
           method: "GET",
           headers: {
@@ -150,10 +151,10 @@ export default function Login() {
     const loginData = { identifier }; // Changed to identifier instead of just username
     const loginUrl =
       userType === "user"
-        ? "http://localhost:3000/api/user/login"
+        ? `${API_BASE_URL}/api/user/login`
         : userType === "mechanic"
-        ? "http://localhost:3000/api/mechanic/login"
-        : "http://localhost:3000/api/admin/login";
+        ? `${API_BASE_URL}/api/mechanic/login`
+        : `${API_BASE_URL}/api/admin/login`;
 
     try {
       // Send login request
@@ -302,16 +303,13 @@ export function ForgotPassword() {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/forgot-password",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ identifier }),
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/api/forgot-password`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ identifier }),
+      });
 
       const data = await response.json();
 

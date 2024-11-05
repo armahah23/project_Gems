@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { API_BASE_URL } from "../config/config.js";
 
 function Bookingdetails() {
   const { user, addedItem } = useAuth(); // Get addedItem from AuthContext
@@ -20,7 +21,7 @@ function Bookingdetails() {
     const fetchMechanics = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/bookingSlot/getAllMechanics",
+          `${API_BASE_URL}/api/bookingSlot/getAllMechanics`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -50,8 +51,8 @@ function Bookingdetails() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
-    if (name === 'manufacturedYear') {
+
+    if (name === "manufacturedYear") {
       const year = parseInt(value);
       if (year > currentYear) {
         setYearError(`Year cannot be greater than ${currentYear}`);
@@ -59,10 +60,10 @@ function Bookingdetails() {
         setYearError("");
       }
     }
-    
-    setForm(prevState => ({
+
+    setForm((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -110,7 +111,7 @@ function Bookingdetails() {
 
     try {
       let bookingId;
-      const response = await fetch("http://localhost:3000/api/booking", {
+      const response = await fetch(`${API_BASE_URL}/api/booking`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +134,7 @@ function Bookingdetails() {
       // console.log("Booking created successfully", user._id);
 
       const sendNotification = await fetch(
-        `http://localhost:3000/api/notification/createNotification/${user._id}`,
+        `${API_BASE_URL}/api/notification/createNotification/${user._id}`,
         {
           method: "POST",
           headers: {
@@ -386,9 +387,15 @@ function Bookingdetails() {
                   value={selectedMechanic}
                   onChange={handleMechanicChange}
                 >
-                  <option className="text-gray-700" value="">Select a Mechanic</option>
+                  <option className="text-gray-700" value="">
+                    Select a Mechanic
+                  </option>
                   {allMechanics.map((mechanic) => (
-                    <option key={mechanic._id} className="text-gray-700" value={mechanic._id}>
+                    <option
+                      key={mechanic._id}
+                      className="text-gray-700"
+                      value={mechanic._id}
+                    >
                       {mechanic.firstname} ({mechanic.email})
                     </option>
                   ))}

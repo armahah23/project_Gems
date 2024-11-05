@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/photos/logo.png";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { API_BASE_URL } from "../config/config.js";
 
 export default function Signup() {
   const [fullname, setFullname] = useState("");
@@ -28,7 +29,7 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent default form submission
-    const response = await fetch("http://localhost:3000/api/usignup", {
+    const response = await fetch(`${API_BASE_URL}/api/usignup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -87,7 +88,7 @@ export default function Signup() {
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
             />
-             <label htmlFor="number">Phone Number</label>
+            <label htmlFor="number">Phone Number</label>
             <input
               type="text"
               placeholder="Enter your Phone number"
@@ -108,17 +109,10 @@ export default function Signup() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            
-            
           </div>
 
-
-
-
-
-
           <div className="column-4">
-          <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               placeholder="Enter your Password"

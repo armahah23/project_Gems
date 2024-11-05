@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/config";
 
 const Addwork = () => {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const Addwork = () => {
     if (partCode) {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/inventory/partcode/${partCode}`
+          `${API_BASE_URL}/api/inventory/partcode/${partCode}`
         );
         const part = response.data;
         setUnitAmount(part.price);

@@ -1,7 +1,8 @@
 // adminComponent/RatingsWidget.jsx
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { FaStar } from 'react-icons/fa';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { FaStar } from "react-icons/fa";
+import { API_BASE_URL } from "../../../config/config";
 
 const RatingsWidget = () => {
   const [averageRating, setAverageRating] = useState(0);
@@ -11,13 +12,13 @@ const RatingsWidget = () => {
     const fetchRatings = async () => {
       try {
         const [avgResponse, recentResponse] = await Promise.all([
-          axios.get('http://localhost:3000/api/ratings/average'),
-          axios.get('http://localhost:3000/api/ratings/recent')
+          axios.get(`${API_BASE_URL}/api/ratings/average`),
+          axios.get(`${API_BASE_URL}/api/ratings/recent`),
         ]);
         setAverageRating(avgResponse.data.averageRating);
         setRecentRatings(recentResponse.data);
       } catch (error) {
-        console.error('Error fetching ratings:', error);
+        console.error("Error fetching ratings:", error);
       }
     };
     fetchRatings();
@@ -30,7 +31,7 @@ const RatingsWidget = () => {
         {averageRating.toFixed(1)} / 5.0
       </div>
       <div className="space-y-4">
-        {recentRatings.map(rating => (
+        {recentRatings.map((rating) => (
           <div key={rating._id} className="border-b pb-2">
             <div className="flex items-center gap-2">
               {[...Array(5)].map((_, i) => (

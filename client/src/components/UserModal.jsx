@@ -1,6 +1,7 @@
 import "./Modal.css"; // Import your CSS file
 // import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
+import { API_BASE_URL } from "../config/config.js";
 
 const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
   // const navigate = useNavigate();
@@ -23,7 +24,7 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
       "content-type": "application/json",
     };
     const response = await fetch(
-      "http://localhost:3000/api/create-checkout-session",
+      `${API_BASE_URL}/api/create-checkout-session`,
       {
         method: "POST",
         headers: header,

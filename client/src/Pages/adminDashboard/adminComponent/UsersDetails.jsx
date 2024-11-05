@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { MdDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/config";
 
 const UsersDetails = () => {
   const [users, setUsers] = useState([]);
@@ -9,7 +10,9 @@ const UsersDetails = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/users/getAllUsersToAdmin");
+        const response = await axios.get(
+          `${API_BASE_URL}/api/users/getAllUsersToAdmin`
+        );
         if (Array.isArray(response.data)) {
           setUsers(response.data);
         } else {
@@ -30,7 +33,7 @@ const UsersDetails = () => {
           Users Details
         </h1>
         <Link to={"/admin/dashboard"}>
-        <MdDashboard className="text-[24px] cursor-pointer" />
+          <MdDashboard className="text-[24px] cursor-pointer" />
         </Link>
       </div>
       <div className="overflow-x-auto">
