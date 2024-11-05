@@ -229,11 +229,11 @@ function Bookingdetails() {
   return (
     <main className="booking-details flex justify-center text-white relative overflow-hidden">
       <div className="background-design"></div>
-      <div className="app-booking pb-4 ">
-        <h1>SLOT BOOKING DETAILS</h1>
-        <div className="bg-[#949494b1]/40 p-5 rounded-xl  bg-gray-500 flex items-center w-full">
-          <form onSubmit={handleSubmit} className="flex flex-col">
-            <div className="flex flex-col lg:flex-row w-ful lg:justify-between">
+      <div className="mx-auto pb-4  w-full max-w-[750px] px-5">
+        <p className="text-black text-xl font-bold lg:text-2xl py-3 text-center">SLOT BOOKING DETAILS</p>
+        <div className="bg-[#949494b1]/40 p-5 rounded-xl  bg-gray-500 flex items-center w-full shadow-md backdrop-blur-sm">
+          <form onSubmit={handleSubmit} className="flex flex-col w-full">
+            <div className="flex flex-col lg:flex-row w-full lg:justify-between">
               {/* left */}
               <div className="w-full lg:w-1/2 flex flex-col gap-2  ">
                 <div className="flex flex-col gap-1 w-full">
