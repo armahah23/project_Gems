@@ -19,8 +19,8 @@ function EBService() {
   };
 
   return (
-    <div className="EBService">
-      <div className='mt-10'><Navbar /></div>
+    <div className="EBService w-full">
+      <div><Navbar /></div>
       
       <main>
         {/* Slot Booking Section */} 
@@ -33,7 +33,10 @@ function EBService() {
           
             <button className="book-service-button" onClick={handleBookservice}>Book Service</button>
         </section>
-        <img className='ImageT' src={ImageT} />
+
+        <div className='flex items-center justify-center sm:justify-end  sm:absolute bottom-24 right-5'>
+        <img className='w-[280px] sm:w-[300px] lg:w-[400px] h-auto rounded-md sm:mt-5 m-5 ' src={ImageT} />
+        </div>
 
         {/* Emergency Section */}
         
