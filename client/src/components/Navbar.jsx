@@ -8,8 +8,16 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [notification, setNotification] = useState([
-    { bookingId: 1, topic: "New Booking", message: "Your booking is confirmed." },
-    { bookingId: 2, topic: "Special Offer", message: "Get 20% off on next booking!" },
+    {
+      bookingId: 1,
+      topic: "New Booking",
+      message: "Your booking is confirmed.",
+    },
+    {
+      bookingId: 2,
+      topic: "Special Offer",
+      message: "Get 20% off on next booking!",
+    },
   ]);
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(true);
   const token = localStorage.getItem("token");
@@ -47,7 +55,7 @@ const Navbar = () => {
         />
 
         {/* Mobile Menu Toggle */}
-        <button className="block sm:hidden" onClick={toggleMenu}>
+        <button className="block sm:hidden " onClick={toggleMenu} >
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
 
@@ -60,7 +68,6 @@ const Navbar = () => {
             <Link to="/servicepage">SERVICES</Link>
             <Link to="/offerpage">OFFERS</Link>
             {token && <Link to="/contactus">CONTACT</Link>}
-
           </div>
 
           {token ? (
@@ -116,9 +123,9 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile Navigation Menu */}
-       
+        {isMenuOpen && (
           <nav
-            className={` fixed top-0 ${isMenuOpen ? "top-0":"-top-[500px]"} left-0  w-full h-[300px] backdrop-blur-xl bg-white/30 flex flex-col items-center justify-center z-50 duration-200 `}
+            className={` fixed top-0  left-0  w-full h-[300px] backdrop-blur-xl bg-white/30 flex flex-col items-center justify-center z-50 duration-200 `}
           >
             <button
               className="absolute top-5 right-5 text-2xl"
@@ -127,12 +134,30 @@ const Navbar = () => {
               &times;
             </button>
             <div className="flex flex-col space-y-4 text-center">
-              <Link to="/" onClick={toggleMenu}>HOME</Link>
-              {token && <Link to="/bookings" onClick={toggleMenu}>BOOKINGS</Link>}
-              {token && <Link to="/contact" onClick={toggleMenu}>CONTACT</Link>}
-              <Link to="/servicepage" onClick={toggleMenu}>SERVICES</Link>
-              <Link to="/offerpage" onClick={toggleMenu}>OFFERS</Link>
-              {token && <Link to="/store" onClick={toggleMenu}>STORE</Link>}
+              <Link to="/" onClick={toggleMenu}>
+                HOME
+              </Link>
+              {token && (
+                <Link to="/bookings" onClick={toggleMenu}>
+                  BOOKINGS
+                </Link>
+              )}
+              {token && (
+                <Link to="/contact" onClick={toggleMenu}>
+                  CONTACT
+                </Link>
+              )}
+              <Link to="/servicepage" onClick={toggleMenu}>
+                SERVICES
+              </Link>
+              <Link to="/offerpage" onClick={toggleMenu}>
+                OFFERS
+              </Link>
+              {token && (
+                <Link to="/store" onClick={toggleMenu}>
+                  STORE
+                </Link>
+              )}
               {token ? (
                 <button
                   className="text-white px-4 py-2 rounded bg-primary hover:bg-blue-700"
@@ -150,7 +175,7 @@ const Navbar = () => {
               )}
             </div>
           </nav>
-        
+        )}
       </div>
     </header>
   );
