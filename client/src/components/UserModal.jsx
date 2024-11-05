@@ -45,18 +45,18 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
 
   return (
     <div className={`modal ${showModal ? "show" : ""}`}>
-      <div className="modal-content relative text-gray-100">
+      <div className="bg-[#13496b] mx-auto p-5 sm:p-8 border border-[#888] w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] lg:max-w-[650px] shadow-md rounded-xl relative text-gray-100">
         <button
           className="absolute bg-gray-200 h-[30px] w-[30px] top-[5px] right-[5px] text-black rounded-2xl text-[20px]"
           onClick={closeModal}
         >
           &times;
         </button>
-        <h2 className="text-center font-bold text-xl mb-2">Booking Details</h2>
+        <h2 className="text-center font-bold text-xl mb-2">Booking Details gg</h2>
         {bookingDetails.isAccepted === "completed" ? (
           <div>
             <h3 className="text-center font-bold text-lg mb-2">Bill Details</h3>
-            <table className="w-full text-left">
+            <table className="w-full text-left  text-sm sm:text-base">
               <thead>
                 <tr>
                   <th>Description</th>
@@ -104,7 +104,7 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
           <div>
             <div className="w-[100%] flex my-2">
               <div className="w-[50%]">
-                <ul className="popup-ul">
+                <ul className="popup-ul text-sm">
                   <li>Vehicle Make: {bookingDetails.vehiclemake}</li>
                   <li>Vehicle Type: {bookingDetails.vehicletype}</li>
                   <li>Vehicle Number: {bookingDetails.vehiclenumber}</li>
@@ -113,7 +113,7 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
                 </ul>
               </div>
               <div className="w-[50%]">
-                <ul className="popup-ul">
+                <ul className="popup-ul text-sm pl-3">
                   <li>Preferred Time: {bookingDetails.preferredtime}</li>
                   <li>Vehicle Owner Name: {bookingDetails.vehicleownername}</li>
                   <li>Mobile Number: {bookingDetails.mobilenumber}</li>
