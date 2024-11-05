@@ -11,7 +11,7 @@ const workItemSchema = new mongoose.Schema({
   },
   warranty: {
     type: String,
-    required: true,
+    required: false,
   },
   qty: {
     type: Number,

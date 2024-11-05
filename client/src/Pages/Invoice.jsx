@@ -19,6 +19,7 @@ const Invoice = () => {
   useEffect(() => {
     localStorage.setItem("workItems", JSON.stringify(workItems));
   }, [workItems]);
+  
 
   // Calculate net total whenever workItems changes
   useEffect(() => {
@@ -40,73 +41,47 @@ const Invoice = () => {
       });
       return;
     }
-    if (workItems.length === 0) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "At least 1 item is required!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      return;
-    }
-
-    // Ensure all required fields are provided
-    for (const item of workItems) {
-      if (!item.partCode || !item.description || !item.warranty) {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "All work item fields are required!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        return;
-      }
-    }
-
-    const data = {
-      workItems: workItems,
-      netTotal: netTotal,
-    };
-
+  
     try {
-      // Update inventory quantities
-      for (const item of workItems) {
-        await axios.put(
-          `http://localhost:3000/api/inventory/partcode/${item.partCode}`,
-          {
-            quantity: item.qty, // Decrease the quantity
-          }
-        );
-      }
-
-      // Create the bill
-      const response = await axios.post(
-        `http://localhost:3000/api/addBill/${bookingId}`,
-        data
-      );
+      // Create a clean bill object with only needed properties
+      const sanitizedWorkItems = workItems.map(item => ({
+        warrenty: item.name,
+        qty: item.qty,
+        price: item.price,
+        unitAmount: item.unitAmount,
+        total: item.total,
+        description: item.description,
+        partCode: item.partCode
+      }));
+  
+      const billData = {
+        bookingId: bookingId,
+        workItems: sanitizedWorkItems,
+        netTotal: netTotal,
+        createdAt: new Date().toISOString()
+      };
+  
+      // Make API call with sanitized data
+      const response = await axios.post(`http://localhost:3000/api/addBill/${bookingId}`, billData);
+  
       if (response.status === 200) {
-        console.log({ ress: response });
-        navigate("/mdashboard");
-        setWorkItems([]);
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Bill created successfully",
+          title: "Bill created successfully!",
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/mdashboard");
+        // Optional: Reset form or redirect
       }
     } catch (error) {
-      console.error(
-        "Error creating bill:",
-        error.response ? error.response.data : error.message
-      );
+      console.error('Bill creation error:', error);
       Swal.fire({
         position: "top-end",
         icon: "error",
-        title: "Failed to create bill!",
+        title: "Failed to create bill",
+        text: "Please try again",
         showConfirmButton: false,
         timer: 1500,
       });

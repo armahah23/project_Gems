@@ -1,6 +1,7 @@
 const Booking = require("../schemas/bookingSchema");
 const User = require("../schemas/userSchema"); // Import the User model
 const Notification = require("../schemas/notificationSchema");
+const Inventory = require("../schemas/inventorySchema");
 
 // Create a new booking
 exports.createBooking = async (req, res) => {
@@ -262,6 +263,11 @@ exports.addBill = async (req, res) => {
     booking.isPaid = false;
 
     await booking.save();
+    for (const item of workItems) {
+      const part = await Inventory.findOne({ partCode: item.partCode });
+      part.quantity = part.quantity - item.qty;
+      await part.save();
+    }
 
     // Create a notification for the user
     const newNotification = new Notification({
