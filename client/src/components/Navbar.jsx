@@ -11,6 +11,7 @@ const Navbar = () => {
     { bookingId: 1, topic: "New Booking", message: "Your booking is confirmed." },
     { bookingId: 2, topic: "Special Offer", message: "Get 20% off on next booking!" },
   ]);
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(true);
   const token = localStorage.getItem("token");
 
   const toggleMenu = () => {
@@ -32,6 +33,7 @@ const Navbar = () => {
 
   const handleNotificationClick = (bookingId) => {
     console.log("Notification clicked:", bookingId);
+    setHasUnreadNotifications(false);
   };
 
   return (
@@ -53,21 +55,27 @@ const Navbar = () => {
         <nav className="hidden sm:flex sm:space-x-4 sm:items-center">
           <div className="nav-links flex space-x-4">
             <Link to="/">HOME</Link>
+            {token && <Link to="/store">STORE</Link>}
             {token && <Link to="/bookings">BOOKINGS</Link>}
-            {token && <Link to="/contact">CONTACT</Link>}
             <Link to="/servicepage">SERVICES</Link>
             <Link to="/offerpage">OFFERS</Link>
-            {token && <Link to="/store">STORE</Link>}
+            {token && <Link to="/contactus">CONTACT</Link>}
+
           </div>
 
           {token ? (
             <div className="flex items-center space-x-4">
-              <button
-                className="hover:bg-transparent notification-btn"
-                onClick={toggleModal}
-              >
-                <IoNotificationsSharp size={20} />
-              </button>
+              <div className="relative">
+                {hasUnreadNotifications && (
+                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                )}
+                <button
+                  className="hover:bg-transparent notification-btn"
+                  onClick={toggleModal}
+                >
+                  <IoNotificationsSharp size={20} />
+                </button>
+              </div>
 
               {showModal && (
                 <div className="notification-modal z-[10000]">
