@@ -262,7 +262,7 @@ const HomePage = () => {
           <section className=" w-full container mx-auto px-4 sm:px-10 lg:px-20">
             <div className="hero-content text-center mt-1 sm:text-left">
               <p className="text-[25px] sm:text-[40px] font-serif font-bold text-gray-500 mt-5">
-                Welcome, {user ? user.fullname : "Guest"}!
+                Welcome, <span className="text-[#F26B21] text-[30px] sm:text-[45px]  font-bold">{user ? user.fullname : "Guest"}!</span>
               </p>
 
               <h1 className="text-[2.5rem] sm:text-[3rem] font-bold">
