@@ -4,7 +4,8 @@
 .background-design {
   position: absolute;
   bottom: 0;
-  width: 100vw;
+  left: 0;
+  width: 100%;
   height: 100vh;
   background: #13496b;
   clip-path: polygon(-3px 544px, 99.87% 328px, 100.07% 100%, 0% 100%);

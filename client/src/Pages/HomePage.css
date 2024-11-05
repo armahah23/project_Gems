@@ -394,11 +394,11 @@
 
 
 @media (max-width: 640px) {
-  .flex {
-    flex-direction: row; /* Arrange items in a row */
-    justify-content: space-between; /* Space them out across the container */
+  /* .flex {
+    flex-direction: row; 
+    justify-content: space-between; 
     align-items: center;
-  }
+  } */
   .sign-up-btn {
     flex-shrink: 0; /* Prevent the button from shrinking */
   }
