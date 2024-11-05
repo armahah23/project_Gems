@@ -284,24 +284,24 @@ const HomePage = () => {
                     </button>
                   </Link>
                 ) : (
-                  <div className="flex flex-col  sm:flex-row">
+                  <div className="flex flex-col  items-center sm:flex-row  gap-3">
                     <Link
                       to="/signupoption"
-                      className="sign-up-btn px-6 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 mr-4"
+                      className="flex items-center justify-center px-6 py-3 sm:py-4 text-white bg-blue-600 rounded hover:bg-blue-700 "
                     >
                       SIGN UP
                     </Link>
-                    <p className="px-5 sm:mt-0">
+                    <span className=" ">
                       or{" "}
                       <a
                         href="#"
-                        className="text-blue-700 underline"
+                        className="text-blue-700 underline mx-2"
                         onClick={handleLogin}
                       >
                         CLICK HERE
                       </a>{" "}
                       to Log in
-                    </p>
+                    </span>
                   </div>
                 )}
               </div>
