@@ -35,8 +35,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className="header px-4 sm:px-10 lg:px-20 relative">
-      <div className="flex w-full justify-between items-center">
+    <header className="header px-4 sm:px-10 lg:px-20 relative overflow-hidden w-full">
+      <div className="flex flex-row w-full justify-between items-center ">
         <img
           className="Logo"
           src={Logo}
@@ -45,7 +45,7 @@ const Navbar = () => {
         />
 
         {/* Mobile Menu Toggle */}
-        <button className="sm:hidden" onClick={toggleMenu}>
+        <button className="block sm:hidden" onClick={toggleMenu}>
           {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
 
@@ -108,9 +108,9 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile Navigation Menu */}
-        {isMenuOpen && (
+       
           <nav
-            className="fixed top-0 left-0 w-full h-[300px] backdrop-blur-xl bg-white/30 flex flex-col items-center justify-center z-50 transform transition-transform duration-1000 ease-in-out"
+            className={` fixed top-0 ${isMenuOpen ? "top-0":"-top-[500px]"} left-0  w-full h-[300px] backdrop-blur-xl bg-white/30 flex flex-col items-center justify-center z-50 duration-200 `}
           >
             <button
               className="absolute top-5 right-5 text-2xl"
@@ -142,7 +142,7 @@ const Navbar = () => {
               )}
             </div>
           </nav>
-        )}
+        
       </div>
     </header>
   );

@@ -197,7 +197,7 @@
   }
 
   .navbar-links {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
     gap: 20px;
   }
@@ -273,7 +273,7 @@
   }
 
   .navbar-links {
-    flex-direction: column; /* Stack links vertically */
+    /* flex-direction: column; Stack links vertically */
     align-items: center;
     gap: 15px;
   }
