@@ -202,7 +202,7 @@ export default function Login() {
                   checked={userType === "user"}
                   onChange={(e) => setUserType(e.target.value)}
                 />
-                User
+                Customer
               </label>
             </span>
             <span className="mr-2">
