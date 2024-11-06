@@ -328,7 +328,7 @@ const HomePage = () => {
                 alt="Mechanic"
               />
             </div>
-            <div className="service-details sm:pl-[15%] pl-0 text-center sm:text-left sm:ml-8  ">
+            <div className="service-details sm:pl-[15%] pl-0 text-center sm:text-left sm:ml-8 lg:mt-28 ">
               <h2
                 className="text-4xl font-extrabold mb-1"
                 style={{ color: "#13496b" }}
