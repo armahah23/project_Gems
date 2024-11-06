@@ -170,6 +170,10 @@ const Dashboard = () => {
     navigate("/mprofile");
   };
 
+  const navigateToSettings = () => {
+    navigate("/macSettings");
+  };
+
   const closeBookingModal = () => {
     setShowBookingModal(false);
     fetchAllDetails();
@@ -253,7 +257,7 @@ const Dashboard = () => {
                 )}
               </li>
               <li>
-                <button onClick={ToggleEvent}>Settings</button>
+                <button onClick={navigateToSettings}>Settings</button>
               </li>
               <li>
                 <button onClick={navigateToProfile}>Profile</button>

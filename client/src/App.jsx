@@ -33,6 +33,7 @@ import UsersDetails from "./Pages/adminDashboard/adminComponent/UsersDetails.jsx
 import OffersPage from "./Pages/Offerpage.jsx";
 import ServicePage from "./Pages/ServicePage.jsx"
 import MechanicUserProfile from "./Pages/mechanicDashboard/MechanicUserProfile.jsx";
+import MechanicSettings from "./Pages/mechanicDashboard/MechanicSetting.jsx";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
       <Route path="offerpage" element={<OffersPage />} />
       <Route path="servicepage" element={<ServicePage />} />
       <Route path="mprofile" element={<MechanicUserProfile />} />
+      <Route path="macSettings" element={<MechanicSettings />} />
       {/* <Route path="contactus" element={<ContactUs />} /> */}
 
       {/* admin dashboard */}
