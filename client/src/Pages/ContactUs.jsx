@@ -48,7 +48,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className='mt-10'>
+    <div className=''>
       <Navbar/>
       <div className="flex flex-col lg:flex-row w-full min-h-screen bg-[#1a4d6d]">
         {/* Set Information Section */}

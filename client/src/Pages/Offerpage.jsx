@@ -44,11 +44,11 @@ const OffersPage = () => {
 
   return (
     
-    <div className="offers-container">
+    <div className="w-fll pb-5">
       <div><Navbar/></div>
       
       <div className="offers-header">
-        <h1>Special Offers</h1>
+        <h1 className='py-2'>Special Offers</h1>
 
       </div>
 

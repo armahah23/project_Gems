@@ -4,9 +4,9 @@ import Navbar from "../components/Navbar"
 
 const ServicesPage = () => {
   return (
-    <div className="services-background">
+    <div className="">
        <Navbar/>
-      <div className="services-container">
+      <div className="services-container mt-5">
        
         <div className="header">
           <h2>Our Vehicle Service Solutions</h2>

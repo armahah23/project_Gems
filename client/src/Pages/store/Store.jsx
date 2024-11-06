@@ -79,7 +79,7 @@ const Store = () => {
 
   return (
     <div className="car-item">
-      <div className="mt-[80px]">
+      <div className="">
         <Navbar />
       </div>
 
