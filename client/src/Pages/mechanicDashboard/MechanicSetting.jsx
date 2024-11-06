@@ -12,7 +12,7 @@ const MechanicSettings = () => {
   };
 
   return (
-    <div className="flex gap-5 p-5 flex-col min-h-screen h-full bg-gradient-to-b from-[#955DF7] to-[#4C7BF6]">
+    <div className="flex gap-10 p-5 py-10 flex-col min-h-screen h-full bg-gradient-to-b from-[#955DF7] to-[#4C7BF6]">
       <div className="flex items-center gap-3">
         <button
           onClick={navigateDashboard}
@@ -29,12 +29,12 @@ const MechanicSettings = () => {
       <div className="flex items-center lg:flex-row flex-col w-full gap-3">
         <button className="flex flex-row items-center justify-center gap-2 bg-white hover:bg-white/40 p-3 rounded-lg text-black w-full">
           <RiSettings4Line  size={20}/>
-          <span>changes Password</span>
+          <span className="uppercase">change Password</span>
         </button>
 
         <button className="flex flex-row items-center justify-center gap-2 bg-white hover:bg-white/40 p-3 rounded-lg  text-black w-full">
           <MdAccountBalance size={20} />
-          <span>Account</span>
+          <span className="uppercase">Account</span>
         </button>
       </div>
     </div>
