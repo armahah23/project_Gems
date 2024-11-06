@@ -52,7 +52,7 @@ const UserModal = ({ showModal, toggleModal, bookingDetails }) => {
         >
           &times;
         </button>
-        <h2 className="text-center font-bold text-xl mb-2">Booking Details gg</h2>
+        <h2 className="text-center font-bold text-xl mb-2">Booking Details</h2>
         {bookingDetails.isAccepted === "completed" ? (
           <div>
             <h3 className="text-center font-bold text-lg mb-2">Bill Details</h3>

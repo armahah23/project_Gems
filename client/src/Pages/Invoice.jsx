@@ -112,7 +112,7 @@ const Invoice = () => {
             </tr>
             <tr>
               <th>Description</th>
-              <th>Warranty</th>
+              <th>Part Name</th>
               <th>Parts Code No</th>
               <th>Qty</th>
               <th>Amount</th>
