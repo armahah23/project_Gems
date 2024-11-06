@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/photos/logo.png";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,6 +20,8 @@ const Navbar = () => {
       message: "Get 20% off on next booking!",
     },
   ]);
+
+  const navigate = useNavigate();
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(true);
   const token = localStorage.getItem("token");
 
@@ -31,8 +34,27 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will be logged out of your account",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("token");
+        navigate("/login");
+        window.location.reload();
+        
+        Swal.fire(
+          'Logged Out!',
+          'You have been successfully logged out.',
+          'success'
+        )
+      }
+    });
   };
 
   const handleSignup = () => {

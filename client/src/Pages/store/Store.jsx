@@ -61,7 +61,7 @@ const Store = () => {
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Item added successfully",
+      title: "Item added to bookings successfully",
       showConfirmButton: false,
       timer: 1500,
     });
