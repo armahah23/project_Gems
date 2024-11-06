@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../context/AuthContext";
+import User from "../../assets/photos/user.jpg"
 
 
 const MechanicUserProfile = () => {
@@ -84,51 +85,56 @@ const MechanicUserProfile = () => {
   // };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 justify-center items-center">
+    <div className="flex min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 justify-center items-center px-3">
       <div className="bg-white/90  p-6 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-3xl font-bold text-center uppercase mb-4">
           Profile
         </h1>
-        <div className="flex flex-col items-center">
-          <div>
-            <div className="mt-4 flex items-center gap-4">
+
+        <div className="flex items-center justify-center py-5">
+         <img src={User} alt="" className="w-[100px] rounded-full" />
+        </div>
+       
+        <div className="flex flex-col items-center w-full">
+          <div className=" w-full">
+            <div className="mt-4 flex items-center gap-4 justify-between">
               <label className="block text-gray-700 text-md font-bold mb-0">
                 Name:
               </label>
               <p className="text-gray-600">{formData.name}</p>
             </div>
-            <div className="mt-4 flex items-center gap-4">
+            <div className="mt-4 flex items-center gap-4 justify-between">
               <label className="block text-gray-700 text-md font-bold mb-0">
                 Email:
               </label>
               <p className="text-gray-600">{formData.email}</p>
             </div>
-            <div className="mt-4 flex items-center gap-4">
+            <div className="mt-4 flex items-center gap-4 justify-between">
               <label className="block text-gray-700 text-md font-bold mb-0">
                 Phone Number:
               </label>
               <p className="text-gray-600">{formData.phoneNumber}</p>
             </div>
-            <div className="mt-4 flex items-center gap-4">
+            <div className="mt-4 flex items-center gap-4 justify-between">
               <label className="block text-gray-700 text-md font-bold mb-0">
                 Mechanic ID:
               </label>
               <p className="text-gray-600">{formData.mechanicId}</p>
             </div>
-            <div className="mt-4 flex items-center gap-4">
+            <div className="mt-4 flex items-center gap-4 justify-between">
               <label className="block text-gray-700 text-md font-bold mb-0">
                 Address:
               </label>
               <p className="text-gray-600">{formData.address}</p>
             </div>
           </div>
-          <div className="mt-4 flex gap-4 items-center">
+          <div className="mt-4 flex gap-4 items-center w-full">
             {/* <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
               <FaEdit className="inline-block mr-1" /> Edit Profile
             </button> */}
             <button
               onClick={() => navigate("/mdashboard")}
-              className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+              className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 w-full"
             >
               Go to Dashboard
             </button>
