@@ -12,7 +12,7 @@ const MechanicSettings = () => {
   };
 
   return (
-    <div className="flex gap-10 p-5 py-10 flex-col min-h-screen h-full bg-gradient-to-b from-[#955DF7] to-[#4C7BF6]">
+    <div  className="mac-img flex gap-10 p-5 py-10 flex-col min-h-screen h-full bg-gradient-to-b from-[#955DF7] to-[#4C7BF6]">
       <div className="flex items-center gap-3">
         <button
           onClick={navigateDashboard}

@@ -259,7 +259,7 @@ const HomePage = () => {
         {/* Main Content */}
         <main>
           {/* Hero Section */}
-          <section className=" w-full container mx-auto px-4 sm:px-10 lg:px-20">
+          <section className=" w-full container mx-auto px-4 sm:px-10 lg:px-20 lg:flex lg:flex-row lg:justify-between">
             <div className="hero-content text-center mt-1 sm:text-left">
               <p className="text-[25px] sm:text-[40px] font-serif font-bold text-gray-500 mt-5">
                 Welcome, <span className="text-[#F26B21] text-[30px] sm:text-[45px]  font-bold">{user ? user.fullname : "Guest"}!</span>
@@ -309,7 +309,7 @@ const HomePage = () => {
                 )}
               </div>
             </div>
-            <div className="flex justify-center mt-8 sm:mt-0">
+            <div className="flex justify-end w-fit ">
               <img
                 className="ImageA hidden sm:block"
                 src={ImageA}
