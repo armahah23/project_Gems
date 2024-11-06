@@ -1,37 +1,34 @@
-require('dotenv').config(); // Load environment variables from .env file
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+require("dotenv").config(); // Load environment variables from .env file
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const Notification = require("../schemas/notificationSchema");
 const Booking = require("../schemas/bookingSchema");
-import { API_BASE_URL } from "../../config/config";
-
 
 exports.createCheckoutSession = async (req, res) => {
   const { netTotal, bookingId } = req.body;
 
-  if (!netTotal || typeof netTotal !== 'number') {
+  if (!netTotal || typeof netTotal !== "number") {
     return res.status(400).json({ error: "Invalid netTotal amount" });
   }
 
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ["card"],
       line_items: [
         {
           price_data: {
-            currency: 'usd',
+            currency: "usd",
             product_data: {
-              name: 'Total Invoice Amount',
+              name: "Total Invoice Amount",
             },
             unit_amount: netTotal * 100, // Stripe expects the amount in cents
           },
           quantity: 1,
         },
       ],
-      mode: 'payment',
-      success_url: `${API_BASE_URL}/paymentSuccess/` + bookingId,
-      cancel_url: `${API_BASE_URL}/paymentcancel`,
+      mode: "payment",
+      success_url: "https://autocare-client.onrender.com/paymentSuccess/" + bookingId,
+      cancel_url: "https://autocare-client.onrender.com/paymentcancel",
     });
-
 
     res.json({ id: session.id });
   } catch (error) {
